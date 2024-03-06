@@ -27,6 +27,9 @@ include "php/logControl/loginControl.php";
 
       <!-- retrieveSubjectByDegree() -->
       <script src="js/subject/retrieveByDegree.js"></script>
+
+      <!-- retrievePersonalDocuments() -->
+      <script src="js/document/retrieve/personal.js"></script>
       
 </head>
 <body onload="retrieveDegrees()">
@@ -84,16 +87,20 @@ include "php/logControl/loginControl.php";
       <footer>
             footer
       </footer>
+
+      <!-- Document class -->
+      <!-- sortDocuments() -->
+      <script src="js/document/document.js"></script>
+
+      <!-- populateWithDocuments() -->
+      <script src="js/document/display.js"></script>
       
       <!--  Javascript function to fetch and display subject options -->
-      <script src="js/displaySubjects.js"></script>
+      <!-- <script src="js/displaySubjects.js"></script> -->
       <script src="js/fillSubjectOptions.js"></script>
-      
-      <!--  Javascript function to retrieve all user's documents -->
-      <script src="js/displayPersonalDocuments.js"></script>
 
       <!--  Javascript function display and format documents -->
-      <script src="js/documentContainer.js"></script>
+      <!-- <script src="js/documentContainer.js"></script> -->
 
       <script>
       function toCustomize() {
