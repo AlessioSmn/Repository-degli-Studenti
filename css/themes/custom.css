@@ -1,0 +1,23 @@
+:root{
+      --bgColor: #1e1e1e; /* UniPi official color: Blu Pantone Coated 541*/
+      --bgColor_light: #323232;
+      --bgColor_dark: #000000;
+
+      --foreColor: #00ff66;
+      --foreColor_light: #58ff9b;
+      --foreColor_dark: #00d455;
+
+      --primary: #f2ff00; /* UniPi official color: Blu Pantone Coated 541*/
+      --primary_light: #f8ff70;
+      --primary_dark: #c2cc00;
+
+      --secondary: #ff6f00;
+      --secondary_light: #ff9341;
+      --secondary_dark: #aa4900;
+
+      --tertiary: #ff07c5;
+      --tertiary_light: #ff5cd9;
+      --tertiary_dark: #c80099;
+      
+      --shadow: #00ffff;
+}

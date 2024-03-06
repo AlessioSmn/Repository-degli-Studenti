@@ -1,0 +1,22 @@
+.piechart-TEST{
+      height: 200px;
+      width: 200px;
+      border-radius: 50%;
+      border: 0px solid black;
+
+      /*
+      background-image: conic-gradient(
+            red 0deg, red 90deg, 
+            blue 90deg, blue 180deg, 
+            yellow 180deg, yellow 345deg,
+            pink 345deg, pink 360deg
+      );
+      */
+
+      background-image: linear-gradient(45deg, red 0%, transparent 50%),
+                  linear-gradient(135deg, blue 0%, transparent 50%),
+                  linear-gradient(225deg, yellow 0%, transparent 50%),
+                  linear-gradient(315deg, pink 0%, transparent 50%);
+      background-size: 50% 50%; /* Adjust size as needed */
+      background-repeat: no-repeat;
+}

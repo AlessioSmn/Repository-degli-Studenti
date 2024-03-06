@@ -1,0 +1,6 @@
+degreecourse(id, name)
+subject(id, name, cfu, year, degreecourse)
+
+document(id, title, subtitle, uploadDate, lastModified, subject, owner, downloadcounter)
+
+user(id, name, surname, email, password)
