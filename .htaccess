@@ -1,7 +1,0 @@
-RewriteEngine On
-
-# Deny access to /docs/
-RewriteRule (^|/)docs(/|$) - [F]
-
-# Deny access to /php/
-# RewriteRule (^|/)php(/|$) - [F]
