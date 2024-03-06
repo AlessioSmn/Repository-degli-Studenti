@@ -1,0 +1,112 @@
+#documentVisualizer{
+      overflow: hidden;
+}
+
+/* Div container per tutti gli elementi */
+.mainContainer{
+      border-left-style: solid;
+      border-left-width: 0px;
+      border-radius: 10px;
+
+      padding: 20px 2%;
+      width: 42%;
+      margin-bottom: 2%;
+      margin-left: 2%;
+      margin-right: 2%;
+
+      overflow: hidden;
+      float: left;
+      position: relative;
+}
+
+.mainContainer:nth-child(4n+1), 
+.mainContainer:nth-child(4n+4){
+      /* background-color: var(--primary); */
+      background-image: linear-gradient(90deg, var(--primary) 40%, var(--secondary_light) 60%);
+      background-size: 300% 105%;
+      transition: 0.2s;
+}
+.mainContainer:nth-child(4n+2),
+.mainContainer:nth-child(4n+3){
+      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--secondary_dark) 60%);
+      background-size: 300% 105%;
+      transition: 0.2s;
+      /* background-color: var(--primary_dark); */
+}
+
+.mainContainer:hover{
+      /* background-color: var(--secondary_light); */
+      background-position: right center;
+      border-left-width: 0px;
+      color: var(--bgColor);
+}
+
+/* Titolo del documento */
+.documentTitle{
+      font-size: larger;
+      margin: 0px 0px 0px 20px;
+      display: inline;
+}
+.documentTitle:hover{
+      color: var(--bgColor_light);
+}
+
+/* Sottotitolo del documento */
+.documentSubtitle{
+      font-size: medium;
+      margin: 0px;
+      display: inline;
+}
+.documentSubtitleDivider{
+      font-size: medium;
+      margin: 0px;
+      display: inline;
+}
+
+/* Autore del documento */
+.documentAuthor{
+      display: block;
+}
+
+/* Materia del documento */
+.documentSubject{
+      display: inline;
+}
+
+/* Corso di studio del documento */
+.documentDegree{
+      /* display: inline; */
+}
+
+/* Corso di studio del documento */
+.downloadLink{
+      /* display: block; */
+      text-decoration: dotted;
+}
+
+/* iframe per visualizzazione inline del documento */
+.iframeDoc{
+      width:100%;
+      display: block;
+      border-radius: 10px;
+      border-width: 0px;
+      overflow: hidden;
+      transition: 0.4s;
+}
+
+.visualizeButtonImage{
+      width: auto;
+      height: 10px;
+      margin-right: 10px;
+      transform: rotate(90deg);
+      transition: 0.4s;
+}
+
+.downloadCounter{
+      font-weight: bold;
+}
+
+.dateInfo{
+      font-style: italic;
+      font-size: smaller;
+}
