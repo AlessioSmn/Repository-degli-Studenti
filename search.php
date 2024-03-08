@@ -17,7 +17,7 @@ include "php/logControl/loginControl.php";
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
-      <script src="js/themeControl.js"></script>
+      <script src="js/theme/themeControl.js"></script>
 
       <!-- logout() -->
       <script src="js/logControl/logout.js"></script>
@@ -182,16 +182,12 @@ include "php/logControl/loginControl.php";
       <!-- retrieveDocumentsByTextField() -->
       <script src="js/document/retrieve/byText.js"></script>
 
-      <!--  Javascript function to fetch and display subject options -->
-      <script src="js/fillSubjectOptions.js"></script>
-
-      <!--  Javascript function to display all documents resulting from the search-->
-      <!-- <script src="js/documentContainer.js"></script> -->
-
       <!-- DEPRECATED -->
       <!-- <script src="js/searchFunctions/searchBySubject.js"></script> -->
       <!-- <script src="js/searchFunctions/searchByTextField.js"></script> -->
       <!-- <script src="js/searchFunctions/orderDocuments.js"></script> -->
+      <!-- <script src="js/fillSubjectOptions.js"></script> -->
+      <!-- <script src="js/documentContainer.js"></script> -->
 
       <script>
             let DOCUMENTS = [];

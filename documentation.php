@@ -15,7 +15,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/statistics.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
-      <script src="js/themeControl.js"></script>
+      <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 </head>
 <body>
@@ -43,10 +43,6 @@ include "php/logControl/loginControl.php";
             </div>
             <div class="navbarElement logoutElement" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
-      <section>
-            <div class="piechart-TEST">
-      </section>
-      <article>
             Grafici con i corsi di laurea più visualizzati
             Grafici con le materie più visualizzate
             Grafici con gli utenti più attivi (più documenti)

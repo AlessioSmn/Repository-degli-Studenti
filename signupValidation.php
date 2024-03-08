@@ -70,7 +70,7 @@ echo "affected rows: ".mysqli_affected_rows($connection);
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
-      <script src="js/themeControl.js"></script>
+      <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 </head>
 <body>

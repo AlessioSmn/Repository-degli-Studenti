@@ -17,7 +17,7 @@ include "php/logControl/loginControl.php";
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
-      <script src="js/themeControl.js"></script>
+      <script src="js/theme/themeControl.js"></script>
 
       <!-- logout() -->
       <script src="js/logControl/logout.js"></script>
@@ -95,11 +95,10 @@ include "php/logControl/loginControl.php";
       <!-- populateWithDocuments() -->
       <script src="js/document/display.js"></script>
       
+      <!-- DEPRECATED -->
       <!--  Javascript function to fetch and display subject options -->
       <!-- <script src="js/displaySubjects.js"></script> -->
-      <script src="js/fillSubjectOptions.js"></script>
-
-      <!--  Javascript function display and format documents -->
+      <!-- <script src="js/fillSubjectOptions.js"></script> -->
       <!-- <script src="js/documentContainer.js"></script> -->
 
       <script>
