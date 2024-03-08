@@ -26,7 +26,7 @@ function fillSelectWithDegrees(selectElement, degrees){
       let disabledOption = document.createElement("option");
       disabledOption.selected = true;
       disabledOption.disabled = true;
-      disabledOption.innerText = "-- seleziona un corso di studio";
+      disabledOption.innerText = "-- seleziona un corso di studio --";
       disabledOption.style.fontStyle = "italic";
       selectElement.appendChild(disabledOption);
 
