@@ -12,6 +12,7 @@
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
+      <script src="js/logControl/signup.js"></script>
 </head>
 <body>
       <header>
@@ -40,7 +41,7 @@
       </nav>
 
       <article>
-            <form id="signUpForm" name="signUpForm" method="post" action="signupValidation.php" onsubmit="return validateForm()">
+            <form name="signUpForm" onsubmit="signup(event)">
             <fieldset><legend>Informazioni personali</legend>
                   Nome: 
                   <input 
@@ -112,14 +113,6 @@
       </article>
       <footer>footer</footer>
       <script>
-      function validateForm(){
-            let pwd1 = document.forms["signUpForm"]["password"].value;
-            let pwd2 = document.forms["signUpForm"]["passwordRepeat"].value;
-            if (pwd1 != pwd2) {
-                  alert("Name must be filled out");
-                  return false;
-            }
-      }
       function showPassword(id){
             var pwd = document.getElementById(id);
             pwd.type = 'text';
