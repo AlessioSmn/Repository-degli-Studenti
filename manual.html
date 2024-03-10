@@ -11,6 +11,21 @@
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
+      <script>
+function showPopup() {
+  var popupContainer = document.getElementById("popupContainer");
+  var overlay = document.getElementById("overlay");
+  popupContainer.classList.add("active");
+  overlay.classList.add("active");
+}
+
+function closePopup() {
+  var popupContainer = document.getElementById("popupContainer");
+  var overlay = document.getElementById("overlay");
+  popupContainer.classList.remove("active");
+  overlay.classList.remove("active");
+}
+      </script>
       <style>
             table>tbody>tr{
                   height:4em;
@@ -18,6 +33,40 @@
             table>thead>tr>th{
                   width:8em;
             }
+            
+
+.popup-container {
+display: none;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+z-index: 9999; /* Ensure the popup is above other content */
+background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+width: 60%; /* Adjust width as needed */
+height: 60%; /* Adjust height as needed */
+}
+
+.popup-container iframe {
+width: 100%;
+height: 100%;
+}
+
+.overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  z-index: 9998; /* Set z-index below the popup */
+}
+.popup-container.active,
+.overlay.active {
+  display: block;
+}
+
       </style>
 </head>
 <body>
@@ -47,6 +96,13 @@
       </nav>
       
       <article>
+<button onclick="showPopup()">Open Popup</button>
+<div id="overlay" class="overlay"></div>
+<div id="popupContainer" class="popup-container">
+<iframe id="popupIframe" src="https://www.example.com" frameborder="0"></iframe>
+<button id="closeButton" onclick="closePopup()">Close</button>
+</div>
+
             CHANGED: <br>
 ; Maximum allowed size for uploaded files.
 ; http://php.net/upload-max-filesize

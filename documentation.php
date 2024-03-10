@@ -69,7 +69,10 @@ include "php/logControl/loginControl.php";
                   <!-- graph -->
             </div>
       </section>
+      
       <footer>footer</footer>
+
+      <!-- getDegreesStats() -->
       <script src="js/stats/getDegreesStats.js"></script>
 </body>
 </html>
