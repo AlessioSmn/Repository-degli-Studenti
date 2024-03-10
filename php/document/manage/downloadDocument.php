@@ -37,7 +37,7 @@ header('Content-Disposition: '.$contentDisp.'; filename="'.$fileName.'"');
 
 // Prendo il file
 readfile($filePath);
-/*
+
 
 // Incremento il counter dei download sul documento
 if($contentDisp == 'attachment'){
@@ -54,7 +54,7 @@ if($contentDisp == 'attachment'){
             array($_GET['id']));
 }
 
-*/
+
 /**
  * @param string $extension L'estensione del file
  * @return string Restituisce il corretto Content-type per la data estensione
