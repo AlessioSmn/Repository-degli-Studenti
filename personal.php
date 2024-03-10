@@ -30,6 +30,9 @@ include "php/logControl/loginControl.php";
 
       <!-- retrievePersonalDocuments() -->
       <script src="js/document/retrieve/personal.js"></script>
+
+      <!-- uploadDocument() -->
+      <script src="js/document/update/upload.js"></script>
       
 </head>
 <body onload="retrieveDegrees()">
@@ -60,7 +63,7 @@ include "php/logControl/loginControl.php";
       
       <section>
             <button onclick="toCustomize()"> Crea il tuo tema personalizzato</button>
-            <form method="post" action="upload.php" enctype="multipart/form-data" style="border-width:2px; border-color: red;"><fieldset>
+            <form method="post" enctype="multipart/form-data" style="border-width: 5px; border-color: red; border-style: solid;" onsubmit="uploadDocument(event)"><fieldset>
                   <legend>Carica un documento</legend>
                   <span>Titolo del documento</span>
                   <input name="title" type="text" required>
