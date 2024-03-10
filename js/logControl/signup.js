@@ -43,6 +43,7 @@ function signup(event){
             if(data[0])
                   window.location.href = "index.php";
 
+            // Altrimenti dal PHP mi arriva un messaggio di errore
             else{
                   window.alert(data[1]);
             }

@@ -10,9 +10,6 @@ $projectDir = "../../";
 include_once $projectDir.'config/config.php';
 include_once $projectDir.'php/utils/executePreparedStatement.php';
 
-// Salvo la pagina perchè distruggo la sessione
-$previousPage = isset($_SESSION['previousPage']) ? $_SESSION['previousPage'] : 'index.php';
-
 // Quando viene effettuato il login si elimina la sessione corrente
 session_unset();
 session_destroy();
@@ -181,7 +178,7 @@ function signupValidation($email, $password, $printInfo = false){
 }
 */
 function fillNewSession($email){
-      $sqlStatement = "SELECT name, surname FROM user WHERE email = ?";
+      $sqlStatement = "SELECT id, name, surname FROM user WHERE email = ?";
       $parameterTypes = "s";
       $parameters = array($email);
 
@@ -203,6 +200,7 @@ function fillNewSession($email){
 
       $_SESSION['logged'] = 1;
       $_SESSION['user_email'] = $email;
+      $_SESSION['user_id'] = $row['id'];
       $_SESSION['user_name'] = $row['name'];
       $_SESSION['user_surname'] = $row['surname'];
 }

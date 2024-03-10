@@ -12,10 +12,10 @@ function login(event){
       var password = document.querySelector('input[name="password"]').value;
 
       // Imposto i campi email e password per la richiesta POST
-      var fetchBodyOptions = new FormData();
+      let fetchBodyOptions = new FormData();
       fetchBodyOptions.append("email", email);
       fetchBodyOptions.append("password", password);
-      var fetchOptions = {
+      let fetchOptions = {
             method: "POST",
             body: fetchBodyOptions,
       };
@@ -29,11 +29,17 @@ function login(event){
       // Leggo la pagina di redirezione
       .then(data => {
             console.log(data);
-            let pageName = data;
+            // se il login è avvenuto con successo
+            if(data[0]){
+                  let pageName = data[1];
 
-            // Se è presente una pagina redirigo
-            if(data != "null")
-                  window.location.href = pageName;
+                  // Se è presente una pagina redirigo
+                  if(pageName != null)
+                        window.location.href = pageName;
+            }
+            else{
+                  window.alert(data[1]);
+            }
       })
       .catch(error => console.error(error));
 }

@@ -21,15 +21,18 @@ session_destroy();
 $email = $_POST['email'];
 $password = $_POST['password'];
 
+
 // Controllo che l'accesso sia consentito
-if(loginValidation($email, $password)){
-      
-      // Creo ed inizializzo le variabili di sessione
-      fillNewSession($email);
-      
-      // Echo la pagina precedente per la ridirezione
-      echo json_encode($previousPage);
+if(!loginValidation($email, $password)){
+      echo json_encode([false, "Credenziali di accesso errate"]);
+      exit();
 }
+ 
+// Creo ed inizializzo le variabili di sessione
+fillNewSession($email);
+
+// Echo la pagina precedente per la ridirezione
+echo json_encode([true, $previousPage]);
 
 /**
  * Funzione che permette di connettersi al database e controllare la correttezza delle credenziali di accesso
@@ -65,7 +68,7 @@ function loginValidation($email, $password, $printInfo = false){
 }
 
 function fillNewSession($email){
-      $sqlStatement = "SELECT name, surname FROM user WHERE email = ?";
+      $sqlStatement = "SELECT id, name, surname FROM user WHERE email = ?";
       $parameterTypes = "s";
       $parameters = array($email);
 
@@ -87,6 +90,7 @@ function fillNewSession($email){
 
       $_SESSION['logged'] = 1;
       $_SESSION['user_email'] = $email;
+      $_SESSION['user_id'] = $row['id'];
       $_SESSION['user_name'] = $row['name'];
       $_SESSION['user_surname'] = $row['surname'];
 }
