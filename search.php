@@ -13,7 +13,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
-      <link rel="stylesheet" type="text/CSS" href="css/documents.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
@@ -167,6 +167,13 @@ include "php/logControl/loginControl.php";
             <!-- -->
       </section>
       
+      <div id="docPopupContainerMask" class="doc-popup-container-mask"></div>
+      <div id="docPopupContainer" class="doc-popup-container">
+            <button onclick="closePopup()" class="doc-popup-close">Chiudi</button>
+            <h1 id="docFrameTitle"></h1>
+            <iframe id="docFrame" frameborder="0"></iframe>
+      </div>
+      
       <footer>footer</footer>
 
       <!-- Document class -->
@@ -176,11 +183,32 @@ include "php/logControl/loginControl.php";
       <!-- populateWithDocuments() -->
       <script src="js/document/display.js"></script>
 
+      <!-- documentVisualizerBlock() -->
+      <script src="js/document/visualize/blocks.js"></script>
+
       <!-- retrieveDocumentsBySubject() -->
       <script src="js/document/retrieve/bySubject.js"></script>
 
       <!-- retrieveDocumentsByTextField() -->
       <script src="js/document/retrieve/byText.js"></script>
+
+      <script>
+            function closePopup() {
+
+                  // Disattivo il popup e la maschera sottostante (la classe css che mette display:block)
+                  let popupContainer = document.getElementById("docPopupContainer");
+                  let mask = document.getElementById("docPopupContainerMask");
+                  popupContainer.classList.remove("active");
+                  mask.classList.remove("active");
+
+                  // Rimuovo il documento dal frame
+                  let iframe = document.getElementById("docFrame");
+                  iframe.src = "";
+                  
+                  let frameTitle = document.getElementById("docFrameTitle");
+                  frameTitle.innerText = "";
+            }
+      </script>
 
       <!-- DEPRECATED -->
       <!-- <script src="js/searchFunctions/searchBySubject.js"></script> -->

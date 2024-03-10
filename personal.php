@@ -13,7 +13,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
-      <link rel="stylesheet" type="text/CSS" href="css/documents.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
@@ -97,6 +97,9 @@ include "php/logControl/loginControl.php";
 
       <!-- populateWithDocuments() -->
       <script src="js/document/display.js"></script>
+
+      <!-- documentVisualizerBlock() -->
+      <script src="js/document/visualize/blocks.js"></script>
       
       <!-- DEPRECATED -->
       <!--  Javascript function to fetch and display subject options -->

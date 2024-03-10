@@ -9,6 +9,10 @@ function retrievePersonalDocuments(callingElement){
       .then(response => response.json())
       .then(data => {
 
+            // Riferimento al container di tutti i documenti
+            let mainContainer = document.getElementById("documentVisualizer");
+            mainContainer.innerHTML = "";
+
             // Pulisco l'array di documenti
             DOCUMENTS = [];
 
@@ -28,10 +32,10 @@ function retrievePersonalDocuments(callingElement){
 
                   // Aggiungo il documento alla lista di documenti
                   DOCUMENTS.push(doc);
+
+                  // Mostro a video il documento
+                  mainContainer.appendChild(documentVisualizerBlockPersonal(doc));
             }
-            populateWithDocuments(DOCUMENTS);
       })
-      .catch(error =>{
-            console.error(error.message);
-      });
+      .catch(error => console.error(error.message));
 }

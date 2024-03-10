@@ -11,7 +11,7 @@ function populateWithDocuments(documents){
       mainContainer.innerHTML = "";
 
       for(let doc of documents){
-            let documentElement = constructMainContainer(doc);
+            let documentElement = documentVisualizerBlockPublic(doc);
             mainContainer.appendChild(documentElement);
       }
 }
@@ -66,18 +66,18 @@ function italianDate(DataIn){
 
 function getMonthName(monthNumber){
       switch(monthNumber){
-            case 0: return "gen";
-            case 1: return "feb";
-            case 2: return "mar";
-            case 3: return "apr";
-            case 4: return "mag";
-            case 5: return "giu";
-            case 6: return "lug";
-            case 7: return "ago";
-            case 8: return "set";
-            case 9: return "ott";
-            case 10: return "nov";
-            case 11: return "dic";
+            case 0: return "Gen";
+            case 1: return "Feb";
+            case 2: return "Mar";
+            case 3: return "Apr";
+            case 4: return "Mag";
+            case 5: return "Giu";
+            case 6: return "Lug";
+            case 7: return "Ago";
+            case 8: return "Set";
+            case 9: return "Ott";
+            case 10: return "Nov";
+            case 11: return "Dic";
             default: return "---";
       }
 }
@@ -93,7 +93,6 @@ function TEST_RIORDINA_JS(num){
             case 7:sortDocuments(DOCUMENTS, 'id', true);break;
             case 8:sortDocuments(DOCUMENTS, 'id', false);break;
       }
-      console.log(DOCUMENTS.length);  
       
       populateWithDocuments(DOCUMENTS);
 }

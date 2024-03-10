@@ -1,0 +1,156 @@
+#documentVisualizer{
+      overflow: hidden;
+}
+
+.doc-container{
+      border-color: var(--primary);
+      border-radius: 0px;
+
+      padding: 20px 2%;
+      width: 42%;
+      margin-bottom: 2%;
+      margin-left: 2%;
+      margin-right: 2%;
+
+      overflow: hidden;
+      float: left;
+      position: relative;
+}
+.doc-container:hover{
+      background-position: right center;
+      border-left-width: 0px;
+      color: var(--bgColor);
+}
+.doc-container:nth-child(4n+1), 
+.doc-container:nth-child(4n+4){
+      background-image: linear-gradient(90deg, var(--primary) 40%, var(--secondary_light) 60%);
+      background-size: 300% 105%;
+      border-bottom-width: 5px;
+      border-top-width: 5px;
+      transition: 0.2s;
+}
+.doc-container:nth-child(4n+2),
+.doc-container:nth-child(4n+3){
+      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--secondary_light) 60%);
+      background-size: 300% 105%;
+      border-bottom-width: 5px;
+      border-top-width: 5px;
+      transition: 0.2s;
+}
+
+
+/* Titolo del documento */
+.doc-title{
+      font-size: larger;
+      margin: 0px 0px 0px 20px;
+      display: inline;
+}
+.doc-title:hover{
+      color: var(--bgColor_light);
+}
+
+.doc-subtitle{
+      font-size: medium;
+      margin: 0px;
+      display: inline;
+}
+
+
+/* Autore del documento */
+.doc-owner{
+      font-style: italic;
+}
+
+
+/* Materia del documento */
+.doc-subject{
+      text-decoration: dashed;
+}
+
+
+/* Corso di Studi del documento */
+.doc-degree{
+      text-decoration: underline;
+}
+
+
+/* Informazioni 'temporali' sul documento (upload e ultima modifica) */
+.doc-dateinfo{
+      font-style: italic;
+      font-size: smaller;
+}
+
+
+/* Numero di donwload */
+.doc-downloads{
+      font-weight: bold;
+}
+
+
+/* Bottone per la cancellazione del documento */
+.doc-deleteButton{
+      background-color: red;
+      background-image: none;
+}
+.doc-deleteButton:hover{
+      background-color: darkred;
+}
+
+
+.doc-popup-container {
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background-color: none;
+      width: 60%;
+      height: 80%;
+}
+.doc-popup-container iframe {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: white;
+}
+.doc-popup-container h1 {
+      float: left;
+      margin: 12px 0px; 
+      font-size: x-large;
+      height: 30px;
+      width: 80%;
+      max-width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
+}
+.doc-popup-container button {
+      float: right;
+      margin-top: 12px;
+      width: 15%;
+      height: 30px;
+      color: white;
+      border-radius: 15px;
+      background-color: red;
+      background-image: none;
+}
+.doc-popup-container button:hover {
+      background-color: darkred;
+}
+/* Da creare sotto il popup, così da bloccare il l'accesso a tutto ciò che è sullo sfondo */
+.doc-popup-container-mask {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85); 
+      z-index: 9998;
+}
+.doc-popup-container.active,
+.doc-popup-container-mask.active {
+      display: block;
+}
