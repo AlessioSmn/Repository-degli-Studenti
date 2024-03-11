@@ -13,9 +13,11 @@ function constructGraph(data){
             graphContainer.innerHTML = "Sorry, no data";
             return;
       }
+
+      // non voglio pienare la pagina con il grafico che arriva da parte a parte
       var maxHeight = 0.65 * parseInt(graphContainer.clientWidth);
 
-      // nb: first row is the one with more downloads
+      // NB: la prima riga è sempre quella con il valore più alto
       var resizingFactor = 0;
       var first = true;
       data.forEach(function(queryRow){ 
@@ -24,8 +26,9 @@ function constructGraph(data){
             let ElemValue = queryRow['Value'];
 
             if(first){ 
-                  // Set resizing factor so that when multiplied by sum in interval [0; downloadsSum in current iteration]
-                  // it returns the height of the div in interval [0; maxHeight]
+                  // Imposto il fattore di scala, dato che il primo elemento è quello di dimensione massima
+                  // Lo imposto in maniera tale che, dato un valore un valore, restituisca la
+                  // dimensione che dovrà avere il div, coompresa quindi in [0; maxHeight]
                   resizingFactor = maxHeight / max(1, ElemValue);
                   first = false;
             }
@@ -42,7 +45,6 @@ function constructGraph(data){
             graphElement.innerHTML = Name;
             graphContainer.appendChild(graphElement);
             graphContainer.appendChild(document.createElement("br"));
-            // console.log(queryRow);
       });
 }
 function max(a, b){
