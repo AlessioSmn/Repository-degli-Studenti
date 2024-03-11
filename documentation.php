@@ -25,7 +25,12 @@ include "php/logControl/loginControl.php";
       
       <nav>
             <a href="index.php" class="navbar-main-element"><div>Home</div></a>
-            <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
+                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
+                        <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
+                  </div>
+            </div>
             <a href="search.php" class="navbar-main-element"><div>Cerca</div></a>
             <a href="login.php" class="navbar-main-element"><div>Login</div></a>
             <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>

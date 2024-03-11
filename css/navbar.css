@@ -66,11 +66,26 @@ nav{
       display: block;
       width: 100%;
 }
+/* Se anche l'elemento principale della dropdown è un link */
+.navbar-main-element.navbar-dropdown-main > a {
+      background-color: transparent;
+      background-image: none;
+      padding: 0;
+}
+.navbar-dropdown-container.with-title{
+      margin-top: 3.25em;
+}
+
+.navbar-main-element.dropdown-title{
+      float: none;
+      padding: 0;
+}
+
 .navbar-dropdown-option{
       display: block;
       float: none;
       height: 2.5em;
-      padding: 0.75em 0em;
+      padding: 0.5em 0em;
       line-height: 2.5em;
       background-color: var(--bgColor_dark);
       background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--bgColor_light) 60%);
