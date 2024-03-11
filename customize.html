@@ -42,25 +42,25 @@
       </header>
 
       <nav>
-            <a href="index.php" class="navbarElement">Home</a>
-            <a href="personal.php" class="navbarElement currentPage">Area personale</a>
-            <a href="search.php" class="navbarElement">Cerca</a>
-            <a href="login.php" class="navbarElement">Login</a>
-            <a href="signup.php" class="navbarElement">Registrati</a>
-            <a href="manual.html" class="navbarElement">Manuale</a>
-            <a href="documentation.php" class="navbarElement">Doc-</a>
-            <div class="navbarElement navbarDropDown">
-                  Tema
-                  <div class="themeOptionsContainer">
-                        <a class="themeOption" onclick="setTheme('dark')">Scuro</a>
-                        <a class="themeOption" onclick="setTheme('grey')">Grigio</a>
-                        <a class="themeOption" onclick="setTheme('light')">Chiaro</a>
-                        <a class="themeOption" onclick="setTheme('pantone')">Pantone</a>
-                        <a class="themeOption" onclick="setTheme('custom')">Neon</a>
-                        <a class="themeOption" onclick="setTheme(CUSTOM_THEME)">Custom</a>
+            <a href="index.php" class="navbar-main-element">Home</a>
+            <a href="personal.php" class="navbar-main-element current-page">Area personale</a>
+            <a href="search.php" class="navbar-main-element">Cerca</a>
+            <a href="login.php" class="navbar-main-element">Login</a>
+            <a href="signup.php" class="navbar-main-element">Registrati</a>
+            <a href="manual.html" class="navbar-main-element">Manuale</a>
+            <a href="documentation.php" class="navbar-main-element">Doc-</a>
+            <div class="navbar-main-element navbar-dropdown-main floating">
+                  <span>Tema<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('light')">Chiaro</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('pantone')">Pantone</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme(CUSTOM_THEME)">Custom</a>
                   </div>
             </div>
-            <div class="navbarElement logoutElement" onclick="logout()"><span>&#11199;</span> Logout</div>
+            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
       
       <article>

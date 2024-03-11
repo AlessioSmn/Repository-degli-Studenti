@@ -13,6 +13,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/search.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
@@ -35,32 +36,40 @@ include "php/logControl/loginControl.php";
       </header>
       
       <nav>
-            <a href="index.php" class="navbarElement"><div>Home</div></a>
-            <a href="personal.php" class="navbarElement"><div>Area personale</div></a>
-            <a href="search.php" class="navbarElement currentPage"><div>Cerca</div></a>
-            <a href="login.php" class="navbarElement"><div>Login</div></a>
-            <a href="signup.php" class="navbarElement"><div>Registrati</div></a>
-            <a href="manual.html" class="navbarElement"><div>Manuale</div></a>
-            <a href="documentation.php" class="navbarElement"><div>Doc-</div></a>
-            <div class="navbarElement navbarDropDown">
-                  Tema
-                  <div class="themeOptionsContainer">
-                        <a class="themeOption" onclick="setTheme('dark')">Scuro</a>
-                        <a class="themeOption" onclick="setTheme('grey')">Grigio</a>
-                        <a class="themeOption" onclick="setTheme('light')">Chiaro</a>
-                        <a class="themeOption" onclick="setTheme('pantone')">Pantone</a>
-                        <a class="themeOption" onclick="setTheme('custom')">Neon</a>
+            <a href="index.php" class="navbar-main-element"><div>Home</div></a>
+            <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
+            <a href="search.php" class="navbar-main-element current-page"><div>Cerca</div></a>
+            <a href="login.php" class="navbar-main-element"><div>Login</div></a>
+            <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
+            <a href="manual.html" class="navbar-main-element"><div>Manuale</div></a>
+            <a href="documentation.php" class="navbar-main-element"><div>Doc-</div></a>
+            <div class="navbar-main-element navbar-dropdown-main floating">
+                  <span>Tema<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('light')">Chiaro</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('pantone')">Pantone</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
                   </div>
             </div>
-            <div class="navbarElement logoutElement" onclick="logout()"><span>&#11199;</span> Logout</div>
+            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
+
+      <section class="search-method">
+            <span>Scegli un metodo di ricerca</span>
+            <div id="search-method-options-container" class="search-method-options-container text">
+                  <div onclick="displaySearchMode('subject')">MATERIA</div>
+                  <div onclick="displaySearchMode('text')">TESTO</div>
+            </div>
+      </section>
 
       <section>
             <span>Scegli un metodo di ricerca:</span><br>
-            <input type="radio" name="searchMode" id="sbSubject" onclick="displaySearchMode('s')">
+            <input type="radio" name="searchMode" id="sbSubject" onclick="displaySearchMode('subject')">
             <label for="sbSubject">per materia singola</label><br>
 
-            <input type="radio" name="searchMode" id="sbTextString" onclick="displaySearchMode('n')" checked>
+            <input type="radio" name="searchMode" id="sbTextString" onclick="displaySearchMode('text')" checked>
             <label for="sbTextString">per nome</label><br>
       </section>
 
@@ -167,9 +176,9 @@ include "php/logControl/loginControl.php";
             <!-- -->
       </section>
       
-      <div id="docPopupContainerMask" class="doc-popup-container-mask"></div>
+      <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
       <div id="docPopupContainer" class="doc-popup-container">
-            <button onclick="closePopup()" class="doc-popup-close">Chiudi</button>
+            <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
             <h1 id="docFrameTitle"></h1>
             <iframe id="docFrame" frameborder="0"></iframe>
       </div>
@@ -221,17 +230,30 @@ include "php/logControl/loginControl.php";
             let DOCUMENTS = [];
       </script>
 
-      <script>        
+      <script>
+
+      let searchBySubject = document.getElementById("searchBySubject");
+      let searchByText = document.getElementById("searchByTextString");
+      let searchOptionsContainer = document.getElementById("search-method-options-container");
+      /**
+       * Funzione per alternare tra le due modalità di ricerca presenti
+       * @param mode ['text' | 'subject']
+       */
       function displaySearchMode(mode){
-            document.getElementById("searchBySubject").style.display = 'none';
-            document.getElementById("searchByTextString").style.display = 'none';
+            searchBySubject.style.display = 'none';
+            searchByText.style.display = 'none';
             switch (mode) {
-                  case 'n':
+                  case 'text':
+                        searchOptionsContainer.classList.remove("subject");
+                        searchOptionsContainer.classList.add("text");
                         document.getElementById("searchByTextString").style.display = 'block';
                         break;
-                  case 's':
-                  default:
+                  case 'subject':
+                        searchOptionsContainer.classList.remove("text");
+                        searchOptionsContainer.classList.add("subject");
                         document.getElementById("searchBySubject").style.display = 'block';
+                        break;
+                  default:
                         break;
             }
       }

@@ -129,8 +129,10 @@
 .doc-popup-container button {
       float: right;
       margin-top: 12px;
-      width: 15%;
-      height: 30px;
+      vertical-align: middle;
+      padding: 5px;
+      width: auto;
+      height: auto;
       color: white;
       border-radius: 15px;
       background-color: red;
