@@ -55,7 +55,7 @@ $sqlStatement = "  SELECT
                   document.downloadCounter as downloads,
                   document.lastModified as lastModifiedDate,
                   document.uploadDate as uploadDate,
-                  user.name as owner, 
+                  user.email as owner, 
                   subject.name as subjectName,
                   degreecourse.name as degreeName
             FROM document 

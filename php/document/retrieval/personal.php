@@ -17,7 +17,7 @@ $query = "  SELECT
             document.lastModified as lastModifiedDate,
             document.uploadDate as uploadDate,
             document.downloadCounter as downloads,
-            user.name as owner,
+            user.email as owner,
             subject.name as subjectName,
             degreecourse.name as degreeName
       FROM document 

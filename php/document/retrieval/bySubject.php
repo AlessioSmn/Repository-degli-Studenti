@@ -25,7 +25,7 @@ $query = "  SELECT
                   document.downloadCounter as downloads,
                   document.lastModified as lastModifiedDate,
                   document.uploadDate as uploadDate,
-                  user.name as owner 
+                  user.email as owner 
             FROM document 
                   INNER JOIN user ON document.owner = user.id 
             WHERE document.subject = ? ";
