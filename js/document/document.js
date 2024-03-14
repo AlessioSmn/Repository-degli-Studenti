@@ -42,7 +42,7 @@
  * @param {Array} documents Array di documenti
  * @param {string} field Campo secondo il quale ordinare l'array
  * @param {boolean} ascending Specifica se l'rdine dev'essere crescente (true) o decrescente (false)
- * @returns {null} Riordina l'array documents passato per riferimento
+ * @return {null} Riordina l'array documents passato per riferimento
  */
 function sortDocuments(documents, field, ascending){
 
