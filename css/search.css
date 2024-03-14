@@ -28,3 +28,29 @@
       text-align: center;
       vertical-align: middle;
 }
+
+
+/* Scorrimento tra i vari risultati */
+.page-index-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: red;
+}
+.page-index-element{
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      background-color: blue;
+      margin: 0 5px;
+      line-height: 40px;
+      text-align: center;;
+}
+.page-index-element.shifter{
+      background-color: yellow;
+}
+.page-index-element.current{
+      border: 2px solid white;
+      line-height: 36px;
+}
