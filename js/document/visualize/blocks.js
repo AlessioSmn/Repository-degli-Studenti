@@ -3,7 +3,7 @@
  * Aggiunge le informazioni fondamentali per individuare il documento e alcuni bottoni di controllo per la modifica e cancellazione del documento.
  * Non viene posta l'informazione dell'autore e tutte le varie possibilità di visualizzazione presenti in documentVisualizerBlockPublic.
  * @param {Document} doc Il documento da mostrare
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlockPersonal(doc){
       let container = document.createElement("div");
@@ -47,7 +47,7 @@ function documentVisualizerBlockPersonal(doc){
  * Aggiunge le informazioni fondamentali per individuare il documento e alcuni bottoni per il download, l'apertura in una nuova scheda e l'apertura in un iframe.
  * Non viene posta la possibilità di cancellazione del documento come in documentVisualizerBlockPersonal.
  * @param {Document} doc Il documento da mostrare
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlockPublic(doc){
       let container = document.createElement("div");
@@ -92,9 +92,9 @@ function documentVisualizerBlockPublic(doc){
 
 /**
  * Ritorna un bottone per la cancellazione del documento
- * @param {integer} id L'id del documento
+ * @param {Number} id L'id del documento
  * @param {string} extension Il tipo del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_deleteButton(id, extension){
       var deleteButton = document.createElement("button");
@@ -120,10 +120,10 @@ function documentVisualizerBlock_deleteButton(id, extension){
 
 /**
  * Ritorna un bottone per il download del documento
- * @param {integer} id L'id del documento
+ * @param {Number} id L'id del documento
  * @param {string} extension Il tipo del documento
  * @param {string} title Il titolo del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_downloadButton(id, extension, title){
       var downloadButton = document.createElement("button");
@@ -137,10 +137,10 @@ function documentVisualizerBlock_downloadButton(id, extension, title){
 
 /**
  * Ritorna un bottone per l'apertura in nuova pagina del documento
- * @param {integer} id L'id del documento
+ * @param {Number} id L'id del documento
  * @param {string} extension Il tipo del documento
  * @param {string} title Il titolo del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_openNewPageButton(id, extension, title){
       var openButton = document.createElement("button");
@@ -154,10 +154,10 @@ function documentVisualizerBlock_openNewPageButton(id, extension, title){
 
 /**
  * Ritorna un bottone per l'apertura di un iframe del documento
- * @param {integer} id L'id del documento
+ * @param {Number} id L'id del documento
  * @param {string} extension Il tipo del documento
  * @param {string} title Il titolo del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_openPopupButton(id, extension, title){
       var popupButton = document.createElement("button");
@@ -181,7 +181,7 @@ function documentVisualizerBlock_openPopupButton(id, extension, title){
 /**
  * Ritorna un elemento HTML stilizzato contenente il titolo del documento
  * @param {string} title Il titolo del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_title(title){
       var titleElement = document.createElement("p");
@@ -193,7 +193,7 @@ function documentVisualizerBlock_title(title){
 /**
  * Ritorna un elemento HTML stilizzato contenente il sottotitolo del documento
  * @param {string} subtitle Il sottotitolo del documento
- * @returns {HTMLElement|null}
+ * @return {HTMLElement|null}
  */
 function documentVisualizerBlock_subtitle(subtitle){
       if(subtitle == null)
@@ -208,7 +208,7 @@ function documentVisualizerBlock_subtitle(subtitle){
 /**
  * Ritorna un elemento HTML stilizzato contenente l'autore del documento
  * @param {string} owner L'autore del documento 
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_owner(owner){
       var ownerElement = document.createElement("p");
@@ -220,7 +220,7 @@ function documentVisualizerBlock_owner(owner){
 /**
  * Ritorna un elemento HTML stilizzato contenente la materia del documento
  * @param {string} subject La materia del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_subject(subject){
       var subjectElement = document.createElement("p");
@@ -232,7 +232,7 @@ function documentVisualizerBlock_subject(subject){
 /**
  * Ritorna un elemento HTML stilizzato contenente il corso di laurea del documento
  * @param {string} degree Il corso di laurea del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_degree(degree){
       var degreeElement = document.createElement("p");
@@ -243,8 +243,8 @@ function documentVisualizerBlock_degree(degree){
 
 /**
  * Ritorna un elemento HTML stilizzato contenente il numero di download del documento
- * @param {integer} downloads Il numero di download del documento
- * @returns {HTMLElement}
+ * @param {Number} downloads Il numero di download del documento
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_downloads(downloads){
       var downloadsElement = document.createElement("p");
@@ -256,7 +256,7 @@ function documentVisualizerBlock_downloads(downloads){
 /**
  * Ritorna un elemento HTML stilizzato contenente la data di upload del documento
  * @param {Date} uploadDate La data di upload del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_uploadDate(uploadDate){
       var uploadElement = document.createElement("p");
@@ -268,7 +268,7 @@ function documentVisualizerBlock_uploadDate(uploadDate){
 /**
  * Ritorna un elemento HTML stilizzato contenente la data dell'ultima modifica del documento
  * @param {Date} modified La data di modifica del documento
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function documentVisualizerBlock_modifiedDate(modifiedDate){
       var modifiedElement = document.createElement("p");

@@ -19,7 +19,7 @@ function populateWithDocuments(documents){
 /**
  * Crea un elemento HTML (un div) contenente varie informazioni sul documento passato
  * @param {Document} doc Il documento da mostrare
- * @returns {HTMLElement}
+ * @return {HTMLElement}
  */
 function constructMainContainer(doc){
       let container = document.createElement("div");

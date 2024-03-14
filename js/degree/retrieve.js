@@ -1,6 +1,6 @@
 /**
  * Interroga il database e ricava tutti corsi di laurea presenti
- * @returns Ritorna tutti i corsi di laurea presenti come array, ogni riga costituita dall'ID del corso e dal nome
+ * @return Ritorna tutti i corsi di laurea presenti come array, ogni riga costituita dall'ID del corso e dal nome
  */
 function retrieveDegrees(){
       let selectElement = document.getElementById("degree_selector");

@@ -2,7 +2,7 @@
 /**
  * Funzione per la gestione dell'operazione di login
  * @param {*} event 
- * @returns In caso di login avvenuto con successo redirige l'utente verso la pagina alla quale tentava di accedere
+ * @return In caso di login avvenuto con successo redirige l'utente verso la pagina alla quale tentava di accedere
  */
 function login(event){
       event.preventDefault();
