@@ -12,7 +12,7 @@
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
       <script>
-            function saveTheme(){
+            function saveTheme(event){
                   event.preventDefault();
 
                   const form = document.getElementById('themeForm');
@@ -27,10 +27,12 @@
                         '--shadow': form.elements['shadow'].value
                   };
 
+                  console.log(customTheme);
+
                   // Salvo l'array serializzato in cache 
                   localStorage.setItem('customThemeInfo', JSON.stringify(customTheme));
             }
-            function useTheme() {
+            function useTheme(event) {
                   event.preventDefault();
                   setTheme(CUSTOM_THEME);
             }
@@ -88,8 +90,8 @@
                   <input type="color" name="shadow" value="#000000" />
                   <label for="shadow">Ombre</label>
                   <br>
-                  <button onclick="saveTheme()">Salva tema</button>
-                  <button onclick="useTheme()">utlizza tema</button>
+                  <button onclick="saveTheme(event)">Salva tema</button>
+                  <button onclick="useTheme(event)">utlizza tema</button>
             </form>
       </article>
       <footer>footer</footer>
