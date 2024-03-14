@@ -28,7 +28,7 @@ include "php/logControl/loginControl.php";
 
       <!-- retrieveSubjectByDegree() -->
       <script src="js/subject/retrieveByDegree.js"></script>
-      
+
 </head>
 <body onload="retrieveDegrees()">
       <header>
@@ -69,6 +69,7 @@ include "php/logControl/loginControl.php";
             </div>
       </section>
 
+      <!-- Metodo di ricerca -->
       <section>
             <span>Scegli un metodo di ricerca:</span><br>
             <input type="radio" name="searchMode" id="sbSubject" onclick="displaySearchMode('subject')">
@@ -102,11 +103,11 @@ include "php/logControl/loginControl.php";
       <section id="searchByTextString" style="display:block;">
             <form onsubmit="return false;">
                   <label for="mainText">Testo: </label>
-                  <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered()">
+                  <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
                   <br>
 
                   <!-- <button onclick="searchDocumentsByTextString()">Cerca</button> -->
-                  <button onclick="retrieveDocumentsByTextField()">Cerca</button>
+                  <button onclick="mainSearch('text')">Cerca</button>
                   <br>
                   <button id="subjectFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('subject')">Apri subject</button>
                   <button id="documentFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('document')">Apri doc</button>
@@ -167,6 +168,7 @@ include "php/logControl/loginControl.php";
             </select>
             <button id="orderButton" onclick="flipOrder()" style="padding:0px; width:30px; height:30px; text-align:center; border-radius: 50%;">&#11205;</button>
       </section>
+
       <button onclick="reOrderDocuments('Download', true)">REORDER by download asc</button>
       <button onclick="reOrderDocuments('Download', false)">REORDER by download desc</button>
       <button onclick="TEST_RIORDINA_JS(1)">title, true</button>
@@ -177,6 +179,13 @@ include "php/logControl/loginControl.php";
       <button onclick="TEST_RIORDINA_JS(6)">donwloads, false</button>
       <button onclick="TEST_RIORDINA_JS(7)">id, true</button>
       <button onclick="TEST_RIORDINA_JS(8)">id, false</button>
+
+      <div class="page-index-container">
+            <div class="page-index-element shifter" onclick="previousPage()"><</div>
+            <div id="page-index-container" class="page-index-container"></div>
+            <div class="page-index-element shifter" onclick="nextPage()">></div>
+      </div>
+
       <section id="documentVisualizer">
             <!-- -->
       </section>
@@ -206,7 +215,71 @@ include "php/logControl/loginControl.php";
       <!-- retrieveDocumentsByTextField() -->
       <script src="js/document/retrieve/byText.js"></script>
 
+      <!-- visualizePreviousBlock() -->
+      <!-- visualizeNextBlock() -->
+      <script src="js/document/visualize/pageHandling.js"></script>
+
       <script>
+            // Array dei documenti attualmente visualizzati
+            let DOCUMENTS = [];
+            let DOC_SLICE = [];
+
+            let blockDimensionStandard = 20;
+
+            let pageHandler = new PageHandler(document.getElementById("page-index-container"));
+
+            /**
+             * Effettua la ricerca dei documenti, li ordina secondo l'ordinamento scelto e mostra solo il primo blocco
+             * @param {string} method Il metodo di ricerca utlizzato [text | subject]
+             */
+            function mainSearch(method, orderField = 'downloads', ascending = false) {
+                  let newDocuments;
+                  // 1) Effettuo la richiesta dei documenti
+                  switch(method){
+                        case 'text':
+                              retrieveDocumentsByTextField().then(docs => {
+                                    if (docs === false)
+                                          return;
+                                    
+                                    DOCUMENTS = docs;
+
+                                    // 2) Ordino l'array dei documenti
+                                    sortDocuments(DOCUMENTS, orderField, ascending);
+
+                                    // 3) Mostro solo il primo blocco
+                                    DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, 6);
+
+                                    populateWithDocuments(DOC_SLICE);
+                              });
+                              break;
+
+                        case 'subject':
+                              newDocuments = retrieveDocumentsBySubject();
+                              if(newDocuments === false)
+                                    return;
+                              DOCUMENTS = newDocuments;
+                              break;
+
+                        // se il metodo non è riconsciuto non faccio niente
+                        default:
+                              return;
+                  }
+            }
+
+            function nextPage(){
+                  DOC_SLICE = pageHandler.visualizeNextBlock();
+                  if(DOC_SLICE === false)
+                        return;
+                  populateWithDocuments(DOC_SLICE);
+            }
+            function previousPage(){
+                  DOC_SLICE = pageHandler.visualizePreviousBlock();
+                  if(DOC_SLICE === false)
+                        return;
+                  populateWithDocuments(DOC_SLICE);
+            }
+
+
             function closePopup() {
 
                   // Disattivo il popup e la maschera sottostante (la classe css che mette display:block)
@@ -232,7 +305,6 @@ include "php/logControl/loginControl.php";
       <!-- <script src="js/documentContainer.js"></script> -->
 
       <script>
-            let DOCUMENTS = [];
       </script>
 
       <script>
@@ -262,7 +334,7 @@ include "php/logControl/loginControl.php";
                         break;
             }
       }
-      function onTextEntered(){
+      function onTextEntered(event){
             if (event.key === "Enter") {
                   retrieveDocumentsByTextField();
             }
