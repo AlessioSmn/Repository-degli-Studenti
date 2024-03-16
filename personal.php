@@ -13,6 +13,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/search.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
@@ -67,7 +68,6 @@ include "php/logControl/loginControl.php";
       </nav>
       
       <section>
-            <button onclick="toCustomize()"> Crea il tuo tema personalizzato</button>
             <form method="post" enctype="multipart/form-data" style="border-width: 5px; border-color: red; border-style: solid;" onsubmit="uploadDocument(event)"><fieldset>
                   <legend>Carica un documento</legend>
                   <span>Titolo del documento</span>
@@ -90,8 +90,15 @@ include "php/logControl/loginControl.php";
       </section>
 
       <section id="documentVisualizer">
-            <button onclick="retrievePersonalDocuments(this)">Carica i tuoi documenti</button>
+            <button onclick="retrieveAndDisplayPersonalDocuments()">Carica i tuoi documenti</button>
       </section>
+
+      <div class="page-index-container">
+            <div class="page-index-element shifter" onclick="previousPage()"><</div>
+            <div id="page-index-container" class="page-index-container"></div>
+            <div class="page-index-element shifter" onclick="nextPage()">></div>
+      </div>
+
       <footer>
             footer
       </footer>
@@ -104,7 +111,14 @@ include "php/logControl/loginControl.php";
       <script src="js/document/display.js"></script>
 
       <!-- documentVisualizerBlock() -->
+      <!-- 
       <script src="js/document/visualize/blocks.js"></script>
+      -->
+
+      <!-- PageHandler class -->
+      <!-- visualizePreviousBlock() -->
+      <!-- visualizeNextBlock() -->
+      <script src="js/document/visualize/pageHandling.js"></script>
       
       <!-- DEPRECATED -->
       <!--  Javascript function to fetch and display subject options -->
@@ -113,9 +127,43 @@ include "php/logControl/loginControl.php";
       <!-- <script src="js/documentContainer.js"></script> -->
 
       <script>
-      function toCustomize() {
-            window.location.href = "customize.html";
-      }
+            // Array dei documenti attualmente visualizzati
+            let DOCUMENTS = [];
+            let DOC_SLICE = [];
+
+            let pageHandler = new PageHandler(document.getElementById("page-index-container"));
+
+            function retrieveAndDisplayPersonalDocuments(){
+                  retrievePersonalDocuments().then(docs => {
+                        if (docs === false)
+                              return;
+
+                        DOCUMENTS = docs;
+
+                        // 2) Ordino l'array dei documenti
+                        sortDocuments(DOCUMENTS, 'downloads', false);
+
+                        // 3) Mostro solo il primo blocco
+                        DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, 5);
+
+                        populateWithDocuments(DOC_SLICE, 'compact', false);
+                  });
+            }
+            
+
+            function nextPage(){
+                  DOC_SLICE = pageHandler.visualizeNextBlock();
+                  if(DOC_SLICE === false)
+                        return;
+                  populateWithDocuments(DOC_SLICE, 'compact', true);
+            }
+            function previousPage(){
+                  DOC_SLICE = pageHandler.visualizePreviousBlock();
+                  if(DOC_SLICE === false)
+                        return;
+                  populateWithDocuments(DOC_SLICE, 'compact', true);
+            }
+            
       </script>
 </body>
 </html>

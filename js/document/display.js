@@ -3,15 +3,17 @@
 /**
  * Popola l'elemento di id "documentVisualizer" con i vari documenti
  * @param {Array[Document]} documents Array di documenti da visualizzare
+ * @param {string} Type ['block' | 'compact'] Specifica il tipo di visualizzazione da impostare
+ * @param {boolean} Public Specifica se i documenti devono essere mostrati per la pagina di ricerca pubblica o quella personale
  */
-function populateWithDocuments(documents){
+function populateWithDocuments(documents, Type, Ascending){
       
       // Container di tutti i documenti
       let mainContainer = document.getElementById("documentVisualizer");
       mainContainer.innerHTML = "";
 
       for(let doc of documents){
-            let documentElement = documentVisualizerBlockPublic(doc);
+            let documentElement = doc.constructVisualizer(Type, Ascending);
             mainContainer.appendChild(documentElement);
       }
 }

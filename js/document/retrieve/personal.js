@@ -1,11 +1,8 @@
 
 
-function retrievePersonalDocuments(callingElement){
-      // ELimino il bottone che ha lancito la funzione
-      let parent = callingElement.parentNode;
-      parent.removeChild(callingElement);
+function retrievePersonalDocuments(){
 
-      fetch('php/document/retrieval/personal.php')
+      return fetch('php/document/retrieval/personal.php')
       .then(response => response.json())
       .then(data => {
 
@@ -14,7 +11,7 @@ function retrievePersonalDocuments(callingElement){
             mainContainer.innerHTML = "";
 
             // Pulisco l'array di documenti
-            DOCUMENTS = [];
+            let documents = [];
 
             for(let row of data){
                   let doc = new Document(
@@ -31,11 +28,11 @@ function retrievePersonalDocuments(callingElement){
                   );
 
                   // Aggiungo il documento alla lista di documenti
-                  DOCUMENTS.push(doc);
-
-                  // Mostro a video il documento
-                  mainContainer.appendChild(documentVisualizerBlockPersonal(doc));
+                  documents.push(doc);
             }
+
+            // Ritorno l'array di documenti
+            return documents;
       })
       .catch(error => console.error(error.message));
 }

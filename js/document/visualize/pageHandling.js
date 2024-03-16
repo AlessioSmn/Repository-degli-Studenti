@@ -1,85 +1,3 @@
-
-// Indice del blocco di documenti visualizzato
-let currentBlock = 0;
-
-// Numero di documenti in un blocco
-let blockDimension = 7;
-
-// NUmero di blocchi in cui sono divisi i documenti
-let numBlocks; // = Math.ceil(Number(DOCUMENTS.length / blockDimension));
-
-let container = document.getElementById("page-index-container");
-
-function visualizeNextBlock(){
-      let maxNumBlocks = Math.ceil(Number(DOCUMENTS.length / blockDimension));
-      if(currentBlock >= maxNumBlocks - 1)
-            return false;
-
-      currentBlock++;
-      visualizeBlock(currentBlock);
-
-      adjustCurrentPageIndex(currentBlock - 1, currentBlock);
-
-      return true;
-}
-
-function visualizePreviousBlock(){
-      if(currentBlock == 0)
-            return false;
-
-      currentBlock--;
-      visualizeBlock(currentBlock);
-      
-      adjustCurrentPageIndex(currentBlock + 1, currentBlock);
-
-      return true;
-}
-
-function visualizeExactBlock(index){
-      if(index < 0 || index >= maxNumBlocks - 1)
-            return false;
-
-      let oldIndex = currentBlock;
-      visualizeBlock(index);
-      
-      adjustCurrentPageIndex(oldIndex, currentBlock);
-
-      return true;
-}
-
-/**
- * Permette di reimpostare i vari parametri per una nuova visualizzazione dei documenti
- * @param {string} numDocuments Numero di documenti totali
- * @param {Number} blockDimension Il numero di documenti da visualizzare per blocco
- * @param {number} [startingBlock=0] Il primo blocco da visualizzare
- */
-function firstVisualization(NumDocuments, BlockDimension, StartingBlock = 0){
-      blockDimension = BlockDimension;
-}
-
-function visualizeBlock(blockIndex){
-      let firstDoc = blockIndex * blockDimension;
-      let lastDoc = (blockIndex + 1) * blockDimension;
-      populateWithDocuments(DOCUMENTS.slice(firstDoc, lastDoc));
-}
-
-function PROVA(){
-      // let container = document.getElementById("page-index-container");
-      let middleChildren = Array.from(container.children).slice(1, container.children.length-1);
-      console.log(middleChildren);
-}
-
-function adjustCurrentPageIndex(oldIndex, newIndex){
-      let pageIndexElements = Array.from(container.children);
-      pageIndexElements[oldIndex + 1].classList.remove("current");
-      pageIndexElements[newIndex + 1].classList.add("current");
-}
-
-function firstVisualization(NumDocuments, BlockDimension, StartingBlock = 0){
-      blockDimension = BlockDimension;
-      // ...
-}
-
 class PageHandler{
       /**
        * Il Costruttore della classe PageHandler
@@ -122,6 +40,7 @@ class PageHandler{
             this.numBlocks = Math.ceil(Number(Documents.length / this.blockDimension));
             this.currentBlock = this.isIndexValid(StartingBlock) ? StartingBlock : 0;
             this.documents = Documents;
+            this.currentPageIndexPosition = null;
 
             if(PageIndexesButtons <= 0)
                   this.pageIndexesButtons = Math.min(5, this.numBlocks);
@@ -153,17 +72,16 @@ class PageHandler{
             if(!this.isIndexValid(Index))
                   return false;
 
-            let OldIndex = this.currentBlock;
             this.currentBlock = Index;
             
-            this.adjustPageIndexes(OldIndex, Index);
+            this.adjustPageIndexes(Index);
 
             let firstElement = Index * this.blockDimension;
             let lastElement = (Index + 1) * this.blockDimension;
             return this.documents.slice(firstElement, lastElement);
       }
 
-      adjustPageIndexes(OldIndex, NewIndex) {
+      adjustPageIndexes(NewIndex) {
             // Array dei bottoni per il cambio pagina
             let pageIndexElements = Array.from(this.pageIndexContainer.children);
 
@@ -171,24 +89,18 @@ class PageHandler{
             if(this.currentPageIndexPosition != null)
                   pageIndexElements[this.currentPageIndexPosition].classList.remove("current");
 
-            // Distanza dal primo e ultimo bottone mostrato se metto la pagina corrente al centro
-            let difference = Math.floor(this.pageIndexesButtons / 2);
+            // Numero del primo elemento mostrato
+            let firstShift = this.calculateFirstShift(NewIndex);
 
-            // Se sto mettendo una delle prime pagine (una di indice <= (this.pageIndexesButtons + 1) / 2) non posso scalare troppo
-            let shift = -Math.min(NewIndex, difference);
-
-            // Stesso discorso per le ultime pagine, ma lo controllo solo se ci sono più bottoni che pagine da visualizzare
-            if(this.numBlocks > this.pageIndexesButtons){
-                  let shift2 = difference - Math.min(this.numBlocks - 1 - NewIndex, difference);
-                  shift -= shift2;
-            }
+            // Shift della pagina corrente rispetto al primo elemento mostrato
+            let currentShift = this.calculateCurrentShift(NewIndex);
             
             // Mantengo la pagina corrent al centro dell'indice
             for(let i = 0; i < this.pageIndexesButtons; i++){
-                  pageIndexElements[i].innerText = NewIndex + i + 1 + shift;
+                  pageIndexElements[i].innerText = firstShift + i + 1;
 
                   // Quando sto impostando l'indice di pagina corrente lo segno
-                  if(i + shift == 0){
+                  if(i == currentShift){
                         // Salvo l'indice in cui è stato inserito all'interno del container
                         this.currentPageIndexPosition = i;
                         pageIndexElements[this.currentPageIndexPosition].classList.add("current");
@@ -196,6 +108,62 @@ class PageHandler{
             }
 
             
+      }
+      calculateCurrentShift(index){
+            // shift = index                                   index <= leftSlot
+            // shift = leftSlot                                leftSlot <= index <= numBlocks - slotDisponibili
+            // shift = index - numBlocks + slotDisponibili     index >= slotDisponibili
+            /*
+            La funzione nel caso generale (molte pagine) è y = {
+                  x                 per  x <= slot disponibili a sinistra (leftSlot)
+                  leftSlot          per x >= leftSlot, {costante e uguale a leftSlot, così la pagina corrente è sempre al centro}
+                        ma riprende ad aumentare per gli ultimi leftSlot indici, per mostrare la pagina corrente sempre più a destra, quindi:
+                  index - this.numBlocks + slotDisponibili        per x >= this.NumBlocks - left
+            }
+            Nel caso tutti gli indici di pagina possano essere mostrati, questi saranno fissi e di conseguenza
+            sarà solo la pagina corrente a scorrere, linearmente, quindi y = x
+            */
+
+            // Numero totale di slot disopnibli, si suppone dispari
+            let slotDisponibili = this.pageIndexesButtons;
+
+            if(slotDisponibili == this.numBlocks)
+                  return index;
+
+            // Numero di slot da lasciare a sinistra per avere quello corrente al centro
+            let leftSlot = (slotDisponibili - 1) / 2;
+
+            if(index <= leftSlot)
+                  return index;
+
+            return Math.max(leftSlot, index - this.numBlocks + slotDisponibili);
+
+            if(NewIndex <= this.numBlocks - slotDisponibili)
+                  return leftSlot;
+
+            return NewIndex - this.numBlocks + slotDisponibili;
+      }
+      /**
+       * Calcola lo scostamento (quindi il numero) che deve avere il primo indice di pagina mostrato
+       * @param {Number} index Indice di pagina da mostrare
+       * @return Ritorna lo scostamento
+       */
+      calculateFirstShift(index){
+            /*
+            La funzione è y = {
+                  0                 per  x <= slot disponibili a sinistra (leftSlot)
+                  x - leftSlot      per x >= leftSlot,
+                        ma limitato da (this.numBlocks - slotDisponibili), per evitare di mostrare a destra inidici di pagina non presenti, quindi
+                  this.numBlocks - slotDisponibili          per x >= this.NumBlocks - slotDisponibili
+            }
+            */
+            let slotDisponibili = this.pageIndexesButtons;
+            let leftSlot = Math.floor(slotDisponibili / 2);
+
+            if(index <= leftSlot)
+                  return 0;
+
+            return Math.min(index - leftSlot, this.numBlocks - slotDisponibili);
       }
 
       /**

@@ -28,7 +28,6 @@ function login(event){
 
       // Leggo la pagina di redirezione
       .then(data => {
-            console.log(data);
             // se il login è avvenuto con successo
             if(data[0]){
                   let pageName = data[1];

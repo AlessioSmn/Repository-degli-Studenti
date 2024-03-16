@@ -96,7 +96,7 @@ include "php/logControl/loginControl.php";
             <br/>
                   
             <!-- <button type="submit" onclick="showDocuments()">Cerca</button> -->
-            <button type="submit" onclick="retrieveDocumentsBySubject()">Cerca</button>
+            <button type="submit" onclick="mainSearch('subject')">Cerca</button>
       </section>
 
       <!-- Ricerca per nome della materia -->
@@ -207,7 +207,9 @@ include "php/logControl/loginControl.php";
       <script src="js/document/display.js"></script>
 
       <!-- documentVisualizerBlock() -->
+      <!-- 
       <script src="js/document/visualize/blocks.js"></script>
+      -->
 
       <!-- retrieveDocumentsBySubject() -->
       <script src="js/document/retrieve/bySubject.js"></script>
@@ -215,6 +217,7 @@ include "php/logControl/loginControl.php";
       <!-- retrieveDocumentsByTextField() -->
       <script src="js/document/retrieve/byText.js"></script>
 
+      <!-- PageHandler class -->
       <!-- visualizePreviousBlock() -->
       <!-- visualizeNextBlock() -->
       <script src="js/document/visualize/pageHandling.js"></script>
@@ -249,15 +252,25 @@ include "php/logControl/loginControl.php";
                                     // 3) Mostro solo il primo blocco
                                     DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, 6);
 
-                                    populateWithDocuments(DOC_SLICE);
+                                    populateWithDocuments(DOC_SLICE, 'block', true);
                               });
                               break;
 
                         case 'subject':
-                              newDocuments = retrieveDocumentsBySubject();
-                              if(newDocuments === false)
-                                    return;
-                              DOCUMENTS = newDocuments;
+                              retrieveDocumentsBySubject().then(docs => {
+                                    if (docs === false)
+                                          return;
+                                    
+                                    DOCUMENTS = docs;
+
+                                    // 2) Ordino l'array dei documenti
+                                    sortDocuments(DOCUMENTS, orderField, ascending);
+
+                                    // 3) Mostro solo il primo blocco
+                                    DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, 6);
+
+                                    populateWithDocuments(DOC_SLICE, 'block', true);
+                              });
                               break;
 
                         // se il metodo non è riconsciuto non faccio niente
@@ -270,13 +283,13 @@ include "php/logControl/loginControl.php";
                   DOC_SLICE = pageHandler.visualizeNextBlock();
                   if(DOC_SLICE === false)
                         return;
-                  populateWithDocuments(DOC_SLICE);
+                  populateWithDocuments(DOC_SLICE, 'block', true);
             }
             function previousPage(){
                   DOC_SLICE = pageHandler.visualizePreviousBlock();
                   if(DOC_SLICE === false)
                         return;
-                  populateWithDocuments(DOC_SLICE);
+                  populateWithDocuments(DOC_SLICE, 'block', true);
             }
 
 
@@ -344,8 +357,8 @@ include "php/logControl/loginControl.php";
       }
       function changeCFUvalue(step, id){
             // event.preventDefault();
-            var value = parseInt(document.getElementById(id+"CFUvalue").innerHTML);
-            var newValue = value + step;
+            let value = parseInt(document.getElementById(id+"CFUvalue").innerHTML);
+            let newValue = value + step;
             document.getElementById(id+"CFUvalue").innerHTML = newValue > 0 ? newValue : 0;
       }
       function checkBoxChanged(step, id){
@@ -353,8 +366,8 @@ include "php/logControl/loginControl.php";
             retrieveDocumentsByTextField();
       }
       function toggleLabelCFUvisibility(id){
-            var CFUcontainer = document.getElementById(id+"CFUcontainer");
-            var vis = CFUcontainer.style.display;
+            let CFUcontainer = document.getElementById(id+"CFUcontainer");
+            let vis = CFUcontainer.style.display;
             CFUcontainer.style.display = (vis == 'none') ? 'inline' : 'none';
             retrieveDocumentsByTextField();
       }
@@ -362,8 +375,8 @@ include "php/logControl/loginControl.php";
       function docTitleChanged(){
             // event.preventDefault();
             /*
-            var docTitleControl = document.getElementById("docTitle");
-            var docSubtitleControl = document.getElementById("docSubtitle");
+            let docTitleControl = document.getElementById("docTitle");
+            let docSubtitleControl = document.getElementById("docSubtitle");
             // impongo almeno una scelta tra titolo e sottotitolo
             if(docTitleControl.checked == false) {
                   docSubtitleControl.checked = true;
@@ -374,8 +387,8 @@ include "php/logControl/loginControl.php";
       function docSubtitleChanged(){
             // event.preventDefault();
             /*
-            var docTitleControl = document.getElementById("docTitle");
-            var docSubtitleControl = document.getElementById("docSubtitle");
+            let docTitleControl = document.getElementById("docTitle");
+            let docSubtitleControl = document.getElementById("docSubtitle");
             // impongo almeno una scelta tra titolo e sottotitolo
             if(!docSubtitleControl.checked) {
                   docTitleControl.checked = true;
@@ -393,31 +406,31 @@ include "php/logControl/loginControl.php";
       }
       
       function OpenSearchNameFieldset(field){
-            var fieldset = document.getElementById(field+"Fieldset");
-            var openButton = document.getElementById(field+"FieldsetOpen");
+            let fieldset = document.getElementById(field+"Fieldset");
+            let openButton = document.getElementById(field+"FieldsetOpen");
             fieldset.disabled = false;
             fieldset.style.display = 'block';
             openButton.style.display = 'none';
       }
       function CloseSearchNameFieldset(field){
-            var fieldset = document.getElementById(field+"Fieldset");
-            var openButton = document.getElementById(field+"FieldsetOpen");
+            let fieldset = document.getElementById(field+"Fieldset");
+            let openButton = document.getElementById(field+"FieldsetOpen");
             fieldset.disabled = true;
             fieldset.style.display = 'none';
             openButton.style.display = 'inline';
       }
-      var mode = document.getElementById("sbSubject");
+      let mode = document.getElementById("sbSubject");
       function changeFieldOrder(){
-            if(mode.checked) retrieveDocumentsBySubject();
+            if(mode.checked) mainSearch('subject');
             else retrieveDocumentsByTextField();
       }
-      var flipped = false;
+      let flipped = false;
       function flipOrder(){
-            var orderButton = document.getElementById("orderButton");
+            let orderButton = document.getElementById("orderButton");
             orderButton.innerHTML = flipped ? '&#11205;' : '&#11206;';
             flipped = !flipped;
 
-            if(mode.checked) retrieveDocumentsBySubject();
+            if(mode.checked) mainSearch('subject');
             else retrieveDocumentsByTextField();
       }
 

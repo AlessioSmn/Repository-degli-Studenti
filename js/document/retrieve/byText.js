@@ -30,13 +30,14 @@ var fieldOrderSelected = document.getElementById("documentOrderText");
 function retrieveDocumentsByTextField(){
       let fetchArguments = prepareFetchArgumentsText();
       
-      fetch('php/document/retrieval/byText.php?' + fetchArguments)
+      return fetch('php/document/retrieval/byText.php?' + fetchArguments)
       .then(response => response.json())
       .then(data => {
 
-            // Pulisco l'array di documenti
-            DOCUMENTS = [];
+            // Array vuoto di documenti
+            let documents = [];
 
+            // Creo l'array di document utilizzando la classe apposita
             for(let row of data){
                   let doc = new Document(
                         row['id'],
@@ -52,11 +53,16 @@ function retrieveDocumentsByTextField(){
                   );
 
                   // Aggiungo il documento alla lista di documenti
-                  DOCUMENTS.push(doc);
+                  documents.push(doc);
             }
-            populateWithDocuments(DOCUMENTS);
+            
+            // Ritorno l'array di documenti
+            return documents;
       })
-      .catch(error => console.error('Errore nella richiesta fetch: ' + error));
+      .catch(error => {
+            console.error('Errore nella richiesta fetch: ' + error);
+            return false;
+      });
 }
 
 /**

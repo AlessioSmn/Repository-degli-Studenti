@@ -37,8 +37,6 @@ function signup(event){
       // Il primo elemento dell'array è un booleano,
       // mi permette di capire se la registrazione è andata a buon fine o meno
       .then(data => {
-            console.log(data);
-
             // Se la registrazione è avvenuta con successo porto l'utente alla home
             if(data[0])
                   window.location.href = "index.php";
