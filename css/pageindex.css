@@ -1,0 +1,24 @@
+
+/* Scorrimento tra i vari risultati */
+.page-index-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 2px solid purple;
+}
+.page-index-element{
+      width: 40px;
+      height: 40px;
+      border-radius: 20px;
+      box-sizing: border-box;
+      background-color: var(--bgColor_light);
+      margin: 0 5px;
+      line-height: 40px;
+      text-align: center;
+}
+.page-index-element.shifter{
+      background-color: var(--primary);
+}
+.page-index-element.current{
+      background-color: var(--primary_light);
+}
