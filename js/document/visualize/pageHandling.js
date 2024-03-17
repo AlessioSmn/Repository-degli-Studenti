@@ -137,11 +137,6 @@ class PageHandler{
                   return index;
 
             return Math.max(leftSlot, index - this.numBlocks + slotDisponibili);
-
-            if(NewIndex <= this.numBlocks - slotDisponibili)
-                  return leftSlot;
-
-            return NewIndex - this.numBlocks + slotDisponibili;
       }
       /**
        * Calcola lo scostamento (quindi il numero) che deve avere il primo indice di pagina mostrato

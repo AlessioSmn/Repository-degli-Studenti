@@ -21,7 +21,7 @@ include "php/logControl/loginControl.php";
             window.addEventListener('scroll', function() {
                   const scroll = window.scrollY;
                   document.querySelector('header').style.backgroundPositionY = -0.5 * scroll + 'px';
-            });
+            }, { passive: true });
       </script>
 </head>
 <body>

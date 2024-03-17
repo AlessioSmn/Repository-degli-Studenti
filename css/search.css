@@ -36,10 +36,21 @@
 .search-order {
       border: 2px solid fuchsia;
 }
+.search-order > *{
+      height: 50px;
+      margin: 0px;
+}
 .search-order > .flip-order{
+      width: 50px;
       padding: 0px; 
-      width: 30px; 
-      height:30px; 
       text-align:center; 
-      border-radius: 50%;
+      border: 2px solid greenyellow;
+      border-left: 0px;
+      border-radius: 0px 10px 10px 0px;
+}
+
+.search-order > select{
+      border: 2px solid darkgoldenrod;
+      border-right: 0px;
+      border-radius: 10px 0px 0px 10px;
 }
