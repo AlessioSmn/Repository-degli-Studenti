@@ -67,10 +67,5 @@ function prepareFetchArgumentsSubject(subject){
       // Id della materia
       argsArray.push(["selectedSubjectId", subject]);
 
-      // Order
-      // TODO elimina l'ordinamento dalla fetch
-      argsArray.push(['orderField', documentOrder.value]);
-      argsArray.push(['asc', flipped ? "ASC" : "DESC"]);
-
       return new URLSearchParams(argsArray).toString();
 }

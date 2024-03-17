@@ -21,9 +21,6 @@ var documentSubtitleControl = document.getElementById("docSubtitle");
 var userNameControl = document.getElementById("userName");
 var userMailControl = document.getElementById("userMail");
 
-// Ordine dei documenti
-var fieldOrderSelected = document.getElementById("documentOrderText");
-
 /**
  * Effettua una fetch per ricavare tutti i documenti che rispettano i criteri di ricerca
  */
@@ -104,10 +101,6 @@ function prepareFetchArgumentsText(){
             argsArray.push(["userName", 1]);
       if(userMailControl.checked)
             argsArray.push(["userMail", 1]);
-
-      // Order
-      argsArray.push(['orderField', documentOrder.value]);
-      argsArray.push(['asc', flipped ? "ASC" : "DESC"]);
 
       // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams/URLSearchParams
       return new URLSearchParams(argsArray).toString();

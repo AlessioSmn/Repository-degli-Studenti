@@ -13,8 +13,6 @@ include_once $projectDir.'php/utils/prepareMySQLorderByClause.php';
 // Ricavo l'ID della materia selezionata
 $type = "i";
 $subjectID = $_GET['selectedSubjectId'];
-$order = $_GET['orderField'];
-$asc = $_GET['asc'];
 
 // Query per ricavare tutte i idocumenti di una data materia
 $query = "  SELECT 
@@ -29,11 +27,6 @@ $query = "  SELECT
             FROM document 
                   INNER JOIN user ON document.owner = user.id 
             WHERE document.subject = ? ";
-
-// Evito l'rdinamento per materia, dato che non si fa join su Subject
-$order = $order != 'sub' ? $order : '';
-// Ordinamento del result set
-$query = $query . prepareMySQLorderByClause($order, $asc);
 
 // Eseguo al query
 $result = executePreparedStatement(

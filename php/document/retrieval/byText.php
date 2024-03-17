@@ -41,11 +41,6 @@ $userName = isset($_GET['userName']) ? $text : null;
 // Mail dell'autore
 $userMail = isset($_GET['userMail']) ? $text : null;
 
-// Campo di ordinamento
-$order = $_GET['orderField'];
-// Ordine crescente o decrescente
-$asc = $_GET['asc'] == "ASC" ? "ASC" : "DESC";
-
 // Query MySQL
 $sqlStatement = "  SELECT 
                   document.id as id, 
@@ -71,9 +66,6 @@ $user = new UserElement($userName, $userMail);
 
 // Aggiungo incoli di selezione
 $sqlStatement = $sqlStatement . prepareMySQLwhereClause($subject, $document, $user);
-
-// Impongo un ordinamento al result set
-$sqlStatement = $sqlStatement . prepareMySQLorderByClause($order, $asc);
 
 // Parametri e tipi dei parametri per la executePreparedStatement
 $parameterTypes = $subject->getParameterTypes().$document->getParameterTypes().$user->getParameterTypes();
