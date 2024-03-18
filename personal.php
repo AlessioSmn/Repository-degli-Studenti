@@ -14,6 +14,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
@@ -66,6 +67,15 @@ include "php/logControl/loginControl.php";
             </div>
             <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
+
+      <!-- Tipo di visualizzazione -->
+      <section class="switch-option">
+            <span>Scegli un metodo di visualizzazione</span>
+            <div id="visualization-types-options-container" class="switch-option-container left-option-selected">
+                  <div onclick="changeVisualizationType('block')">BLOCCHI</div>
+                  <div onclick="changeVisualizationType('compact')">LISTA</div>
+            </div>
+      </section>
       
       <section>
             <form method="post" enctype="multipart/form-data" style="border-width: 5px; border-color: red; border-style: solid;" onsubmit="uploadDocument(event)"><fieldset>
@@ -94,9 +104,9 @@ include "php/logControl/loginControl.php";
       </section>
 
       <div class="page-index-container">
-            <div class="page-index-element shifter" onclick="previousPage()"><</div>
+            <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
             <div id="page-index-container" class="page-index-container"></div>
-            <div class="page-index-element shifter" onclick="nextPage()">></div>
+            <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
       </div>
 
       <footer>
@@ -106,14 +116,6 @@ include "php/logControl/loginControl.php";
       <!-- Document class -->
       <!-- sortDocuments() -->
       <script src="js/document/document.js"></script>
-
-      <!-- populateWithDocuments() -->
-      <script src="js/document/display.js"></script>
-
-      <!-- documentVisualizerBlock() -->
-      <!-- 
-      <script src="js/document/visualize/blocks.js"></script>
-      -->
 
       <!-- PageHandler class -->
       <!-- visualizePreviousBlock() -->
@@ -125,45 +127,120 @@ include "php/logControl/loginControl.php";
       <!-- <script src="js/displaySubjects.js"></script> -->
       <!-- <script src="js/fillSubjectOptions.js"></script> -->
       <!-- <script src="js/documentContainer.js"></script> -->
+      <!-- <script src="js/document/visualize/blocks.js"></script> -->
+      <!-- <script src="js/document/display.js"></script> -->
 
       <script>
-            // Array dei documenti attualmente visualizzati
-            let DOCUMENTS = [];
-            let DOC_SLICE = [];
 
-            let pageHandler = new PageHandler(document.getElementById("page-index-container"));
+      // Array dei documenti attualmente visualizzati
+      let DOCUMENTS = [];
+      let DOC_SLICE = [];
 
-            function retrieveAndDisplayPersonalDocuments(){
-                  retrievePersonalDocuments().then(docs => {
-                        if (docs === false)
-                              return;
+      let blockDimensionStandard = 8;
 
-                        DOCUMENTS = docs;
+      let pageHandler = new PageHandler(document.getElementById("page-index-container"));
 
-                        // 2) Ordino l'array dei documenti
-                        sortDocuments(DOCUMENTS, 'downloads', false);
-
-                        // 3) Mostro solo il primo blocco
-                        DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, 5);
-
-                        populateWithDocuments(DOC_SLICE, 'compact', false);
-                  });
-            }
-            
-
-            function nextPage(){
-                  DOC_SLICE = pageHandler.visualizeNextBlock();
-                  if(DOC_SLICE === false)
+      function retrieveAndDisplayPersonalDocuments(){
+            retrievePersonalDocuments().then(docs => {
+                  if (docs === false)
                         return;
-                  populateWithDocuments(DOC_SLICE, 'compact', true);
-            }
-            function previousPage(){
-                  DOC_SLICE = pageHandler.visualizePreviousBlock();
-                  if(DOC_SLICE === false)
-                        return;
-                  populateWithDocuments(DOC_SLICE, 'compact', true);
-            }
+
+                  DOCUMENTS = docs;
+
+                  // 2) Ordino l'array dei documenti
+                  sortDocuments(DOCUMENTS, 'downloads', false);
+
+                  // 3) Mostro solo il primo blocco
+                  DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, blockDimensionStandard);
+
+                  visualizeDocuments(
+                        DOC_SLICE, 
+                        document.getElementById("documentVisualizer"),
+                        VisualizationType, 
+                        false
+                  );
+            });
+      }
+      
+
+      function nextPage(){
+            DOC_SLICE = pageHandler.visualizeNextBlock();
+            if(DOC_SLICE === false)
+                  return;
+
+            visualizeDocuments(
+                  DOC_SLICE, 
+                  document.getElementById("documentVisualizer"),
+                  VisualizationType, 
+                  false
+            );
+      }
+      function previousPage(){
+            DOC_SLICE = pageHandler.visualizePreviousBlock();
+            if(DOC_SLICE === false)
+                  return;
             
+            visualizeDocuments(
+                  DOC_SLICE, 
+                  document.getElementById("documentVisualizer"),
+                  VisualizationType, 
+                  false
+            );
+      }
+            
+      /* Tipo di visualizzazione dei documenti */
+
+      const VISUALIZATION_BLOCK     = 'block';
+      const VISUALIZATION_COMPACT   = 'compact';
+      let VisualizationType = VISUALIZATION_BLOCK;
+      let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
+      function changeVisualizationType(mode){
+            // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
+            let visualizationChanged = false;
+            
+            switch(mode){
+                  case 'block':
+                        
+                        // Cambio la classse del container per avere lo sfondo che si sposta
+                        visualizationTypeContainer.classList.remove('right-option-selected');
+                        visualizationTypeContainer.classList.add('left-option-selected');
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_BLOCK;
+                        break;
+                  
+                  case 'compact':
+                        
+                        // Cambio la classse del container per avere lo sfondo che si sposta
+                        visualizationTypeContainer.classList.remove('left-option-selected');
+                        visualizationTypeContainer.classList.add('right-option-selected');
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_COMPACT;
+                        break;
+                  
+                  default:
+                        break;
+            }
+      
+            // Se l'utente ha cambiato visualizzazione e stava visualizzando dei documenti li mostro secondo il nuovo tipo di visualizzazione
+            if(visualizationChanged && DOC_SLICE.length > 0)
+            
+                  visualizeDocuments(
+                        DOC_SLICE, 
+                        document.getElementById("documentVisualizer"),
+                        VisualizationType, 
+                        false
+                  );
+      }
+
+
       </script>
 </body>
 </html>

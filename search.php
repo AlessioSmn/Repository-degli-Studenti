@@ -15,6 +15,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/search.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
@@ -65,11 +66,20 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Metodo di ricerca -->
-      <section class="search-method-selection">
+      <section class="switch-option">
             <span>Scegli un metodo di ricerca</span>
-            <div id="search-method-options-container" class="search-method-selection-options-container text">
+            <div id="search-method-options-container" class="switch-option-container right-option-selected">
                   <div onclick="displaySearchMode('subject')">MATERIA</div>
                   <div onclick="displaySearchMode('text')">TESTO</div>
+            </div>
+      </section>
+
+      <!-- Tipo di visualizzazione -->
+      <section class="switch-option">
+            <span>Scegli un metodo di visualizzazione</span>
+            <div id="visualization-types-options-container" class="switch-option-container left-option-selected">
+                  <div onclick="changeVisualizationType('block')">BLOCCHI</div>
+                  <div onclick="changeVisualizationType('compact')">LISTA</div>
             </div>
       </section>
 
@@ -197,9 +207,6 @@ include "php/logControl/loginControl.php";
       <!-- sortDocuments() -->
       <script src="js/document/document.js"></script>
       
-      <!-- populateWithDocuments() -->
-      <script src="js/document/display.js"></script>
-
       <!-- retrieveDocumentsBySubject() -->
       <script src="js/document/retrieve/bySubject.js"></script>
 
@@ -226,20 +233,73 @@ include "php/logControl/loginControl.php";
       function displaySearchMode(mode){
             switch (mode) {
                   case 'text':
-                        searchOptionsContainer.classList.remove("subject");
-                        searchOptionsContainer.classList.add("text");
+                        searchOptionsContainer.classList.remove("left-option-selected");
+                        searchOptionsContainer.classList.add("right-option-selected");
                         searchBySubject.style.display = 'none';
                         searchByText.style.display = 'block';
                         break;
                   case 'subject':
-                        searchOptionsContainer.classList.remove("text");
-                        searchOptionsContainer.classList.add("subject");
+                        searchOptionsContainer.classList.remove("right-option-selected");
+                        searchOptionsContainer.classList.add("left-option-selected");
                         searchBySubject.style.display = 'block';
                         searchByText.style.display = 'none';
                         break;
                   default:
                         break;
             }
+            console.log(mode);
+      }
+
+      /* Tipo di visualizzazione dei documenti */
+
+      const VISUALIZATION_BLOCK     = 'block';
+      const VISUALIZATION_COMPACT   = 'compact';
+      let VisualizationType = VISUALIZATION_BLOCK;
+      let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
+      function changeVisualizationType(mode){
+            // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
+            let visualizationChanged = false;
+
+            switch(mode){
+                  case 'block':
+                        
+                        // Cambio la classse del container per avere lo sfondo che si sposta
+                        visualizationTypeContainer.classList.remove('right-option-selected');
+                        visualizationTypeContainer.classList.add('left-option-selected');
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_BLOCK;
+                        break;
+                  
+                  case 'compact':
+                        
+                        // Cambio la classse del container per avere lo sfondo che si sposta
+                        visualizationTypeContainer.classList.remove('left-option-selected');
+                        visualizationTypeContainer.classList.add('right-option-selected');
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_COMPACT;
+                        break;
+                  
+                  default:
+                        break;
+            }
+      
+            // Se l'utente ha cambiato visualizzazione e stava visualizzando dei documenti li mostro secondo il nuovo tipo di visualizzazione
+            if(visualizationChanged && DOC_SLICE.length > 0)
+            
+                  visualizeDocuments(
+                        DOC_SLICE, 
+                        document.getElementById("documentVisualizer"),
+                        VisualizationType, 
+                        true
+                  );
       }
 
 
@@ -269,6 +329,8 @@ include "php/logControl/loginControl.php";
                               if (docs === false || docs.length == 0){
                                     document.getElementById("documentVisualizer").innerText = "Nessun risultato :(";
                                     document.getElementById("page-index-container").innerText = "";
+                                    DOCUMENTS = [];
+                                    DOC_SLICE = [];
                                     return;
                               }
                               
@@ -287,6 +349,8 @@ include "php/logControl/loginControl.php";
                               if (docs === false || docs.length == 0){
                                     document.getElementById("documentVisualizer").innerText = "Nessun risultato :(";
                                     document.getElementById("page-index-container").innerText = "";
+                                    DOCUMENTS = [];
+                                    DOC_SLICE = [];
                                     return;
                               }
                               
@@ -360,23 +424,36 @@ include "php/logControl/loginControl.php";
             if(DOC_SLICE === false)
                   return;
 
-            populateWithDocuments(
-                  DOC_SLICE,        // Lista di documenti
-                  'block',          // Tipo di visualizzazione ['block' | 'compact' ]
-                  true              // Pubblico o privato [true -> public, false -> personal]
+            visualizeDocuments(
+                  DOC_SLICE, 
+                  document.getElementById("documentVisualizer"),
+                  VisualizationType, 
+                  true
             );
       }
       function nextPage(){
             DOC_SLICE = pageHandler.visualizeNextBlock();
             if(DOC_SLICE === false)
                   return;
-            populateWithDocuments(DOC_SLICE, 'block', true);
+            
+            visualizeDocuments(
+                  DOC_SLICE, 
+                  document.getElementById("documentVisualizer"),
+                  VisualizationType, 
+                  true
+            );
       }
       function previousPage(){
             DOC_SLICE = pageHandler.visualizePreviousBlock();
             if(DOC_SLICE === false)
                   return;
-            populateWithDocuments(DOC_SLICE, 'block', true);
+            
+            visualizeDocuments(
+                  DOC_SLICE, 
+                  document.getElementById("documentVisualizer"),
+                  VisualizationType, 
+                  true
+            );
       }
 
       
