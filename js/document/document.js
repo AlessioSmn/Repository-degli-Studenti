@@ -58,7 +58,7 @@ class Document{
             let container = document.createElement("div");
 
             // Classe del container
-            container.classList.add("doc-container");
+            container.classList.add("doc-block-container");
             
             // Titolo del documento
             container.appendChild(this.documentVisualizerBlock_title());
@@ -105,7 +105,7 @@ class Document{
 
       constructVisualizerCompact(Public){
             let container = document.createElement("div");
-            container.classList.add("doc-container");
+            container.classList.add("doc-block-container");
             container.innerText = this.title;
             return container;
       }
@@ -120,7 +120,7 @@ class Document{
             let ext = this.extension;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Elimina il documento";
-            deleteButton.classList.add("doc-deleteButton");
+            deleteButton.classList.add("doc-block-deleteButton");
             deleteButton.onclick = function(){
                   fetch('php/document/manage/deleteDocument.php?id=' + id + '&ext=' + ext)
                   .then(response => response.json())
@@ -206,7 +206,7 @@ class Document{
       documentVisualizerBlock_title(){
             let titleElement = document.createElement("p");
             titleElement.textContent = this.title;
-            titleElement.classList.add("doc-title");
+            titleElement.classList.add("doc-block-title");
             return titleElement;
       }
 
@@ -220,7 +220,7 @@ class Document{
 
             let subtitleElement = document.createElement("p");
             subtitleElement.textContent = this.subtitle;
-            subtitleElement.classList.add("doc-subtitle");
+            subtitleElement.classList.add("doc-block-subtitle");
             return subtitleElement;
       } 
 
@@ -231,7 +231,7 @@ class Document{
       documentVisualizerBlock_owner(){
             let ownerElement = document.createElement("p");
             ownerElement.textContent = this.author;
-            ownerElement.classList.add("doc-owner");
+            ownerElement.classList.add("doc-block-owner");
             return ownerElement;
       }
 
@@ -242,7 +242,7 @@ class Document{
       documentVisualizerBlock_subject(){
             let subjectElement = document.createElement("p");
             subjectElement.textContent = this.subject;
-            subjectElement.classList.add("doc-subject");
+            subjectElement.classList.add("doc-block-subject");
             return subjectElement;
       }
 
@@ -253,7 +253,7 @@ class Document{
       documentVisualizerBlock_degree(){
             let degreeElement = document.createElement("p");
             degreeElement.textContent = this.degree;
-            degreeElement.classList.add("doc-degree");
+            degreeElement.classList.add("doc-block-degree");
             return degreeElement;
       }
 
@@ -264,7 +264,7 @@ class Document{
       documentVisualizerBlock_downloads(){
             let downloadsElement = document.createElement("p");
             downloadsElement.textContent = this.downloads;
-            downloadsElement.classList.add("doc-downloads");
+            downloadsElement.classList.add("doc-block-downloads");
             return downloadsElement;
       }
 
@@ -275,7 +275,7 @@ class Document{
       documentVisualizerBlock_uploadDate(){
             let uploadElement = document.createElement("p");
             uploadElement.textContent = this.uploadDate;
-            uploadElement.classList.add("doc-dateinfo");
+            uploadElement.classList.add("doc-block-dateinfo");
             return uploadElement;
       }
 
@@ -286,7 +286,7 @@ class Document{
       documentVisualizerBlock_modifiedDate(){
             let modifiedElement = document.createElement("p");
             modifiedElement.textContent = this.lastModifiedDate;
-            modifiedElement.classList.add("doc-dateinfo");
+            modifiedElement.classList.add("doc-block-dateinfo");
             return modifiedElement;
       }
       
@@ -315,4 +315,55 @@ function sortDocuments(documents, field, ascending){
                   return a[field] > b[field] ? -1 : 1;
 
       });
+}
+
+/**
+ * Popola l'elemento container con l'array di documenti passato
+ * @param {Array[Document]} Documents L'array di documenti da visualizzazre
+ * @param {HTMLElement} Container L'elemento che verrà popolato con i vari documenti
+ * @param {String} Type Il tipo di visualizzazione da impostare [ 'block' | 'compact' ]
+ * @param {boolean} Public Indica se i documenti sono mostrati per la pagina di ricerca pubblica o per quella personale
+ */
+function visualizeDocuments(Documents, Container, Type, Public){
+
+      // Pulisco il container da eventuali elementi precedenti
+      Container.innerHTML = "";
+
+      // Itero sull'array di documenti
+      for(let doc of Documents)
+
+            // Costruisco un elemento per ogni documento e lo appendo al container
+            Container.appendChild(doc.constructVisualizer(Type, Public));
+}
+
+function italianDate(DataIn){
+      DataOut = "";
+      let day = DataIn.getDate().toString().padStart(2, '0');
+      DataOut += day + " ";
+
+      let month = DataIn.getMonth();
+      DataOut += getMonthName(month) + " ";
+
+      let year = DataIn.getFullYear().toString();
+      DataOut += year;
+
+      return DataOut;
+}
+
+function getMonthName(monthNumber){
+      switch(monthNumber){
+            case 0: return "Gen";
+            case 1: return "Feb";
+            case 2: return "Mar";
+            case 3: return "Apr";
+            case 4: return "Mag";
+            case 5: return "Giu";
+            case 6: return "Lug";
+            case 7: return "Ago";
+            case 8: return "Set";
+            case 9: return "Ott";
+            case 10: return "Nov";
+            case 11: return "Dic";
+            default: return "---";
+      }
 }

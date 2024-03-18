@@ -6,50 +6,16 @@
  * @param {string} Type ['block' | 'compact'] Specifica il tipo di visualizzazione da impostare
  * @param {boolean} Public Specifica se i documenti devono essere mostrati per la pagina di ricerca pubblica o quella personale
  */
-function populateWithDocuments(documents, Type, Ascending){
+function populateWithDocuments(documents, Type, Public){
       
       // Container di tutti i documenti
       let mainContainer = document.getElementById("documentVisualizer");
       mainContainer.innerHTML = "";
 
       for(let doc of documents){
-            let documentElement = doc.constructVisualizer(Type, Ascending);
+            let documentElement = doc.constructVisualizer(Type, Public);
             mainContainer.appendChild(documentElement);
       }
-}
-
-/**
- * Crea un elemento HTML (un div) contenente varie informazioni sul documento passato
- * @param {Document} doc Il documento da mostrare
- * @return {HTMLElement}
- */
-function constructMainContainer(doc){
-      let container = document.createElement("div");
-
-      // Classe del container
-      container.setAttribute("class", "mainContainer");
-      
-      // Titolo del documento
-      var documentTitle = document.createElement("p");
-      documentTitle.textContent = doc.title;
-      documentTitle.setAttribute("class", "documentTitle");
-      container.appendChild(documentTitle);
-
-      // Data di upload
-      var uploadInfo = document.createElement("p");
-      uploadInfo.innerHTML = "Upload: " + italianDate(doc.uploadDate);
-      uploadInfo.setAttribute("class", "dateInfo upload");
-      // docInfo.appendChild(uploadInfo);
-      // container.appendChild(docInfo);
-      container.appendChild(uploadInfo);
-
-      // Downloads
-      var downloadCounter = document.createElement("p");
-      downloadCounter.innerHTML = "&#8659; &#128229;" + doc.downloads;
-      downloadCounter.setAttribute("class", "downloadCounter");
-      container.appendChild(downloadCounter);
-
-      return container;
 }
 
 function italianDate(DataIn){
