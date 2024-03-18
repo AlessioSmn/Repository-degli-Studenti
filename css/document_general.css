@@ -1,0 +1,100 @@
+#documentVisualizer{
+      overflow: hidden;
+      display: flex;
+      flex-wrap: wrap;
+}
+
+/* Switch tra due opzioni disponibili */
+
+.switch-option{
+      border: 2px solid blueviolet;
+}
+.switch-option-container{
+      width: 200px;
+      height: 50px;
+      border-radius: 25px;
+      background-color: var(--bgColor_dark);
+      background-image: linear-gradient(90deg, var(--bgColor_dark) 33%, var(--primary_light) 33%, var(--primary_light)  67%, var(--bgColor_dark) 67%);
+      background-size: 151% 100%; /* vado un po' oltre per il 33% e 66% non esatti*/
+      transition: 0.2s;
+      display: inline-flex;
+}
+
+.switch-option-container.left-option-selected{
+      background-position: right center;
+}
+.switch-option-container.right-option-selected{
+      background-position: left center;
+}
+
+.switch-option-container > div{
+      width: 100px;
+      height: inherit;
+      line-height: 50px;
+      text-align: center;
+      vertical-align: middle;
+}
+
+
+/* Popup per la visualizzazione del documento */
+
+.doc-popup-container {
+      display: none;
+      position: fixed;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      background-color: none;
+      width: 60%;
+      height: 80%;
+}
+.doc-popup-container iframe {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      color: white;
+}
+.doc-popup-container h1 {
+      float: left;
+      margin: 12px 0px; 
+      font-size: x-large;
+      height: 30px;
+      width: 80%;
+      max-width: 80%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: white;
+}
+.doc-popup-container button {
+      float: right;
+      margin-top: 12px;
+      vertical-align: middle;
+      padding: 5px;
+      width: auto;
+      height: auto;
+      color: white;
+      border-radius: 15px;
+      background-color: red;
+      background-image: none;
+}
+.doc-popup-container button:hover {
+      background-color: darkred;
+}
+/* Da creare sotto il popup, così da bloccare il l'accesso a tutto ciò che è sullo sfondo */
+.doc-popup-container-mask {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.85); 
+      z-index: 9998;
+}
+.doc-popup-container.active,
+.doc-popup-container-mask.active {
+      display: block;
+}
+
