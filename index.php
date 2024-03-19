@@ -44,7 +44,7 @@ include "php/logControl/loginControl.php";
             <a href="login.php" class="navbar-main-element"><div>&#9094; Login</div></a>
             <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
             <a href="manual.html" class="navbar-main-element"><div>&#128214; Manuale</div></a>
-            <a href="documentation.php" class="navbar-main-element"><div>&#128202; Doc-</div></a>
+            <a href="statistics.php" class="navbar-main-element"><div>&#128202; Doc-</div></a>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   &#127912; <span>Tema<span>
                   <div class="navbar-dropdown-container">
@@ -72,7 +72,7 @@ include "php/logControl/loginControl.php";
             <p>Cerchi appunti per una materia ostica?</p><a href="search.php"><button>Cerca</button></a>
             <p>Vuoi condividere i tuoi appunti?</p><a href="personal.php"><button>Area personale</button></a>
             <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php"><button>Area personale</button></a>
-            <p>Vuoi controllare i tuoi documenti?</p><a href="documentation.php"><button>Statistiche</button></a>
+            <p>Vuoi controllare i tuoi documenti?</p><a href="statistics.php"><button>Statistiche</button></a>
       </section>
 
       <footer>
