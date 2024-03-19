@@ -1,61 +1,69 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
-$prevDir = isset($prevDir) ? "" : "../";
-$pageName = isset($pageName) ? $pageName : null;
-include '../logControl/loginControl.php';
-include_once '../../config/config.php';
-include_once "../utils/executePreparedStatement.php";
-include_once "../classes/StatisticsQuery.php";
+$projectDir = "../../";
 
-// get selected mode
-$mode = isset($_GET["mode"]) ? strtoupper($_GET["mode"]) : "DEG";
-$par = isset($_GET["par"]) ? $_GET["par"] : null;
+// Controllo che sia effettuato il login
+$prevDir = $projectDir; // fino a /progetto
+include_once $projectDir.'php/logControl/loginControl.php';
 
-// include_once "stats.php";
-getInfo($sqlStatement, $parameterTypes, $parameters, $mode, $par);
+include_once $projectDir.'config/config.php';
+include_once $projectDir.'php/utils/executePreparedStatement.php';
+include_once $projectDir.'php/utils/prepareMySQLorderByClause.php';
+include_once $projectDir.'php/classes/StatisticsQuery.php';
 
-$result = executePreparedStatement($sqlStatement, $affectedRows, $parameterTypes, $parameters);
+// Ricavo il target delle statistiche ed il gruppo
+$Target = isset($_GET["Target"]) ? $_GET["Target"] : "Degree";
+$Group = isset($_GET["Group"]) ? $_GET["Group"] : "All";
 
-$resArray = array();
-// echo json_encode($affectedRows);
+// Ottengo lo statement SQL
+$sqlStatement = StatisticQuery::GetStatisticQuery($Target, $Group);
+
+$parameterTypes = "";
+$parameters = array();
+
+// Eseguo lo statement per ricavare le finormazioni richieste
+$result = executePreparedStatement(
+      $sqlStatement, 
+      $affectedRows, 
+      $parameterTypes, 
+      $parameters
+);
+
+$resultArray = array();
+
 if($affectedRows > 0){
       while($row = $result->fetch_assoc()){
-            $resArray[] = $row;
+            $resultArray[] = $row;
       }
-      echo json_encode($resArray);
 }
+
+echo json_encode($resultArray);
                
-function getInfo(&$sqlStatement, &$parameterTypes, &$parameters, $index, $par = null){
+function getInfo(&$sqlStatement, &$index){
       switch($index){
             case "USRACT":
                   $sqlStatement = StatisticQuery::UsersMostActive;
-                  $parameterTypes = "";
-                  $parameters = array();
                   return;
+
             case "USRDOW":
                   $sqlStatement = StatisticQuery::UsersMostDownload;
-                  $parameterTypes = "";
-                  $parameters = array();
                   return;
+
             case "SUBALL":
                   $sqlStatement = StatisticQuery::SubjectsAllMostDownload;
-                  $parameterTypes = "";
-                  $parameters = array();
                   return;
+
             // TODO CAMBIA, sistema sta cosa
             case "SUBDEG":
                   $sqlStatement = StatisticQuery::SubjectsAllMostActive;
-                  $parameterTypes = "";
-                  $parameters = array();
                   return;
-            default:
+                  
             case "DEG":
                   $sqlStatement = StatisticQuery::DegreesMostDownload;
-                  $parameterTypes = "";
-                  $parameters = array();
                   return;
+            
+            default:
+                  $sqlStatement = "";
       }
 }
 ?>

@@ -46,33 +46,4 @@ if ($affectedRows > 0) {
 
 echo json_encode($resultArray);
 
-/*
-function prepareMySQLorderByClause($orderField, $order){
-      $orderByKeyword = " ORDER BY ";
-
-      // In questa maniera evito keyword errate per l'ordinamento
-      $order = ($order == "ASC" ? "ASC" : "DESC");
-
-      return $orderByKeyword . orderField($orderField) . " ". $order . "; ";
-}
-
-function orderField($orderField){
-      switch($orderField){
-            case 'usrName': 
-                  return 'user.name';
-            case 'usrMail': 
-                  return 'user.email';
-            case 'sub': // non si fa il join su subject in questo caso, e la materia è sempre la stessa
-            case 'doc': 
-                  return 'document.title';
-            case 'up':
-                  return 'document.uploadDate';
-            case 'lastMod':
-                  return 'document.lastModified';
-            case 'download':
-            default:
-                  return 'document.downloadCounter';
-      }
-}
-*/
 ?>

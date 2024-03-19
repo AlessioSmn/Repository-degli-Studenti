@@ -23,6 +23,7 @@ include "php/logControl/loginControl.php";
             <h1>Titolo</h1>
       </header>
       
+      <!-- Barra di navigazione del sito -->
       <nav>
             <a href="index.php" class="navbar-main-element"><div>Home</div></a>
             <div class="navbar-main-element navbar-dropdown-main">
@@ -48,36 +49,74 @@ include "php/logControl/loginControl.php";
             </div>
             <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
-            Grafici con i corsi di laurea più visualizzati
+
+      <!-- Selezione del grafico -->
+      <section>
+            Seleziona la statistica che vuoi visualizzare
+            <div class="statistics-option-conatiner">
+                  <div class="statistics-option-conatiner" value=""> Utenti con più download</div>
+            </div>
+      </section>
+      <p>
+            Corsi di laurea più attivi (più documenti caricati)
+            Corsi di laurea più popolari (più download)
             Grafici con le materie più visualizzate
-            Grafici con gli utenti più attivi (più documenti)
-            Grafici con gli utenti più popolari (più documenti)
-            Grafici con gli utenti più attivi per corso di laurea
-            Grafici con gli utenti più attivi per materie
-      </article>
-      <h3>Cambia PHP e ritorna ID|nome|downloads|uploads</h3>
-      <h4>Fai doppia drop down list: una per tabella target, una per active/download</h4>
-      <h4>Fai fetch solo al cambio di tabella, tra (downloads|uploads) riordina tutto in JS</h4>
+            Utenti più attivi (più documenti caricati)
+            Utenti più popolari (più download)
+            Utenti più attivi per corso di laurea
+            Utenti più attivi per materie
+      </p>
+<!--
       <section>
             <input type="radio" name="graphMode" value="deg" id="deg" onclick="getDegreesStats('deg')">
             <label for="deg">corsi di laurea più visualizzati</label><br>
+
             <input type="radio" name="graphMode" value="subAll" id="subAll" onclick="getDegreesStats('subAll')">
             <label for="subAll">materie più visualizzate</label><br>
+
             <input type="radio" name="graphMode" value="subDeg" id="subDeg" onclick="getDegreesStats('subDeg')">
             <label for="subDeg">materie più visualizzate per corso di laurea</label><br>
+
             <input type="radio" name="graphMode" value="usrAct" id="usrAct" onclick="getDegreesStats('usrAct')">
             <label for="usrAct">utenti più attivi</label><br>
+
             <input type="radio" name="graphMode" value="usrDow" id="usrDow" onclick="getDegreesStats('usrDow')">
             <label for="usrDow">utenti più popolari</label><br>
-
-            <div id="graphContainer" class="graphContainer">
-                  <!-- graph -->
-            </div>
       </section>
+-->
+
+      <section>
+            <input type="radio" name="graphMode" value="deg" id="DegreeAll" onclick="statsController.retrieveStatistics('Degree', 'All')">
+            <label for="DegreeAll">Corsi di laurea (All)</label><br>
+
+            <input type="radio" name="graphMode" value="subAll" id="SubjectAll" onclick="statsController.retrieveStatistics('Subject', 'All')">
+            <label for="SubjectAll">Materie (All)</label><br>
+
+            <input type="radio" name="graphMode" value="usrAct" id="UserAll" onclick="statsController.retrieveStatistics('User', 'All')">
+            <label for="UserAll">Utenti (All)</label><br>
+      </section>
+
+      <section>
+            <input type="radio" name="orderingField" id="orderByDownloads" onclick="statsController.changeOrder(true)" checked>
+            <label for="orderByDownloads">Dowloads</label><br>
+
+            <input type="radio" name="orderingField" id="orderByUploads" onclick="statsController.changeOrder(false)">
+            <label for="orderByUploads">Uploads</label><br>
+      </section>
+
+      <div id="graphContainer" class="graph-container">
+            <!-- graph -->
+      </div>
       
       <footer>footer</footer>
 
       <!-- getDegreesStats() -->
       <script src="js/stats/getDegreesStats.js"></script>
+
+      <script src="js/stats/statistics.js"></script>
+
+      <script>
+            const statsController = new Statistics(document.getElementById("graphContainer"));
+      </script>
 </body>
 </html>
