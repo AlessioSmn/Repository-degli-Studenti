@@ -15,6 +15,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/search.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
@@ -30,6 +31,9 @@ include "php/logControl/loginControl.php";
 
       <!-- retrieveSubjectByDegree() -->
       <script src="js/subject/retrieveByDegree.js"></script>
+
+      <!-- changeOptionInToggleOptions() -->
+      <script src="js/toggleElement.js"></script>
 
 </head>
 <body onload="retrieveDegrees()">
@@ -68,18 +72,18 @@ include "php/logControl/loginControl.php";
       <!-- Metodo di ricerca -->
       <section class="switch-option">
             <span>Scegli un metodo di ricerca</span>
-            <div id="search-method-options-container" class="switch-option-container right-option-selected">
-                  <div onclick="displaySearchMode('subject')">MATERIA</div>
-                  <div onclick="displaySearchMode('text')">TESTO</div>
+            <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
+                  <div onclick="displaySearchMode(this, 1)">MATERIA</div>
+                  <div onclick="displaySearchMode(this, 2)">TESTO</div>
             </div>
       </section>
 
       <!-- Tipo di visualizzazione -->
       <section class="switch-option">
             <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container left-option-selected">
-                  <div onclick="changeVisualizationType('block')">BLOCCHI</div>
-                  <div onclick="changeVisualizationType('compact')">LISTA</div>
+            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+                  <div onclick="changeVisualizationType(this, 1)">BLOCCHI</div>
+                  <div onclick="changeVisualizationType(this, 2)">LISTA</div>
             </div>
       </section>
 
@@ -228,26 +232,26 @@ include "php/logControl/loginControl.php";
       let searchOptionsContainer = document.getElementById("search-method-options-container");
       /**
        * Funzione per alternare tra le due modalità di ricerca presenti
-       * @param mode ['text' | 'subject']
+       * @param {HTMLElement} CallerElement Elenento chiamante
+       * @param {Number} SelectedMode 
        */
-      function displaySearchMode(mode){
-            switch (mode) {
-                  case 'text':
-                        searchOptionsContainer.classList.remove("left-option-selected");
-                        searchOptionsContainer.classList.add("right-option-selected");
-                        searchBySubject.style.display = 'none';
-                        searchByText.style.display = 'block';
-                        break;
-                  case 'subject':
-                        searchOptionsContainer.classList.remove("right-option-selected");
-                        searchOptionsContainer.classList.add("left-option-selected");
+      function displaySearchMode(CallerElement, SelectedMode){
+            
+            // Cambio lo sfondo
+            changeOptionInToggleOptions(CallerElement, SelectedMode - 1);
+
+            switch (SelectedMode) {
+                  case 1:
                         searchBySubject.style.display = 'block';
                         searchByText.style.display = 'none';
+                        break;
+                  case 2:
+                        searchBySubject.style.display = 'none';
+                        searchByText.style.display = 'block';
                         break;
                   default:
                         break;
             }
-            console.log(mode);
       }
 
       /* Tipo di visualizzazione dei documenti */
@@ -256,16 +260,20 @@ include "php/logControl/loginControl.php";
       const VISUALIZATION_COMPACT   = 'compact';
       let VisualizationType = VISUALIZATION_BLOCK;
       let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
-      function changeVisualizationType(mode){
+      /*
+       * Cambia il tipo di visualizzazione dei documenti
+       * @param {HTMLElement} CallerElement Elenento chiamante
+       * @param {Number} SelectedType 
+       */
+      function changeVisualizationType(CallerElement, SelectedType){
             // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
             let visualizationChanged = false;
+            
+            // Cambio lo sfondo
+            changeOptionInToggleOptions(CallerElement, SelectedType - 1);
 
-            switch(mode){
-                  case 'block':
-                        
-                        // Cambio la classse del container per avere lo sfondo che si sposta
-                        visualizationTypeContainer.classList.remove('right-option-selected');
-                        visualizationTypeContainer.classList.add('left-option-selected');
+            switch(SelectedType){
+                  case 1:
                         
                         // Controllo se è stata cambiata visualizzaizone
                         if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
@@ -274,11 +282,7 @@ include "php/logControl/loginControl.php";
                         VisualizationType = VISUALIZATION_BLOCK;
                         break;
                   
-                  case 'compact':
-                        
-                        // Cambio la classse del container per avere lo sfondo che si sposta
-                        visualizationTypeContainer.classList.remove('left-option-selected');
-                        visualizationTypeContainer.classList.add('right-option-selected');
+                  case 2:
                         
                         // Controllo se è stata cambiata visualizzaizone
                         if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;

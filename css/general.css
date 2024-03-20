@@ -47,19 +47,16 @@ article, section{
 }
 
 
-/* Common elements */
+/* Elementi comuni */
 button{
       padding: 7px 21px;
       margin:5px 10px;
       color: var(--foreColor_light);  
       background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary) 60%);
       background-size: 300% 70%;
-      /* border-width: 2px; */
       border-width: 0px;
       border-style: solid;
       border-color: var(--primary);
-      /* border-radius: 5px; */
-      /* box-shadow: 1px 1px 7px -1px var(--shadow); */
       box-shadow: none;
       transition: 0.2s;
 }
@@ -194,52 +191,10 @@ select:hover, select:active{
 select:focus{
       background-position: right center;
 }
+optgroup{
+      color: var(--primary_light);
+}
 option{
-      background-color: var(--bgColor);
-}
-
-.starContainer{
-      background-color: var(--secondary_dark);
-      height: auto;
-      width: auto;
-      padding: 0px;
-      text-align: center;
-}
-.star{
-      float: right;
-      margin: 5px;
-      padding: 0px;
-      width: auto;
-      height: auto;
-      line-height: 40px;;
       color: var(--foreColor);
-      background-color: transparent;
-      background-image: none;
-      font-size: 40px;
-      border-width: 0px;
-      border-color: var(--primary);
-      border-radius: 50%;
-      text-shadow: 0px 0px 5px black, 0px 0px 1px black;
-      box-shadow: none;
-      transition: 0.1s;
-}
-.star:nth-last-child(1):hover, 
-.star:nth-last-child(1):hover ~ .star {
-      color: rgb(205, 38, 38);
-}
-.star:nth-last-child(2):hover, 
-.star:nth-last-child(2):hover ~ .star {
-      color: rgb(255, 146, 57);
-}
-.star:nth-last-child(3):hover, 
-.star:nth-last-child(3):hover ~ .star {
-      color: rgb(255, 242, 57);
-}
-.star:nth-last-child(4):hover, 
-.star:nth-last-child(4):hover ~ .star {
-      color: rgb(149, 255, 57);
-}
-.star:nth-last-child(5):hover, 
-.star:nth-last-child(5):hover ~ .star {
-      color: rgb(0, 204, 37);
+      background-color: var(--bgColor);
 }

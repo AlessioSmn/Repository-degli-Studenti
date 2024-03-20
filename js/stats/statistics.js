@@ -16,6 +16,9 @@ class Statistics{
       
             // Larghezza dell'elemento più grande, in relazione percentuale con la larghezza del container
             this.maxWidthPercentage = 70;
+
+            this.currentTarget = null;
+            this.currentGroup = null;
       }
 
 
@@ -80,6 +83,8 @@ class Statistics{
             // Cancello il contenuto del container
             this.graphContainer.innerHTML = "";
 
+            this.graphContainer.innerHTML = "Risultati per TODOOOOOOOOOOOOOOOOOOO";
+
             // Valore massimo, rispetto al quale scalare tutti gli elementi
             let maxValue = 0;
 
@@ -90,6 +95,8 @@ class Statistics{
                   // Se è il primo elemento mi salvo il valore massimo
                   if(first){
                         maxValue = this.orderByDownloads ? singleStat.downloads : singleStat.uploads;
+                        // Evito il caso in cui maxValue sia uguale a zero, metto minimo 1
+                        maxValue = Math.max(maxValue, 1);
                         first = false;
                   }
 

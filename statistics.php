@@ -14,11 +14,12 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/statistics.css">
+      <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 </head>
-<body onload="retrieveDegrees()">
+<body onload="pageLoad()">
       <header>
             <h1>Titolo</h1>
       </header>
@@ -51,33 +52,33 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Selezione del campo di ordinamento -->
-      <section id="selection-order" class="selection order background-half-1">
-            <div class="order-option" onclick="changeOrder(1)">Download</div>
-            <div class="order-option" onclick="changeOrder(2)">Upload</div>
+      <section id="selection-order" class="switch-option-container n2 option-1-selected">
+            <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
+            <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
       </section>
 
       <!-- Selezione del target -->
-      <section id="selection-target" class="selection target background-third-3">
-            <div class="target-option" onclick="changeTarget(1)">Corso di laurea</div>
-            <div class="target-option" onclick="changeTarget(2)">Materie</div>
-            <div class="target-option" onclick="changeTarget(3)">Utenti</div>
+      <section id="selection-target" class="switch-option-container n3 option-3-selected">
+            <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
+            <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
+            <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
       </section>
 
       <!-- Selezione del gruppo -->
-      <section id="selection-group" class="selection group background-third-1">
-            <div class="group-option" onclick="changeGroup(1)">Tutti</div>
-            <div class="group-option" onclick="changeGroup(2)">Per un dato corso di laurea</div>
-            <div class="group-option" onclick="changeGroup(3)">Per una data materia</div>
+      <section id="selection-group" class="switch-option-container n3 option-1-selected">
+            <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
+            <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
+            <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
       </section>
 
       <!-- Selezione corso di laurea di selezione -->
-      <section id="selection-degree" class="selection" style="display:none">
+      <section id="selection-degree" class="switch-option-container" style="display:none">
             <select id="degree_selector" onchange="degreeSelected()">
             </select>
       </section>
 
       <!-- Selezione della materia di selezione -->
-      <section id="selection-subject" class="selection" style="display:none">
+      <section id="selection-subject" class="switch-option-container" style="display:none">
             <select id="subject_selector" onchange="subjectSelected()">
             </select>
       </section>
@@ -98,6 +99,9 @@ include "php/logControl/loginControl.php";
       <!-- retrieveSubjectByDegree() -->
       <script src="js/subject/retrieveByDegree.js"></script>
 
+      <!-- changeOptionInToggleOptions() -->
+      <script src="js/toggleElement.js"></script>
+
       <script>
 
             const statsController = new Statistics(document.getElementById("graphContainer"));
@@ -117,90 +121,81 @@ include "php/logControl/loginControl.php";
 
             /* 
              * Cambia il target del grafico 
+             * @param {HTMLElement} CallerElement Elenento chiamante
+             * @param {Number} TargetSelected Target selezionato (1, 2, ...)
              */
-            function changeTarget(Position){
-                  if(Position == Target)
+            function changeTarget(CallerElement, TargetSelected){
+                  if(TargetSelected == Target)
                         return;
 
-                  // Rimuovo la vecchia classe
-                  selectionTarget.classList.remove("background-third-" + Target);
-
                   // Imposto il nuovo target
-                  Target = Position;
+                  Target = TargetSelected;
 
-                  // Aggiungo la nuova classe
-                  selectionTarget.classList.add("background-third-" + Target);
+                  // Aggiorno la classe CSS per lo sfondo
+                  changeOptionInToggleOptions(CallerElement, TargetSelected - 1);
 
                   // Se metto una tra Subject e Degree non posso più selezionare tutti i gruppi presenti
                   // Per come ho ordinato i target ed i gruppi un target X (indice) può essere raggruppato
                   // solo per gruppi con indice Y <= X
                   // Quindi i gruppi rimanenti avranno width = ( 100 / X ) %
                   let groupOptions = Array.from(selectionGroup.children);
-                  let partedWidth = (100 / Position) + '%';
+                  let partedWidth = (100 / Target) + '%';
 
                   // Imposto i primi X elementi con partedWidth
-                  for(let i = 1; i <= Position; i++){
+                  for(let i = 1; i <= Target; i++){
                         let option = groupOptions[i - 1];
                         option.style.width = partedWidth;
                   } 
                   
                   // Imposto i rimanenti con width = 0
-                  for(let i = Position + 1; i <= 3; i++){
+                  for(let i = Target + 1; i <= 3; i++){
                         let option = groupOptions[i - 1];
                         option.style.width = '0';
                   }
 
-                  // Reimposto anche la classe css del group
-                  removeBackgroundClass(selectionGroup);
-
-                  // Per avere la classe css corretta
-                  let bgDivision;
-                  switch(Position){
-                        case 1: bgDivision = 'full'; break;
-                        case 2: bgDivision = 'half'; break;
-                        case 3: bgDivision = 'third'; break;
+                  // Cancello la classe che indica il numero di opzioni ( n[Numero] ), la scambio con la nuova
+                  let classes = selectionGroup.classList;
+                  for(let cssClass of classes) 
+                        if (cssClass.match(/^n\d+$/))
+                              selectionGroup.classList.replace(cssClass, 'n' + Target);
+                              
+                  // Se l'indice di gruppo va oltre TargetSelected lo resetto a 1
+                  if(Group > Target){
+                        Group = 1;                  
+                        let classes = selectionGroup.classList;
+                        for(let cssClass of classes) 
+                              if (cssClass.match(/^option-\d+-selected$/))
+                                    selectionGroup.classList.replace(cssClass, 'option-' + Group + '-selected');
                   }
-                  
-                  // Se l'indice di gruppo va oltre position lo resetto a 1
-                  if(Group > Position)
-                        Group = 1;
 
+                  // Se target < 3 (ossia non è utenti, evito la selezione per materia)
                   if(Target < 3)
                         selectionSubject.style.display = 'none';
 
+                  // Se target < 3 (ossia è corsi, evito anche la selezione per materie)
                   if(Target < 2)
                         selectionDegree.style.display = 'none';
 
-                  // Imposto lo stile della selezione del gruppo
-                  selectionGroup.classList.add("background-" + bgDivision + "-" + Group);
+                  // Aggiusto la classe css anche del gruppo
 
                   // Richiedo le statistiche
-                  statsController.retrieveStatistics(getTargetString(), getGroupString());
+                  retrieveStatisticsByCurrentSettings();
             }
 
             /* 
-             * Cambia il gruppo del target 
+             * Cambia il gruppo del target
+             * @param {HTMLElement} CallerElement Elenento chiamante
+             * @param {Number} SelectedGroup Gruppo selezionato (1, 2, ...) 
              */
-            function changeGroup(Position){
-                  if(Position == Group)
+            function changeGroup(CallerElement, SelectedGroup){
+                  if(SelectedGroup == Group)
                         return;
 
-                  // Rimuovo la vecchia classe
-                  removeBackgroundClass(selectionGroup);
-
                   // Imposto il nuovo gruppo
-                  Group = Position;
+                  Group = SelectedGroup;
 
-                  // Per avere la classe css corretta
-                  let bgDivision;
-                  switch(Target){
-                        case 1: bgDivision = 'full'; break;
-                        case 2: bgDivision = 'half'; break;
-                        case 3: bgDivision = 'third'; break;
-                  }
-                  
-                  // Aggiungo la nuova classe
-                  selectionGroup.classList.add("background-" + bgDivision + "-" + Group);
+                  // Aggiorno la classe CSS
+                  changeOptionInToggleOptions(CallerElement, SelectedGroup - 1);
 
                   // A seconda del gruppo faccio cose diverse
                   switch(Group){
@@ -208,8 +203,10 @@ include "php/logControl/loginControl.php";
                         // All -> posso direttamente richiedere le statistiche
                         case 1: {
                               selectionDegree.style.display = 'none';
+                              degree_selector.selectedIndex = 0;
                               selectionSubject.style.display = 'none';
-                              statsController.retrieveStatistics(getTargetString(), getGroupString());
+                              subject_selector.selectedIndex = 0;
+                              retrieveStatisticsByCurrentSettings();
                               return;
                         }
 
@@ -217,6 +214,7 @@ include "php/logControl/loginControl.php";
                         case 2: {
                               selectionDegree.style.display = 'block';
                               selectionSubject.style.display = 'none';
+                              subject_selector.selectedIndex = 0;
                               return;
                         }
 
@@ -232,24 +230,38 @@ include "php/logControl/loginControl.php";
 
             /* 
              * Cambia l'ordinamento del grafico tra Downloads e Uploads 
+             * @param {HTMLElement} CallerElement Elenento chiamante
+             * @param {Number} OrderSelected Ordine selezionato (1, 2, ...)
              */
-            function changeOrder(Position){
-                  if(Position == Order)
+            function changeOrder(CallerElement, SelectedOrder){
+                  if(SelectedOrder == Order)
                         return;
 
-                  // Rimuovo la vecchia classe
-                  selectionOrder.classList.remove("background-half-" + Order);
-
                   // Imposto il nuovo ordine
-                  Order = Position;
+                  Order = SelectedOrder;
 
-                  // Aggiungo la nuova classe
-                  selectionOrder.classList.add("background-half-" + Order);
+                  // Aggiorno la classe CSS
+                  changeOptionInToggleOptions(CallerElement, SelectedOrder - 1);
 
                   // Riordino il grafico
                   statsController.changeOrder(Order == 1);
             }
 
+            /**
+             * Ottiene le statistiche scelte utlizzando la classe Statistics,
+             * in base ai parametri Target e Group
+             */
+            function retrieveStatisticsByCurrentSettings(){
+                  statsController.retrieveStatistics(
+                              getTargetString(), 
+                              getGroupString(), 
+                              getGroupId(),
+                        );
+            }
+            /**
+             * Restituisce il corretto parametro Target da passare alla funzione Statistics::retrieveStatistics(),
+             * in base alla variabile globale Target
+             */
             function getTargetString(){
                   switch(Target){
                         case 1: return 'Degree';
@@ -258,6 +270,10 @@ include "php/logControl/loginControl.php";
                   }
                   return '';
             }
+            /**
+             * Restituisce il corretto parametro Group da passare alla funzione Statistics::retrieveStatistics(),
+             * in base alla variabile globale Group
+             */
             function getGroupString(){
                   switch(Group){
                         case 1: return 'All';
@@ -266,7 +282,22 @@ include "php/logControl/loginControl.php";
                   }
                   return '';
             }
+            /**
+             * Restituisce il corretto parametro GroupId da passare alla funzione Statistics::retrieveStatistics(),
+             * in base alla variabile globale Group
+             */
+            function getGroupId(){
+                  switch(Group){
+                        case 1: return null;
+                        case 2: return degree_selector.value;
+                        case 3: return subject_selector.value;
+                  }
+                  return null;
+            }
 
+            /**
+             * Rimuove ogni classe CSS dall'elemento Element il cui nome inizi per 'background-'
+             */
             function removeBackgroundClass(Element){
                   // Elenco delle classi
                   let classes = Element.classList;
@@ -280,26 +311,34 @@ include "php/logControl/loginControl.php";
                               Element.classList.remove(cssClass);
             }
 
+            /**
+             * Funzione chiamata quando viene modificata il corso di laurea selezionato
+             */
             function degreeSelected(){
+
+                  // Richiedo le materie in ogni caso per averle già mostrare nel caso
+                  // in cui l'utente scelga poi il reggruppamento per materia
+                  retrieveSubjectByDegree();
+
                   // Se il group selezionato è 2 (solo corso di studi) richiedo le statistiche
                   if(Group == 2)
-                        statsController.retrieveStatistics(
-                              getTargetString(), 
-                              getGroupString(), 
-                              degree_selector.value
-                        );
-
-                  // Altirmenti mostro le materie del corso
-                  else
-                        retrieveSubjectByDegree();
+                        retrieveStatisticsByCurrentSettings();
             }
 
+            /**
+             * Funzione chiamata quando viene modificata la materia selezionata
+             */
             function subjectSelected(){
-                  statsController.retrieveStatistics(
-                        getTargetString(), 
-                        getGroupString(),
-                        subject_selector.value
-                  );
+                  retrieveStatisticsByCurrentSettings();
+            }
+
+            function pageLoad(){
+
+                  // Carico i corsi di laurea
+                  retrieveDegrees();
+
+                  // Carico di default la statistica degli utenti con più download
+                  retrieveStatisticsByCurrentSettings();
             }
       </script>
 </body>

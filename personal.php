@@ -14,6 +14,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
@@ -35,6 +36,9 @@ include "php/logControl/loginControl.php";
 
       <!-- uploadDocument() -->
       <script src="js/document/update/upload.js"></script>
+
+      <!-- changeOptionInToggleOptions() -->
+      <script src="js/toggleElement.js"></script>
       
 </head>
 <body onload="retrieveDegrees()">
@@ -71,9 +75,9 @@ include "php/logControl/loginControl.php";
       <!-- Tipo di visualizzazione -->
       <section class="switch-option">
             <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container left-option-selected">
-                  <div onclick="changeVisualizationType('block')">BLOCCHI</div>
-                  <div onclick="changeVisualizationType('compact')">LISTA</div>
+            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+                  <div onclick="changeVisualizationType(this, 1)">BLOCCHI</div>
+                  <div onclick="changeVisualizationType(this, 2)">LISTA</div>
             </div>
       </section>
       
@@ -187,16 +191,20 @@ include "php/logControl/loginControl.php";
       const VISUALIZATION_COMPACT   = 'compact';
       let VisualizationType = VISUALIZATION_BLOCK;
       let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
-      function changeVisualizationType(mode){
+      /*
+       * Cambia il tipo di visualizzazione dei documenti
+       * @param {HTMLElement} CallerElement Elenento chiamante
+       * @param {Number} SelectedType 
+       */
+      function changeVisualizationType(CallerElement, SelectedType){
             // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
             let visualizationChanged = false;
             
-            switch(mode){
-                  case 'block':
-                        
-                        // Cambio la classse del container per avere lo sfondo che si sposta
-                        visualizationTypeContainer.classList.remove('right-option-selected');
-                        visualizationTypeContainer.classList.add('left-option-selected');
+            // Cambio lo sfondo
+            changeOptionInToggleOptions(CallerElement, SelectedType - 1);
+            
+            switch(SelectedType){
+                  case 1:
                         
                         // Controllo se è stata cambiata visualizzaizone
                         if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
@@ -205,11 +213,7 @@ include "php/logControl/loginControl.php";
                         VisualizationType = VISUALIZATION_BLOCK;
                         break;
                   
-                  case 'compact':
-                        
-                        // Cambio la classse del container per avere lo sfondo che si sposta
-                        visualizationTypeContainer.classList.remove('left-option-selected');
-                        visualizationTypeContainer.classList.add('right-option-selected');
+                  case 2:
                         
                         // Controllo se è stata cambiata visualizzaizone
                         if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;

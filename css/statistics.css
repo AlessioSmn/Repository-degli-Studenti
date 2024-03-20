@@ -53,3 +53,13 @@
 .graph-element-container:hover > .graph-element-value{
       line-height: 50px;
 }
+
+#selection-group > *{
+      overflow: hidden;
+}
+
+select{
+      width: 100%;
+      border-radius: 0px;
+      height: 100%;
+}
