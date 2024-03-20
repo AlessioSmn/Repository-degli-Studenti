@@ -77,6 +77,7 @@ include "php/logControl/loginControl.php";
             </div>
       </section>
       
+      <!-- Caricamento di un nuovo documento -->
       <section>
             <form method="post" enctype="multipart/form-data" style="border-width: 5px; border-color: red; border-style: solid;" onsubmit="uploadDocument(event)"><fieldset>
                   <legend>Carica un documento</legend>
@@ -121,14 +122,6 @@ include "php/logControl/loginControl.php";
       <!-- visualizePreviousBlock() -->
       <!-- visualizeNextBlock() -->
       <script src="js/document/visualize/pageHandling.js"></script>
-      
-      <!-- DEPRECATED -->
-      <!--  Javascript function to fetch and display subject options -->
-      <!-- <script src="js/displaySubjects.js"></script> -->
-      <!-- <script src="js/fillSubjectOptions.js"></script> -->
-      <!-- <script src="js/documentContainer.js"></script> -->
-      <!-- <script src="js/document/visualize/blocks.js"></script> -->
-      <!-- <script src="js/document/display.js"></script> -->
 
       <script>
 
