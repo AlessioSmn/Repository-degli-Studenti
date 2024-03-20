@@ -11,21 +11,6 @@
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
-      <script>
-function showPopup() {
-  var popupContainer = document.getElementById("popupContainer");
-  var overlay = document.getElementById("overlay");
-  popupContainer.classList.add("active");
-  overlay.classList.add("active");
-}
-
-function closePopup() {
-  var popupContainer = document.getElementById("popupContainer");
-  var overlay = document.getElementById("overlay");
-  popupContainer.classList.remove("active");
-  overlay.classList.remove("active");
-}
-      </script>
       <style>
             table>tbody>tr{
                   height:4em;
@@ -33,38 +18,39 @@ function closePopup() {
             table>thead>tr>th{
                   width:8em;
             }
-            
-
-.popup-container {
-display: none;
-position: fixed;
-top: 50%;
-left: 50%;
-transform: translate(-50%, -50%);
-z-index: 9999; /* Ensure the popup is above other content */
-background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-width: 60%; /* Adjust width as needed */
-height: 60%; /* Adjust height as needed */
+.switch-option{
+  border: 1px solid blueviolet;
 }
 
-.popup-container iframe {
-width: 100%;
-height: 100%;
+.switch-option-container{
+  width: 300px; /* Adjusted width for three options */
+  height: 50px;
+  border-radius: 25px;
+  background-color: var(--bgColor_dark);
+  background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary_light) 40%, var(--primary_light)  60%, var(--secondary) 60%);
+  background-size: calc(500% / 3) 100%; /* Adjusted for three options */
+  transition: 0.2s;
+  display: inline-flex;
 }
 
-.overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-  z-index: 9998; /* Set z-index below the popup */
+.switch-option-container .switch-option {
+      width: 100px;
+      height: inherit;
+      line-height: 50px;
+      text-align: center;
+      vertical-align: middle;
 }
-.popup-container.active,
-.overlay.active {
-  display: block;
+
+.switch-option-container.left-option-selected {
+  background-position: right center;
+}
+
+.switch-option-container.middle-option-selected {
+  background-position: center center;
+}
+
+.switch-option-container.right-option-selected {
+  background-position: left center;
 }
 
       </style>
@@ -101,12 +87,6 @@ height: 100%;
       </nav>
       
       <article>
-<button onclick="showPopup()">Open Popup</button>
-<div id="overlay" class="overlay"></div>
-<div id="popupContainer" class="popup-container">
-<iframe id="popupIframe" src="https://www.example.com" frameborder="0"></iframe>
-<button id="closeButton" onclick="closePopup()">Close</button>
-</div>
 
             CHANGED: <br>
 ; Maximum allowed size for uploaded files.
@@ -191,8 +171,31 @@ upload_max_filesize = 200M
                               </tr>
                         </tbody>
                   </table>
-      
+                  <div class="switch-option-container">
+                        <div class="switch-option" onclick="selectOption(0)">Option 1</div>
+                        <div class="switch-option" onclick="selectOption(1)">Option 2</div>
+                        <div class="switch-option" onclick="selectOption(2)">Option 3</div>
+                      </div>
       </article>
       <footer>footer</footer>
+
+      <script>
+            function selectOption(index) {
+  const switchContainer = document.querySelector('.switch-option-container');
+  console.log(switchContainer.classList);
+
+  switchContainer.classList.remove('left-option-selected', 'middle-option-selected', 'right-option-selected');
+  
+  if (index === 0) {
+    switchContainer.classList.add('left-option-selected');
+  } else if (index === 1) {
+    switchContainer.classList.add('middle-option-selected');
+  } else if (index === 2) {
+    switchContainer.classList.add('right-option-selected');
+  }
+}
+
+
+      </script>
 </body>
 </html>
