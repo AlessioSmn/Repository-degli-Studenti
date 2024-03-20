@@ -460,6 +460,17 @@ include "php/logControl/loginControl.php";
             );
       }
 
+      document.addEventListener('keydown', function(event){
+            switch(event.key){
+                  case 'ArrowLeft': 
+                        previousPage(); 
+                        break;
+                  case 'ArrowRight':
+                        nextPage(); 
+                        break;
+            }
+      });
+
       
       /* Popup per la visualizzazione in pagina dei documenti */
       
