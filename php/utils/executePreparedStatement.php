@@ -6,7 +6,7 @@
  * @param int $affectedRows Reference. Memorizza il numero di record modificati / restituiti
  * @param string $parameterTypes Optional. Default = null. Stringa dei tipi dei parametri della query
  * @param array $parameterValue Optional. Default = null. Array di parametri della query
- * @param array $lastInsertedId Optional. Default = null. Se lo statement è insert o update salva il valore dell'id
+ * @param array $lastInsertedId Optional. Default = null. Reference. Se lo statement è insert o update salva il valore dell'id
  * @return mysqli_result|boolean|string[]
  */
 function executePreparedStatement($sqlStatement, &$affectedRows, $parameterTypes = null, $parameterValue = null, &$lastInsertedId = null){
