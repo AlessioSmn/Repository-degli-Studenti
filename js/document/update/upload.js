@@ -25,6 +25,7 @@ function uploadDocument(event) {
             // Upload avvenuto con successo
             if(data[0]){
                   window.alert("Documento caricato con successo");
+                  location.reload();
             }
 
             // errore nell'upload
