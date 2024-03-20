@@ -8,6 +8,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
@@ -18,47 +19,32 @@
             table>thead>tr>th{
                   width:8em;
             }
-.switch-option{
-  border: 1px solid blueviolet;
-}
-
-.switch-option-container{
-  width: 300px; /* Adjusted width for three options */
-  height: 50px;
-  border-radius: 25px;
-  background-color: var(--bgColor_dark);
-  background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary_light) 40%, var(--primary_light)  60%, var(--secondary) 60%);
-  background-size: calc(500% / 3) 100%; /* Adjusted for three options */
-  transition: 0.2s;
-  display: inline-flex;
-}
-
-.switch-option-container .switch-option {
-      width: 100px;
-      height: inherit;
-      line-height: 50px;
-      text-align: center;
-      vertical-align: middle;
-}
-
-.switch-option-container.left-option-selected {
-  background-position: right center;
-}
-
-.switch-option-container.middle-option-selected {
-  background-position: center center;
-}
-
-.switch-option-container.right-option-selected {
-  background-position: left center;
-}
-
-      </style>
+            hr {
+            height:50px;
+            background-image:
+                  linear-gradient(red, red),
+                  linear-gradient(blue, blue);
+            background-size:
+                  50% 100%, /* Half of the width for red and blue */
+                  100% 100%; /* Half of the width for yellow and purple */
+            background-repeat: no-repeat;
+            background-position: 
+                  left center, /* Initial position */
+                  center center; /* Initial position */
+            transition: 1s;
+            }    
+            hr:hover{
+            background-position: 
+                  right center, /* Initial position */
+                  center center; /* Initial position */
+            }    
+  </style>
 </head>
 <body>
       <header>
             <h1>PAGINA TEST</h1>
       </header>
+      <hr>
       
       <nav>
             <a href="index.php" class="navbar-main-element"><div>Home</div></a>
@@ -171,29 +157,37 @@ upload_max_filesize = 200M
                               </tr>
                         </tbody>
                   </table>
-                  <div class="switch-option-container">
-                        <div class="switch-option" onclick="selectOption(0)">Option 1</div>
-                        <div class="switch-option" onclick="selectOption(1)">Option 2</div>
-                        <div class="switch-option" onclick="selectOption(2)">Option 3</div>
-                      </div>
+                  <div class="switch-option-container n2">
+                        <div class="switch-option n2" onclick="selectOption(2,0)">Option 1</div>
+                        <div class="switch-option n2" onclick="selectOption(2,1)">Option 2</div>
+                  </div>
+                  <div class="switch-option-container n3">
+                        <div class="switch-option n3" onclick="selectOption(3,0)">Option 1</div>
+                        <div class="switch-option n3" onclick="selectOption(3,1)">Option 2</div>
+                        <div class="switch-option n3" onclick="selectOption(3,2)">Option 3</div>
+                  </div>
+                  <br>
+                  <div class="switch-option-container n4">
+                        <div class="switch-option n4" onclick="selectOption(4,0)">Option 1</div>
+                        <div class="switch-option n4" onclick="selectOption(4,1)">Option 2</div>
+                        <div class="switch-option n4" onclick="selectOption(4,2)">Option 3</div>
+                        <div class="switch-option n4" onclick="selectOption(4,3)">Option 3</div>
+                  </div>
       </article>
       <footer>footer</footer>
 
       <script>
-            function selectOption(index) {
-  const switchContainer = document.querySelector('.switch-option-container');
-  console.log(switchContainer.classList);
+            function selectOption(ciccio, index) {
+                  const switchContainer = document.querySelector('.switch-option-container.n' + ciccio);
+                  let classes = switchContainer.classList;
 
-  switchContainer.classList.remove('left-option-selected', 'middle-option-selected', 'right-option-selected');
-  
-  if (index === 0) {
-    switchContainer.classList.add('left-option-selected');
-  } else if (index === 1) {
-    switchContainer.classList.add('middle-option-selected');
-  } else if (index === 2) {
-    switchContainer.classList.add('right-option-selected');
-  }
-}
+                  // lo scorro
+                  for(let cssClass of classes)
+                        // Se inizia con background la rimuovo
+                        if (cssClass.startsWith('option-'))
+                              switchContainer.classList.remove(cssClass);
+                  switchContainer.classList.add('option-' + Number(index + 1) +'-selected');
+            }
 
 
       </script>
