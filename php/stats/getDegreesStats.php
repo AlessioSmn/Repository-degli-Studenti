@@ -14,12 +14,18 @@ include_once $projectDir.'php/classes/StatisticsQuery.php';
 // Ricavo il target delle statistiche ed il gruppo
 $Target = isset($_GET["Target"]) ? $_GET["Target"] : "Degree";
 $Group = isset($_GET["Group"]) ? $_GET["Group"] : "All";
+$GroupId = isset($_GET["GroupId"]) ? $_GET["GroupId"] : null;
 
 // Ottengo lo statement SQL
 $sqlStatement = StatisticQuery::GetStatisticQuery($Target, $Group);
 
-$parameterTypes = "";
+// Imposto i parametri se presenti
 $parameters = array();
+$parameterTypes = "";
+if(isset($_GET["GroupId"])){
+      $parameterTypes = "i";
+      $parameters[] = $GroupId;
+}
 
 // Eseguo lo statement per ricavare le finormazioni richieste
 $result = executePreparedStatement(
@@ -38,32 +44,5 @@ if($affectedRows > 0){
 }
 
 echo json_encode($resultArray);
-               
-function getInfo(&$sqlStatement, &$index){
-      switch($index){
-            case "USRACT":
-                  $sqlStatement = StatisticQuery::UsersMostActive;
-                  return;
 
-            case "USRDOW":
-                  $sqlStatement = StatisticQuery::UsersMostDownload;
-                  return;
-
-            case "SUBALL":
-                  $sqlStatement = StatisticQuery::SubjectsAllMostDownload;
-                  return;
-
-            // TODO CAMBIA, sistema sta cosa
-            case "SUBDEG":
-                  $sqlStatement = StatisticQuery::SubjectsAllMostActive;
-                  return;
-                  
-            case "DEG":
-                  $sqlStatement = StatisticQuery::DegreesMostDownload;
-                  return;
-            
-            default:
-                  $sqlStatement = "";
-      }
-}
 ?>

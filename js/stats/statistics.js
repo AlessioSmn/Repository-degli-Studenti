@@ -25,18 +25,22 @@ class Statistics{
        * inetrroga il database per ricavare le informazioni richieste e costruisce il grafico
        * @param {String} Target L'entità della quale si vogliono reperire le informazioni di upload e download  ['User' | 'Subject' | 'Degree' ]
        * @param {String} Group Sottoinsieme da considerare [ 'All' | 'Degree' | 'Subject' ]
+       * @param {Number | null} [GroupId=null] L'identificatore dell'eventuale gruppo, significativo solo se Group != 'All'
        */
-      retrieveStatistics(Target, Group = 'All'){
+      retrieveStatistics(Target, Group = 'All', GroupId = null){
+
+            // Costruisco i parametri della fetch
+            let fetchParam = "Target=" + Target + "&Group=" + Group;
+            if(Group != 'All') fetchParam += "&GroupId=" + GroupId;
 
             // Fecth per ricavare un array di dati da visualizzare
-            fetch("php/stats/getDegreesStats.php?Target=" + Target + "&Group=" + Group)
+            fetch("php/stats/getDegreesStats.php?" + fetchParam)
 
             // Deserializzo la risposta
             .then(response => response.json())
 
             // Costruisco il grafico
             .then(data => {
-                  if(data.length <= 0) return;
 
                   // Pulisco l'array di statistiche
                   this.statistics = [];

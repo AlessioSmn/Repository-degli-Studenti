@@ -18,7 +18,7 @@ include "php/logControl/loginControl.php";
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 </head>
-<body>
+<body onload="retrieveDegrees()">
       <header>
             <h1>Titolo</h1>
       </header>
@@ -50,73 +50,257 @@ include "php/logControl/loginControl.php";
             <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
 
-      <!-- Selezione del grafico -->
-      <section>
-            Seleziona la statistica che vuoi visualizzare
-            <div class="statistics-option-conatiner">
-                  <div class="statistics-option-conatiner" value=""> Utenti con più download</div>
-            </div>
-      </section>
-      <p>
-            Corsi di laurea più attivi (più documenti caricati)
-            Corsi di laurea più popolari (più download)
-            Grafici con le materie più visualizzate
-            Utenti più attivi (più documenti caricati)
-            Utenti più popolari (più download)
-            Utenti più attivi per corso di laurea
-            Utenti più attivi per materie
-      </p>
-<!--
-      <section>
-            <input type="radio" name="graphMode" value="deg" id="deg" onclick="getDegreesStats('deg')">
-            <label for="deg">corsi di laurea più visualizzati</label><br>
-
-            <input type="radio" name="graphMode" value="subAll" id="subAll" onclick="getDegreesStats('subAll')">
-            <label for="subAll">materie più visualizzate</label><br>
-
-            <input type="radio" name="graphMode" value="subDeg" id="subDeg" onclick="getDegreesStats('subDeg')">
-            <label for="subDeg">materie più visualizzate per corso di laurea</label><br>
-
-            <input type="radio" name="graphMode" value="usrAct" id="usrAct" onclick="getDegreesStats('usrAct')">
-            <label for="usrAct">utenti più attivi</label><br>
-
-            <input type="radio" name="graphMode" value="usrDow" id="usrDow" onclick="getDegreesStats('usrDow')">
-            <label for="usrDow">utenti più popolari</label><br>
-      </section>
--->
-
-      <section>
-            <input type="radio" name="graphMode" value="deg" id="DegreeAll" onclick="statsController.retrieveStatistics('Degree', 'All')">
-            <label for="DegreeAll">Corsi di laurea (All)</label><br>
-
-            <input type="radio" name="graphMode" value="subAll" id="SubjectAll" onclick="statsController.retrieveStatistics('Subject', 'All')">
-            <label for="SubjectAll">Materie (All)</label><br>
-
-            <input type="radio" name="graphMode" value="usrAct" id="UserAll" onclick="statsController.retrieveStatistics('User', 'All')">
-            <label for="UserAll">Utenti (All)</label><br>
+      <!-- Selezione del campo di ordinamento -->
+      <section id="selection-order" class="selection order background-half-1">
+            <div class="order-option" onclick="changeOrder(1)">Download</div>
+            <div class="order-option" onclick="changeOrder(2)">Upload</div>
       </section>
 
-      <section>
-            <input type="radio" name="orderingField" id="orderByDownloads" onclick="statsController.changeOrder(true)" checked>
-            <label for="orderByDownloads">Dowloads</label><br>
-
-            <input type="radio" name="orderingField" id="orderByUploads" onclick="statsController.changeOrder(false)">
-            <label for="orderByUploads">Uploads</label><br>
+      <!-- Selezione del target -->
+      <section id="selection-target" class="selection target background-third-3">
+            <div class="target-option" onclick="changeTarget(1)">Corso di laurea</div>
+            <div class="target-option" onclick="changeTarget(2)">Materie</div>
+            <div class="target-option" onclick="changeTarget(3)">Utenti</div>
       </section>
 
-      <div id="graphContainer" class="graph-container">
+      <!-- Selezione del gruppo -->
+      <section id="selection-group" class="selection group background-third-1">
+            <div class="group-option" onclick="changeGroup(1)">Tutti</div>
+            <div class="group-option" onclick="changeGroup(2)">Per un dato corso di laurea</div>
+            <div class="group-option" onclick="changeGroup(3)">Per una data materia</div>
+      </section>
+
+      <!-- Selezione corso di laurea di selezione -->
+      <section id="selection-degree" class="selection" style="display:none">
+            <select id="degree_selector" onchange="degreeSelected()">
+            </select>
+      </section>
+
+      <!-- Selezione della materia di selezione -->
+      <section id="selection-subject" class="selection" style="display:none">
+            <select id="subject_selector" onchange="subjectSelected()">
+            </select>
+      </section>
+
+      <section id="graphContainer" class="graph-container">
             <!-- graph -->
-      </div>
+      </section>
       
-      <footer>footer</footer>
-
-      <!-- getDegreesStats() -->
-      <script src="js/stats/getDegreesStats.js"></script>
+      <footer>
+            footer
+      </footer>
 
       <script src="js/stats/statistics.js"></script>
 
+      <!-- retrieveDegrees() -->
+      <script src="js/degree/retrieve.js"></script>
+
+      <!-- retrieveSubjectByDegree() -->
+      <script src="js/subject/retrieveByDegree.js"></script>
+
       <script>
+
             const statsController = new Statistics(document.getElementById("graphContainer"));
+
+            let Target = 3;
+            let Group = 1;
+            let Order = 1;
+
+            const selectionTarget = document.getElementById("selection-target");
+            const selectionGroup = document.getElementById("selection-group");
+            const selectionOrder = document.getElementById("selection-order");
+
+            const selectionDegree = document.getElementById("selection-degree");
+            const degree_selector = document.getElementById("degree_selector");
+            const selectionSubject = document.getElementById("selection-subject");
+            const subject_selector = document.getElementById("subject_selector");
+
+            /* 
+             * Cambia il target del grafico 
+             */
+            function changeTarget(Position){
+                  if(Position == Target)
+                        return;
+
+                  // Rimuovo la vecchia classe
+                  selectionTarget.classList.remove("background-third-" + Target);
+
+                  // Imposto il nuovo target
+                  Target = Position;
+
+                  // Aggiungo la nuova classe
+                  selectionTarget.classList.add("background-third-" + Target);
+
+                  // Se metto una tra Subject e Degree non posso più selezionare tutti i gruppi presenti
+                  // Per come ho ordinato i target ed i gruppi un target X (indice) può essere raggruppato
+                  // solo per gruppi con indice Y <= X
+                  // Quindi i gruppi rimanenti avranno width = ( 100 / X ) %
+                  let groupOptions = Array.from(selectionGroup.children);
+                  let partedWidth = (100 / Position) + '%';
+
+                  // Imposto i primi X elementi con partedWidth
+                  for(let i = 1; i <= Position; i++){
+                        let option = groupOptions[i - 1];
+                        option.style.width = partedWidth;
+                  } 
+                  
+                  // Imposto i rimanenti con width = 0
+                  for(let i = Position + 1; i <= 3; i++){
+                        let option = groupOptions[i - 1];
+                        option.style.width = '0';
+                  }
+
+                  // Reimposto anche la classe css del group
+                  removeBackgroundClass(selectionGroup);
+
+                  // Per avere la classe css corretta
+                  let bgDivision;
+                  switch(Position){
+                        case 1: bgDivision = 'full'; break;
+                        case 2: bgDivision = 'half'; break;
+                        case 3: bgDivision = 'third'; break;
+                  }
+                  
+                  // Se l'indice di gruppo va oltre position lo resetto a 1
+                  if(Group > Position)
+                        Group = 1;
+
+                  if(Target < 3)
+                        selectionSubject.style.display = 'none';
+
+                  if(Target < 2)
+                        selectionDegree.style.display = 'none';
+
+                  // Imposto lo stile della selezione del gruppo
+                  selectionGroup.classList.add("background-" + bgDivision + "-" + Group);
+
+                  // Richiedo le statistiche
+                  statsController.retrieveStatistics(getTargetString(), getGroupString());
+            }
+
+            /* 
+             * Cambia il gruppo del target 
+             */
+            function changeGroup(Position){
+                  if(Position == Group)
+                        return;
+
+                  // Rimuovo la vecchia classe
+                  removeBackgroundClass(selectionGroup);
+
+                  // Imposto il nuovo gruppo
+                  Group = Position;
+
+                  // Per avere la classe css corretta
+                  let bgDivision;
+                  switch(Target){
+                        case 1: bgDivision = 'full'; break;
+                        case 2: bgDivision = 'half'; break;
+                        case 3: bgDivision = 'third'; break;
+                  }
+                  
+                  // Aggiungo la nuova classe
+                  selectionGroup.classList.add("background-" + bgDivision + "-" + Group);
+
+                  // A seconda del gruppo faccio cose diverse
+                  switch(Group){
+
+                        // All -> posso direttamente richiedere le statistiche
+                        case 1: {
+                              selectionDegree.style.display = 'none';
+                              selectionSubject.style.display = 'none';
+                              statsController.retrieveStatistics(getTargetString(), getGroupString());
+                              return;
+                        }
+
+                        // Degree -> mostro solo la selezione delle materie
+                        case 2: {
+                              selectionDegree.style.display = 'block';
+                              selectionSubject.style.display = 'none';
+                              return;
+                        }
+
+                        // Degree -> mostro entrambe le selezioni
+                        case 3: {
+                              selectionDegree.style.display = 'block';
+                              selectionSubject.style.display = 'block';
+                              return;
+                        }
+                  }
+                  
+            }
+
+            /* 
+             * Cambia l'ordinamento del grafico tra Downloads e Uploads 
+             */
+            function changeOrder(Position){
+                  if(Position == Order)
+                        return;
+
+                  // Rimuovo la vecchia classe
+                  selectionOrder.classList.remove("background-half-" + Order);
+
+                  // Imposto il nuovo ordine
+                  Order = Position;
+
+                  // Aggiungo la nuova classe
+                  selectionOrder.classList.add("background-half-" + Order);
+
+                  // Riordino il grafico
+                  statsController.changeOrder(Order == 1);
+            }
+
+            function getTargetString(){
+                  switch(Target){
+                        case 1: return 'Degree';
+                        case 2: return 'Subject';
+                        case 3: return 'User';
+                  }
+                  return '';
+            }
+            function getGroupString(){
+                  switch(Group){
+                        case 1: return 'All';
+                        case 2: return 'Degree';
+                        case 3: return 'Subject';
+                  }
+                  return '';
+            }
+
+            function removeBackgroundClass(Element){
+                  // Elenco delle classi
+                  let classes = Element.classList;
+
+                  // lo scorro
+                  for(let cssClass of classes)
+
+                        // Se inizia con background la rimuovo
+                        if (cssClass.startsWith('background-'))
+
+                              Element.classList.remove(cssClass);
+            }
+
+            function degreeSelected(){
+                  // Se il group selezionato è 2 (solo corso di studi) richiedo le statistiche
+                  if(Group == 2)
+                        statsController.retrieveStatistics(
+                              getTargetString(), 
+                              getGroupString(), 
+                              degree_selector.value
+                        );
+
+                  // Altirmenti mostro le materie del corso
+                  else
+                        retrieveSubjectByDegree();
+            }
+
+            function subjectSelected(){
+                  statsController.retrieveStatistics(
+                        getTargetString(), 
+                        getGroupString(),
+                        subject_selector.value
+                  );
+            }
       </script>
 </body>
 </html>

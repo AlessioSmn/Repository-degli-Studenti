@@ -3,94 +3,6 @@
  * Classe contenente delle query per ricavare varie statistiche sul database
  */
 class StatisticQuery{
-      // NB inner join sulla tabella target perchè si vogliono evitare gli elementi senza record
-      //    esempio: molte materie sarebbero a zero
-      
-      /**
-       * Corsi di laurea ordinati per numero di download effettuati maggiore
-       */
-      const DegreesMostDownload = 
-            " SELECT
-                  degreecourse.id as ID, 
-                  degreecourse.name as Name, 
-                  if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-                  INNER JOIN subject ON document.subject = subject.id 
-                  INNER JOIN degreecourse ON subject.degreecourse = degreecourse.id 
-            GROUP BY degreecourse.id
-            ORDER BY if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) DESC, degreecourse.name; ";
-      
-      /**
-       * Corsi di laurea ordinati per numero di upload di documenti maggiore
-       */
-      const DegreesMostActive =
-            " SELECT 
-                  degreecourse.id as ID, 
-                  degreecourse.name as Name,
-                  count(*) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-                  INNER JOIN subject ON document.subject = subject.id 
-                  INNER JOIN degreecourse ON subject.degreecourse = degreecourse.id 
-            GROUP BY degreecourse.id
-            ORDER BY count(*) DESC, degreecourse.name; ";
-      
-      /**
-       * Materie ordinate per numero di download effettuati maggiore
-       */
-      const SubjectsAllMostDownload = 
-            " SELECT 
-                  subject.id as ID, 
-                  subject.name as Name,
-                  if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-                  INNER JOIN subject ON document.subject = subject.id 
-            GROUP BY subject.id
-            ORDER BY if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) DESC, subject.name; ";
-      
-      /**
-       * Materie ordinate per numero di upload di documenti maggiore
-       */
-      const SubjectsAllMostActive = 
-            " SELECT 
-                  subject.id as ID, 
-                  subject.name as Name,
-                  count(*) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-                  INNER JOIN subject ON document.subject = subject.id 
-            GROUP BY subject.id
-            ORDER BY count(*) DESC, subject.name; ";
-
-      /**
-       * Utenti ordinati per numero di download effettuati maggiore
-       */
-      const UsersMostDownload = 
-            " SELECT 
-                  user.id as ID, 
-                  user.name as Name,
-                  if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-            GROUP BY user.id
-            ORDER BY if(sum(document.downloadCounter) is null, 0, sum(document.downloadCounter)) DESC, user.name; ";
-
-      /**
-       * Utenti ordinati per numero di upload di documenti maggiore
-       */
-      const UsersMostActive = 
-            " SELECT 
-                  user.id as ID, 
-                  user.name as Name,
-                  count(*) as Value
-            FROM document 
-                  INNER JOIN user ON document.owner = user.id 
-            GROUP BY user.id
-            ORDER BY count(*) DESC, user.name; ";
-
-
       /**
        * Dato un'entità della quale si vogliono reperire le informazioni di upload e download (Utenti, materia o corso di laurea),
        * eventualmente relativi a un sottoinsieme (tutti, per una data materia, per un dato corso di laurea), 
@@ -123,10 +35,9 @@ class StatisticQuery{
             }
       }
 
-
-
       /**
        * Informazioni sul numero di Upload e di Download dei propri documenti per tutti gli utenti
+       * Nota: Mostra solo gli utenti che hanno caricato almeno un documento
        */
       const UsersAllInfo = 
             " SELECT 
@@ -136,24 +47,11 @@ class StatisticQuery{
                   if(sum(D.downloadCounter) is null, 0, sum(D.downloadCounter)) as Downloads 
             FROM document D
                   INNER JOIN user U ON D.owner = U.id 
-            GROUP BY U.id ";
-
-      /**
-       * Informazioni sul numero di Upload e di Download dei propri documenti per tutti gli utenti, relativo ad una data materia
-       */
-      const UsersSubjectInfo = 
-            " SELECT 
-                  U.id as ID, 
-                  U.email as Name, 
-                  count(*) as Uploads, 
-                  if(sum(D.downloadCounter) is null, 0, sum(D.downloadCounter)) as Downloads 
-            FROM document D
-                  INNER JOIN user U ON D.owner = U.id 
-            WHERE D.subject = ? 
-            GROUP BY U.id ";
+            GROUP BY U.id; ";
 
       /**
        * Informazioni sul numero di Upload e di Download dei propri documenti per tutti gli utenti, relativo ad un dato corso di laurea
+       * Nota: Mostra solo gli utenti che hanno caricato almeno un documento
        */
       const UsersDegreeInfo = 
             " SELECT 
@@ -165,10 +63,26 @@ class StatisticQuery{
                   INNER JOIN user U ON D.owner = U.id 
                   INNER JOIN subject S ON D.subject = S.id
             WHERE S.degreecourse = ? 
-            GROUP BY U.id ";
+            GROUP BY U.id; ";
+
+      /**
+       * Informazioni sul numero di Upload e di Download dei propri documenti per tutti gli utenti, relativo ad una data materia
+       * Nota: Mostra solo gli utenti che hanno caricato almeno un documento
+       */
+      const UsersSubjectInfo = 
+            " SELECT 
+                  U.id as ID, 
+                  U.email as Name, 
+                  count(*) as Uploads, 
+                  if(sum(D.downloadCounter) is null, 0, sum(D.downloadCounter)) as Downloads 
+            FROM document D
+                  INNER JOIN user U ON D.owner = U.id 
+            WHERE D.subject = ? 
+            GROUP BY U.id; ";
 
       /**
        * Informazioni sul numero di Upload e di Download per tutte le materie
+       * Nota: Mostra solo le materie con almeno un documento caricato
        */
       const SubjectAllInfo = 
             " SELECT 
@@ -179,10 +93,11 @@ class StatisticQuery{
             FROM document D
                   INNER JOIN subject S ON D.subject = S.id 
                   INNER JOIN degreecourse DC ON S.degreecourse = DC.id 
-            GROUP BY D.subject ";
+            GROUP BY D.subject; ";
 
       /**
        * Informazioni sul numero di Upload e di Download per le materie di un dato cosro di studi
+       * Nota: Mostra tutte le materie del corso di studi, anche se senza alcun documento
        */
       const SubjectDegreeInfo = 
             " SELECT 
@@ -190,14 +105,17 @@ class StatisticQuery{
                   S.name as Name, 
                   count(*) as Uploads, 
                   if(sum(D.downloadCounter) is null, 0, sum(D.downloadCounter)) as Downloads 
-            FROM document D
-                  INNER JOIN subject S ON D.subject = S.id 
+            FROM subject S
+            -- FROM document D
+            --       INNER JOIN subject S ON D.subject = S.id 
                   INNER JOIN degreecourse DC ON S.degreecourse = DC.id 
+                  LEFT OUTER JOIN document D on S.id = D.subject 
             WHERE DC.id = ? 
-            GROUP BY D.subject ";
+            GROUP BY S.id; ";
 
       /**
        * Informazioni sul numero di Upload e di Download per i corsi di studi
+       * Nota: Mostra solo i corsi di studi con almeno un documento caricato
        */
       const DegreeAllInfo = 
             " SELECT 
@@ -208,6 +126,6 @@ class StatisticQuery{
             FROM document D
                   INNER JOIN subject S ON D.subject = S.id 
                   INNER JOIN degreecourse DC ON S.degreecourse = DC.id 
-            GROUP BY DC.id ";
+            GROUP BY DC.id; ";
 
 }
