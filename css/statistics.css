@@ -58,7 +58,15 @@
       overflow: hidden;
 }
 
-select{
+
+.graph-options{
+      border: 5px solid paleturquoise;
+      background-color: chartreuse;
+}
+.graph-options > *{
+      margin-top: 10px;
+}
+.graph-options select{
       width: 100%;
       border-radius: 0px;
       height: 100%;

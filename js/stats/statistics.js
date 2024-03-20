@@ -17,6 +17,7 @@ class Statistics{
             // Larghezza dell'elemento più grande, in relazione percentuale con la larghezza del container
             this.maxWidthPercentage = 70;
 
+            // Salvo le informazioni dell'ultima ricerca fatta
             this.currentTarget = null;
             this.currentGroup = null;
       }
@@ -35,6 +36,9 @@ class Statistics{
             // Costruisco i parametri della fetch
             let fetchParam = "Target=" + Target + "&Group=" + Group;
             if(Group != 'All') fetchParam += "&GroupId=" + GroupId;
+
+            this.currentTarget = Target;
+            this.currentGroup = Group;
 
             // Fecth per ricavare un array di dati da visualizzare
             fetch("php/stats/getDegreesStats.php?" + fetchParam)
@@ -83,7 +87,18 @@ class Statistics{
             // Cancello il contenuto del container
             this.graphContainer.innerHTML = "";
 
-            this.graphContainer.innerHTML = "Risultati per TODOOOOOOOOOOOOOOOOOOO";
+            // Genero il titolo del grafico
+            let graphTitle = document.createElement("h3");
+            let title = '';
+            switch(this.currentTarget){
+                  case 'User': title += 'Utenti '; break;
+                  case 'Subject': title += 'Materie '; break;
+                  case 'Degree': title += 'Corsi di laurea '; break;
+            }
+            title += " ordinati per numero di ";
+            title += this.orderByDownloads ? "download" : "documenti caricati";
+            graphTitle.innerText = title;
+            this.graphContainer.appendChild(graphTitle);
 
             // Valore massimo, rispetto al quale scalare tutti gli elementi
             let maxValue = 0;

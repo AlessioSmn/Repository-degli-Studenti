@@ -51,36 +51,39 @@ include "php/logControl/loginControl.php";
             <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
 
-      <!-- Selezione del campo di ordinamento -->
-      <section id="selection-order" class="switch-option-container n2 option-1-selected">
-            <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
-            <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
-      </section>
+      <!-- Scelta del grafico da mostrare -->
+      <section class="graph-options">
+            <!-- Selezione del campo di ordinamento -->
+            <div id="selection-order" class="switch-option-container n2 option-1-selected">
+                  <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
+                  <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
+            </div>
 
-      <!-- Selezione del target -->
-      <section id="selection-target" class="switch-option-container n3 option-3-selected">
-            <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
-            <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
-            <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
-      </section>
+            <!-- Selezione del target -->
+            <div id="selection-target" class="switch-option-container n3 option-3-selected">
+                  <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
+                  <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
+                  <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
+            </div>
 
-      <!-- Selezione del gruppo -->
-      <section id="selection-group" class="switch-option-container n3 option-1-selected">
-            <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
-            <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
-            <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
-      </section>
+            <!-- Selezione del gruppo -->
+            <div id="selection-group" class="switch-option-container n3 option-1-selected">
+                  <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
+                  <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
+                  <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
+            </div>
 
-      <!-- Selezione corso di laurea di selezione -->
-      <section id="selection-degree" class="switch-option-container" style="display:none">
-            <select id="degree_selector" onchange="degreeSelected()">
-            </select>
-      </section>
+            <!-- Selezione corso di laurea di selezione -->
+            <div id="selection-degree" class="switch-option-container" style="display:none">
+                  <select id="degree_selector" onchange="degreeSelected()">
+                  </select>
+            </div>
 
-      <!-- Selezione della materia di selezione -->
-      <section id="selection-subject" class="switch-option-container" style="display:none">
-            <select id="subject_selector" onchange="subjectSelected()">
-            </select>
+            <!-- Selezione della materia di selezione -->
+            <div id="selection-subject" class="switch-option-container" style="display:none">
+                  <select id="subject_selector" onchange="subjectSelected()">
+                  </select>
+            </div>
       </section>
 
       <section id="graphContainer" class="graph-container">

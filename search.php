@@ -73,17 +73,8 @@ include "php/logControl/loginControl.php";
       <section class="switch-option">
             <span>Scegli un metodo di ricerca</span>
             <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
-                  <div onclick="displaySearchMode(this, 1)">MATERIA</div>
-                  <div onclick="displaySearchMode(this, 2)">TESTO</div>
-            </div>
-      </section>
-
-      <!-- Tipo di visualizzazione -->
-      <section class="switch-option">
-            <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
-                  <div onclick="changeVisualizationType(this, 1)">BLOCCHI</div>
-                  <div onclick="changeVisualizationType(this, 2)">LISTA</div>
+                  <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
+                  <div onclick="displaySearchMode(this, 2)" class="switch-option n2">TESTO</div>
             </div>
       </section>
 
@@ -181,6 +172,15 @@ include "php/logControl/loginControl.php";
                   <option value="lastModifiedDate">Ultima modifica</option>
             </select>
             <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">&#11206;</button>
+      </section>
+
+      <!-- Tipo di visualizzazione -->
+      <section class="switch-option">
+            <span>Scegli un metodo di visualizzazione</span>
+            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
+            </div>
       </section>
 
       <!-- Visualizzazione dei documenti -->

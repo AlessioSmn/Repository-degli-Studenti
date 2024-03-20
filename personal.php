@@ -76,8 +76,8 @@ include "php/logControl/loginControl.php";
       <section class="switch-option">
             <span>Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
-                  <div onclick="changeVisualizationType(this, 1)">BLOCCHI</div>
-                  <div onclick="changeVisualizationType(this, 2)">LISTA</div>
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
             </div>
       </section>
       
