@@ -8,10 +8,11 @@ include_once $projectDir.'php/logControl/loginControl.php';
 include_once $projectDir.'config/config.php';
 include_once $projectDir.'php/utils/executePreparedStatement.php';
 
-// $connection = new DatabaseConnect();
 
-$query = "  SELECT id, name 
-            FROM degreecourse;";
+// Ottengo tutti i corsi di laurea, prima triennali e poi magitsrali, ordinati per gruppi
+$query = "  SELECT id, name, area, level   
+            FROM degreecourse 
+            ORDER BY level DESC, area ASC; ";
 
 $result = executePreparedStatement($query, $affectedRows);
 

@@ -30,8 +30,32 @@ function fillSelectWithDegrees(selectElement, degrees){
       disabledOption.style.fontStyle = "italic";
       selectElement.appendChild(disabledOption);
 
+      let currentArea = '';
+      let currentLevel = '';
+      let currentOptGroup;
+
       // Aggiungo tutti gli altri elementi
       for(let degree of degrees){
+
+            let area = degree["area"];
+            let level = degree["level"];
+
+            // Controllo se devo cambiare gruppo
+            if(area != currentArea || level != currentLevel){
+                  currentArea = area;
+                  currentLevel = level;
+
+                  // Se l'optgroup è definito (ne è già stato creato uno) lo chiudo
+                  if(currentOptGroup)
+                        selectElement.appendChild(currentOptGroup);
+
+                  // Apro un nuovo optgroup
+                  currentOptGroup = document.createElement("optgroup");
+                  currentOptGroup.label = currentArea + " - " + currentLevel;
+            }
+
+
+            // Option per il corso di laurea
             let option = document.createElement("option");
 
             // Imposto valore (ossia ID)
@@ -40,6 +64,9 @@ function fillSelectWithDegrees(selectElement, degrees){
             // Imposto il testo (nome del corso)
             option.innerText = degree["name"];
 
-            selectElement.appendChild(option);
+            currentOptGroup.appendChild(option);
       }
+
+      // Appendo l'ultimo optgroup
+      selectElement.appendChild(currentOptGroup);
 }
