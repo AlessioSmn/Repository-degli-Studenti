@@ -18,6 +18,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_compact.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
