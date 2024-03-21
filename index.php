@@ -44,7 +44,7 @@ include "php/logControl/loginControl.php";
             <a href="login.php" class="navbar-main-element"><div>&#9094; Login</div></a>
             <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
             <a href="manual.html" class="navbar-main-element"><div>&#128214; Manuale</div></a>
-            <a href="statistics.php" class="navbar-main-element"><div>&#128202; Doc-</div></a>
+            <a href="statistics.php" class="navbar-main-element"><div>&#128202; Statistiche</div></a>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   &#127912; <span>Tema<span>
                   <div class="navbar-dropdown-container">
