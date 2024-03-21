@@ -1,5 +1,5 @@
 /**
- * Effettua l'upload di un documento
+ * Effettua l'upload di un documento, ricavando i dati dal form del chiamante
  * @param {*} event 
  */
 function uploadDocument(event) {
