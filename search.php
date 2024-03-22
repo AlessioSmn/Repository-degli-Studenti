@@ -221,7 +221,7 @@ include "php/logControl/loginControl.php";
       <!-- PageHandler class -->
       <!-- visualizePreviousBlock() -->
       <!-- visualizeNextBlock() -->
-      <script src="js/document/visualize/pageHandling.js"></script>
+      <script src="js/document/pageSubdivision/pageHandling.js"></script>
 
       <script>
       
