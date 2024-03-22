@@ -9,15 +9,17 @@ include_once $projectDir.'config/config.php';
 include_once $projectDir.'php/utils/executePreparedStatement.php';
 
 // Elimino il documento secondo il suo id
-$sqlStatement = "DELETE FROM document WHERE id = ?;";
-$parameterType = "i"; // intero
+$sqlStatement = " DELETE 
+            FROM document 
+            WHERE id = ? AND owner = ?;";
+$parameterType = "ii"; // intero, stringa
 
 // Eseguo lo statement
 executePreparedStatement(
       $sqlStatement, 
       $affectedRows, 
       $parameterType, 
-      array($_GET['id']));
+      array($_GET['id'], $_SESSION['user_id']));
 
 if($affectedRows > 0){
 
