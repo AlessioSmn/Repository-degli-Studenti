@@ -32,21 +32,30 @@ include "php/logControl/loginControl.php";
             <img src="media/.svg/logo_white.svg" alt="logo UniPi">
       </header>
 
+      <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="index.php" class="navbar-main-element current-page"><div>&#x2302; &#x1F3E0; Home</div></a>
+            <a href="#" class="navbar-main-element current-page"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <a href="personal.php" class="navbar-main-element"><div>&#128193; Area personale</div></a>
-                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
+                  <span>Accesso<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" href="login.php">Login</a>
+                        <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
+                        <a class="navbar-dropdown-option" onclick="logout()">Logout</a>
+                  </div>
+            </div>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <span>Area personale<span>
+                  <div class="navbar-dropdown-container">
+                        <a href="personal.php" class="navbar-dropdown-option">Area personale</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
-            <a href="search.php" class="navbar-main-element"><div>&#x1F50E; &#xFE0E; Cerca</div></a>
-            <a href="login.php" class="navbar-main-element"><div>&#9094; Login</div></a>
-            <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
-            <a href="manual.html" class="navbar-main-element"><div>&#128214; Manuale</div></a>
-            <a href="statistics.php" class="navbar-main-element"><div>&#128202; Statistiche</div></a>
+            <a href="search.php" class="navbar-main-element"><div><span>Cerca</span></div></a>
+            <a href="statistics.php" class="navbar-main-element"><div><span>Statistiche</span></div></a>
+            <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
+            <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
-                  &#127912; <span>Tema<span>
+                  <span>Tema<span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
@@ -55,7 +64,6 @@ include "php/logControl/loginControl.php";
                         <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
                   </div>
             </div>
-            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199; &#9211;</span> Logout</div>
       </nav>
       
       <section>

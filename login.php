@@ -21,19 +21,28 @@
             <img src="media/.svg/logo_white.svg" alt="logo UniPi">
       </header>
 
+      <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="index.php" class="navbar-main-element"><div>Home</div></a>
+            <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
-                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
+                  <span>Accesso<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option current-page" href="#">Login</a>
+                        <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
+                        <a class="navbar-dropdown-option" onclick="logout()">Logout</a>
+                  </div>
+            </div>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <span>Area personale<span>
+                  <div class="navbar-dropdown-container">
+                        <a href="personal.php" class="navbar-dropdown-option">Area personale</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
-            <a href="search.php" class="navbar-main-element"><div>Cerca</div></a>
-            <a href="login.php" class="navbar-main-element current-page"><div>Login</div></a>
-            <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
-            <a href="manual.html" class="navbar-main-element"><div>Manuale</div></a>
-            <a href="statistics.php" class="navbar-main-element"><div>Statistiche</div></a>
+            <a href="search.php" class="navbar-main-element"><div><span>Cerca</span></div></a>
+            <a href="statistics.php" class="navbar-main-element"><div><span>Statistiche</span></div></a>
+            <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
+            <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   <span>Tema<span>
                   <div class="navbar-dropdown-container">
@@ -44,18 +53,9 @@
                         <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
                   </div>
             </div>
-            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
 
       <article>
-            <div style="border: 5px; border-color: red; border-style:dotted; padding: 10px; width: 20%;">
-                  <h4 style="color: red">DEBUGGING ONLY</h4>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('a.dallebandenere')">fill1</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi1')">fill2</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi2')">fill3</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('c.verdi10')">fill4</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('d.bianchi19')">fill5</button>
-            </div>
 
             <form name="loginForm" onsubmit="login(event)">
                   Mail istituzionale: 
@@ -68,6 +68,15 @@
             <p id="loginInfo"></p>
       </article>
       <footer>footer</footer>
+      
+      <div style="border: 5px; border-color: red; border-style:dotted; padding: 10px; width: 20%;">
+                  <h4 style="color: red">DEBUGGING ONLY</h4>
+                  <button onclick="DEBUG_ONLY_fillLoginAdminData('a.dallebandenere')">fill1</button>
+                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi1')">fill2</button>
+                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi2')">fill3</button>
+                  <button onclick="DEBUG_ONLY_fillLoginAdminData('c.verdi10')">fill4</button>
+                  <button onclick="DEBUG_ONLY_fillLoginAdminData('d.bianchi19')">fill5</button>
+            </div>
       <script>
              
       function DEBUG_ONLY_fillLoginAdminData(mail){

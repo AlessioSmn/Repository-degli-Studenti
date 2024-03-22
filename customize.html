@@ -47,9 +47,28 @@
             }
       </script>
       <style>
-            input[type="color"]{
+            table{
+                  border-collapse: collapse;
+            }
+            th:nth-child(2),
+            th:nth-child(6){
+                  width: 10px;
+            }
+            th:nth-child(3),
+            th:nth-child(4),
+            th:nth-child(5){
                   width: 200px;
-                  height: 50px;
+            }
+            input[type="checkbox"]{
+                  height: 20px;
+                  width: 20px;
+            }
+            input[type="color"]{
+                  width: 100%;
+                  height: 100px;
+                  margin: 0px;
+                  padding: 0px;
+                  outline: none; 
             }
       </style>
 </head>
@@ -58,19 +77,28 @@
             <h1>PAGINA CUSTOM FONT</h1>
       </header>
 
+      <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="index.php" class="navbar-main-element">Home</a>
+            <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
-                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
-                        <a href="customize.html" class="navbar-dropdown-option current-page">Tema custom</a>
+                  <span>Accesso<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" href="login.php">Login</a>
+                        <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
+                        <a class="navbar-dropdown-option" onclick="logout()">Logout</a>
                   </div>
             </div>
-            <a href="search.php" class="navbar-main-element">Cerca</a>
-            <a href="login.php" class="navbar-main-element">Login</a>
-            <a href="signup.php" class="navbar-main-element">Registrati</a>
-            <a href="manual.html" class="navbar-main-element">Manuale</a>
-            <a href="statistics.php" class="navbar-main-element">Doc-</a>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <span>Area personale<span>
+                  <div class="navbar-dropdown-container">
+                        <a href="personal.php" class="navbar-dropdown-option">Area personale</a>
+                        <a href="#" class="navbar-dropdown-option current-page">Tema custom</a>
+                  </div>
+            </div>
+            <a href="search.php" class="navbar-main-element"><div><span>Cerca</span></div></a>
+            <a href="statistics.php" class="navbar-main-element"><div><span>Statistiche</span></div></a>
+            <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
+            <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   <span>Tema<span>
                   <div class="navbar-dropdown-container">
@@ -79,41 +107,56 @@
                         <a class="navbar-dropdown-option" onclick="setTheme('light')">Chiaro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('pantone')">Pantone</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
-                        <a class="navbar-dropdown-option" onclick="setTheme(CUSTOM_THEME)">Custom</a>
                   </div>
             </div>
-            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
 
       <section>
             <form id="themeForm2">
                   <table>
                         <tr>
+                              <th>-</th>
+                              <th>Blocca il colore chiaro</th>
+                              <th>Versione chiara</th>
+                              <th>Colore</th>
+                              <th>Versione scura</th>
+                              <th>Blocca il colore scuro</th>
+                              <th>Slider</th>
+                        </tr>
+                        <tr>
                               <td><label>Colore dello sfondo</label></td>
-                              <td><input type="color" value="#ffffff" name="bgColor_light"/></td>
-                              <td><input type="color" value="#efefef" name="bgColor" onchange="updateColor(this)"/></td>
-                              <td><input type="color" value="#dfdfdf" name="bgColor_dark"/></td>
+                              <td><input type="checkbox"/></td>
+                              <td><input type="color" value="#e0ffff" name="bgColor_light"/></td>
+                              <td><input type="color" value="#b7efef" name="bgColor" onchange="updateColor(this)"/></td>
+                              <td><input type="color" value="#90dfdf" name="bgColor_dark"/></td>
+                              <td><input type="checkbox"/></td>
                               <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"/></td>
                         </tr>
                         <tr>
                               <td><label>Colore del testo</label></td>
-                              <td><input type="color" value="#000000" name="foreColor_light"/></td>
-                              <td><input type="color" value="#ff0000" name="foreColor" onchange="updateColor(this)"/></td>
-                              <td><input type="color" value="#202020" name="foreColor_dark"/></td>
+                              <td><input type="checkbox"/></td>
+                              <td><input type="color" value="#500050" name="foreColor_light"/></td>
+                              <td><input type="color" value="#200020" name="foreColor" onchange="updateColor(this)"/></td>
+                              <td><input type="color" value="#000000" name="foreColor_dark"/></td>
+                              <td><input type="checkbox"/></td>
                               <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"/></td>
                         </tr>
                         <tr>
                               <td><label>Colore primario</label></td>
-                              <td><input type="color" value="#000000" name="primary_light"/></td>
-                              <td><input type="color" value="#00ff00" name="primary" onchange="updateColor(this)"/></td>
-                              <td><input type="color" value="#202020" name="primary_dark"/></td>
+                              <td><input type="checkbox"/></td>
+                              <td><input type="color" value="#fff080" name="primary_light"/></td>
+                              <td><input type="color" value="#ffe030" name="primary" onchange="updateColor(this)"/></td>
+                              <td><input type="color" value="#f0b020" name="primary_dark"/></td>
+                              <td><input type="checkbox"/></td>
                               <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"/></td>
                         </tr>
                         <tr>
                               <td><label>Colore secondario</label></td>
-                              <td><input type="color" value="#000000" name="secondary_light"/></td>
-                              <td><input type="color" value="#0000ff" name="secondary" onchange="updateColor(this)"/></td>
-                              <td><input type="color" value="#202020" name="secondary_dark"/></td>
+                              <td><input type="checkbox"/></td>
+                              <td><input type="color" value="#ff70fe" name="secondary_light"/></td>
+                              <td><input type="color" value="#f040f0" name="secondary" onchange="updateColor(this)"/></td>
+                              <td><input type="color" value="#e020d8" name="secondary_dark"/></td>
+                              <td><input type="checkbox"/></td>
                               <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"/></td>
                         </tr>
                   </table>
@@ -153,47 +196,71 @@
                   }
             }
 
+            const lightLockIndex = 1;
+            const lighterColorIndex = 2;
+            const baseColorIndex = 3;
+            const darkerColorIndex = 4;
+            const darkLockIndex = 5;
+            const sliderIndex = 6;
+
             /**
              * @param {HTMLElement} CallerElement
              */
             function updateColor(CallerElement){
+                  // Accedo ai 'fratelli' dell'elemento chiamante
                   let tableRow = CallerElement.parentNode.parentNode;
                   let tableCells = Array.from(tableRow.children);
 
-                  let lighterColor = Array.from(tableCells[1].children)[0];
-                  let baseColor = Array.from(tableCells[2].children)[0];
-                  let darkerColor = Array.from(tableCells[3].children)[0];
-                  let shadeSlider = Array.from(tableCells[4].children)[0];
-                  
-                  let perc = shadeSlider.value;                  
-                  let newColor = baseColor.value;
-                  lighterColor.value = shadeColor(newColor, +shadeSlider.value);
-                  darkerColor.value = shadeColor(newColor, -shadeSlider.value);
+                  // Riferimento ai singoli fratelli, per comodità
+                  let baseColor = Array.from(tableCells[baseColorIndex].children)[0];
+                  let shadeSlider = Array.from(tableCells[sliderIndex].children)[0];     
+                  // Colore base impostato e percentuale di scostamento da questo      
+                  let newBaseColor = baseColor.value;
+                  let percentage = shadeSlider.value;    
+
+                  // Controllo se il colore chiaro può variare con il colore base
+                  let lightColorLock = Array.from(tableCells[lightLockIndex].children)[0];
+                  if(!lightColorLock.checked){
+                        let lighterColor = Array.from(tableCells[lighterColorIndex].children)[0];  
+                        lighterColor.value = shadeColor(newBaseColor, +percentage);
+                  }
+
+                  // Controllo se il colore chiaro può variare con il colore base
+                  let darkColorLock = Array.from(tableCells[darkLockIndex].children)[0];
+                  if(!darkColorLock.checked){
+                        let darkerColor = Array.from(tableCells[darkerColorIndex].children)[0];
+                        darkerColor.value = shadeColor(newBaseColor, -percentage);
+                  }
             }
 
             function shadeColor(color, percent) {
 
-                  var R = parseInt(color.substring(1,3),16);
-                  var G = parseInt(color.substring(3,5),16);
-                  var B = parseInt(color.substring(5,7),16);
+                  let finalColor = '#';
 
-                  R = parseInt(R * (100 + percent) / 100);
-                  G = parseInt(G * (100 + percent) / 100);
-                  B = parseInt(B * (100 + percent) / 100);
+                  // Ciclo su R, G e B
+                  for(let index = 1; index < 7; index += 2){
 
-                  R = (R<255)?R:255;  
-                  G = (G<255)?G:255;  
-                  B = (B<255)?B:255;  
+                        // Prendo le due cifre esadecimali
+                        let colorComponent = parseInt(color.substring(index, index + 2), 16);
 
-                  R = Math.round(R)
-                  G = Math.round(G)
-                  B = Math.round(B)
+                        // Scalo la componente
+                        let shadedComponent = colorComponent * (100 + percent) / 100;
 
-                  var RR = ((R.toString(16).length==1)?"0"+R.toString(16):R.toString(16));
-                  var GG = ((G.toString(16).length==1)?"0"+G.toString(16):G.toString(16));
-                  var BB = ((B.toString(16).length==1)?"0"+B.toString(16):B.toString(16));
+                        // Controllo che sia minnore o uguale a 255
+                        shadedComponent = Math.min(shadedComponent, 255);
 
-                  return "#"+RR+GG+BB;
+                        // Arrotondo ad intero
+                        shadedComponent = Math.round(shadedComponent);
+
+                        // Converto in esadecimale, eventualmente mettendo uno 0 per rimanere su due cifre
+                        let hexaComponent = '';
+                        if(shadedComponent < 16) hexaComponent += '0';
+                        hexaComponent += shadedComponent.toString(16);
+
+                        finalColor += hexaComponent;
+                  }
+
+                  return finalColor;
             }
 
             setCurrentCustomTheme();

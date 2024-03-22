@@ -49,20 +49,29 @@ include "php/logControl/loginControl.php";
       <header>
             <h1>area personale</h1>
       </header>
-      
+
+      <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="index.php" class="navbar-main-element"><div>Home</div></a>
+            <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <a href="personal.php" class="navbar-main-element current-page"><div>Area personale</div></a>
-                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
+                  <span>Accesso<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" href="login.php">Login</a>
+                        <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
+                        <a class="navbar-dropdown-option" onclick="logout()">Logout</a>
+                  </div>
+            </div>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <span>Area personale<span>
+                  <div class="navbar-dropdown-container">
+                        <a href="#" class="navbar-dropdown-option current-page">Area personale</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
-            <a href="search.php" class="navbar-main-element"><div>Cerca</div></a>
-            <a href="login.php" class="navbar-main-element"><div>Login</div></a>
-            <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
-            <a href="manual.html" class="navbar-main-element"><div>Manuale</div></a>
-            <a href="statistics.php" class="navbar-main-element"><div>Statistiche</div></a>
+            <a href="search.php" class="navbar-main-element"><div><span>Cerca</span></div></a>
+            <a href="statistics.php" class="navbar-main-element"><div><span>Statistiche</span></div></a>
+            <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
+            <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   <span>Tema<span>
                   <div class="navbar-dropdown-container">
@@ -73,7 +82,6 @@ include "php/logControl/loginControl.php";
                         <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
                   </div>
             </div>
-            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
 
       <!-- Tipo di visualizzazione -->

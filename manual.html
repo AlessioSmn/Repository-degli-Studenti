@@ -19,46 +19,101 @@
             table>thead>tr>th{
                   width:8em;
             }
-            hr {
-            height:50px;
-            background-image:
-                  linear-gradient(red, red),
-                  linear-gradient(blue, blue);
-            background-size:
-                  50% 100%, /* Half of the width for red and blue */
-                  100% 100%; /* Half of the width for yellow and purple */
-            background-repeat: no-repeat;
-            background-position: 
-                  left center, /* Initial position */
-                  center center; /* Initial position */
-            transition: 1s;
-            }    
-            hr:hover{
-            background-position: 
-                  right center, /* Initial position */
-                  center center; /* Initial position */
-            }    
+            #navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#nav-links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#nav-links li {
+    margin-right: 15px;
+}
+
+#nav-links li:last-child {
+    margin-right: 0;
+}
+
+#nav-links li a {
+    color: white;
+    text-decoration: none;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+@media only screen and (max-width: 768px) {
+    #nav-links {
+        display: none;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    #navbar {
+        justify-content: flex-start; /* Align items to the start */
+    }
+
+    #nav-links {
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+}
+
+.content {
+    padding: 20px;
+}
+
   </style>
+  <script>
+      function toggleMenu() {
+    var navLinks = document.getElementById("nav-links");
+    if (navLinks.style.display === "flex") {
+        navLinks.style.display = "none";
+    } else {
+        navLinks.style.display = "flex";
+    }
+}
+  </script>
 </head>
 <body>
       <header>
             <h1>PAGINA TEST</h1>
       </header>
-      <hr>
-      
+
+      <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="index.php" class="navbar-main-element"><div>Home</div></a>
+            <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <a href="personal.php" class="navbar-main-element"><div>Area personale</div></a>
-                  <div class="navbar-dropdown-container" style="margin-top: 50px;">
+                  <span>Accesso<span>
+                  <div class="navbar-dropdown-container">
+                        <a class="navbar-dropdown-option" href="login.php">Login</a>
+                        <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
+                        <a class="navbar-dropdown-option" onclick="logout()">Logout</a>
+                  </div>
+            </div>
+            <div class="navbar-main-element navbar-dropdown-main">
+                  <span>Area personale<span>
+                  <div class="navbar-dropdown-container">
+                        <a href="personal.php" class="navbar-dropdown-option">Area personale</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
-            <a href="search.php" class="navbar-main-element"><div>Cerca</div></a>
-            <a href="login.php" class="navbar-main-element"><div>Login</div></a>
-            <a href="signup.php" class="navbar-main-element"><div>Registrati</div></a>
-            <a href="manual.html" class="navbar-main-element current-page"><div>Manuale</div></a>
-            <a href="statistics.php" class="navbar-main-element"><div>Statistiche</div></a>
+            <a href="search.php" class="navbar-main-element"><div><span>Cerca</span></div></a>
+            <a href="statistics.php" class="navbar-main-element"><div><span>Statistiche</span></div></a>
+            <a href="#" class="navbar-main-element current-page"><div><span>Manuale</span></div></a>
+            <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
                   <span>Tema<span>
                   <div class="navbar-dropdown-container">
@@ -69,7 +124,6 @@
                         <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
                   </div>
             </div>
-            <div class="navbar-main-element floating" onclick="logout()"><span>&#11199;</span> Logout</div>
       </nav>
       
       <article>
@@ -157,23 +211,26 @@ upload_max_filesize = 200M
                               </tr>
                         </tbody>
                   </table>
-                  <div class="switch-option-container n2">
-                        <div class="switch-option n2" onclick="selectOption(2,0)">Option 1</div>
-                        <div class="switch-option n2" onclick="selectOption(2,1)">Option 2</div>
-                  </div>
-                  <div class="switch-option-container n3">
-                        <div class="switch-option n3" onclick="selectOption(3,0)">Option 1</div>
-                        <div class="switch-option n3" onclick="selectOption(3,1)">Option 2</div>
-                        <div class="switch-option n3" onclick="selectOption(3,2)">Option 3</div>
-                  </div>
-                  <br>
-                  <div class="switch-option-container n4">
-                        <div class="switch-option n4" onclick="selectOption(4,0)">Option 1</div>
-                        <div class="switch-option n4" onclick="selectOption(4,1)">Option 2</div>
-                        <div class="switch-option n4" onclick="selectOption(4,2)">Option 3</div>
-                        <div class="switch-option n4" onclick="selectOption(4,3)">Option 3</div>
-                  </div>
-      </article>
+
+
+            
+                  <nav id="navbar">
+                        <div class="nav-toggle" onclick="toggleMenu()">Menu</div>
+                        <ul id="nav-links">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">About</a></li>
+                            <li><a href="#">Services</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <li><a href="#">adwas</a></li>
+                            <li><a href="#">fewdwergdfvc </a></li>
+                            <li><a href="#">efw e dv </a></li>
+                            <li><a href="#">r rge fdvc</a></li>
+                            <li><a href="#">Conregrgrtact</a></li>
+                        </ul>
+                    </nav>
+
+            </article>
       <footer>footer</footer>
 
       <script>
