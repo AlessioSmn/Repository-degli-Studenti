@@ -1,17 +1,18 @@
 
 /**
  * Effettua una fetch per ricavare tutti i documenti che rispettano i criteri di ricerca
+ * @return {Promise<Document[]>} Ritrona un array di documenti (array di oggetti della classe Document)
  */
 function retrieveDocumentsBySubject(){
       // Ricavo le informazioni della materia selezionata
-      let subjectSelector = document.getElementById("subject_selector");
-      var subjectId = subjectSelector.options[subjectSelector.selectedIndex].value;
-      let subjectName = subjectSelector.options[subjectSelector.selectedIndex].innerHTML;
+      const subjectSelector = document.getElementById("subject_selector");
+      const subjectId = subjectSelector.options[subjectSelector.selectedIndex].value;
+      const subjectName = subjectSelector.options[subjectSelector.selectedIndex].innerHTML;
 
       // Ricavo le informazioni del croso selezionato (solo a scopo di controllo e informativo, nnon è necessario per la richiesta php)
-      let degreeSelector = document.getElementById("degree_selector");
-      var degreeId = degreeSelector.options[degreeSelector.selectedIndex].value;
-      let degreeName = degreeSelector.options[degreeSelector.selectedIndex].innerHTML;
+      const degreeSelector = document.getElementById("degree_selector");
+      const degreeId = degreeSelector.options[degreeSelector.selectedIndex].value;
+      const degreeName = degreeSelector.options[degreeSelector.selectedIndex].innerHTML;
       
       // Controllo che sia stata selezionata correttamente una materia
       if(degreeId == 0 || subjectId == 0)

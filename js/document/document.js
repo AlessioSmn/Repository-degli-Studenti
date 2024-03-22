@@ -129,42 +129,78 @@ class Document{
             // Titolo del documento
             container.appendChild(this.documentVisualizerCompact_title());
 
-            // Sottotitolo del documento
-            if(this.subtitle != null)
-                  container.appendChild(this.documentVisualizerCompact_subtitle());
+            if(!Public){
+      
+                  // Sottotitolo del documento
+                  if(this.subtitle != null)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
 
-            // Autore del documento
-            if(Public)
-                  container.appendChild(this.documentVisualizerCompact_owner());
+                  // Materia del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
 
-            // Materia del documento
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
+                  // Corso di laurea del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
 
-            // Corso di laurea del documento
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+                  // Data di upload del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
 
-            // Bottone per il download
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+                  // Data di modifica del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
 
-            // Bottone per l'apertura in nuova pagina
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
-            
-            // Bottone per l'apertura in un popup
-            if(Public)
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
+                  // Bottone per il download
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
 
-            // Bottone per l'eliminazione del documento
-            if(!Public)
+                  // Bottone per l'apertura in nuova pagina
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
+
+                  // Numero di download del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+
+                  // Bottone per l'eliminazione del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
 
-            // Numero di download del documento
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+            }
+            else{
 
-            // Data di upload del documento
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
 
-            // Data di modifica del documento
-            additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
+
+                  // Sottotitolo del documento
+                  if(this.subtitle != null)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
+
+                  // Autore del documento
+                  if(Public)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_owner());
+
+                  // Materia del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
+
+                  // Corso di laurea del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+
+                  // Bottone per il download
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+
+                  // Bottone per l'apertura in nuova pagina
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
+                  
+                  // Bottone per l'apertura in un popup
+                  if(Public)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
+
+                  // Bottone per l'eliminazione del documento
+                  if(!Public)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
+
+                  // Numero di download del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+
+                  // Data di upload del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
+
+                  // Data di modifica del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
+            }
 
             container.appendChild(additionalInfoContainer);
 
@@ -349,13 +385,15 @@ class Document{
       documentVisualizerCompact_deleteButton(){
             let id = this.id;
             let ext = this.extension;
+            let deleteButtonContainer = document.createElement("div");
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Elimina il documento";
             deleteButton.classList.add("doc-compact-deleteButton");
             deleteButton.onclick = function() {
                   deleteDocument(id, ext);
             };
-            return deleteButton;
+            deleteButtonContainer.appendChild(deleteButton);
+            return deleteButtonContainer;
       }
 
       /**
@@ -366,13 +404,15 @@ class Document{
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
+            let downloadButtonContainer = document.createElement("div");
             let downloadButton = document.createElement("button");
             downloadButton.textContent = "Scarica";
             downloadButton.onclick = function(){
                   let documentUrl = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=1";
                   window.open(documentUrl, "_blank");
             }
-            return downloadButton;
+            downloadButtonContainer.appendChild(downloadButton);
+            return downloadButtonContainer;
       }
 
       /**
@@ -383,13 +423,15 @@ class Document{
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
+            let openButtonContainer = document.createElement("div");
             let openButton = document.createElement("button");
             openButton.textContent = "Apri il documento";
             openButton.onclick = function(){
                   let documentUrl = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title+ "&mode=0";
                   window.open(documentUrl, "_blank");
             }
-            return openButton;
+            openButtonContainer.appendChild(openButton);
+            return openButtonContainer;
       }
 
       /**
@@ -400,6 +442,7 @@ class Document{
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
+            let popupButtonContainer = document.createElement("div");
             let popupButton = document.createElement("button");
             popupButton.textContent = "Apri in frame";
             popupButton.onclick = function(){
@@ -415,7 +458,8 @@ class Document{
                   let frameTitle = document.getElementById("docFrameTitle");
                   frameTitle.innerText = title;
             }
-            return popupButton;
+            popupButtonContainer.appendChild(popupButton);
+            return popupButtonContainer;
       }
 
       /**
@@ -437,8 +481,16 @@ class Document{
             if(this.subtitle == null)
                   return;
 
-            let subtitleElement = document.createElement("p");
-            subtitleElement.textContent = this.subtitle;
+            let subtitleElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Sottotitolo ";
+            subtitleElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.subtitle;
+            subtitleElement.appendChild(elementContent);
+
             subtitleElement.classList.add("doc-compact-subtitle");
             return subtitleElement;
       } 
@@ -448,8 +500,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_owner(){
-            let ownerElement = document.createElement("p");
-            ownerElement.textContent = this.author;
+            let ownerElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Autore ";
+            ownerElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.author;
+            ownerElement.appendChild(elementContent);
+
             ownerElement.classList.add("doc-compact-owner");
             return ownerElement;
       }
@@ -459,8 +519,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_subject(){
-            let subjectElement = document.createElement("p");
-            subjectElement.textContent = this.subject;
+            let subjectElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Materia ";
+            subjectElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.subject;
+            subjectElement.appendChild(elementContent);
+
             subjectElement.classList.add("doc-compact-subject");
             return subjectElement;
       }
@@ -470,8 +538,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_degree(){
-            let degreeElement = document.createElement("p");
-            degreeElement.textContent = this.degree;
+            let degreeElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Corso di studio ";
+            degreeElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.degree;
+            degreeElement.appendChild(elementContent);
+
             degreeElement.classList.add("doc-compact-degree");
             return degreeElement;
       }
@@ -481,8 +557,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_downloads(){
-            let downloadsElement = document.createElement("p");
-            downloadsElement.textContent = this.downloads;
+            let downloadsElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Downloads ";
+            downloadsElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.downloads;
+            downloadsElement.appendChild(elementContent);
+
             downloadsElement.classList.add("doc-compact-downloads");
             return downloadsElement;
       }
@@ -492,8 +576,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_uploadDate(){
-            let uploadElement = document.createElement("p");
-            uploadElement.textContent = this.uploadDate;
+            let uploadElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Upload ";
+            uploadElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = italianDate(this.uploadDate);
+            uploadElement.appendChild(elementContent);
+
             uploadElement.classList.add("doc-compact-dateinfo");
             return uploadElement;
       }
@@ -503,8 +595,16 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerCompact_modifiedDate(){
-            let modifiedElement = document.createElement("p");
-            modifiedElement.textContent = this.lastModifiedDate;
+            let modifiedElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Ultima modifica ";
+            modifiedElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = italianDate(this.lastModifiedDate);
+            modifiedElement.appendChild(elementContent);
+
             modifiedElement.classList.add("doc-compact-dateinfo");
             return modifiedElement;
       }

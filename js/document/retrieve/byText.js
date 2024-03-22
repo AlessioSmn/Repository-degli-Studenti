@@ -1,28 +1,7 @@
 
-// Riferimenti agli elementi che controllano i parametri di ricerca
-
-var subjectNameTextField = document.getElementById("mainText");
-// Controlli e valori sui CFU della materia
-// NB: in PHP va bene anche il campo text vuoto, si troveranno tutte le materie
-// NB: si lascia all'utente il buon senso di mettere minCFU <= maxCFU, 
-//          in caso contrario banalmente non ci saranno risultati
-var subjectNameControl = document.getElementById("subName");
-var subjectMinCFUvalue = document.getElementById("minCFUvalue");
-var subjectMaxCFUvalue = document.getElementById("maxCFUvalue");
-var subjectMinCFUcontrol = document.getElementById("minCFUcheck");
-var subjectMaxCFUcontrol = document.getElementById("maxCFUcheck");
-
-// Controlli sul nome del documento
-// NB: in PHP si ammette sia Titolo e Sottotitolo nulli
-var documentTitleControl = document.getElementById("docTitle");
-var documentSubtitleControl = document.getElementById("docSubtitle");
-
-// Controlli sul proprietario del documento
-var userNameControl = document.getElementById("userName");
-var userMailControl = document.getElementById("userMail");
-
 /**
  * Effettua una fetch per ricavare tutti i documenti che rispettano i criteri di ricerca
+ * @return {Promise<Document[]>} Ritrona un array di documenti (array di oggetti della classe Document)
  */
 function retrieveDocumentsByTextField(){
       let fetchArguments = prepareFetchArgumentsText();
@@ -62,6 +41,27 @@ function retrieveDocumentsByTextField(){
       });
 }
 
+// Riferimenti agli elementi che controllano i parametri di ricerca
+
+const subjectNameTextField = document.getElementById("mainText");
+// Controlli e valori sui CFU della materia
+// NB: in PHP va bene anche il campo text vuoto, si troveranno tutte le materie
+// NB: si lascia all'utente il buon senso di mettere minCFU <= maxCFU, 
+//          in caso contrario banalmente non ci saranno risultati
+const subjectNameControl = document.getElementById("subName");
+const subjectMinCFUvalue = document.getElementById("minCFUvalue");
+const subjectMaxCFUvalue = document.getElementById("maxCFUvalue");
+const subjectMinCFUcontrol = document.getElementById("minCFUcheck");
+const subjectMaxCFUcontrol = document.getElementById("maxCFUcheck");
+
+// Controlli sul nome del documento
+// NB: in PHP si ammette sia Titolo e Sottotitolo nulli
+const documentTitleControl = document.getElementById("docTitle");
+const documentSubtitleControl = document.getElementById("docSubtitle");
+
+// Controlli sul proprietario del documento
+const userNameControl = document.getElementById("userName");
+const userMailControl = document.getElementById("userMail");
 /**
  * Funzione di utilità per preparare gli argomenti da passare alla richiesta PHP
  */

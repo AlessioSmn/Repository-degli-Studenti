@@ -1,5 +1,8 @@
 
-
+/**
+ * Effettua una fetch per ricavare tutti i documenti dell'utente loggato (identifcatore ricavato direttamente in php)
+ * @return {Promise<Document[]>} Ritrona un array di documenti (array di oggetti della classe Document)
+ */
 function retrievePersonalDocuments(){
 
       return fetch('php/document/retrieval/personal.php')

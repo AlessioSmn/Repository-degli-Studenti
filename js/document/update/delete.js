@@ -1,4 +1,8 @@
-
+/**
+ * Effettua l'eliminazione di un documento
+ * @param {Number} DocumentId Identificatore del documento
+ * @param {String} DocumentExtension Estensione del documento
+ */
 function deleteDocument(DocumentId, DocumentExtension){
       
       // Chiamata di fecth alla funzione php per la cancellazione del documento
