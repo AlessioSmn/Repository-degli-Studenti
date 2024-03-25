@@ -3,11 +3,12 @@
       border-color: var(--primary);
       border-radius: 0px;
 
-      display:flex;
+      display: block;
 
       padding: 20px 2%;
       width: 92%;
-      margin-bottom: 10px;
+      margin-top: 2px;
+      margin-bottom: 2px;
       margin-left: 2%;
       margin-right: 2%;
 
@@ -22,16 +23,51 @@
       border-left-width: 0px;
 }
 .doc-compact-container:nth-child(even){
-      background-image: linear-gradient(90deg, var(--primary) 40%, var(--secondary_light) 60%);
+      background-image: linear-gradient(90deg, var(--primary) 40%, var(--bgColor_light) 60%);
 }
 .doc-compact-container:nth-child(odd){
-      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--secondary_light) 60%);
+      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--bgColor_light) 60%);
 }
 .doc-compact-container > .additional-info-container{
       display: none;
+      font-size: medium;
+      flex-wrap: wrap;
+      align-items: flex-start; 
+      margin-top: 20px;
+}
+
+.additional-info-container *{
+      flex-grow: 0;
+      flex-shrink: 0;
+      height: 30px;
+      flex-basis: calc(33% - 10px);
+      box-sizing: border-box; 
+      margin: 5px;
+}
+
+@media (max-width: 1200px) {
+      .additional-info-container *{
+        flex-basis: calc(50% - 10px); /* Each item takes up half of the container's width minus the margin when the window width is less than 800px */
+      }
+    }
+    
+    @media (max-width: 800px) {
+      .additional-info-container * {
+        flex-basis: calc(100% - 10px); /* Each item takes up the full width of the container minus the margin when the window width is less than 500px */
+      }
+    }
+
+
+.doc-compact-container.vizualizing{ 
+      margin-top: 10px;
+      margin-bottom: 10px;
 }
 .doc-compact-container.vizualizing > .additional-info-container{
-      display: block;
+      display: flex;
+}
+
+.additional-info-container span:nth-child(2){
+      font-weight: bold;
 }
 
 /* Titolo del documento */
@@ -40,39 +76,38 @@
       margin: 0px 0px 0px 20px;
       display: inline;
 }
-.doc-compact-title:hover{
-      color: var(--bgColor_light);
-}
 .doc-compact-subtitle{
-      font-size: medium;
-      margin: 0px;
-      display: inline;
+      
 }
 
 /* Autore del documento */
 .doc-compact-owner{
-      font-style: italic;
+      
 }
 
 /* Materia del documento */
 .doc-compact-subject{
-      text-decoration: dashed;
+      
 }
 
 /* Corso di Studi del documento */
 .doc-compact-degree{
-      text-decoration: underline;
+      
 }
 
 /* Informazioni 'temporali' sul documento (upload e ultima modifica) */
 .doc-compact-dateinfo{
       font-style: italic;
-      font-size: smaller;
 }
 
 /* Numero di donwload */
 .doc-compact-downloads{
-      font-weight: bold;
+      
+}
+
+/* Vari bottoni */
+.additional-info-container button{
+      margin: auto;
 }
 
 /* Bottone per la cancellazione del documento */
