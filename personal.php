@@ -41,6 +41,9 @@ include "php/logControl/loginControl.php";
       <!-- deleteDocumet() -->
       <script src="js/document/update/delete.js"></script>
 
+      <!-- modifyDocument() -->
+      <script src="js/document/update/modify.js"></script>
+
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
       
@@ -83,15 +86,6 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
       </nav>
-
-      <!-- Tipo di visualizzazione -->
-      <section class="switch-option">
-            <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
-                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
-                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
-            </div>
-      </section>
       
       <!-- Caricamento di un nuovo documento -->
       <section>
@@ -116,15 +110,47 @@ include "php/logControl/loginControl.php";
             </fieldset></form>
       </section>
 
+      <!-- Tipo di visualizzazione -->
+      <section class="switch-option">
+            <span>Scegli un metodo di visualizzazione</span>
+            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
+            </div>
+      </section>
+
+      <!-- Visualizzazione dei documenti -->
       <section id="documentVisualizer">
             <button onclick="retrieveAndDisplayPersonalDocuments()">Carica i tuoi documenti</button>
       </section>
 
+      <!-- Indici di pagina -->
       <div class="page-index-container">
             <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
             <div id="page-index-container" class="page-index-container"></div>
             <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
       </div>
+      
+      <!-- Maschera e container per la visualizzazione in popup -->
+      <section>
+            <!-- Aggiungo la closePopup() anche alla maschera così che si possa chiudere il popup premendo sullo sfondo oscurato -->
+            <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
+            <div id="docPopupContainer" class="doc-popup-container personal">
+                  <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
+                  <h1 id="docFrameTitle"></h1>
+                  <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)">
+                        <div><span>Titolo</span><input name="title" type="text" placeholder="" required/></div>
+                        <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""/></div>
+                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)"/></div>
+                        <input type="hidden" name="docId">
+                        <input type="hidden" name="docExtension">
+                        <button type="reset">Reset</button>
+                        <button type="submit">Submit</button>
+                  </form>
+                  <iframe id="docFrameOld" frameborder="0"></iframe>
+                  <iframe id="docFrameNew" frameborder="0"></iframe>
+            </div>
+      </section>
 
       <footer>
             footer
@@ -249,6 +275,40 @@ include "php/logControl/loginControl.php";
                   );
       }
 
+      
+      /* Popup per la visualizzazione in pagina dei documenti */
+      
+      function closePopup() {
+
+            // Disattivo il popup e la maschera sottostante (la classe css che mette display:block)
+            let popupContainer = document.getElementById("docPopupContainer");
+            let mask = document.getElementById("docPopupContainerMask");
+            popupContainer.classList.remove("active");
+            mask.classList.remove("active");
+
+            // Rimuovo il documento dal frame
+            let iframeOld = document.getElementById("docFrameOld");
+            iframeOld.src = "";
+            let iframeNew = document.getElementById("docFrameNew");
+            iframeNew.src = "";
+
+            let frameTitle = document.getElementById("docFrameTitle");
+            frameTitle.innerText = "";
+      }
+
+      function visualizeNewDocumentUploaded(input){
+            /*
+            let file = input.files[0];
+            let reader = new FileReader();
+            let iframe = document.getElementById('docFrameNew');
+
+            reader.onload = function(event) {
+                  iframe.src = event.target.result;
+            };
+
+            reader.readAsDataURL(file);
+            */
+      }
 
       </script>
 </body>

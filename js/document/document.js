@@ -87,9 +87,13 @@ class Document{
             if(Public)
                   container.appendChild(this.documentVisualizerBlock_openPopupButton());
 
-            // Bottone per l'eliminazione del documento
-            if(!Public)
+            if(!Public){
+                  // Bottone per la modifica del documento
+                  container.appendChild(this.documentVisualizerBlock_updateButton());
+
+                  // Bottone per l'eliminazione del documento
                   container.appendChild(this.documentVisualizerBlock_deleteButton());
+            }
 
             // Numero di download del documento
             container.appendChild(this.documentVisualizerBlock_downloads());
@@ -105,13 +109,16 @@ class Document{
 
       constructVisualizerCompact(Public){
             
+            // Container principale del documento
             let container = document.createElement("div");
 
             container.setAttribute("data-open", JSON.stringify(false));
 
+            // Container di tutte le informazioni visualizzate solo al click sul documento
             let additionalInfoContainer = document.createElement("div");
             additionalInfoContainer.classList.add("additional-info-container");
 
+            // Visualizzazione delle informazioni aggiuntive sul click, e successiva chiusura
             container.onclick = function(){
                   if(JSON.parse(container.getAttribute("data-open"))){
                         container.classList.remove('vizualizing');
@@ -129,7 +136,42 @@ class Document{
             // Titolo del documento
             container.appendChild(this.documentVisualizerCompact_title());
 
-            if(!Public){
+            if(Public){
+
+                  // Sottotitolo del documento
+                  if(this.subtitle != null)
+                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
+
+                  // Autore del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_owner());
+
+                  // Materia del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
+
+                  // Corso di laurea del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+
+                  // Bottone per il download
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+
+                  // Bottone per l'apertura in nuova pagina
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
+                  
+                  // Bottone per l'apertura in un popup
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
+
+                  // Numero di download del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+
+                  // Data di upload del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
+
+                  // Data di modifica del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
+                  
+            }
+
+            else {
       
                   // Sottotitolo del documento
                   if(this.subtitle != null)
@@ -160,47 +202,6 @@ class Document{
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
 
             }
-            else{
-
-
-
-                  // Sottotitolo del documento
-                  if(this.subtitle != null)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
-
-                  // Autore del documento
-                  if(Public)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_owner());
-
-                  // Materia del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
-
-                  // Corso di laurea del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
-
-                  // Bottone per il download
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
-
-                  // Bottone per l'apertura in nuova pagina
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
-                  
-                  // Bottone per l'apertura in un popup
-                  if(Public)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
-
-                  // Bottone per l'eliminazione del documento
-                  if(!Public)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
-
-                  // Numero di download del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
-
-                  // Data di upload del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
-
-                  // Data di modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
-            }
 
             container.appendChild(additionalInfoContainer);
 
@@ -222,6 +223,49 @@ class Document{
                   deleteDocument(id, ext);
             };
             return deleteButton;
+      }
+            
+      /**
+       * Ritorna un bottone per la modifica del documento
+       * @return {HTMLElement}
+       */
+      documentVisualizerBlock_updateButton(){
+            let id = this.id;
+            let ext = this.extension;
+            let title = this.title;
+            let subtitle = this.subtitle;
+            let updateButton = document.createElement("button");
+            updateButton.textContent = "Modifica il documento";
+            updateButton.classList.add("doc-block-updateButton");
+            updateButton.onclick = function() {
+                  const updateForm = document.getElementById("updateForm");
+                  
+                  // Imposto i campi ai valori attuali
+                  const titleInput = updateForm.querySelector("input[name='title']");
+                  const subtitleInput = updateForm.querySelector("input[name='subtitle']");
+                  const docId = updateForm.querySelector("input[name='docId']");
+                  const docExtension = updateForm.querySelector("input[name='docExtension']");
+                  titleInput.value = title;
+                  subtitleInput.value = subtitle;
+                  docId.value = id;
+                  docExtension.value = ext;
+
+                  // Titilo del documento come titolo della pagina di popup
+                  const frameTitle = document.getElementById("docFrameTitle");
+                  frameTitle.innerText = title;
+
+                  // Mostro il popup e la maschera sottostante (mettendo display:block)
+                  let popupContainer = document.getElementById("docPopupContainer");
+                  let mask = document.getElementById("docPopupContainerMask");
+                  popupContainer.classList.add("active");
+                  mask.classList.add("active");
+
+                  // Mostro il documento
+                  const iframeOld = document.getElementById("docFrameOld");
+                  iframeOld.src = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=0";
+
+            };
+            return updateButton;
       }
 
       /**
