@@ -1,15 +1,15 @@
 :root{
-      --bgColor: #d6d6d6;
+      --bgColor: #f0f0f0;
       --bgColor_light: #ffffff;
-      --bgColor_dark: #aeaeae;
+      --bgColor_dark: #c0c0c0;
 
       --foreColor: #1c1c1c;
       --foreColor_light: #303030;
       --foreColor_dark: #101010;
 
-      --primary: #4276a3;
-      --primary_light: #6191bc;
-      --primary_dark: #205d93;
+      --primary: #8eb3d3;
+      --primary_light: #99bad7;
+      --primary_dark: #7ba4c8;
 
       --secondary: #ff8552;
       --secondary_light: #ffa984;
