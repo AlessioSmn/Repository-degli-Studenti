@@ -1,4 +1,6 @@
-
+body{
+      scroll-behavior: smooth;
+}
 /* Scorrimento tra i vari risultati */
 .page-index-container{
       display: flex;

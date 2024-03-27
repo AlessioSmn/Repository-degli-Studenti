@@ -14,7 +14,7 @@ nav{
       color: var(--foreColor);
       box-shadow: none;
 }
-nav *{
+nav a{
       color: var(--foreColor);
 }
 
