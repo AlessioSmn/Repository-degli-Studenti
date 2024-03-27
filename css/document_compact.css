@@ -45,17 +45,17 @@
       margin: 5px;
 }
 
+/* Cambio il numero di colonne a seconda della larghezza della pagina */
 @media (max-width: 1200px) {
       .additional-info-container *{
-        flex-basis: calc(50% - 10px); /* Each item takes up half of the container's width minus the margin when the window width is less than 800px */
+            flex-basis: calc(50% - 10px);
       }
-    }
-    
-    @media (max-width: 800px) {
+}  
+@media (max-width: 800px) {
       .additional-info-container * {
-        flex-basis: calc(100% - 10px); /* Each item takes up the full width of the container minus the margin when the window width is less than 500px */
+            flex-basis: calc(100% - 10px);
       }
-    }
+}
 
 
 .doc-compact-container.vizualizing{ 

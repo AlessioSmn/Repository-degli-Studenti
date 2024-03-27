@@ -14,14 +14,21 @@
       transform: translate(-50%, -50%);
       z-index: 9999;
       background-color: none;
-      width: 60%;
+      width: 65%;
       height: 80%;
 }
 .doc-popup-container iframe {
-      width: 100%;
-      height: 100%;
       background-color: black;
       color: white;
+}
+.doc-popup-container.search iframe {
+      width: 100%;
+      height: 100%;
+}
+.doc-popup-container.personal iframe {
+      height: 80%;
+      width: 47%;
+      margin: 1%;
 }
 .doc-popup-container h1 {
       float: left;
@@ -35,7 +42,7 @@
       text-overflow: ellipsis;
       color: white;
 }
-.doc-popup-container button {
+.doc-popup-close {
       float: right;
       margin-top: 12px;
       vertical-align: middle;
@@ -47,7 +54,7 @@
       background-color: red;
       background-image: none;
 }
-.doc-popup-container button:hover {
+.doc-popup-close:hover {
       background-color: darkred;
 }
 /* Da creare sotto il popup, così da bloccare il l'accesso a tutto ciò che è sullo sfondo */

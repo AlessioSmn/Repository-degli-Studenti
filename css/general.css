@@ -4,6 +4,9 @@
 }
 
 body{
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* Altezza minima = altezza della finestra */
       padding: 0px;
       margin: 0px;
       overflow-x: hidden;
@@ -19,8 +22,8 @@ a{
 /* Article / Section */
 article, section{
       padding: 10px;
-      height: auto; 
       background-color: var(--bgColor);
+      flex: 1;
 }
 
 /* Search page */
@@ -48,9 +51,33 @@ article, section{
 
 
 /* Elementi comuni */
-button{
+
+input, button, a.button-like {
       padding: 7px 21px;
-      margin:5px 10px;
+      margin: 5px 10px;
+      color: var(--foreColor_light);  
+      background-size: 300% 70%;
+      box-shadow: none;
+      border-radius: 2px;
+      border-width: 2px;
+      border-style: solid;
+      transition: 0.2s;
+      text-decoration: none; 
+      text-align: center;
+      font-size: small;
+}
+input{ 
+      background-image: linear-gradient(90deg, var(--bgColor_light) 40%, var(--bgColor_dark) 60%);
+      border-color: var(--foreColor_light);
+      box-sizing: border-box;
+}
+button, a.button-like{ 
+      background-image: linear-gradient(90deg, var(--bgColor_light) 40%, var(--primary) 60%);
+      border-color: var(--primary);
+}
+input[type="file"]::-moz-browse-button {
+      padding: 7px 21px;
+      margin: 5px 10px;
       color: var(--foreColor_light);  
       background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary) 60%);
       background-size: 300% 70%;
@@ -60,33 +87,20 @@ button{
       box-shadow: none;
       transition: 0.2s;
 }
-input[type="file"]::-webkit-file-upload-button{
-      padding: 5px 20px;
-      margin: 0px;
+
+input[type="file"]::-webkit-file-upload-button {
+      padding: 7px 21px;
+      margin: 5px 10px;
       color: var(--foreColor_light);  
       background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary) 60%);
-      background-size: 300% 110%;
-      border-width: 2px;
+      background-size: 300% 70%;
+      border-width: 0px;
       border-style: solid;
       border-color: var(--primary);
-      border-radius: 5px;
-      box-shadow: 1px 1px 7px -1px var(--shadow);
+      box-shadow: none;
       transition: 0.2s;
 }
-input[type="file"]::-moz-browse-button{
-      padding: 5px 20px;
-      margin:0px 10px;
-      color: var(--foreColor_light);  
-      background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary) 60%);
-      background-size: 300% 110%;
-      border-width: 2px;
-      border-style: solid;
-      border-color: var(--primary);
-      border-radius: 5px;
-      box-shadow: 1px 1px 7px -1px var(--shadow);
-      transition: 0.2s;
-}
-button:hover{
+input:hover, button:hover, a.button-like:hover{
       background-position: right center;
 }
 input:invalid{
@@ -112,7 +126,7 @@ legend{
 fieldset:hover legend{
       margin-left: 50px;
 }
-
+/*
 input[type="text"], 
 input[type="mail"], 
 input[type="file"], 
@@ -131,7 +145,9 @@ input[type="password"]
       box-shadow: 1px 1px 7px -1px  var(--shadow);
       transition: 0.2s;
 }
+*/
 
+/*
 input[type="text"]:hover, 
 input[type="mail"]:hover, 
 input[type="password"]:hover, 
@@ -151,17 +167,6 @@ input[type="file"]:focus
       background-position: right center;
 }
 input[type="radio"] {
-      /*
-      background-color: var(--primary);
-      color: var(--tertiary);
-      border-width: 5px;
-      border-style: solid;
-      border-color: var(--tertiary);
-      border-radius: 100%;
-      width:20px;
-      height:40px;
-      */
-  /* Add if not using autoprefixer */
       appearance: none;
       background-color: #fff;
       margin: 0;
@@ -172,6 +177,7 @@ input[type="radio"] {
       border: 0.15em solid currentColor;
       border-radius: 50%;
 }
+*/
 select{
       padding: 5px;
       color: var(--foreColor);

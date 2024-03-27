@@ -246,7 +246,6 @@ include "php/logControl/loginControl.php";
       <script src="js/document/pageSubdivision/pageHandling.js"></script>
 
       <script>
-      
 
       /* Metodo di ricerca */
 

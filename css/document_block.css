@@ -73,6 +73,15 @@
       font-weight: bold;
 }
 
+/* Bottone per la modifica del documento */
+.doc-block-updateButton{
+      background-color: green;
+      background-image: none;
+}
+.doc-block-updateButton:hover{
+      background-color: lime;
+}
+
 /* Bottone per la cancellazione del documento */
 .doc-block-deleteButton{
       background-color: red;

@@ -6,11 +6,9 @@ nav{
       height: 4em;
       width: auto;
       padding: 0;
-      border-style: solid;
       border-width: 0px;
-      border-color: var(--bgColor);
       border-radius: 0;
-      background-color: var(--bgColor_dark);
+      background-color: var(--primary_dark);
       color: var(--foreColor);
       box-shadow: none;
 }
@@ -28,14 +26,14 @@ nav a{
       height: 2.5em;
       padding: 0.75em 2em;
       border-width: 0px;
-      background-color: var(--bgColor_dark);
-      background-image: linear-gradient(0deg, var(--bgColor_dark) 40%, var(--bgColor_light) 60%);
+      background-color: var(--primary_dark);
+      background-image: linear-gradient(0deg, var(--primary_dark) 40%, var(--primary_light) 60%);
       background-size: 100% 300%;
       background-position: center bottom;
       line-height: 2.5em;
 }
 .navbar-main-element:hover{
-      background-color: var(--bgColor_light);
+      background-color: var(--primary_light);
       background-position: center top;
       color: var(--foreColor_light);
 }
@@ -43,11 +41,9 @@ nav a{
 /* Pagina attuale */
 .current-page{
       font-weight: bold;
-      color: var(--primary_dark) !important;
 }
 .current-page:hover{
       font-weight: bold;
-      color: var(--primary_light) !important;
 }
 /* ELemento della barra di navigazione che rimane a destra */
 .navbar-main-element.floating{
@@ -87,15 +83,15 @@ nav a{
       height: 2.5em;
       padding: 0.5em 0em;
       line-height: 2.5em;
-      background-color: var(--bgColor_dark);
-      background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--bgColor_light) 60%);
+      background-color: var(--primary_dark);
+      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--primary_light) 60%);
       background-size: 300% 100%;
       background-position: left center;
       text-align: center;
       transition: 0.2s;
 }
 .navbar-dropdown-option:hover{
-      background-color: var(--bgColor_light);
+      background-color: var(--primary_light);
       background-position: right center;
       color: var(--foreColor_light);
 }
