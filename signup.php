@@ -124,7 +124,24 @@
             <button type="reset">Azzera i campi</button>
             </form>
       </article>
-      <footer>footer</footer>
+
+      <footer>
+            <div class="left-section">
+                  <span>Autore</span> <span>Alessio Simoncini</span><br>
+                  <span>Materia</span> <span>Progettazione WEB</span><br>
+                  <span>Codice</span> <span>080II</span>
+                  <hr>
+                  <span>Corso di studio</span> <span>CdS Ingegneria Informatica</span><br>
+                  <span>Dipartimento</span> <span>Dipartimento di Ingegneria dell'informazione</span><br>
+                  <span>Scuola</span> <span>Scuola di Ingegneria</span><br>
+                  <span>Universit&agrave;</span> <span>Universit&agrave; di Pisa</span><br>
+                  <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
+            </div>
+            <div class="right-section">
+                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
+            </div>
+      </footer>
+      
       <script>
       function showPassword(id){
             var pwd = document.getElementById(id);

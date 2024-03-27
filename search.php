@@ -183,7 +183,7 @@ include "php/logControl/loginControl.php";
       </section>
 
       <!-- Tipo di visualizzazione -->
-      <section class="switch-option">
+      <section id="visualizationMode" class="switch-option">
             <span>Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
                   <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
@@ -206,14 +206,29 @@ include "php/logControl/loginControl.php";
       <!-- Maschera e container per la visualizzazione in popup -->
       <section>
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
-            <div id="docPopupContainer" class="doc-popup-container">
+            <div id="docPopupContainer" class="doc-popup-container search">
                   <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
                   <h1 id="docFrameTitle"></h1>
                   <iframe id="docFrame" frameborder="0"></iframe>
             </div>
       </section>
       
-      <footer>footer</footer>
+      <footer>
+            <div class="left-section">
+                  <span>Autore</span> <span>Alessio Simoncini</span><br>
+                  <span>Materia</span> <span>Progettazione WEB</span><br>
+                  <span>Codice</span> <span>080II</span>
+                  <hr>
+                  <span>Corso di studio</span> <span>CdS Ingegneria Informatica</span><br>
+                  <span>Dipartimento</span> <span>Dipartimento di Ingegneria dell'informazione</span><br>
+                  <span>Scuola</span> <span>Scuola di Ingegneria</span><br>
+                  <span>Universit&agrave;</span> <span>Universit&agrave; di Pisa</span><br>
+                  <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
+            </div>
+            <div class="right-section">
+                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
+            </div>
+      </footer>
 
       <!-- Document class -->
       <!-- sortDocuments() -->
@@ -454,6 +469,9 @@ include "php/logControl/loginControl.php";
                   VisualizationType, 
                   true
             );
+
+            // Riporto l'utente in cima alla lista di documenti
+            location.href = "#visualizationMode";
       }
       function previousPage(){
             DOC_SLICE = pageHandler.visualizePreviousBlock();
@@ -466,8 +484,12 @@ include "php/logControl/loginControl.php";
                   VisualizationType, 
                   true
             );
+
+            // Riporto l'utente in cima alla lista di documenti
+            location.href = "#visualizationMode";
       }
 
+      /* Possibilità di scorrere le pagine utilizzando le frecce */
       document.addEventListener('keydown', function(event){
             switch(event.key){
                   case 'ArrowLeft': 
