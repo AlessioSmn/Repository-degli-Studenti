@@ -8,8 +8,8 @@ function login(event){
       event.preventDefault();
 
       // Recupera email e password inserite
-      var email = document.querySelector('input[name="email"]').value;
-      var password = document.querySelector('input[name="password"]').value;
+      let email = document.querySelector('input[name="email"]').value;
+      let password = document.querySelector('input[name="password"]').value;
 
       // Imposto i campi email e password per la richiesta POST
       let fetchBodyOptions = new FormData();

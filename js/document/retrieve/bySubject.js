@@ -63,7 +63,7 @@ function retrieveDocumentsBySubject(){
  */
 function prepareFetchArgumentsSubject(subject){
       // array per contenere tutti i parametri di ricerca da passare alla fetch
-      var argsArray = [];
+      let argsArray = [];
 
       // Id della materia
       argsArray.push(["selectedSubjectId", subject]);

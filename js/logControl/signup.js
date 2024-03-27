@@ -3,11 +3,11 @@ function signup(event){
       event.preventDefault();
 
       // Recupera le informazioni inserite
-      var name = document.querySelector('input[name="name"]').value;
-      var surname = document.querySelector('input[name="surname"]').value;
-      var email = document.querySelector('input[name="email"]').value;
-      var password1 = document.querySelector('input[name="password"]').value;
-      var password2 = document.querySelector('input[name="passwordRepeat"]').value;
+      let name = document.querySelector('input[name="name"]').value;
+      let surname = document.querySelector('input[name="surname"]').value;
+      let email = document.querySelector('input[name="email"]').value;
+      let password1 = document.querySelector('input[name="password"]').value;
+      let password2 = document.querySelector('input[name="passwordRepeat"]').value;
 
       // Controllo che le due password coincidano
       if(password1 != password2){
@@ -18,12 +18,12 @@ function signup(event){
       }
 
       // Imposto i vari campi per la richiesta POST
-      var fetchBodyOptions = new FormData();
+      let fetchBodyOptions = new FormData();
       fetchBodyOptions.append("email", email);
       fetchBodyOptions.append("password", password1);
       fetchBodyOptions.append("name", name);
       fetchBodyOptions.append("surname", surname);
-      var fetchOptions = {
+      let fetchOptions = {
             method: "POST",
             body: fetchBodyOptions,
       };

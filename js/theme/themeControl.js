@@ -2,7 +2,7 @@
 const CUSTOM_THEME = "_CUSTOM_THEME";
 
 // Controllo se è stato impostato un tema nel localStorage
-var theme = window.localStorage.getItem('theme');
+let theme = window.localStorage.getItem('theme');
 if (theme)
       applyTheme(theme);
 
