@@ -8,6 +8,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/logcontrol.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
@@ -55,18 +56,30 @@
             </div>
       </nav>
 
-      <article>
-
-            <form name="loginForm" onsubmit="login(event)">
-                  Mail istituzionale: 
-                  <input type="mail" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required><br>
-                  Password: 
-                  <input type="password" name="password" required placeholder="password"><br>
-                  <button type="submit" id="submitLoginForm">Login</button>
-                  <button type="reset">Azzera i campi</button>
+      <section class="main-log-container">
+            <form name="loginForm" onsubmit="login(event)" class="form-grid">
+                  <div class="form-grid-data-row">
+                        <label for="email">Mail istituzionale</label>
+                        <input type="mail" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" required>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="submit" id="submitLoginForm">Login</button>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="reset">Azzera i campi</button>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label>Non hai un account?</label>
+                        <a href="signup.php" class="button-like">Registrati</a>
+                  </div>
             </form>
             <p id="loginInfo"></p>
-      </article>
+      
+      </section>
       
       <footer>
             <div class="left-section">
@@ -81,12 +94,13 @@
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
+                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
+
       
-      <div style="border: 5px; border-color: red; border-style:dotted; padding: 10px; width: 20%;">
-                  <h4 style="color: red">DEBUGGING ONLY</h4>
+      <div style="border: 5px; border-color: red; border-style:dotted; padding: 00px; width: 90%;">
+                  <h4 style="color: red; display: inline;">DEBUGGING ONLY</h4>
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('a.dallebandenere')">fill1</button>
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi1')">fill2</button>
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi2')">fill3</button>

@@ -9,6 +9,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/formError.css">
+      <link rel="stylesheet" type="text/CSS" href="css/logcontrol.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
@@ -53,77 +54,90 @@
             </div>
       </nav>
 
-      <article>
-            <form name="signUpForm" onsubmit="signup(event)">
-            <fieldset><legend>Informazioni personali</legend>
-                  Nome: 
-                  <input 
-                        required 
-                        type="text" 
-                        name="name" 
-                        pattern="[A-Za-z ']*" 
-                        placeholder="Es: Mario" 
-                        title="Inserisci il tuo nome: solo caratteri [A-Z] e [a-z] ammessi">
-                  <br>
-                  
-                  Cognome:
-                  <input 
-                        required 
-                        type="text" 
-                        name="surname" 
-                        pattern="[A-Za-z ']*" 
-                        placeholder="Es: Rossi" 
-                        title="Inserisci il tuo cognome: solo caratteri [A-Z] e [a-z] ammessi">
-                  <br>
+      <section class="main-log-container">
+            <form name="signUpForm" onsubmit="signup(event)" class="form-grid">
+                  <fieldset>
+                        <legend>Informazioni personali</legend>
+                        <div class="form-grid-data-row">
+                              <label for="name">Nome</label>
+                              <input 
+                                    required 
+                                    type="text" 
+                                    name="name" 
+                                    pattern="[A-Za-z ']*" 
+                                    placeholder="Es: Mario" 
+                                    title="Inserisci il tuo nome: solo caratteri [A-Z] e [a-z] ammessi">
+                        </div>
+                        <div class="form-grid-data-row">
+                              <label for="surname">Cognome</label>
+                              <input 
+                                    required 
+                                    type="text" 
+                                    name="surname" 
+                                    pattern="[A-Za-z ']*" 
+                                    placeholder="Es: Rossi" 
+                                    title="Inserisci il tuo cognome: solo caratteri [A-Z] e [a-z] ammessi">
+                        </div>
                   
                   <!-- Generic pattern:               "[A-Za-z0-9.]+@[a-z]+\.[a-z]{2,}$" -->
                   <!-- @studenti.unipi.it pattern:    "[A-Za-z0-9.]+@studenti.unipi.it" -->
                   <!--
                         pattern="[A-Za-z0-9.]+@studenti.unipi.it" 
                   -->
-                  Mail istituzionale: 
-                  <input 
-                        required 
-                        type="mail" 
-                        name="email" 
-                        pattern="[A-Za-z0-9.]+@studenti.unipi.it" 
-                        placeholder="Es: m.rossi1@studenti.unipi.it" 
-                        title="Inserisci la tua mail istituzionale, nella forma [name]@studenti.unipi.it">
-                  <br>
-                  <label for="email">Inserisci la tua mail istituzionale (Es: m.rossi1@studenti.unipi.it)</label>
-            </fieldset>
-            <fieldset><legend>Registrazione</legend>
+                        <div class="form-grid-data-row">
+                              <label for="email">Mail istituzionale</label>
+                              <input 
+                                    required 
+                                    type="mail" 
+                                    name="email" 
+                                    pattern="[A-Za-z0-9.]+@studenti.unipi.it" 
+                                    placeholder="Es: m.rossi1@studenti.unipi.it" 
+                                    title="Inserisci la tua mail istituzionale, nella forma [name]@studenti.unipi.it">
+                        </div>
+                  </fieldset>
+                  <fieldset>
+                        <legend>Registrazione</legend>
                         <!-- 
                         pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[\(\)\[\]\{\}\.,:;\-_\+\*!£\$%&/=\?'\^\|\\]).{8,}" 
                         pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[\(\)\[\]\{\}\.,:;\-_\+\*!£\$%&/=\?'\^\|\\]).{8,}"
                         -->
-                  Password:
-                  <input 
-                        id="pwd1"
-                        required
-                        type="password" 
-                        name="password"
-                        pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
-                        placeholder="password"
-                        title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
-                  <button type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')">-eye-</button>
-                  <br>
-                  Ripeti Password:
-                  <input 
-                        id="pwd2"
-                        required
-                        type="password" 
-                        name="passwordRepeat"
-                        pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
-                        placeholder="password"
-                        title="Ripeti la password">
-                  <button type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')">-eye-</button>
-                  <br>
-            </fieldset>
-            <button type="submit">Registrati</button>
-            <button type="reset">Azzera i campi</button>
+                        <div class="form-grid-data-row">
+                              <label for="password">Password</label>
+                              <input 
+                                    id="pwd1"
+                                    required
+                                    type="password" 
+                                    name="password"
+                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
+                                    placeholder="La tua password"
+                                    title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
+                              <button type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')">-eye-</button>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <label for="passwordRepeat">Ripeti la password</label>
+                              <input 
+                                    id="pwd2"
+                                    required
+                                    type="password" 
+                                    name="passwordRepeat"
+                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
+                                    placeholder="La tua password"
+                                    title="Ripeti la password">
+                              <button type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')">-eye-</button>
+                        </div>
+                  </fieldset>
+                  <div class="form-grid-bottom-rows">
+                        <button type="submit">Registrati</button>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="reset">Azzera i campi</button>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label>Hai gi&agrave; un account?</label>
+                        <a href="login.php" class="button-like">Accedi</a>
+                  </div>
             </form>
-      </article>
+      </section>
 
       <footer>
             <div class="left-section">
@@ -141,14 +155,14 @@
                   <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
             </div>
       </footer>
-      
+
       <script>
       function showPassword(id){
-            var pwd = document.getElementById(id);
+            let pwd = document.getElementById(id);
             pwd.type = 'text';
       }
       function hidePassword(id){
-            var pwd = document.getElementById(id);
+            let pwd = document.getElementById(id);
             pwd.type = 'password';
       }
 
