@@ -31,6 +31,9 @@ function fillSelectWithSubjects(subjectContainer, subjects, degreeName){
       // Cancello le opzioni presenti in precedenza
       subjectContainer.innerHTML = "";
 
+      // Attivo il select
+      subjectContainer.disabled = false;
+
       if(subjects !== null && subjects.length > 0){
 
             // Primo elemento non selezionabile
