@@ -181,9 +181,48 @@ class StatRecord{
             // Barra del grafico
             let graphPart = document.createElement("div");
             graphPart.classList.add("graph-element-bar");
-            graphPart.innerText = this.name;
             graphPart.style.width = widthPercentage + '%';
+
+            // Testo del elemento
+            let graphBarText = document.createElement("span");
+            graphBarText.classList.add("graph-element-bar-text");
+            graphBarText.innerText = this.name;
+            graphPart.appendChild(graphBarText);
+
+            // Informazioni mostrate solo all'hover
+            let additionalInfo = document.createElement("div");
+            additionalInfo.classList.add("graph-element-additional-info");
+
+            // Numero di uploads
+            let uploadsInfo = document.createElement("div");
+            let uploadsInfoSpan = document.createElement("span");
+            uploadsInfoSpan.innerText = "Uploads ";
+            uploadsInfo.appendChild(uploadsInfoSpan);
+            let uploadsInfoData = document.createElement("span");
+            uploadsInfoData.innerText = this.uploads;
+            uploadsInfo.appendChild(uploadsInfoData);
+            additionalInfo.appendChild(uploadsInfo);
+
+            // Numero di downloads
+            let downloadsInfo = document.createElement("div");
+            let downloadsInfoSpan = document.createElement("span");
+            downloadsInfoSpan.innerText = "Downloads ";
+            downloadsInfo.appendChild(downloadsInfoSpan);
+            let downloadsInfoData = document.createElement("span");
+            downloadsInfoData.innerText = this.downloads;
+            downloadsInfo.appendChild(downloadsInfoData);
+            additionalInfo.appendChild(downloadsInfo);
+
+            graphPart.appendChild(additionalInfo);
             elementContainer.appendChild(graphPart);
+
+            elementContainer.setAttribute("data-opened", JSON.stringify(false));
+            elementContainer.onclick = function(){
+                  const opened = JSON.parse(elementContainer.getAttribute("data-opened"));
+                  if(opened) elementContainer.classList.remove("open");
+                  else elementContainer.classList.add("open");
+                  elementContainer.setAttribute("data-opened", JSON.stringify(!opened));
+            };
 
             return elementContainer;
       }

@@ -13,15 +13,25 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="stylesheet" type="text/CSS" href="css/statistics.css">
       <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
+      <style>
+            .form-grid-data-row{
+                  margin-top: 20px;
+                  height: 50px;
+            }
+            .form-grid-data-row > *:nth-child(2) {
+                  height: 100%;
+            }
+      </style>
 </head>
 <body onload="pageLoad()">
       <header>
-            <h1>Titolo</h1>
+            <h1>Statistiche</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->
@@ -59,37 +69,53 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Scelta del grafico da mostrare -->
-      <section class="graph-options">
+      <section class="form-grid graph-options">
+
             <!-- Selezione del campo di ordinamento -->
-            <div id="selection-order" class="switch-option-container n2 option-1-selected">
-                  <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
-                  <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
+            <div class="form-grid-data-row">
+                  <label for="selection-order">Campo di ordinamento</label>
+                  <div id="selection-order" name="selection-order" class="switch-option-container n2 option-1-selected">
+                        <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
+                        <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
+                  </div>
             </div>
 
             <!-- Selezione del target -->
-            <div id="selection-target" class="switch-option-container n3 option-3-selected">
-                  <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
-                  <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
-                  <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
+            <div class="form-grid-data-row">
+                  <label for="selection-target">Soggetto del grafico</label>
+                  <div id="selection-target" name="selection-target" class="switch-option-container n3 option-3-selected">
+                        <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
+                        <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
+                        <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
+                  </div>
             </div>
 
             <!-- Selezione del gruppo -->
-            <div id="selection-group" class="switch-option-container n3 option-1-selected">
-                  <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
-                  <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
-                  <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
+            <div class="form-grid-data-row">
+                  <label for="selection-group">Raggruppamento</label>
+                  <div id="selection-group" name="selection-group" class="switch-option-container n3 option-1-selected">
+                        <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
+                        <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
+                        <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
+                  </div>
             </div>
 
             <!-- Selezione corso di laurea di selezione -->
-            <div id="selection-degree" class="switch-option-container" style="display:none">
-                  <select id="degree_selector" onchange="degreeSelected()">
-                  </select>
+            <div id="selection-degree" class="form-grid-data-row" style="display:none">
+                  <label for="selection-degree">Corso di studi</label>
+                  <div name="selection-degree" class="switch-option-container">
+                        <select id="degree_selector" onchange="degreeSelected()" class="fill">
+                        </select>
+                  </div>
             </div>
 
             <!-- Selezione della materia di selezione -->
-            <div id="selection-subject" class="switch-option-container" style="display:none">
-                  <select id="subject_selector" onchange="subjectSelected()">
-                  </select>
+            <div id="selection-subject" class="form-grid-data-row" style="display:none">
+                  <label for="selection-subject">Materia</label>
+                  <div name="selection-subject" class="switch-option-container">
+                        <select id="subject_selector" onchange="subjectSelected()" class="fill">
+                        </select>
+                  </div>
             </div>
       </section>
 
@@ -229,13 +255,14 @@ include "php/logControl/loginControl.php";
                               degree_selector.selectedIndex = 0;
                               selectionSubject.style.display = 'none';
                               subject_selector.selectedIndex = 0;
+                              subject_selector.disabled = true;
                               retrieveStatisticsByCurrentSettings();
                               return;
                         }
 
                         // Degree -> mostro solo la selezione delle materie
                         case 2: {
-                              selectionDegree.style.display = 'block';
+                              selectionDegree.style.display = 'flex';
                               selectionSubject.style.display = 'none';
                               subject_selector.selectedIndex = 0;
                               return;
@@ -243,8 +270,8 @@ include "php/logControl/loginControl.php";
 
                         // Degree -> mostro entrambe le selezioni
                         case 3: {
-                              selectionDegree.style.display = 'block';
-                              selectionSubject.style.display = 'block';
+                              selectionDegree.style.display = 'flex';
+                              selectionSubject.style.display = 'flex';
                               return;
                         }
                   }
