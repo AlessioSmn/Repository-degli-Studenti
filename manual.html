@@ -19,62 +19,20 @@
             table>thead>tr>th{
                   width:8em;
             }
-            #navbar {
-    background-color: #333;
-    color: white;
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-#nav-links {
-    display: flex;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-}
-
-#nav-links li {
-    margin-right: 15px;
-}
-
-#nav-links li:last-child {
-    margin-right: 0;
-}
-
-#nav-links li a {
-    color: white;
-    text-decoration: none;
-}
-
-.nav-toggle {
-    display: none;
-}
-
-@media only screen and (max-width: 768px) {
-    #nav-links {
-        display: none;
-    }
-
-    .nav-toggle {
-        display: block;
-    }
-
-    #navbar {
-        justify-content: flex-start; /* Align items to the start */
-    }
-
-    #nav-links {
-        display: flex;
-        flex-direction: column; /* Stack items vertically */
-        align-items: flex-start; /* Align items to the start */
-    }
-}
-
-.content {
-    padding: 20px;
-}
-
+            
+input[type="file"].pippo {
+                        display: none;
+                      }
+                      
+                      .pippo2{
+                        border: 2px dashed yellow;
+                      }
+                      .custom-file-upload {
+                        border: 1px solid #ccc;
+                        display: inline-block;
+                        padding: 6px 12px;
+                        cursor: pointer;
+                      }
   </style>
   <script>
       function toggleMenu() {
@@ -212,24 +170,12 @@ upload_max_filesize = 200M
                         </tbody>
                   </table>
 
+                      <label for="file-upload" class="custom-file-upload">
+                              Custom Upload
+                          </label>
+                      <input id="file-upload" type="file" class="pippo"/>
 
-            
-                  <nav id="navbar">
-                        <div class="nav-toggle" onclick="toggleMenu()">Menu</div>
-                        <ul id="nav-links">
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">About</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Portfolio</a></li>
-                            <li><a href="#">Contact</a></li>
-                            <li><a href="#">adwas</a></li>
-                            <li><a href="#">fewdwergdfvc </a></li>
-                            <li><a href="#">efw e dv </a></li>
-                            <li><a href="#">r rge fdvc</a></li>
-                            <li><a href="#">Conregrgrtact</a></li>
-                        </ul>
-                    </nav>
-
+                      <input type="file" class="pippo2"/>
       </article>
 
       <footer>

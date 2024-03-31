@@ -714,18 +714,18 @@ function italianDate(DataIn){
 
 function getMonthName(monthNumber){
       switch(monthNumber){
-            case 0: return "Gen";
-            case 1: return "Feb";
-            case 2: return "Mar";
-            case 3: return "Apr";
-            case 4: return "Mag";
-            case 5: return "Giu";
-            case 6: return "Lug";
-            case 7: return "Ago";
-            case 8: return "Set";
-            case 9: return "Ott";
-            case 10: return "Nov";
-            case 11: return "Dic";
+            case 0: return "Gennaio";
+            case 1: return "Febbraio";
+            case 2: return "Marzo";
+            case 3: return "Aprile";
+            case 4: return "Maggio";
+            case 5: return "Giugno";
+            case 6: return "Luglio";
+            case 7: return "Agosto";
+            case 8: return "Settembre";
+            case 9: return "Ottobre";
+            case 10: return "Novembre";
+            case 11: return "Dicembre";
             default: return "---";
       }
 }

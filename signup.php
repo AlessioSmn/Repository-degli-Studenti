@@ -9,7 +9,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/formError.css">
-      <link rel="stylesheet" type="text/CSS" href="css/logcontrol.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
@@ -111,7 +111,7 @@
                                     pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
-                              <button type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')">-eye-</button>
+                              <button type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password">&#128065;</button>
                         </div>
                         <div class="form-grid-data-row">
                               <label for="passwordRepeat">Ripeti la password</label>
@@ -123,7 +123,7 @@
                                     pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="Ripeti la password">
-                              <button type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')">-eye-</button>
+                              <button type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password">&#128065;</button>
                         </div>
                   </fieldset>
                   <div class="form-grid-bottom-rows">
@@ -158,6 +158,8 @@
 
       <script>
       function showPassword(id){
+            // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
+            // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
             let pwd = document.getElementById(id);
             pwd.type = 'text';
       }

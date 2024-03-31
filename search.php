@@ -14,6 +14,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/search.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
       <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
@@ -87,27 +88,75 @@ include "php/logControl/loginControl.php";
       </section>
 
       <!-- Ricerca per materia specifica -->
-      <section id="searchBySubject" style="display:none;" class="search-method">
-
-            <label for="degree_selector">Corso di studi:</label>
-            <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required style="width:400px;">
-            </select>
-            <br/>
-
-            <label for="subject_selector">Materia:</label>
-            <select id="subject_selector" name="subject_selector" type="text" list="subject" required style="width:400px;">
-            </select>
-            <br/>
-                  
-            <button type="submit" onclick="mainSearch('subject')">Cerca</button>
+      <section id="searchBySubject" style="display:none;" class="search-method form-grid">
+            <div class="form-grid-data-row">
+                  <label for="degree_selector">Corso di studi:</label>
+                  <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required> </select>
+            </div>
+            <div class="form-grid-data-row">
+                  <label for="subject_selector">Materia:</label>
+                  <select id="subject_selector" name="subject_selector" required disabled></select>
+            </div>
+            <div class="form-grid-bottom-rows">
+                  <button onclick="mainSearch('subject')">Cerca</button>
+            </div>
       </section>
 
       <!-- Ricerca per nome della materia -->
-      <section id="searchByTextString" style="display:block;" class="search-method">
-            <form onsubmit="return false;">
+      <section id="searchByTextString" style="display:block;" class="search-method form-grid">
+            <div class="form-grid-data-row">
                   <label for="mainText">Testo: </label>
                   <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
-                  <br>
+            </div>
+
+            <!-- Vincoli sulla materia -->
+            <div class="form-grid-data-row">
+                  <label for="subName">Cerca per nome della materia</label>
+                  <input id="subName" type="checkbox" checked>
+            </div>
+            <div class="form-grid-data-row">
+                  <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
+                  <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
+                  <div id="minCFUcontainer" style="display: none;">
+                        <button onclick="changeCFUvalue(-1, 'min')">-</button>
+                        <label id="minCFUvalue">6</label>
+                        <button onclick="changeCFUvalue(+1, 'min')">+</button>
+                  </div>
+            </div>
+            <div class="form-grid-data-row">
+                  <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
+                  <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
+                  <div id="maxCFUcontainer" style="display: none;">
+                        <button onclick="changeCFUvalue(-1, 'max')">-</button>
+                        <label id="maxCFUvalue">12</label>
+                        <button onclick="changeCFUvalue(+1, 'max')">+</button>
+                  </div>
+            </div>
+
+            <!-- Vincoli sull'autore -->
+            <div class="form-grid-data-row">
+                  <label for="userName">Cerca per nome dell'autore</label>
+                  <input id="userName" type="checkbox">
+            </div>
+            <div class="form-grid-data-row">
+                  <label for="userMail">Cerca per mail dell'autore</label>
+                  <input id="userMail" type="checkbox">
+            </div>
+
+            <!-- Vincoli sul documento -->
+            <div class="form-grid-data-row">
+                  <label for="docTitle">Cerca per titolo del documento</label>
+                  <input id="docTitle" type="checkbox" checked>
+            </div>
+            <div class="form-grid-data-row">
+                  <label for="docSubtitle">Cerca per sottotitolo del documento</label>
+                  <input id="docSubtitle" type="checkbox">
+            </div>
+
+            <div class="form-grid-bottom-rows">
+                  <button onclick="mainSearch('text')">Cerca</button>
+            </div>
+            
                   <!-- 
 
                   <button id="subjectFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('subject')">Apri subject</button>
@@ -129,43 +178,6 @@ include "php/logControl/loginControl.php";
 
                   -->
 
-                  <!-- Vincoli sulla materia -->
-                  <label for="subName">Cerca per nome della materia</label>
-                  <input id="subName" type="checkbox" checked>
-                  <br>
-                  <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
-                  <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
-                  <div id="minCFUcontainer" style="display: none;">
-                        <button onclick="changeCFUvalue(-1, 'min')">-</button>
-                        <label id="minCFUvalue">6</label>
-                        <button onclick="changeCFUvalue(+1, 'min')">+</button>
-                  </div>
-                  <br>
-                  <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
-                  <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
-                  <div id="maxCFUcontainer" style="display: none;">
-                        <button onclick="changeCFUvalue(-1, 'max')">-</button>
-                        <label id="maxCFUvalue">12</label>
-                        <button onclick="changeCFUvalue(+1, 'max')">+</button>
-                  </div>
-
-                  <!-- Vincoli sull'autore -->
-                  <label for="userName">Cerca per nome dell'autore</label>
-                  <input id="userName" type="checkbox">
-                  <br>
-                  <label for="userMail">Cerca per mail dell'autore</label>
-                  <input id="userMail" type="checkbox">
-
-                  <!-- Vincoli sul documento -->
-                  <label for="docTitle">Cerca per titolo del documento</label>
-                  <input id="docTitle" type="checkbox" checked>
-                  <br>
-                  <label for="docSubtitle">Cerca per sottotitolo del documento</label>
-                  <input id="docSubtitle" type="checkbox">
-                  
-                  <br>
-                  <button onclick="mainSearch('text')">Cerca</button>
-            </form>
       </section>
 
       <!-- Ordinamento dei risultati -->
@@ -249,9 +261,9 @@ include "php/logControl/loginControl.php";
 
       /* Metodo di ricerca */
 
-      let searchBySubject = document.getElementById("searchBySubject");
-      let searchByText = document.getElementById("searchByTextString");
-      let searchOptionsContainer = document.getElementById("search-method-options-container");
+      const searchBySubject = document.getElementById("searchBySubject");
+      const searchByText = document.getElementById("searchByTextString");
+      const searchOptionsContainer = document.getElementById("search-method-options-container");
       /**
        * Funzione per alternare tra le due modalità di ricerca presenti
        * @param {HTMLElement} CallerElement Elenento chiamante

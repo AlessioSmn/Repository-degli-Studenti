@@ -15,6 +15,7 @@ Il background deve avere uno slot 'selezionato' con di width 1/N %
       transition: 0.2s;
       padding: 0;
       overflow: hidden;
+      border-radius: 5px;
 }
 
 

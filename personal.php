@@ -14,6 +14,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
@@ -89,25 +90,39 @@ include "php/logControl/loginControl.php";
       
       <!-- Caricamento di un nuovo documento -->
       <section>
-            <form method="post" enctype="multipart/form-data" style="border-width: 5px; border-color: red; border-style: solid;" onsubmit="uploadDocument(event)"><fieldset>
+            <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
+                  <fieldset>
                   <legend>Carica un documento</legend>
-                  <span>Titolo del documento</span>
-                  <input name="title" type="text" required>
-                  <br>
-                  <span>Carica il tuo file:</span>
-                  <input type="file" name="fileContent" required>
-                  <br>
-                  <span>Corso di studio</span>
-                  <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required style="width:400px;">
-                  </select>
-                  <br>
-                  <span>Materia</span>
-                  <select id="subject_selector" name="subject_selector" type="text" list="subject" required style="width:400px;">
-                  </select>
-                  <br>  
+                  <div class="form-grid-data-row">
+                        <label for="title">Titolo del documento</label>
+                        <input name="title" type="text" required>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="subtitle">Sottotitolo del documento</label>
+                        <input name="subtitle" type="text">
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="degree_selector">Corso di studio</label>
+                        <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
+                        </select>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="subject_selector">Materia</label>
+                        <select id="subject_selector" name="subject_selector" required disabled>
+                        </select>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="">Carica il tuo file</label>
+                        <input type="file" name="fileContent" required>
+                  </div>
+            </fieldset>
+            <div class="form-grid-bottom-rows">
                   <button type="submit">Carica</button>
-                  <button type="reset">Reset</button>
-            </fieldset></form>
+            </div>
+            <div class="form-grid-bottom-rows">
+                  <button type="reset">Azzera i campi</button>
+            </div>
+            </form>
       </section>
 
       <!-- Tipo di visualizzazione -->
