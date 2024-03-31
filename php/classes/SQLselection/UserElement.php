@@ -1,5 +1,4 @@
 <?php
-// include 'MySQLSelectionFilter.php';
 class UserElement{
       private $userName;
       private $userMail;
@@ -14,9 +13,9 @@ class UserElement{
       }
 
       /**
-       * @return string Stringa per la proiezione in MySQL delle specifiche del documento, preparato per bind_param
+       * @return string Stringa per la selezione in MySQL delle specifiche del documento, preparato per bind_param
        */
-      public function stringQueryConstraint(){
+      public function getQueryMatches(){
             if($this->userName == null && $this->userMail == null)
                   return "";
                   
@@ -32,7 +31,7 @@ class UserElement{
       /**
        * @return string Stringa con i tipi dei paramteri, es.: "sii" per stringa-intero-intero
        */
-      public function getParameterTypes(){
+      public function getMatchParameterTypes(){
             $str = "";
             if($this->userName != null) $str = $str . "s";
             if($this->userMail != null) $str = $str . "s";
@@ -42,7 +41,7 @@ class UserElement{
       /**
        * @return string[] Stringa con i tipi paramteri
        */
-      public function getParameters(){
+      public function getMatchParameters(){
             $paramArray = array();
             if($this->userName != null)
                   $paramArray[] = "%".$this->userName."%";
@@ -54,7 +53,7 @@ class UserElement{
       /**
        * @return int Numero di parametri da passare alla bind_param
        */
-      public function numParameters(){
+      public function getMatchNumParameters(){
             $n = 0;
             if($this->userName != null) $n++;
             if($this->userMail != null) $n++;
