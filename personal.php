@@ -156,9 +156,11 @@ include "php/logControl/loginControl.php";
                   <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)">
                         <div><span>Titolo</span><input name="title" type="text" placeholder="" required/></div>
                         <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""/></div>
-                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)"/></div>
+                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput"/></div>
                         <input type="hidden" name="docId">
                         <input type="hidden" name="docExtension">
+                        <input type="hidden" name="docOldTitle">
+                        <input type="hidden" name="docOldSubtitle">
                         <button type="reset">Reset</button>
                         <button type="submit">Submit</button>
                   </form>
