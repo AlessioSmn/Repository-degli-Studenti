@@ -69,6 +69,7 @@
 }
 .graph-element-container.open .graph-element-additional-info{
       height: 45px;
+      overflow: visible;
 }
 
 #selection-group > *{
