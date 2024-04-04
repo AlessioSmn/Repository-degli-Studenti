@@ -2,6 +2,7 @@
       overflow: hidden;
       display: flex;
       flex-wrap: wrap;
+      padding: 0px;
 }
 
 /* Popup per la visualizzazione del documento */
@@ -71,5 +72,17 @@
 .doc-popup-container.active,
 .doc-popup-container-mask.active {
       display: block;
+}
+.doc-update-button{
+      background-color: greenyellow;
+}
+.doc-update-button:hover{
+      background-color: green;
+}
+.doc-delete-button{
+      background-color: rgb(252, 62, 62);
+}
+.doc-delete-button:hover{
+      background-color: red;
 }
 

@@ -1,34 +1,51 @@
 
 .doc-block-container{
       border-color: var(--primary);
-      border-radius: 0px;
+      border-radius: 5px;
 
-      padding: 20px 2%;
-      width: 42%;
-      margin-bottom: 2%;
-      margin-left: 2%;
-      margin-right: 2%;
+      flex-basis: calc(88% / 3);
+      padding: 25px 1% 0px 1%;
+      margin: 1% 1%;
 
       overflow: hidden;
-      position: relative;
 
-      background-size: 300% 105%;
-      border-bottom-width: 5px;
-      border-top-width: 5px;
       transition: 0.2s;
 }
+/* Cambio il numero di colonne a seconda della larghezza della pagina */
+@media (max-width: 1200px) {
+      .doc-block-container{
+            flex-basis: 42%;
+            padding: 25px 2% 0px 2%;
+            margin: 2% 2%;
+      }
+}  
+@media (max-width: 700px) {
+      .doc-block-container{
+            flex-basis: 92%;
+            padding: 25px 2% 0px 2%;
+            margin: 2% 2%;
+      }
+}
+.doc-block-container:nth-child(odd){
+      background-color: var(--primary);
+}
+.doc-block-container:nth-child(even){
+      background-color: var(--primary_dark);
+}
 .doc-block-container:hover{
-      background-position: right center;
-      border-left-width: 0px;
-      color: var(--bgColor);
+      background-color: var(--secondary);
 }
-.doc-block-container:nth-child(4n+1), 
-.doc-block-container:nth-child(4n+4){
-      background-image: linear-gradient(90deg, var(--primary) 40%, var(--secondary_light) 60%);
+.doc-block-container span:nth-child(1){
+      font-variant: small-caps;
 }
-.doc-block-container:nth-child(4n+2),
-.doc-block-container:nth-child(4n+3){
-      background-image: linear-gradient(90deg, var(--primary_dark) 40%, var(--secondary_light) 60%);
+.doc-block-container span:nth-child(2){
+      font-weight: bold;
+}
+.doc-block-container button{
+      background-color: var(--bgColor);
+}
+.doc-block-container button:hover{
+      background-color: var(--primary);
 }
 
 
@@ -38,13 +55,10 @@
       margin: 0px 0px 0px 20px;
       display: inline;
 }
-.doc-block-title:hover{
-      color: var(--bgColor_light);
-}
 .doc-block-subtitle{
       font-size: medium;
       margin: 0px;
-      display: inline;
+      display: block;
 }
 
 /* Autore del documento */
@@ -63,14 +77,17 @@
 }
 
 /* Informazioni 'temporali' sul documento (upload e ultima modifica) */
-.doc-block-dateinfo{
+.doc-block-dateinfo {
+      line-height: 10px;
+}
+.doc-block-dateinfo *:nth-child(2){
       font-style: italic;
       font-size: smaller;
 }
 
 /* Numero di donwload */
 .doc-block-downloads{
-      font-weight: bold;
+      
 }
 
 /* Bottone per la modifica del documento */
