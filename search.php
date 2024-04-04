@@ -37,6 +37,30 @@ include "php/logControl/loginControl.php";
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
 
+      <style>
+            .match-options{
+                  display: flex;
+                  align-items: stretch;
+            }
+            .match-options fieldset{
+                  flex: 3; /* Tre fiedset affiancati */
+                  display: flex;
+                  display: flex;
+                  flex-direction: row;
+                  border: 0px;
+                  border-right-width: 1px;
+            }
+            .match-options fieldset > *{
+                  flex: 1;
+            }
+            .cfu-filter button{
+                  border-radius: 20px;
+                  height: 30px;
+                  width: 30px;
+                  padding: 0px;
+                  line-height: 30px;
+            }
+      </style>
 </head>
 <body onload="retrieveDegrees()">
 
@@ -79,7 +103,7 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Metodo di ricerca -->
-      <section class="switch-option">
+      <section class="switch-option" style="border:2px solid green;">
             <span>Scegli un metodo di ricerca</span>
             <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
                   <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
@@ -103,80 +127,72 @@ include "php/logControl/loginControl.php";
       </section>
 
       <!-- Ricerca per nome della materia -->
-      <section id="searchByTextString" style="display:block;" class="search-method form-grid">
-            <div class="form-grid-data-row">
-                  <label for="mainText">Testo: </label>
-                  <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
-            </div>
+      <section id="searchByTextString" style="display:block;" class="search-method">
+            <label for="mainText">Testo: </label>
+            <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
 
-            <!-- Vincoli sulla materia -->
-            <div class="form-grid-data-row">
-                  <label for="subName">Cerca per nome della materia</label>
-                  <input id="subName" type="checkbox" checked>
-            </div>
-            <div class="form-grid-data-row">
-                  <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
-                  <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
-                  <div id="minCFUcontainer" style="display: none;">
-                        <button onclick="changeCFUvalue(-1, 'min')">-</button>
-                        <label id="minCFUvalue">6</label>
-                        <button onclick="changeCFUvalue(+1, 'min')">+</button>
-                  </div>
-            </div>
-            <div class="form-grid-data-row">
-                  <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
-                  <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
-                  <div id="maxCFUcontainer" style="display: none;">
-                        <button onclick="changeCFUvalue(-1, 'max')">-</button>
-                        <label id="maxCFUvalue">12</label>
-                        <button onclick="changeCFUvalue(+1, 'max')">+</button>
-                  </div>
-            </div>
-
-            <!-- Vincoli sull'autore -->
-            <div class="form-grid-data-row">
-                  <label for="userName">Cerca per nome dell'autore</label>
-                  <input id="userName" type="checkbox">
-            </div>
-            <div class="form-grid-data-row">
-                  <label for="userMail">Cerca per mail dell'autore</label>
-                  <input id="userMail" type="checkbox">
-            </div>
-
-            <!-- Vincoli sul documento -->
-            <div class="form-grid-data-row">
-                  <label for="docTitle">Cerca per titolo del documento</label>
-                  <input id="docTitle" type="checkbox" checked>
-            </div>
-            <div class="form-grid-data-row">
-                  <label for="docSubtitle">Cerca per sottotitolo del documento</label>
-                  <input id="docSubtitle" type="checkbox">
-            </div>
-
-            <div class="form-grid-bottom-rows">
-                  <button onclick="mainSearch('text')">Cerca</button>
-            </div>
-            
-                  <!-- 
-
-                  <button id="subjectFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('subject')">Apri subject</button>
-                  <button id="documentFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('document')">Apri doc</button>
-                  <button id="userFieldsetOpen" type="button" onclick="OpenSearchNameFieldset('user')">Apri user</button>
-
-                  <fieldset id="subjectFieldset" style="display:none;" disabled>
+            <div class="match-options">
+                  <!-- Vincoli sulla materia -->
+                  <fieldset>
                         <legend>Materia</legend>
-                        <button type="button" onclick="CloseSearchNameFieldset('subject')" class="closeFieldset">X</button>
-                  </fieldset>
-                  <fieldset id="documentFieldset" style="display:none;" disabled>
-                        <legend>Documento</legend>
-                        <button type="button" onclick="CloseSearchNameFieldset('document')" class="closeFieldset">X</button>
-                  </fieldset>
-                  <fieldset id="userFieldset" style="display:none;" disabled>
-                        <legend>Autore</legend>
-                        <button type="button" onclick="CloseSearchNameFieldset('user')" class="closeFieldset">X</button>
+                        <div class="form-grid-data-row">
+                              <input id="subName" type="checkbox" checked>
+                              <label for="subName">Cerca per nome della materia</label>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
+                              <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
+                        </div>
+                        <div id="minCFUcontainer" class="form-grid-data-row" style="display: none;">
+                              <label>Limite:</label>
+                              <div class="cfu-filter">
+                                    <button onclick="changeCFUvalue(-1, 'min')">-</button>
+                                    <label id="minCFUvalue">6</label>
+                                    <button onclick="changeCFUvalue(+1, 'min')">+</button>
+                              </div>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
+                              <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
+                        </div>
+                        <div id="maxCFUcontainer" class="form-grid-data-row" style="display: none;">
+                              <label>Limite</label>
+                              <div class="cfu-filter">
+                                    <button onclick="changeCFUvalue(-1, 'max')">-</button>
+                                    <label id="maxCFUvalue">12</label>
+                                    <button onclick="changeCFUvalue(+1, 'max')">+</button>
+                              </div>
+                        </div>
                   </fieldset>
 
-                  -->
+                  <!-- Vincoli sull'autore -->
+                  <fieldset>
+                        <legend>Autore</legend>
+                        <div class="form-grid-data-row">
+                              <input id="userName" type="checkbox">
+                              <label for="userName">Cerca per nome dell'autore</label>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <input id="userMail" type="checkbox">
+                              <label for="userMail">Cerca per mail dell'autore</label>
+                        </div>
+                  </fieldset>
+
+                  <!-- Vincoli sul documento -->
+                  <fieldset>
+                        <legend>Documento</legend>
+                        <div class="form-grid-data-row">
+                              <input id="docTitle" type="checkbox" checked>
+                              <label for="docTitle">Cerca per titolo del documento</label>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <input id="docSubtitle" type="checkbox">
+                              <label for="docSubtitle">Cerca per sottotitolo del documento</label>
+                        </div>
+                  </fieldset>
+            </div>
+
+            <button onclick="mainSearch('text')">Cerca</button>
 
       </section>
 
@@ -543,7 +559,7 @@ include "php/logControl/loginControl.php";
       function toggleLabelCFUvisibility(id){
             let CFUcontainer = document.getElementById(id + "CFUcontainer");
             let vis = CFUcontainer.style.display;
-            CFUcontainer.style.display = (vis == 'none') ? 'inline' : 'none';
+            CFUcontainer.style.display = (vis == 'none') ? 'flex' : 'none';
       }
 
       </script>
