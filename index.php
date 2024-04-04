@@ -80,7 +80,7 @@ include "php/logControl/loginControl.php";
             <p>Cerchi appunti per una materia ostica?</p><a href="search.php"><button>Cerca</button></a>
             <p>Vuoi condividere i tuoi appunti?</p><a href="personal.php"><button>Area personale</button></a>
             <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php"><button>Area personale</button></a>
-            <p>Vuoi sapere quali sono le materie pi&ugrave; popolare?</p><a href="statistics.php"><button>Statistiche</button></a>
+            <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php"><button>Statistiche</button></a>
       </section>
 
       <footer>
