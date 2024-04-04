@@ -1,6 +1,6 @@
 <?php 
 $prevDir = "";
-$pageName = "index.php";
+$pageName = "personal.php";
 include "php/logControl/loginControl.php";
 ?>
 <!DOCTYPE html>
@@ -13,28 +13,38 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/pageindex.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
+      <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
+      <link rel="stylesheet" type="text/CSS" href="css/document_compact.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
+
+      <!-- setTheme() -->
       <script src="js/theme/themeControl.js"></script>
+
+      <!-- logout() -->
       <script src="js/logControl/logout.js"></script>
 
-      <script>
-            window.addEventListener('scroll', function() {
-                  const scroll = window.scrollY;
-                  document.querySelector('header').style.backgroundPositionY = -0.5 * scroll + 'px';
-            }, { passive: true });
-      </script>
+      <!-- retrieveDegrees() -->
+      <script src="js/degree/retrieve.js"></script>
+
+      <!-- retrieveSubjectByDegree() -->
+      <script src="js/subject/retrieveByDegree.js"></script>
+
+      <!-- uploadDocument() -->
+      <script src="js/document/update/upload.js"></script>
+      
 </head>
-<body>
+<body onload="retrieveDegrees()">
       <header>
-            <p>Biblioteca UniPi</p>
-            <p>Raccolta di appunti degli studenti per gli studenti</p>
-            <p>proprio quella</p>
-            <img src="media/.svg/logo_white.svg" alt="logo UniPi">
+            <h1>Carica un documento</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->
       <nav>
-            <a href="#" class="navbar-main-element current-page"><div><span>Home</span></div></a>
+            <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
                   <span>Accesso<span>
                   <div class="navbar-dropdown-container">
@@ -47,7 +57,7 @@ include "php/logControl/loginControl.php";
                   <span>Area personale<span>
                   <div class="navbar-dropdown-container">
                         <a href="personal.php" class="navbar-dropdown-option">Area personale</a>
-                        <a href="uploaddocument.php" class="navbar-dropdown-option">Upload</a>
+                        <a href="#" class="navbar-dropdown-option current-page">upload</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
@@ -67,21 +77,41 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
       
+      <!-- Caricamento di un nuovo documento -->
       <section>
-            <h1>Benvenuto nella Repository degli Studenti</h1>
-            <p>
-                  Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br/>
-                  Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br/>
-                  Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br/>
-                  Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br/>
-                  Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br/>
-                  Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br/>
-            </p>
-            <p>Una descrizione del sito</p><a href="manual.html"><button>Manuale</button></a>
-            <p>Cerchi appunti per una materia ostica?</p><a href="search.php"><button>Cerca</button></a>
-            <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php"><button>Upload</button></a>
-            <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php"><button>Area personale</button></a>
-            <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php"><button>Statistiche</button></a>
+            <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
+                  <fieldset>
+                  <legend>Carica un documento</legend>
+                  <div class="form-grid-data-row">
+                        <label for="title">Titolo del documento</label>
+                        <input name="title" type="text" required>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="subtitle">Sottotitolo del documento</label>
+                        <input name="subtitle" type="text">
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="degree_selector">Corso di studio</label>
+                        <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
+                        </select>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="subject_selector">Materia</label>
+                        <select id="subject_selector" name="subject_selector" required disabled>
+                        </select>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="">Carica il tuo file</label>
+                        <input type="file" name="fileContent" required>
+                  </div>
+            </fieldset>
+            <div class="form-grid-bottom-rows">
+                  <button type="submit">Carica</button>
+            </div>
+            <div class="form-grid-bottom-rows">
+                  <button type="reset">Azzera i campi</button>
+            </div>
+            </form>
       </section>
 
       <footer>
@@ -100,6 +130,10 @@ include "php/logControl/loginControl.php";
                   <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
             </div>
       </footer>
-      
+
+      <!-- Document class -->
+      <!-- sortDocuments() -->
+      <script src="js/document/document.js"></script>
+
 </body>
 </html>

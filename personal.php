@@ -36,9 +36,6 @@ include "php/logControl/loginControl.php";
       <!-- retrievePersonalDocuments() -->
       <script src="js/document/retrieve/personal.js"></script>
 
-      <!-- uploadDocument() -->
-      <script src="js/document/update/upload.js"></script>
-
       <!-- deleteDocumet() -->
       <script src="js/document/update/delete.js"></script>
 
@@ -49,7 +46,7 @@ include "php/logControl/loginControl.php";
       <script src="js/toggleElement.js"></script>
       
 </head>
-<body onload="retrieveDegrees()">
+<body onload="retrieveAndDisplayPersonalDocuments()">
       <header>
             <h1>area personale</h1>
       </header>
@@ -69,6 +66,7 @@ include "php/logControl/loginControl.php";
                   <span>Area personale<span>
                   <div class="navbar-dropdown-container">
                         <a href="#" class="navbar-dropdown-option current-page">Area personale</a>
+                        <a href="uploaddocument.php" class="navbar-dropdown-option">Upload</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
@@ -87,43 +85,6 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
       </nav>
-      
-      <!-- Caricamento di un nuovo documento -->
-      <section>
-            <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
-                  <fieldset>
-                  <legend>Carica un documento</legend>
-                  <div class="form-grid-data-row">
-                        <label for="title">Titolo del documento</label>
-                        <input name="title" type="text" required>
-                  </div>
-                  <div class="form-grid-data-row">
-                        <label for="subtitle">Sottotitolo del documento</label>
-                        <input name="subtitle" type="text">
-                  </div>
-                  <div class="form-grid-data-row">
-                        <label for="degree_selector">Corso di studio</label>
-                        <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
-                        </select>
-                  </div>
-                  <div class="form-grid-data-row">
-                        <label for="subject_selector">Materia</label>
-                        <select id="subject_selector" name="subject_selector" required disabled>
-                        </select>
-                  </div>
-                  <div class="form-grid-data-row">
-                        <label for="">Carica il tuo file</label>
-                        <input type="file" name="fileContent" required>
-                  </div>
-            </fieldset>
-            <div class="form-grid-bottom-rows">
-                  <button type="submit">Carica</button>
-            </div>
-            <div class="form-grid-bottom-rows">
-                  <button type="reset">Azzera i campi</button>
-            </div>
-            </form>
-      </section>
 
       <!-- Tipo di visualizzazione -->
       <section id="visualizationMode" class="switch-option">
@@ -136,7 +97,7 @@ include "php/logControl/loginControl.php";
 
       <!-- Visualizzazione dei documenti -->
       <section id="documentVisualizer">
-            <button onclick="retrieveAndDisplayPersonalDocuments()">Carica i tuoi documenti</button>
+            <!-- documenti -->
       </section>
 
       <!-- Indici di pagina -->
