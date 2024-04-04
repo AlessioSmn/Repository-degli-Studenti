@@ -7,15 +7,31 @@
 function modifyDocument(event){
       event.preventDefault();
 
-      let updateForm = new FormData(event.target);
-      let fetchBodyOptions = new FormData();
+      const updateForm = new FormData(event.target);
+      const fetchBodyOptions = new FormData();
+
+      // Controllo che l'utente abbia cambiato qualcosa
+      const newTitle = updateForm.get('title');
+      const oldTitle = updateForm.get('docOldTitle');
+      const newSubtitle = updateForm.get('subtitle');
+      const oldSubtitle = updateForm.get('docOldSubtitle');
+      const newFile = updateForm.get('newfile');
+      const fileUpdated = document.getElementById("newFileInput").files.length > 0;
+
+      if(newTitle == oldTitle
+      && newSubtitle == oldSubtitle
+      && !fileUpdated){
+            console.log("NO CHANGE");
+            window.alert("Non hai effettuato nessuna modifica");
+            return;
+      }
 
       // Ricavo tutti i campi necessari per la richiesta
-      fetchBodyOptions.append("newTitle", updateForm.get('title'));
-      fetchBodyOptions.append("newSubtitle", updateForm.get('subtitle'));
-      fetchBodyOptions.append("newFile", updateForm.get('newfile'));
+      fetchBodyOptions.append("newTitle", newTitle);
+      fetchBodyOptions.append("newSubtitle", newSubtitle);
       fetchBodyOptions.append("id", updateForm.get('docId'));
       fetchBodyOptions.append("oldExtension", updateForm.get('docExtension'));
+      if(fileUpdated) fetchBodyOptions.append("newFile", newFile);
       let fetchOptions = {
             method: "POST",
             body: fetchBodyOptions,
@@ -25,19 +41,16 @@ function modifyDocument(event){
       fetch('php/document/manage/updateDocument.php', fetchOptions)
 
       // deserializzo la risposta
-      .then(response => response.text())
+      .then(response => response.json())
 
       // Mostro l'esito
       .then(data => {
-            console.log(data);
-            /*
             if(data === true){
                   location.reload();
             }
             else{
                   window.alert("Errore nella modifica del file");
             }
-            */
       })
       .catch(error => console.error("Errore: " + error));
 

@@ -201,6 +201,9 @@ class Document{
                   // Bottone per l'eliminazione del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
 
+                  // Bottone per la modifica del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_updateButton());
+
             }
 
             container.appendChild(additionalInfoContainer);
@@ -218,7 +221,7 @@ class Document{
             let ext = this.extension;
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Elimina il documento";
-            deleteButton.classList.add("doc-block-deleteButton");
+            deleteButton.classList.add("doc-delete-button");
             deleteButton.onclick = function() {
                   deleteDocument(id, ext);
             };
@@ -236,7 +239,7 @@ class Document{
             let subtitle = this.subtitle;
             let updateButton = document.createElement("button");
             updateButton.textContent = "Modifica il documento";
-            updateButton.classList.add("doc-block-updateButton");
+            updateButton.classList.add("doc-update-button");
             updateButton.onclick = function() {
                   const updateForm = document.getElementById("updateForm");
                   
@@ -391,9 +394,14 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerBlock_downloads(){
-            let downloadsElement = document.createElement("p");
-            downloadsElement.textContent = this.downloads;
+            const downloadsElement = document.createElement("p");
+            const downloadsElementText = document.createElement("span");
+            const downloadsElementNumber = document.createElement("span");
+            downloadsElementText.textContent = "Downloads ";
+            downloadsElementNumber.textContent = this.downloads;
             downloadsElement.classList.add("doc-block-downloads");
+            downloadsElement.appendChild(downloadsElementText);
+            downloadsElement.appendChild(downloadsElementNumber);
             return downloadsElement;
       }
 
@@ -402,9 +410,14 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerBlock_uploadDate(){
-            let uploadElement = document.createElement("p");
-            uploadElement.textContent = this.uploadDate;
+            const uploadElement = document.createElement("p");
+            const uploadElementText = document.createElement("span");
+            const uploadElementValue = document.createElement("span");
+            uploadElementText.textContent = "Data di creazione ";
+            uploadElementValue.textContent = italianDate(this.uploadDate);
             uploadElement.classList.add("doc-block-dateinfo");
+            uploadElement.appendChild(uploadElementText);
+            uploadElement.appendChild(uploadElementValue);
             return uploadElement;
       }
 
@@ -413,9 +426,14 @@ class Document{
        * @return {HTMLElement}
        */
       documentVisualizerBlock_modifiedDate(){
-            let modifiedElement = document.createElement("p");
-            modifiedElement.textContent = this.lastModifiedDate;
-            modifiedElement.classList.add("doc-compact-dateinfo");
+            const modifiedElement = document.createElement("p");
+            const modifiedElementText = document.createElement("span");
+            const modifiedElementValue = document.createElement("span");
+            modifiedElementText.textContent = "Data ultima modifica ";
+            modifiedElementValue.textContent = italianDate(this.lastModifiedDate);
+            modifiedElement.classList.add("doc-block-dateinfo");
+            modifiedElement.appendChild(modifiedElementText);
+            modifiedElement.appendChild(modifiedElementValue);
             return modifiedElement;
       }
       
@@ -432,12 +450,59 @@ class Document{
             let deleteButtonContainer = document.createElement("div");
             let deleteButton = document.createElement("button");
             deleteButton.textContent = "Elimina il documento";
-            deleteButton.classList.add("doc-compact-deleteButton");
+            deleteButton.classList.add("doc-delete-button");
             deleteButton.onclick = function() {
                   deleteDocument(id, ext);
             };
             deleteButtonContainer.appendChild(deleteButton);
             return deleteButtonContainer;
+      }
+            
+      /**
+       * Ritorna un bottone per la modifica del documento
+       * @return {HTMLElement}
+       */
+      documentVisualizerCompact_updateButton(){
+            let id = this.id;
+            let ext = this.extension;
+            let title = this.title;
+            let subtitle = this.subtitle;
+            let updateButtonContainer = document.createElement("div");
+            let updateButton = document.createElement("button");
+            updateButton.textContent = "Modifica il documento";
+            updateButton.classList.add("doc-update-button");
+            updateButton.onclick = function() {
+                  const updateForm = document.getElementById("updateForm");
+                  
+                  // Imposto i campi ai valori attuali
+                  const titleInput = updateForm.querySelector("input[name='title']");
+                  const oldTitleInput = updateForm.querySelector("input[name='docOldTitle']");
+                  const subtitleInput = updateForm.querySelector("input[name='subtitle']");
+                  const oldSubtitleInput = updateForm.querySelector("input[name='docOldSubtitle']");
+                  const docId = updateForm.querySelector("input[name='docId']");
+                  const docExtension = updateForm.querySelector("input[name='docExtension']");
+                  titleInput.value = oldTitleInput.value = title;
+                  subtitleInput.value = oldSubtitleInput.value = subtitle;
+                  docId.value = id;
+                  docExtension.value = ext;
+
+                  // Titilo del documento come titolo della pagina di popup
+                  const frameTitle = document.getElementById("docFrameTitle");
+                  frameTitle.innerText = title;
+
+                  // Mostro il popup e la maschera sottostante (mettendo display:block)
+                  let popupContainer = document.getElementById("docPopupContainer");
+                  let mask = document.getElementById("docPopupContainerMask");
+                  popupContainer.classList.add("active");
+                  mask.classList.add("active");
+
+                  // Mostro il documento
+                  const iframeOld = document.getElementById("docFrameOld");
+                  iframeOld.src = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=0";
+
+            };
+            updateButtonContainer.appendChild(updateButton);
+            return updateButtonContainer;
       }
 
       /**

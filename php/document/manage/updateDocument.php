@@ -15,12 +15,11 @@ include_once $projectDir.'php/utils/executePreparedStatement.php';
 $id = $_POST['id'];
 $oldExtension = $_POST['oldExtension'];
 $newTitle = $_POST['newTitle'];
-$newSubitle = is_null($_POST['newSubtitle']) ? NULL : $_POST['newSubtitle'];
+$newSubitle = ($_POST['newSubtitle'] == "") ? NULL : $_POST['newSubtitle'];
 $newExtension;
 
-$fileChanged = isset($_FILES['newFile']);
 // Controlla se il file è stato cambiato
-echo "File changed: " . ($fileChanged ? "Y" : "N");
+$fileChanged = isset($_FILES['newFile']);
 
 if($fileChanged){
       $newFile = $_FILES['newFile'];
