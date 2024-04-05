@@ -4,7 +4,7 @@ class Statistics{
        * Costruttore della classe statistics
        * @param {HTMLElement} GraphContainer Elemento HTML che andrà a contnere il grafico
        */
-      constructor(GraphContainer){
+      constructor(GraphContainer, NoResultSection){
             // Array di statistiche da mostrare
             this.statistics = [];
 
@@ -13,6 +13,9 @@ class Statistics{
 
             // Container del grafico
             this.graphContainer = GraphContainer;
+
+            // Sezione con l'immagine da mostrare quando non ci sono risultati
+            this.noResultSection = NoResultSection;
       
             // Larghezza dell'elemento più grande, in relazione percentuale con la larghezza del container
             this.maxWidthPercentage = 70;
@@ -79,13 +82,23 @@ class Statistics{
       }
 
       constructGraph(){
+            const noResultSection = document.getElementById("no-result");
+
             if(this.statistics.length == 0){
-                  this.graphContainer.innerHTML = "Nessun grafico da mostrare :(";
+                  // Informo che non ci sono risultati
+                  this.graphContainer.innerText = "Nessun grafico da mostrare :(";
+                  
+                  // E mostro l'immagine
+                  this.noResultSection.style.display = "block";
+
                   return;
             }
 
             // Cancello il contenuto del container
             this.graphContainer.innerHTML = "";
+
+            // Nascondo l'immagine
+            this.noResultSection.style.display = "none";
 
             // Genero il titolo del grafico
             let graphTitle = document.createElement("h3");
