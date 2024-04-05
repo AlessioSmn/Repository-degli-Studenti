@@ -123,6 +123,10 @@ include "php/logControl/loginControl.php";
       <section id="graphContainer" class="graph-container">
             <!-- graph -->
       </section>
+
+      <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
+      <section id="no-result" class="no-result">
+      </section>
       
       <footer>
             <div class="left-section">
@@ -154,7 +158,7 @@ include "php/logControl/loginControl.php";
 
       <script>
 
-            const statsController = new Statistics(document.getElementById("graphContainer"));
+            const statsController = new Statistics(document.getElementById("graphContainer"), document.getElementById("no-result"));
 
             let Target = 3;
             let Group = 1;

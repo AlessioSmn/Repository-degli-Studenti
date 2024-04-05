@@ -108,7 +108,7 @@ include "php/logControl/loginControl.php";
       </div>
       
       <!-- Maschera e container per la visualizzazione in popup -->
-      <section>
+      <section class="popup-section">
             <!-- Aggiungo la closePopup() anche alla maschera così che si possa chiudere il popup premendo sullo sfondo oscurato -->
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container personal">
