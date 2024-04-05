@@ -3,7 +3,7 @@
 <head>
       <meta charset="utf-8">
       <title>Repository studenti</title>
-      <link rel="stylesheet" type="text/CSS" href="css/themes/dark.css" id="theme">
+      <link rel="stylesheet" type="text/CSS" href="css/themes/light.css" id="theme">
       <link rel="stylesheet" type="text/CSS" href="css/general.css">
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
@@ -50,7 +50,7 @@
                         <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('light')">Chiaro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('pantone')">Pantone</a>
-                        <a class="navbar-dropdown-option" onclick="setTheme('custom')">Neon</a>
+                        <a class="navbar-dropdown-option" onclick="setTheme(CUSTOM_THEME)">Custom</a>
                   </div>
             </div>
       </nav>

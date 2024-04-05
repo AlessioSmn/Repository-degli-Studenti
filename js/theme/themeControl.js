@@ -4,10 +4,12 @@ let brightBackground = false;
 
 // Controllo se è stato impostato un tema nel localStorage
 let theme = window.localStorage.getItem('theme');
+
+// In tal caso lo imposto
 if (theme)
       applyTheme(theme);
 
-// Modifico il logo solo a pagina caricata
+// e modifico il logo, ma solo a pagina caricata
 document.addEventListener('DOMContentLoaded', adaptLogo);
 
 /**
