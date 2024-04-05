@@ -7,17 +7,11 @@
       --foreColor_light: #ffffff;
       --foreColor_dark: #aeaeae;
 
-      --primary: #005fb3;
-      --primary_light: #0075db;
-      --primary_dark: #004d91;
+      --primary: #0067c2;
+      --primary_light: #0a83ee;
+      --primary_dark: #045caa;
 
-      --secondary: #bf4a73;
-      --secondary_light: #ca698b;
-      --secondary_dark: #922149;
-
-      --tertiary: #39b577;
-      --tertiary_light: #5fc391;
-      --tertiary_dark: #258254;
-      
-      --shadow: #101010;
+      --secondary: #00b975;
+      --secondary_light: #10df93;
+      --secondary_dark: #018a58;
 }
