@@ -49,6 +49,7 @@ const subjectNameTextField = document.getElementById("mainText");
 // NB: si lascia all'utente il buon senso di mettere minCFU <= maxCFU, 
 //          in caso contrario banalmente non ci saranno risultati
 const subjectNameControl = document.getElementById("subName");
+const degreeNameControl = document.getElementById("degName");
 const subjectMinCFUvalue = document.getElementById("minCFUvalue");
 const subjectMaxCFUvalue = document.getElementById("maxCFUvalue");
 const subjectMinCFUcontrol = document.getElementById("minCFUcheck");
@@ -83,10 +84,12 @@ function prepareFetchArgumentsText(){
       // Materia
       if(subjectNameControl.checked)
             argsArray.push(["subName", 1]);
+      if(degreeNameControl.checked)
+            argsArray.push(["degName", 1]);
       let minCFU = parseInt(subjectMinCFUvalue.innerHTML);
-      let maxCFU = parseInt(subjectMaxCFUvalue.innerHTML);
       if(subjectMinCFUcontrol.checked)
             argsArray.push(["minCFU", minCFU]);
+      let maxCFU = parseInt(subjectMaxCFUvalue.innerHTML);
       if(subjectMaxCFUcontrol.checked)
             argsArray.push(["maxCFU", maxCFU]);
 
