@@ -6,7 +6,8 @@ body{
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 2px solid purple;
+      padding: 5px 0px;
+      background-color: var(--bgColor);
 }
 .page-index-element{
       width: 40px;

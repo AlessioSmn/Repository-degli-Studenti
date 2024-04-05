@@ -6,7 +6,9 @@
 }
 
 /* Popup per la visualizzazione del documento */
-
+section.popup-section{
+      padding: 0px;
+}
 .doc-popup-container {
       display: none;
       position: fixed;

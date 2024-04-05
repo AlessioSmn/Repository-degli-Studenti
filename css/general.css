@@ -163,3 +163,13 @@ legend{
       letter-spacing: normal;
       font-weight: bold;
 }
+
+/* Sezione nella quale precaricare un'immagine da mostrare quando non ci sono risultati */
+section.no-result{
+      height: 400px;
+      background-image: url('../media/.png/no-results.png');
+      background-size: 20% auto;
+      background-repeat: no-repeat;
+      background-position: center center;
+      display: none;
+}
