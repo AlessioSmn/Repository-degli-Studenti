@@ -26,30 +26,6 @@ article, section{
       flex: 1;
 }
 
-/* Search page */
-#searchByTextString fieldset{
-      height: auto;
-      transition: 0.2s;
-}
-#searchByTextString .closeFieldset{
-      float:right;
-      width: 30px;
-      height: 30px;
-      line-height: 10px;
-      text-align: center;
-      padding: 0px;
-      border-width: 2px;
-      border-color: #ff0000;
-      background-color: #ff5e5e;
-      font-weight: 900;
-      border-radius: 100px;
-}
-#searchByTextString .closeFieldset:hover{
-      background-color: #ff5e5e;
-      background-image: linear-gradient(90deg, red 40%, #ff5e5e 60%);
-}
-
-
 /* Elementi comuni */
 
 select, input, button, a.button-like {
@@ -179,18 +155,11 @@ input[type="file"]::-webkit-file-upload-button:active{
 /* Tag relativi ai form */
 fieldset{
       margin: 20px 0px;
-      border-width: 2px;
-      border-style: solid;
-      border-color: var(--primary_light);
-      border-radius: 0px;
+      border-width: 0px;
       line-height: 30px;
 }
 legend{
-      font-weight: bold;
       padding: 0px 20px;
       letter-spacing: normal;
-      transition: 0.2s;
-}
-fieldset:hover legend{
-      padding-right: 80px;
+      font-weight: bold;
 }

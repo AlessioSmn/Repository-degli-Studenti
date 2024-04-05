@@ -44,8 +44,6 @@ include "php/logControl/loginControl.php";
             }
             .match-options fieldset{
                   flex: 3; /* Tre fiedset affiancati */
-                  display: flex;
-                  display: flex;
                   flex-direction: row;
                   border: 0px;
                   border-right-width: 1px;
