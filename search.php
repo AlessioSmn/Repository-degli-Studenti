@@ -127,9 +127,12 @@ include "php/logControl/loginControl.php";
 
       <!-- Ricerca per nome della materia -->
       <section id="searchByTextString" style="display:block;" class="search-method">
+                        <div class="form-grid-data-row">
             <label for="mainText">Testo: </label>
             <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
+                        </div>
 
+            <label>Campi di ricerca</label>
             <div class="match-options">
                   <!-- Vincoli sulla materia -->
                   <fieldset>
@@ -139,28 +142,8 @@ include "php/logControl/loginControl.php";
                               <label for="subName">Cerca per nome della materia</label>
                         </div>
                         <div class="form-grid-data-row">
-                              <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
-                              <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
-                        </div>
-                        <div id="minCFUcontainer" class="form-grid-data-row" style="display: none;">
-                              <label>Limite:</label>
-                              <div class="cfu-filter">
-                                    <button onclick="changeCFUvalue(-1, 'min')">-</button>
-                                    <label id="minCFUvalue">6</label>
-                                    <button onclick="changeCFUvalue(+1, 'min')">+</button>
-                              </div>
-                        </div>
-                        <div class="form-grid-data-row">
-                              <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
-                              <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
-                        </div>
-                        <div id="maxCFUcontainer" class="form-grid-data-row" style="display: none;">
-                              <label>Limite</label>
-                              <div class="cfu-filter">
-                                    <button onclick="changeCFUvalue(-1, 'max')">-</button>
-                                    <label id="maxCFUvalue">12</label>
-                                    <button onclick="changeCFUvalue(+1, 'max')">+</button>
-                              </div>
+                              <input id="degName" type="checkbox">
+                              <label for="degName">Cerca per nome del corso di studi</label>
                         </div>
                   </fieldset>
 
@@ -187,6 +170,50 @@ include "php/logControl/loginControl.php";
                         <div class="form-grid-data-row">
                               <input id="docSubtitle" type="checkbox">
                               <label for="docSubtitle">Cerca per sottotitolo del documento</label>
+                        </div>
+                  </fieldset>
+            </div>
+            <label>Filtri</label>
+            <div class="match-options filter">
+
+                  <!-- Vincoli sui CFU -->
+                  <fieldset>
+                        <legend>CFU</legend>
+                        <div class="form-grid-data-row">
+                              <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
+                              <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
+                        </div>
+                        <div id="minCFUcontainer" class="form-grid-data-row" style="display: none;">
+                              <label>Limite:</label>
+                              <div class="cfu-filter">
+                                    <button onclick="changeCFUvalue(-1, 'min')">-</button>
+                                    <label id="minCFUvalue">6</label>
+                                    <button onclick="changeCFUvalue(+1, 'min')">+</button>
+                              </div>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
+                              <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
+                        </div>
+                        <div id="maxCFUcontainer" class="form-grid-data-row" style="display: none;">
+                              <label>Limite</label>
+                              <div class="cfu-filter">
+                                    <button onclick="changeCFUvalue(-1, 'max')">-</button>
+                                    <label id="maxCFUvalue">12</label>
+                                    <button onclick="changeCFUvalue(+1, 'max')">+</button>
+                              </div>
+                        </div>
+                  </fieldset>
+
+                  <!-- Estensione del documento -->
+                  <fieldset>
+                        <legend>Estensione</legend>
+                        <div class="form-grid-data-row">
+                              <label for="docExtention">Estensione</label>
+                              <select name="docExtention" id="docExtention" multiple>
+                                    <option value="pdf">pdf</option>
+                                    <option value="txt">txt</option>
+                              </select>
                         </div>
                   </fieldset>
             </div>
@@ -223,15 +250,19 @@ include "php/logControl/loginControl.php";
             <!-- -->
       </section>
 
+      <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
+      <section id="no-result" class="no-result">
+      </section>
+
       <!-- Indici di pagina -->
-      <section class="page-index-container">
+      <section id="page-index-section" class="page-index-container" style="display:none;">
             <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
             <div id="page-index-container" class="page-index-container"></div>
             <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
       </section>
       
       <!-- Maschera e container per la visualizzazione in popup -->
-      <section>
+      <section class="popup-section">
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container search">
                   <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
@@ -273,6 +304,8 @@ include "php/logControl/loginControl.php";
       <script src="js/document/pageSubdivision/pageHandling.js"></script>
 
       <script>
+
+      const documentVisualizer = document.getElementById("documentVisualizer");
 
       /* Metodo di ricerca */
 
@@ -349,7 +382,7 @@ include "php/logControl/loginControl.php";
             
                   visualizeDocuments(
                         DOC_SLICE, 
-                        document.getElementById("documentVisualizer"),
+                        documentVisualizer,
                         VisualizationType, 
                         true
                   );
@@ -362,13 +395,15 @@ include "php/logControl/loginControl.php";
       let DOCUMENTS = [];
       let DOC_SLICE = [];
 
-      let blockDimensionStandard = 10;
+      let blockDimensionStandard = 12;
 
       let pageHandler = new PageHandler(document.getElementById("page-index-container"));
 
-      let orderingField = document.getElementById("documentOrderingField");
-      let orderingAscending = document.getElementById("documentOrderAscending");
+      const orderingField = document.getElementById("documentOrderingField");
+      const orderingAscending = document.getElementById("documentOrderAscending");
       let ascendingOrder = true;
+
+      const noResultSection = document.getElementById("no-result");
 
       /**
        * Effettua la ricerca dei documenti, li ordina secondo l'ordinamento scelto e mostra solo il primo blocco
@@ -380,12 +415,20 @@ include "php/logControl/loginControl.php";
                   case 'text':
                         retrieveDocumentsByTextField().then(docs => {
                               if (docs === false || docs.length == 0){
-                                    document.getElementById("documentVisualizer").innerText = "Nessun risultato :(";
-                                    document.getElementById("page-index-container").innerText = "";
+                                    // COmunico che non ci sono risultati
+                                    documentVisualizer.innerText = "Nessun risultato :(";
+                                    // Aggiungo un'immagine per far vedere che non ci sono risultati
+                                    noResultSection.style.display = "block";
+
+                                    // Nascondo l'indice di pagina
+                                    document.getElementById("page-index-section").style.display = "none";
                                     DOCUMENTS = [];
                                     DOC_SLICE = [];
                                     return;
                               }
+                              // Torno a mostrare l'indice di pagina in maniera normale
+                              document.getElementById("page-index-section").removeAttribute("style");
+                              noResultSection.style.display = "none";
                               
                               DOCUMENTS = docs;
 
@@ -404,12 +447,16 @@ include "php/logControl/loginControl.php";
                   case 'subject':
                         retrieveDocumentsBySubject().then(docs => {
                               if (docs === false || docs.length == 0){
-                                    document.getElementById("documentVisualizer").innerText = "Nessun risultato :(";
-                                    document.getElementById("page-index-container").innerText = "";
+                                    // COmunico che non ci sono risultati
+                                    documentVisualizer.innerText = "Nessun risultato :(";
+                                    // Nascondo l'indice di pagina
+                                    document.getElementById("page-index-section").style.display = "none";
                                     DOCUMENTS = [];
                                     DOC_SLICE = [];
                                     return;
                               }
+                              // Torno a mostrare l'indice di pagina in maniera normale
+                              document.getElementById("page-index-section").removeAttribute("style");
                               
                               DOCUMENTS = docs;
 
@@ -495,7 +542,7 @@ include "php/logControl/loginControl.php";
 
             visualizeDocuments(
                   DOC_SLICE, 
-                  document.getElementById("documentVisualizer"),
+                  documentVisualizer,
                   VisualizationType, 
                   true
             );
@@ -507,7 +554,7 @@ include "php/logControl/loginControl.php";
             
             visualizeDocuments(
                   DOC_SLICE, 
-                  document.getElementById("documentVisualizer"),
+                  documentVisualizer,
                   VisualizationType, 
                   true
             );
@@ -523,7 +570,7 @@ include "php/logControl/loginControl.php";
             
             visualizeDocuments(
                   DOC_SLICE, 
-                  document.getElementById("documentVisualizer"),
+                  documentVisualizer,
                   VisualizationType, 
                   true
             );
