@@ -32,5 +32,10 @@
 }
 
 .show-password{
-      font-size: xx-large;
+      border-radius: 25%;
+      background-image: url('../media/.png/hide.png');
+      background-size: 60% auto;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 18px;
 }

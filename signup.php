@@ -112,7 +112,7 @@
                                     pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
-                              <button type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password">&#128065;</button>
+                              <button id="showpwd1" type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password"></button>
                         </div>
                         <div class="form-grid-data-row">
                               <label for="passwordRepeat">Ripeti la password</label>
@@ -124,7 +124,7 @@
                                     pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="Ripeti la password">
-                              <button type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password">&#128065;</button>
+                              <button id="showpwd2" type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password"></button>
                         </div>
                   </fieldset>
                   <div class="form-grid-bottom-rows">
@@ -161,12 +161,24 @@
       function showPassword(id){
             // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
             // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
-            let pwd = document.getElementById(id);
-            pwd.type = 'text';
+
+            // Mostro la password
+            const pwdInputElement = document.getElementById(id);
+            pwdInputElement.type = 'text';
+
+            // E cambio l'immagine del bottone
+            const hideShowPassword = document.getElementById('show' + id);
+            hideShowPassword.style.backgroundImage = 'url(media/.png/show.png)';
+
       }
       function hidePassword(id){
-            let pwd = document.getElementById(id);
-            pwd.type = 'password';
+            // Nascondo la password
+            const pwdInputElement = document.getElementById(id);
+            pwdInputElement.type = 'password';
+
+            // E cambio l'immagine del bottone
+            const hideShowPassword = document.getElementById('show' + id);
+            hideShowPassword.style.backgroundImage = 'url(media/.png/hide.png)';
       }
 
       let regexPwdDigitCheck = "(?=.*[0-9])";
