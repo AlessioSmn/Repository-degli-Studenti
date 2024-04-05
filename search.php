@@ -394,6 +394,10 @@ include "php/logControl/loginControl.php";
 
                               // 3) Mostro solo il primo blocco
                               mainFirstVisualization();
+
+                              // 4) Scorro la pagina fino ai documenti
+                              const documentVisualization = document.getElementById('visualizationMode');
+                              documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
                         });
                         break;
 
@@ -414,6 +418,10 @@ include "php/logControl/loginControl.php";
 
                               // 3) Mostro solo il primo blocco
                               mainFirstVisualization();
+
+                              // 4) Scorro la pagina fino ai documenti
+                              const documentVisualization = document.getElementById('visualizationMode');
+                              documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
                         });
                         break;
 
@@ -445,13 +453,17 @@ include "php/logControl/loginControl.php";
             );
       }
       function changeFieldOrder(){
-           // 0) I documenti sono già presenti in DOCUMENTS
+            // 0) I documenti sono già presenti in DOCUMENTS
 
             // 1) Riordino l'array dei documenti
             mainOrdering();
 
             // 2) Mostro il nuovo primo blocco
             mainFirstVisualization();
+
+            // 3) Scorro la pagina fino ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
       function flipOrder(){
             orderingAscending.innerHTML = ascendingOrder ? '&#11205;' : '&#11206;';
@@ -464,6 +476,10 @@ include "php/logControl/loginControl.php";
 
             // 2) Mostro il nuovo primo blocco
             mainFirstVisualization();
+
+            // 3) Scorro la pagina fino ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
 
       
@@ -496,8 +512,9 @@ include "php/logControl/loginControl.php";
                   true
             );
 
-            // Riporto l'utente in cima alla lista di documenti
-            location.href = "#visualizationMode";
+            // Riporto la pagina in cima ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
       function previousPage(){
             DOC_SLICE = pageHandler.visualizePreviousBlock();
@@ -511,8 +528,9 @@ include "php/logControl/loginControl.php";
                   true
             );
 
-            // Riporto l'utente in cima alla lista di documenti
-            location.href = "#visualizationMode";
+            // Riporto la pagina in cima ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
 
       /* Possibilità di scorrere le pagine utilizzando le frecce */

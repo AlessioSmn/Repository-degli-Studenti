@@ -89,7 +89,7 @@ include "php/logControl/loginControl.php";
       <!-- Tipo di visualizzazione -->
       <section id="visualizationMode" class="switch-option">
             <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+            <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected">
                   <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
                   <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
             </div>
@@ -162,7 +162,7 @@ include "php/logControl/loginControl.php";
       let DOCUMENTS = [];
       let DOC_SLICE = [];
 
-      let blockDimensionStandard = 8;
+      let blockDimensionStandard = 16;
 
       let pageHandler = new PageHandler(document.getElementById("page-index-container"));
 
@@ -202,7 +202,8 @@ include "php/logControl/loginControl.php";
             );
 
             // Riporto l'utente in cima alla lista di documenti
-            location.href = "#visualizationMode";
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
       function previousPage(){
             DOC_SLICE = pageHandler.visualizePreviousBlock();
@@ -217,15 +218,16 @@ include "php/logControl/loginControl.php";
             );
 
             // Riporto l'utente in cima alla lista di documenti
-            location.href = "#visualizationMode";
+            const documentVisualization = document.getElementById('visualizationMode');
+            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
             
       /* Tipo di visualizzazione dei documenti */
 
       const VISUALIZATION_BLOCK     = 'block';
       const VISUALIZATION_COMPACT   = 'compact';
-      let VisualizationType = VISUALIZATION_BLOCK;
-      let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
+      const visualizationTypeContainer = document.getElementById("visualization-types-options-container");
+      let VisualizationType = VISUALIZATION_COMPACT; // di default inizio con quella compatta
       /*
        * Cambia il tipo di visualizzazione dei documenti
        * @param {HTMLElement} CallerElement Elenento chiamante
