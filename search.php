@@ -43,7 +43,7 @@ include "php/logControl/loginControl.php";
                   align-items: stretch;
             }
             .match-options fieldset{
-                  flex: 3; /* Tre fiedset affiancati */
+                  flex: 5; /* Tre fiedset affiancati */
                   flex-direction: row;
                   border: 0px;
                   border-right-width: 1px;
@@ -127,10 +127,10 @@ include "php/logControl/loginControl.php";
 
       <!-- Ricerca per nome della materia -->
       <section id="searchByTextString" style="display:block;" class="search-method">
-                        <div class="form-grid-data-row">
-            <label for="mainText">Testo: </label>
-            <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)">
-                        </div>
+            <div class="form-grid-data-row">
+                  <label for="mainText">Testo: </label>
+                  <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)" style="width: 50%; height: 50px; flex: none;">
+            </div>
 
             <label>Campi di ricerca</label>
             <div class="match-options">
@@ -172,9 +172,6 @@ include "php/logControl/loginControl.php";
                               <label for="docSubtitle">Cerca per sottotitolo del documento</label>
                         </div>
                   </fieldset>
-            </div>
-            <label>Filtri</label>
-            <div class="match-options filter">
 
                   <!-- Vincoli sui CFU -->
                   <fieldset>
@@ -218,7 +215,9 @@ include "php/logControl/loginControl.php";
                   </fieldset>
             </div>
 
-            <button onclick="mainSearch('text')">Cerca</button>
+            <div class="form-grid-bottom-rows">
+                  <button onclick="mainSearch('text')">Cerca</button>
+            </div>
 
       </section>
 
