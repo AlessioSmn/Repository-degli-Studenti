@@ -111,6 +111,18 @@
       
 }
 
+/* Numero di donwload */
+.doc-compact-extension{
+      font-variant: small-caps;
+}
+
+/* Numero di donwload */
+.doc-compact-extension-title{
+      display: inline;
+      font-weight: bold;
+      font-variant: small-caps;
+}
+
 /* Vari bottoni */
 .additional-info-container button{
       margin: auto;

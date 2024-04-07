@@ -133,14 +133,18 @@ class Document{
             // Classe del container
             container.classList.add("doc-compact-container");
             
+            // Estensione del documento
+            if(Public)
+                  container.appendChild(this.documentVisualizerCompact_extension_title());
+
             // Titolo del documento
             container.appendChild(this.documentVisualizerCompact_title());
+      
+            // Sottotitolo del documento
+            if(this.subtitle != null)
+                  container.appendChild(this.documentVisualizerCompact_subtitle());
 
             if(Public){
-
-                  // Sottotitolo del documento
-                  if(this.subtitle != null)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
 
                   // Autore del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_owner());
@@ -151,6 +155,7 @@ class Document{
                   // Corso di laurea del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
 
+
                   // Bottone per il download
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
 
@@ -159,6 +164,7 @@ class Document{
                   
                   // Bottone per l'apertura in un popup
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
+
 
                   // Numero di download del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
@@ -172,16 +178,16 @@ class Document{
             }
 
             else {
-      
-                  // Sottotitolo del documento
-                  if(this.subtitle != null)
-                        additionalInfoContainer.appendChild(this.documentVisualizerCompact_subtitle());
 
                   // Materia del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
 
                   // Corso di laurea del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+                  
+                  // Estensione del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_extension());
+
 
                   // Data di upload del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
@@ -189,21 +195,23 @@ class Document{
                   // Data di modifica del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
 
-                  // Bottone per il download
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+                  // Bottone per l'eliminazione del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
 
-                  // Bottone per l'apertura in nuova pagina
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
 
                   // Numero di download del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
 
-                  // Bottone per l'eliminazione del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
+                  // Bottone per l'apertura in nuova pagina
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
 
                   // Bottone per la modifica del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_updateButton());
 
+                  /*
+                  // Bottone per il download
+                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+                  */
             }
 
             container.appendChild(additionalInfoContainer);
@@ -592,10 +600,6 @@ class Document{
 
             let subtitleElement = document.createElement("div");
 
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Sottotitolo ";
-            subtitleElement.appendChild(elementDescription);
-
             let elementContent = document.createElement("span");
             elementContent.innerText = this.subtitle;
             subtitleElement.appendChild(elementContent);
@@ -678,6 +682,40 @@ class Document{
 
             downloadsElement.classList.add("doc-compact-downloads");
             return downloadsElement;
+      }
+
+      /**
+       * Ritorna un elemento HTML stilizzato contenente l'estensione del documento
+       * @return {HTMLElement}
+       */
+      documentVisualizerCompact_extension(){
+            let extensionElement = document.createElement("div");
+
+            let elementDescription = document.createElement("span");
+            elementDescription.innerText = "Estensione ";
+            extensionElement.appendChild(elementDescription);
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.extension;
+            extensionElement.appendChild(elementContent);
+
+            extensionElement.classList.add("doc-compact-extension");
+            return extensionElement;
+      }
+
+      /**
+       * Ritorna un elemento HTML stilizzato contenente l'estensione del documento
+       * @return {HTMLElement}
+       */
+      documentVisualizerCompact_extension_title(){
+            let extensionElement = document.createElement("div");
+
+            let elementContent = document.createElement("span");
+            elementContent.innerText = this.extension;
+            extensionElement.appendChild(elementContent);
+
+            extensionElement.classList.add("doc-compact-extension-title");
+            return extensionElement;
       }
 
       /**

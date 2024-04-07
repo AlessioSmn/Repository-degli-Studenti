@@ -8,22 +8,29 @@
 
 .search-order {
       border: 2px solid fuchsia;
+      display: flex;
 }
 .search-order > *{
-      height: 50px;
+      height: 40px;
       margin: 0px;
+      background-color: var(--primary);
 }
-.search-order > .flip-order{
-      width: 50px;
-      padding: 0px; 
-      text-align:center; 
-      border: 2px solid greenyellow;
-      border-left: 0px;
-      border-radius: 0px 10px 10px 0px;
+.search-order > *:hover{
+      background-color: var(--secondary);
 }
 
 .search-order > select{
-      border: 2px solid darkgoldenrod;
-      border-right: 0px;
-      border-radius: 10px 0px 0px 10px;
+      top: 0;
+      margin-right: 0px;
+      border: 0px;
+      border-radius: 15px 0px 0px 15px;
+}
+
+.search-order > .flip-order{
+      padding: 0px 20px;
+      margin-left: 0px;
+      border-left: 0px;
+      border-radius: 0px 15px 15px 0px;
+      font-size: larger;
+      line-height: 40px;
 }
