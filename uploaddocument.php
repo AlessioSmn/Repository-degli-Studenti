@@ -57,7 +57,7 @@ include "php/logControl/loginControl.php";
                   <span>Area personale<span>
                   <div class="navbar-dropdown-container">
                         <a href="personal.php" class="navbar-dropdown-option">Documenti</a>
-                        <a href="#" class="navbar-dropdown-option current-page">upload</a>
+                        <a href="#" class="navbar-dropdown-option current-page">Upload</a>
                         <a href="customize.html" class="navbar-dropdown-option">Tema custom</a>
                   </div>
             </div>
