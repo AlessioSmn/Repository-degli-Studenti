@@ -33,6 +33,44 @@ input[type="file"].pippo {
                         padding: 6px 12px;
                         cursor: pointer;
                       }
+
+                      .container {
+    position: relative;
+}
+
+.bottom-div, .top-div {
+    width: 100%;
+    height: 200px;
+}
+
+.bottom-div {
+    background-color: lightblue; /* Example background color */
+}
+
+.top-div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: transparent; /* Transparent background */
+    color: white; /* Text color */
+}
+.vertical-line{
+      content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background-color: black;
+}
+.vertical-line:nth-child(1){
+      left: 10px;
+}
+.vertical-line:nth-child(2){
+      left: 20px;
+}
+.vertical-line:nth-child(3){
+      left: 30px;
+}
   </style>
   <script>
       function toggleMenu() {
@@ -84,7 +122,15 @@ input[type="file"].pippo {
                   </div>
             </div>
       </nav>
-      
+      <div class="container">
+            <div class="bottom-div">
+                  <div class="vertical-line"></div>
+                  <div class="vertical-line"></div>
+                  <div class="vertical-line"></div>
+            </div>
+            <div class="top-div">Top Div Content with Text</div>
+        </div>
+        
       <article>
 
             CHANGED: <br>
