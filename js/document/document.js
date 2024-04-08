@@ -69,13 +69,13 @@ class Document{
 
             // Autore del documento
             if(Public)
-                  container.appendChild(this.documentVisualizerBlock_owner());
+                  container.appendChild(this.documentVisualizerBlock_standardElement(this.author, "Autore", "doc-block-owner"));
 
             // Materia del documento
-            container.appendChild(this.documentVisualizerBlock_subject());
+            container.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-block-subject"));
 
             // Corso di laurea del documento
-            container.appendChild(this.documentVisualizerBlock_degree());
+            container.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studi", "doc-block-degree"));
 
             // Bottone per il download
             container.appendChild(this.documentVisualizerBlock_downloadButton());
@@ -96,13 +96,16 @@ class Document{
             }
 
             // Numero di download del documento
-            container.appendChild(this.documentVisualizerBlock_downloads());
+            container.appendChild(this.documentVisualizerBlock_standardElement(this.extension, "Estensione", "doc-block-extension"));
+
+            // Numero di download del documento
+            container.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-block-downloads"));
 
             // Data di upload del documento
-            container.appendChild(this.documentVisualizerBlock_uploadDate());
+            container.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-block-dateinfo"));
 
             // Data di modifica del documento
-            container.appendChild(this.documentVisualizerBlock_modifiedDate());
+            container.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-block-dateinfo"));
 
             return container;
       }
@@ -147,13 +150,13 @@ class Document{
             if(Public){
 
                   // Autore del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_owner());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.author, "Autore", "doc-compact-owner"));
 
                   // Materia del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-compact-subject"));
 
                   // Corso di laurea del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
 
 
                   // Bottone per il download
@@ -167,40 +170,40 @@ class Document{
 
 
                   // Numero di download del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
 
                   // Data di upload del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
 
                   // Data di modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
                   
             }
 
             else {
 
                   // Materia del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_subject());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-compact-subject"));
 
                   // Corso di laurea del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_degree());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
                   
                   // Estensione del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_extension());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.extension, "Estensione", "doc-compact-extension"));
 
 
                   // Data di upload del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_uploadDate());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
 
                   // Data di modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_modifiedDate());
-
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
+                  
                   // Bottone per l'eliminazione del documento
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
 
 
                   // Numero di download del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloads());
+                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
 
                   // Bottone per l'apertura in nuova pagina
                   additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
@@ -362,87 +365,33 @@ class Document{
             subtitleElement.textContent = this.subtitle;
             subtitleElement.classList.add("doc-block-subtitle");
             return subtitleElement;
-      } 
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente l'autore del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_owner(){
-            let ownerElement = document.createElement("p");
-            ownerElement.textContent = this.author;
-            ownerElement.classList.add("doc-block-owner");
-            return ownerElement;
       }
 
       /**
-       * Ritorna un elemento HTML stilizzato contenente la materia del documento
-       * @return {HTMLElement}
+       * Crea un conatiner con una breve descrizione del contenuto e il contenuto / dati in sè
+       * @param {String} Content Il contenuto da mostrare
+       * @param {String} Info Una breve descrizione del contenuto
+       * @param {String} cssClass Class css da applicare al container
+       * @return {HTMLElement} Ritorna il container
        */
-      documentVisualizerBlock_subject(){
-            let subjectElement = document.createElement("p");
-            subjectElement.textContent = this.subject;
-            subjectElement.classList.add("doc-block-subject");
-            return subjectElement;
-      }
+      documentVisualizerBlock_standardElement(Content, Info, cssClass){
+            // Container
+            const elementContainer = document.createElement("p");
+            elementContainer.classList.add(cssClass);
 
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il corso di laurea del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_degree(){
-            let degreeElement = document.createElement("p");
-            degreeElement.textContent = this.degree;
-            degreeElement.classList.add("doc-block-degree");
-            return degreeElement;
-      }
+            // Informazione sul contenuto 
+            if(Info.length > 0){
+                  const elementInfo = document.createElement("span");
+                  elementInfo.textContent = Info + ' ';
+                  elementContainer.appendChild(elementInfo);
+            }
 
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il numero di download del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_downloads(){
-            const downloadsElement = document.createElement("p");
-            const downloadsElementText = document.createElement("span");
-            const downloadsElementNumber = document.createElement("span");
-            downloadsElementText.textContent = "Downloads ";
-            downloadsElementNumber.textContent = this.downloads;
-            downloadsElement.classList.add("doc-block-downloads");
-            downloadsElement.appendChild(downloadsElementText);
-            downloadsElement.appendChild(downloadsElementNumber);
-            return downloadsElement;
-      }
+            // Contenuto
+            const elementContent = document.createElement("span");
+            elementContent.textContent = Content;
+            elementContainer.appendChild(elementContent);
 
-      /**
-       * Ritorna un elemento HTML stilizzato contenente la data di upload del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_uploadDate(){
-            const uploadElement = document.createElement("p");
-            const uploadElementText = document.createElement("span");
-            const uploadElementValue = document.createElement("span");
-            uploadElementText.textContent = "Data di creazione ";
-            uploadElementValue.textContent = italianDate(this.uploadDate);
-            uploadElement.classList.add("doc-block-dateinfo");
-            uploadElement.appendChild(uploadElementText);
-            uploadElement.appendChild(uploadElementValue);
-            return uploadElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente la data dell'ultima modifica del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_modifiedDate(){
-            const modifiedElement = document.createElement("p");
-            const modifiedElementText = document.createElement("span");
-            const modifiedElementValue = document.createElement("span");
-            modifiedElementText.textContent = "Data ultima modifica ";
-            modifiedElementValue.textContent = italianDate(this.lastModifiedDate);
-            modifiedElement.classList.add("doc-block-dateinfo");
-            modifiedElement.appendChild(modifiedElementText);
-            modifiedElement.appendChild(modifiedElementValue);
-            return modifiedElement;
+            return elementContainer;
       }
       
       
@@ -701,6 +650,33 @@ class Document{
 
             extensionElement.classList.add("doc-compact-extension");
             return extensionElement;
+      }
+
+      /**
+       * Crea un conatiner con una breve descrizione del contenuto e il contenuto / dati in sè
+       * @param {String} Content Il contenuto da mostrare
+       * @param {String} Info Una breve descrizione del contenuto
+       * @param {String} cssClass Class css da applicare al container
+       * @return {HTMLElement} Ritorna il container
+       */
+      documentVisualizerCompact_standardElement(Content, Info, cssClass){
+            // Container
+            const elementContainer = document.createElement("div");
+            elementContainer.classList.add(cssClass);
+
+            // Informazione sul contenuto 
+            if(Info.length > 0){
+                  const elementInfo = document.createElement("span");
+                  elementInfo.textContent = Info + ' ';
+                  elementContainer.appendChild(elementInfo);
+            }
+
+            // Contenuto
+            const elementContent = document.createElement("span");
+            elementContent.textContent = Content;
+            elementContainer.appendChild(elementContent);
+
+            return elementContainer;
       }
 
       /**

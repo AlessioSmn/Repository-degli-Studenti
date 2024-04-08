@@ -39,7 +39,7 @@
       font-variant: small-caps;
 }
 .doc-block-container span:nth-child(2){
-      font-weight: bold;
+      font-weight: 450;
 }
 .doc-block-container button{
       background-color: var(--bgColor);
@@ -54,6 +54,7 @@
       font-size: larger;
       margin: 0px 0px 0px 20px;
       display: inline;
+      font-weight: bold;
 }
 .doc-block-subtitle{
       font-size: medium;
@@ -62,23 +63,24 @@
 }
 
 /* Autore del documento */
-.doc-block-owner{
+.doc-block-owner *:nth-child(2){
       font-style: italic;
+      font-weight: normal !important;
 }
 
 /* Materia del documento */
 .doc-block-subject{
-      text-decoration: dashed;
+      
 }
 
 /* Corso di Studi del documento */
 .doc-block-degree{
-      text-decoration: underline;
+      
 }
 
 /* Informazioni 'temporali' sul documento (upload e ultima modifica) */
 .doc-block-dateinfo {
-      line-height: 10px;
+      
 }
 .doc-block-dateinfo *:nth-child(2){
       font-style: italic;
@@ -88,6 +90,10 @@
 /* Numero di donwload */
 .doc-block-downloads{
       
+}
+.doc-block-extension *:nth-child(2){
+      font-variant: small-caps;
+      font-weight: bold;
 }
 
 /* Bottone per la modifica del documento */

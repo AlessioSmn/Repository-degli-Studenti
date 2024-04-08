@@ -96,7 +96,7 @@ include "php/logControl/loginControl.php";
             <!-- Ricerca per materia specifica -->
             <div id="searchBySubject" style="display:none;" class="search-method form-grid">
                   <div class="form-grid-data-row">
-                        <label for="degree_selector">Corso di studi:</label>
+                        <label for="degree_selector">Corso di studio:</label>
                         <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required> </select>
                   </div>
                   <div class="form-grid-data-row">
@@ -126,7 +126,7 @@ include "php/logControl/loginControl.php";
                               </div>
                               <div class="form-grid-data-row">
                                     <input id="degName" type="checkbox">
-                                    <label for="degName">Cerca per nome del corso di studi</label>
+                                    <label for="degName">Cerca per nome del corso di studio</label>
                               </div>
                         </fieldset>
 
