@@ -103,7 +103,7 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione corso di laurea di selezione -->
             <div id="selection-degree" class="form-grid-data-row" style="display:none">
-                  <label for="selection-degree">Corso di studi</label>
+                  <label for="selection-degree">Corso di studio</label>
                   <div name="selection-degree" class="switch-option-container">
                         <select id="degree_selector" onchange="degreeSelected()" class="fill">
                         </select>
