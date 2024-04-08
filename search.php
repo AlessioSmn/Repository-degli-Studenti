@@ -37,28 +37,6 @@ include "php/logControl/loginControl.php";
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
 
-      <style>
-            .match-options{
-                  display: flex;
-                  align-items: stretch;
-            }
-            .match-options fieldset{
-                  flex: 5; /* Tre fiedset affiancati */
-                  flex-direction: row;
-                  border: 0px;
-                  border-right-width: 1px;
-            }
-            .match-options fieldset > *{
-                  flex: 1;
-            }
-            .cfu-filter button{
-                  border-radius: 20px;
-                  height: 30px;
-                  width: 30px;
-                  padding: 0px;
-                  line-height: 30px;
-            }
-      </style>
 </head>
 <body onload="retrieveDegrees()">
 
@@ -101,106 +79,148 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <!-- Metodo di ricerca -->
-      <section class="switch-option" style="border:2px solid green;">
-            <span>Scegli un metodo di ricerca</span>
-            <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
-                  <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
-                  <div onclick="displaySearchMode(this, 2)" class="switch-option n2">TESTO</div>
+      <section class="search-options">
+
+            <div class="left-side-options">
+
+                  <!-- Metodo di ricerca -->
+                  <div class="switch-option">
+                        <label>Scegli un metodo di ricerca</label>
+                        <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
+                              <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
+                              <div onclick="displaySearchMode(this, 2)" class="switch-option n2">TESTO</div>
+                        </div>
+                  </div>
+            </div>
+
+            <!-- Ricerca per materia specifica -->
+            <div id="searchBySubject" style="display:none;" class="search-method form-grid">
+                  <div class="form-grid-data-row">
+                        <label for="degree_selector">Corso di studi:</label>
+                        <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required> </select>
+                  </div>
+                  <div class="form-grid-data-row">
+                        <label for="subject_selector">Materia:</label>
+                        <select id="subject_selector" name="subject_selector" required disabled></select>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button onclick="mainSearch('subject')">Cerca</button>
+                  </div>
+            </div>
+
+            <!-- Ricerca per nome della materia -->
+            <div id="searchByTextString" style="display:block;" class="search-method">
+                  <div class="form-grid-data-row">
+                        <label for="mainText">Testo: </label>
+                        <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)" style="width: 50%; height: 50px; flex: none;">
+                  </div>
+
+                  <label>Campi di ricerca</label>
+                  <div class="match-options">
+                        <!-- Vincoli sulla materia -->
+                        <fieldset>
+                              <legend>Materia</legend>
+                              <div class="form-grid-data-row">
+                                    <input id="subName" type="checkbox" checked>
+                                    <label for="subName">Cerca per nome della materia</label>
+                              </div>
+                              <div class="form-grid-data-row">
+                                    <input id="degName" type="checkbox">
+                                    <label for="degName">Cerca per nome del corso di studi</label>
+                              </div>
+                        </fieldset>
+
+                        <!-- Vincoli sull'autore -->
+                        <fieldset>
+                              <legend>Autore</legend>
+                              <div class="form-grid-data-row">
+                                    <input id="userName" type="checkbox">
+                                    <label for="userName">Cerca per nome dell'autore</label>
+                              </div>
+                              <div class="form-grid-data-row">
+                                    <input id="userMail" type="checkbox">
+                                    <label for="userMail">Cerca per mail dell'autore</label>
+                              </div>
+                        </fieldset>
+
+                        <!-- Vincoli sul documento -->
+                        <fieldset>
+                              <legend>Documento</legend>
+                              <div class="form-grid-data-row">
+                                    <input id="docTitle" type="checkbox" checked>
+                                    <label for="docTitle">Cerca per titolo del documento</label>
+                              </div>
+                              <div class="form-grid-data-row">
+                                    <input id="docSubtitle" type="checkbox">
+                                    <label for="docSubtitle">Cerca per sottotitolo del documento</label>
+                              </div>
+                        </fieldset>
+
+                        <!-- Vincoli sui CFU -->
+                        <fieldset>
+                              <legend>CFU</legend>
+                              <div class="form-grid-data-row">
+                                    <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
+                                    <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
+                              </div>
+                              <div id="minCFUcontainer" class="form-grid-data-row" style="display: none;">
+                                    <label>Limite:</label>
+                                    <div class="cfu-filter">
+                                          <button onclick="changeCFUvalue(-1, 'min')">-</button>
+                                          <label id="minCFUvalue">6</label>
+                                          <button onclick="changeCFUvalue(+1, 'min')">+</button>
+                                    </div>
+                              </div>
+                              <div class="form-grid-data-row">
+                                    <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
+                                    <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
+                              </div>
+                              <div id="maxCFUcontainer" class="form-grid-data-row" style="display: none;">
+                                    <label>Limite</label>
+                                    <div class="cfu-filter">
+                                          <button onclick="changeCFUvalue(-1, 'max')">-</button>
+                                          <label id="maxCFUvalue">12</label>
+                                          <button onclick="changeCFUvalue(+1, 'max')">+</button>
+                                    </div>
+                              </div>
+                        </fieldset>
+                  </div>
+
+                  <div class="form-grid-bottom-rows">
+                        <button onclick="mainSearch('text')">Cerca</button>
+                  </div>
+
             </div>
       </section>
 
-      <!-- Ricerca per materia specifica -->
-      <section id="searchBySubject" style="display:none;" class="search-method form-grid">
-            <div class="form-grid-data-row">
-                  <label for="degree_selector">Corso di studi:</label>
-                  <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required> </select>
-            </div>
-            <div class="form-grid-data-row">
-                  <label for="subject_selector">Materia:</label>
-                  <select id="subject_selector" name="subject_selector" required disabled></select>
-            </div>
-            <div class="form-grid-bottom-rows">
-                  <button onclick="mainSearch('subject')">Cerca</button>
-            </div>
-      </section>
+      <section class="search-results">
 
-      <!-- Ricerca per nome della materia -->
-      <section id="searchByTextString" style="display:block;" class="search-method">
-            <div class="form-grid-data-row">
-                  <label for="mainText">Testo: </label>
-                  <input id="mainText" name="mainText" type="text" placeholder="es: analisi" onkeydown="onTextEntered(event)" style="width: 50%; height: 50px; flex: none;">
-            </div>
+            <div class="left-side-options">
 
-            <label>Campi di ricerca</label>
-            <div class="match-options">
-                  <!-- Vincoli sulla materia -->
-                  <fieldset>
-                        <legend>Materia</legend>
-                        <div class="form-grid-data-row">
-                              <input id="subName" type="checkbox" checked>
-                              <label for="subName">Cerca per nome della materia</label>
+                  <!-- Tipo di visualizzazione -->
+                  <div id="visualizationMode" class="switch-option">
+                        <label>Metodo di visualizzazione</label>
+                        <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
+                              <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
+                              <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
                         </div>
-                        <div class="form-grid-data-row">
-                              <input id="degName" type="checkbox">
-                              <label for="degName">Cerca per nome del corso di studi</label>
-                        </div>
-                  </fieldset>
+                  </div>
 
-                  <!-- Vincoli sull'autore -->
-                  <fieldset>
-                        <legend>Autore</legend>
-                        <div class="form-grid-data-row">
-                              <input id="userName" type="checkbox">
-                              <label for="userName">Cerca per nome dell'autore</label>
-                        </div>
-                        <div class="form-grid-data-row">
-                              <input id="userMail" type="checkbox">
-                              <label for="userMail">Cerca per mail dell'autore</label>
-                        </div>
-                  </fieldset>
+                  <!-- Ordinamento dei risultati -->
+                  <label>Campo di ordinamento</label>
+                  <select id="documentOrderingField" onchange="changeFieldOrder()">
+                        <option value="downloads">Numero di download</option>
+                        <option value="title">Titolo del documento</option>
+                        <option value="subject">Nome della materia</option>
+                        <option value="degree">Nome del corso di laurea</option>
+                        <option value="author">Mail dell'autore</option>
+                        <option value="uploadDate">Data di caricamento</option>
+                        <option value="lastModifiedDate">Ultima modifica</option>
+                  </select>
 
-                  <!-- Vincoli sul documento -->
-                  <fieldset>
-                        <legend>Documento</legend>
-                        <div class="form-grid-data-row">
-                              <input id="docTitle" type="checkbox" checked>
-                              <label for="docTitle">Cerca per titolo del documento</label>
-                        </div>
-                        <div class="form-grid-data-row">
-                              <input id="docSubtitle" type="checkbox">
-                              <label for="docSubtitle">Cerca per sottotitolo del documento</label>
-                        </div>
-                  </fieldset>
-
-                  <!-- Vincoli sui CFU -->
-                  <fieldset>
-                        <legend>CFU</legend>
-                        <div class="form-grid-data-row">
-                              <input id="minCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('min')">
-                              <label for="minCFUcheck">Imponi un limite minimo di CFU: </label>
-                        </div>
-                        <div id="minCFUcontainer" class="form-grid-data-row" style="display: none;">
-                              <label>Limite:</label>
-                              <div class="cfu-filter">
-                                    <button onclick="changeCFUvalue(-1, 'min')">-</button>
-                                    <label id="minCFUvalue">6</label>
-                                    <button onclick="changeCFUvalue(+1, 'min')">+</button>
-                              </div>
-                        </div>
-                        <div class="form-grid-data-row">
-                              <input id="maxCFUcheck" type="checkbox" onchange="toggleLabelCFUvisibility('max')">
-                              <label for="maxCFUcheck">Imponi un limite massimo di CFU: </label>
-                        </div>
-                        <div id="maxCFUcontainer" class="form-grid-data-row" style="display: none;">
-                              <label>Limite</label>
-                              <div class="cfu-filter">
-                                    <button onclick="changeCFUvalue(-1, 'max')">-</button>
-                                    <label id="maxCFUvalue">12</label>
-                                    <button onclick="changeCFUvalue(+1, 'max')">+</button>
-                              </div>
-                        </div>
-                  </fieldset>
+                  <label>Ordine dei documenti</label>
+                  <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">Crescente</button>
+                  
 
                   <!-- Estensione del documento -->
                   <fieldset>
@@ -214,52 +234,25 @@ include "php/logControl/loginControl.php";
                         </div>
                   </fieldset>
             </div>
+            <div>
+                  <!-- Visualizzazione dei documenti -->
+                  <section id="documentVisualizer">
+                        <!-- -->
+                  </section>
 
-            <div class="form-grid-bottom-rows">
-                  <button onclick="mainSearch('text')">Cerca</button>
-            </div>
+                  <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
+                  <div id="no-result" class="no-result">
+                  </div>
 
-      </section>
-
-      <!-- Ordinamento dei risultati -->
-      <section class="search-order">
-            <select id="documentOrderingField" onchange="changeFieldOrder()">
-                  <option value="downloads">Numero di download</option>
-                  <option value="title">Titolo del documento</option>
-                  <option value="subject">Nome della materia</option>
-                  <option value="degree">Nome del corso di laurea</option>
-                  <option value="author">Mail dell'autore</option>
-                  <option value="uploadDate">Data di caricamento</option>
-                  <option value="lastModifiedDate">Ultima modifica</option>
-            </select>
-            <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">&#11206;</button>
-      </section>
-
-      <!-- Tipo di visualizzazione -->
-      <section id="visualizationMode" class="switch-option">
-            <span>Scegli un metodo di visualizzazione</span>
-            <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
-                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
-                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
+                  <!-- Indici di pagina -->
+                  <div id="page-index-section" class="page-index-container" style="display:none;">
+                        <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
+                        <div id="page-index-container" class="page-index-container"></div>
+                        <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
+                  </div>
             </div>
       </section>
 
-      <!-- Visualizzazione dei documenti -->
-      <section id="documentVisualizer">
-            <!-- -->
-      </section>
-
-      <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
-      <section id="no-result" class="no-result">
-      </section>
-
-      <!-- Indici di pagina -->
-      <section id="page-index-section" class="page-index-container" style="display:none;">
-            <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
-            <div id="page-index-container" class="page-index-container"></div>
-            <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
-      </section>
-      
       <!-- Maschera e container per la visualizzazione in popup -->
       <section class="popup-section">
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
@@ -512,7 +505,7 @@ include "php/logControl/loginControl.php";
             documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
       }
       function flipOrder(){
-            orderingAscending.innerHTML = ascendingOrder ? '&#11205;' : '&#11206;';
+            orderingAscending.innerHTML = ascendingOrder ? 'Crescente &#11205;' : ' Decrescente &#11206;';
             ascendingOrder = !ascendingOrder;
 
            // 0) I documenti sono già presenti in DOCUMENTS

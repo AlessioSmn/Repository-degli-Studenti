@@ -23,7 +23,6 @@ a{
 article, section{
       padding: 10px;
       background-color: var(--bgColor);
-      flex: 1;
 }
 
 /* Elementi comuni */

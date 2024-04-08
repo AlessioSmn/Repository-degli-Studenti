@@ -18,6 +18,9 @@
       background-size: 300% 105%;
       transition: 0.1s;
 }
+.doc-compact-container:first-child{
+      margin-top: 10px;
+}
 .doc-compact-container:nth-child(even){
       background-color: var(--primary);
 }

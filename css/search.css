@@ -1,36 +1,77 @@
-/* Metodo di ricerca */
-.search-method {
-      border: 2px solid violet;
+/* Container principali della pagina di ricerca */
+.search-options,
+.search-results {
+      display: flex;
+      align-items: stretch;
+      padding: 0px;
+}
+.search-options > *{
+      padding-bottom: 50px;
+}
+.search-options *,
+.search-results *{
+      margin-left: 0px;
+      margin-right: 0px;
+}
+.search-options .switch-option-container,
+.search-results .switch-option-container{
+      width: 80%;
+      margin-left: 10%;
+}
+.search-options > *:first-child,
+.search-results > *:first-child {
+      flex-basis: 20%;
+      padding: 0px 20px;
+      box-sizing: border-box;
+      border-right: 2px solid var(--primary);
+      background-color: var(--bgColor);
+}
+.search-options > .search-method,
+.search-results > *:nth-child(2){
+      flex: 1;
+      padding: 10px;
+      background-color: var(--bgColor_light);
 }
 
+/* Metodo di ricerca */
+.search-method {
+}
+
+
+
+.match-options{
+      display: flex;
+      align-items: stretch;
+}
+.match-options fieldset{
+      flex: 2; /* ci fiedset affiancati */
+      flex-direction: row;
+      border: 0px;
+      border-right-width: 1px;
+}
+.match-options fieldset > *{
+      flex: 1;
+}
+.cfu-filter button{
+      border-radius: 20px;
+      height: 30px;
+      width: 30px;
+      padding: 0px;
+      line-height: 30px;
+}
 
 /* Ordinamento dei risultati */
 
-.search-order {
-      border: 2px solid fuchsia;
-      display: flex;
-}
-.search-order > *{
-      height: 40px;
-      margin: 0px;
-      background-color: var(--primary);
-}
-.search-order > *:hover{
-      background-color: var(--secondary);
+.search-results select{
+      margin-left: 10%;
+      width: 80%;
+      border-radius: 5px;
 }
 
-.search-order > select{
-      top: 0;
-      margin-right: 0px;
-      border: 0px;
-      border-radius: 15px 0px 0px 15px;
-}
-
-.search-order > .flip-order{
-      padding: 0px 20px;
-      margin-left: 0px;
-      border-left: 0px;
-      border-radius: 0px 15px 15px 0px;
-      font-size: larger;
-      line-height: 40px;
+.flip-order{
+      width: 80%;
+      margin-left: 10%;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      border-radius: 5px;
 }
