@@ -33,6 +33,9 @@ function uploadDocument(event) {
                   window.alert("Errore nell'upload del documento");
             }
       })
-      .catch(error => console.error("Errore nell'upload del file: ", error));
+      .catch(error => {
+            console.error("Errore nell'upload del file: ", error);
+            window.alert("Errore nell'upload del documento");
+      });
       
 }
