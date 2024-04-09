@@ -7,6 +7,7 @@ body{
       justify-content: center;
       align-items: center;
       padding: 5px 0px;
+      border-radius: 0px 0px 5px 5px;
       background-color: var(--bgColor);
 }
 .page-index-element{
@@ -18,9 +19,13 @@ body{
       margin: 0 5px;
       line-height: 40px;
       text-align: center;
+      transition: 0.2s;
 }
 .page-index-element.shifter{
       background-color: var(--primary);
+}
+.page-index-element.shifter:hover{
+      background-color: var(--secondary);
 }
 .page-index-element.current{
       background-color: var(--primary_light);

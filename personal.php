@@ -87,11 +87,11 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Tipo di visualizzazione -->
-      <section id="visualizationMode" class="switch-option">
+      <section id="visualizationMode">
             <span>Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected">
-                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
-                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img src="media/.png/blocco.png"></div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img src="media/.png/lista.png"></div>
             </div>
       </section>
 
