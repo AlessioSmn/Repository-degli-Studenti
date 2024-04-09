@@ -1,8 +1,3 @@
-<?php 
-$prevDir = "";
-$pageName = "index.php";
-include "php/logControl/loginControl.php";
-?>
 <!DOCTYPE html>
 <html lang="it">
 <head>
