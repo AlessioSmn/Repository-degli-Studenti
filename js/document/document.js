@@ -69,43 +69,43 @@ class Document{
 
             // Autore del documento
             if(Public)
-                  container.appendChild(this.documentVisualizerBlock_standardElement(this.author, "Autore", "doc-block-owner"));
+                  container.appendChild(this.documentVisualizer_standardElement(this.author, "Autore", "doc-block-owner"));
 
             // Materia del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-block-subject"));
+            container.appendChild(this.documentVisualizer_standardElement(this.subject, "Materia", "doc-block-subject"));
 
             // Corso di laurea del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studi", "doc-block-degree"));
+            container.appendChild(this.documentVisualizer_standardElement(this.degree, "Corso di studi", "doc-block-degree"));
 
             // Bottone per il download
-            container.appendChild(this.documentVisualizerBlock_downloadButton());
+            container.appendChild(this.documentVisualizer_downloadButton());
 
             // Bottone per l'apertura in nuova pagina
-            container.appendChild(this.documentVisualizerBlock_openNewPageButton());
+            container.appendChild(this.documentVisualizer_openNewPageButton());
             
             // Bottone per l'apertura in un popup
             if(Public)
-                  container.appendChild(this.documentVisualizerBlock_openPopupButton());
+                  container.appendChild(this.documentVisualizer_openPopupButton());
 
             if(!Public){
                   // Bottone per la modifica del documento
-                  container.appendChild(this.documentVisualizerBlock_updateButton());
+                  container.appendChild(this.documentVisualizer_updateButton());
 
                   // Bottone per l'eliminazione del documento
-                  container.appendChild(this.documentVisualizerBlock_deleteButton());
+                  container.appendChild(this.documentVisualizer_deleteButton());
             }
 
             // Numero di download del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(this.extension, "Estensione", "doc-block-extension"));
+            container.appendChild(this.documentVisualizer_standardElement(this.extension, "Estensione", "doc-block-extension"));
 
             // Numero di download del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-block-downloads"));
+            container.appendChild(this.documentVisualizer_standardElement(this.downloads, "Downloads", "doc-block-downloads"));
 
             // Data di upload del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-block-dateinfo"));
+            container.appendChild(this.documentVisualizer_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-block-dateinfo"));
 
             // Data di modifica del documento
-            container.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-block-dateinfo"));
+            container.appendChild(this.documentVisualizer_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-block-dateinfo"));
 
             return container;
       }
@@ -150,71 +150,66 @@ class Document{
             if(Public){
 
                   // Autore del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.author, "Autore", "doc-compact-owner"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.author, "Autore", "doc-compact-owner"));
 
                   // Materia del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-compact-subject"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.subject, "Materia", "doc-compact-subject"));
 
                   // Corso di laurea del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
 
 
                   // Bottone per il download
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
+                  additionalInfoContainer.appendChild(this.documentVisualizer_downloadButton());
 
                   // Bottone per l'apertura in nuova pagina
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
+                  additionalInfoContainer.appendChild(this.documentVisualizer_openNewPageButton());
                   
                   // Bottone per l'apertura in un popup
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openPopupButton());
+                  additionalInfoContainer.appendChild(this.documentVisualizer_openPopupButton());
 
 
                   // Numero di download del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
 
                   // Data di upload del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
 
                   // Data di modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
                   
             }
 
             else {
 
                   // Materia del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.subject, "Materia", "doc-compact-subject"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.subject, "Materia", "doc-compact-subject"));
 
                   // Corso di laurea del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.degree, "Corso di studio", "doc-compact-degree"));
                   
                   // Estensione del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.extension, "Estensione", "doc-compact-extension"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.extension, "Estensione", "doc-compact-extension"));
 
 
                   // Data di upload del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(italianDate(this.uploadDate), "Data di creazione", "doc-compact-dateinfo"));
 
                   // Data di modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
                   
                   // Bottone per l'eliminazione del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_deleteButton());
+                  additionalInfoContainer.appendChild(this.documentVisualizer_deleteButton());
 
 
                   // Numero di download del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerBlock_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
+                  additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(this.downloads, "Downloads", "doc-compact-downloads"));
 
                   // Bottone per l'apertura in nuova pagina
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_openNewPageButton());
+                  additionalInfoContainer.appendChild(this.documentVisualizer_openNewPageButton());
 
                   // Bottone per la modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_updateButton());
-
-                  /*
-                  // Bottone per il download
-                  additionalInfoContainer.appendChild(this.documentVisualizerCompact_downloadButton());
-                  */
+                  additionalInfoContainer.appendChild(this.documentVisualizer_updateButton());
             }
 
             container.appendChild(additionalInfoContainer);
@@ -222,150 +217,6 @@ class Document{
             return container;
       }
 
-            
-      /**
-       * Ritorna un bottone per la cancellazione del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_deleteButton(){
-            let id = this.id;
-            let ext = this.extension;
-            let deleteButton = document.createElement("button");
-            deleteButton.textContent = "Elimina il documento";
-            deleteButton.classList.add("doc-delete-button");
-            deleteButton.onclick = function() {
-                  deleteDocument(id, ext);
-            };
-            return deleteButton;
-      }
-            
-      /**
-       * Ritorna un bottone per la modifica del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_updateButton(){
-            let id = this.id;
-            let ext = this.extension;
-            let title = this.title;
-            let subtitle = this.subtitle;
-            let updateButton = document.createElement("button");
-            updateButton.textContent = "Modifica il documento";
-            updateButton.classList.add("doc-update-button");
-            updateButton.onclick = function() {
-                  const updateForm = document.getElementById("updateForm");
-                  
-                  // Imposto i campi ai valori attuali
-                  const titleInput = updateForm.querySelector("input[name='title']");
-                  const subtitleInput = updateForm.querySelector("input[name='subtitle']");
-                  const docId = updateForm.querySelector("input[name='docId']");
-                  const docExtension = updateForm.querySelector("input[name='docExtension']");
-                  titleInput.value = title;
-                  subtitleInput.value = subtitle;
-                  docId.value = id;
-                  docExtension.value = ext;
-
-                  // Titilo del documento come titolo della pagina di popup
-                  const frameTitle = document.getElementById("docFrameTitle");
-                  frameTitle.innerText = title;
-
-                  // Mostro il popup e la maschera sottostante (mettendo display:block)
-                  let popupContainer = document.getElementById("docPopupContainer");
-                  let mask = document.getElementById("docPopupContainerMask");
-                  popupContainer.classList.add("active");
-                  mask.classList.add("active");
-
-                  // Mostro il documento
-                  const iframeOld = document.getElementById("docFrameOld");
-                  iframeOld.src = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=0";
-
-            };
-            return updateButton;
-      }
-
-      /**
-       * Ritorna un bottone per il download del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_downloadButton(){
-            let id = this.id;
-            let ext = this.extension;
-            let title = this.title;
-            let downloadButton = document.createElement("button");
-            downloadButton.textContent = "Scarica";
-            downloadButton.onclick = function(){
-                  let documentUrl = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=1";
-                  window.open(documentUrl, "_blank");
-            }
-            return downloadButton;
-      }
-
-      /**
-       * Ritorna un bottone per l'apertura in nuova pagina del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_openNewPageButton(){
-            let id = this.id;
-            let ext = this.extension;
-            let title = this.title;
-            let openButton = document.createElement("button");
-            openButton.textContent = "Apri il documento";
-            openButton.onclick = function(){
-                  let documentUrl = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title+ "&mode=0";
-                  window.open(documentUrl, "_blank");
-            }
-            return openButton;
-      }
-
-      /**
-       * Ritorna un bottone per l'apertura di un iframe del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_openPopupButton(){
-            let id = this.id;
-            let ext = this.extension;
-            let title = this.title;
-            let popupButton = document.createElement("button");
-            popupButton.textContent = "Apri in frame";
-            popupButton.onclick = function(){
-                  // Mostro il popup e la maschera sottostante (mettendo display:block)
-                  let popupContainer = document.getElementById("docPopupContainer");
-                  let mask = document.getElementById("docPopupContainerMask");
-                  popupContainer.classList.add("active");
-                  mask.classList.add("active");
-
-                  let iframe = document.getElementById("docFrame");
-                  iframe.src = 'php/document/manage/downloadDocument.php?id=' + id + '&ext=' + ext + "&title=" + title + "&mode=0";
-
-                  let frameTitle = document.getElementById("docFrameTitle");
-                  frameTitle.innerText = title;
-            }
-            return popupButton;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il titolo del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerBlock_title(){
-            let titleElement = document.createElement("p");
-            titleElement.textContent = this.title;
-            titleElement.classList.add("doc-block-title");
-            return titleElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il sottotitolo del documento
-       * @return {HTMLElement|null}
-       */
-      documentVisualizerBlock_subtitle(){
-            if(this.subtitle == null)
-                  return;
-
-            let subtitleElement = document.createElement("p");
-            subtitleElement.textContent = this.subtitle;
-            subtitleElement.classList.add("doc-block-subtitle");
-            return subtitleElement;
-      }
 
       /**
        * Crea un conatiner con una breve descrizione del contenuto e il contenuto / dati in sè
@@ -374,7 +225,7 @@ class Document{
        * @param {String} cssClass Class css da applicare al container
        * @return {HTMLElement} Ritorna il container
        */
-      documentVisualizerBlock_standardElement(Content, Info, cssClass){
+      documentVisualizer_standardElement(Content, Info, cssClass){
             // Container
             const elementContainer = document.createElement("p");
             elementContainer.classList.add(cssClass);
@@ -393,15 +244,12 @@ class Document{
 
             return elementContainer;
       }
-      
-      
-
-
+            
       /**
        * Ritorna un bottone per la cancellazione del documento
        * @return {HTMLElement}
        */
-      documentVisualizerCompact_deleteButton(){
+      documentVisualizer_deleteButton(){
             let id = this.id;
             let ext = this.extension;
             let deleteButtonContainer = document.createElement("div");
@@ -409,7 +257,9 @@ class Document{
             deleteButton.textContent = "Elimina il documento";
             deleteButton.classList.add("doc-delete-button");
             deleteButton.onclick = function() {
-                  deleteDocument(id, ext);
+                  let completeDelete = window.confirm("Vuoi eliminare questo documento?");
+                  if(completeDelete)
+                        deleteDocument(id, ext);
             };
             deleteButtonContainer.appendChild(deleteButton);
             return deleteButtonContainer;
@@ -419,7 +269,7 @@ class Document{
        * Ritorna un bottone per la modifica del documento
        * @return {HTMLElement}
        */
-      documentVisualizerCompact_updateButton(){
+      documentVisualizer_updateButton(){
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
@@ -466,7 +316,7 @@ class Document{
        * Ritorna un bottone per il download del documento
        * @return {HTMLElement}
        */
-      documentVisualizerCompact_downloadButton(){
+      documentVisualizer_downloadButton(){
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
@@ -485,7 +335,7 @@ class Document{
        * Ritorna un bottone per l'apertura in nuova pagina del documento
        * @return {HTMLElement}
        */
-      documentVisualizerCompact_openNewPageButton(){
+      documentVisualizer_openNewPageButton(){
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
@@ -504,7 +354,7 @@ class Document{
        * Ritorna un bottone per l'apertura di un iframe del documento
        * @return {HTMLElement}
        */
-      documentVisualizerCompact_openPopupButton(){
+      documentVisualizer_openPopupButton(){
             let id = this.id;
             let ext = this.extension;
             let title = this.title;
@@ -526,6 +376,31 @@ class Document{
             }
             popupButtonContainer.appendChild(popupButton);
             return popupButtonContainer;
+      }
+
+      /**
+       * Ritorna un elemento HTML stilizzato contenente il titolo del documento
+       * @return {HTMLElement}
+       */
+      documentVisualizerBlock_title(){
+            let titleElement = document.createElement("p");
+            titleElement.textContent = this.title;
+            titleElement.classList.add("doc-block-title");
+            return titleElement;
+      }
+
+      /**
+       * Ritorna un elemento HTML stilizzato contenente il sottotitolo del documento
+       * @return {HTMLElement|null}
+       */
+      documentVisualizerBlock_subtitle(){
+            if(this.subtitle == null)
+                  return;
+
+            let subtitleElement = document.createElement("p");
+            subtitleElement.textContent = this.subtitle;
+            subtitleElement.classList.add("doc-block-subtitle");
+            return subtitleElement;
       }
 
       /**
@@ -555,128 +430,6 @@ class Document{
 
             subtitleElement.classList.add("doc-compact-subtitle");
             return subtitleElement;
-      } 
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente l'autore del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_owner(){
-            let ownerElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Autore ";
-            ownerElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = this.author;
-            ownerElement.appendChild(elementContent);
-
-            ownerElement.classList.add("doc-compact-owner");
-            return ownerElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente la materia del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_subject(){
-            let subjectElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Materia ";
-            subjectElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = this.subject;
-            subjectElement.appendChild(elementContent);
-
-            subjectElement.classList.add("doc-compact-subject");
-            return subjectElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il corso di laurea del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_degree(){
-            let degreeElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Corso di studio ";
-            degreeElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = this.degree;
-            degreeElement.appendChild(elementContent);
-
-            degreeElement.classList.add("doc-compact-degree");
-            return degreeElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente il numero di download del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_downloads(){
-            let downloadsElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Downloads ";
-            downloadsElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = this.downloads;
-            downloadsElement.appendChild(elementContent);
-
-            downloadsElement.classList.add("doc-compact-downloads");
-            return downloadsElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente l'estensione del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_extension(){
-            let extensionElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Estensione ";
-            extensionElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = this.extension;
-            extensionElement.appendChild(elementContent);
-
-            extensionElement.classList.add("doc-compact-extension");
-            return extensionElement;
-      }
-
-      /**
-       * Crea un conatiner con una breve descrizione del contenuto e il contenuto / dati in sè
-       * @param {String} Content Il contenuto da mostrare
-       * @param {String} Info Una breve descrizione del contenuto
-       * @param {String} cssClass Class css da applicare al container
-       * @return {HTMLElement} Ritorna il container
-       */
-      documentVisualizerCompact_standardElement(Content, Info, cssClass){
-            // Container
-            const elementContainer = document.createElement("div");
-            elementContainer.classList.add(cssClass);
-
-            // Informazione sul contenuto 
-            if(Info.length > 0){
-                  const elementInfo = document.createElement("span");
-                  elementInfo.textContent = Info + ' ';
-                  elementContainer.appendChild(elementInfo);
-            }
-
-            // Contenuto
-            const elementContent = document.createElement("span");
-            elementContent.textContent = Content;
-            elementContainer.appendChild(elementContent);
-
-            return elementContainer;
       }
 
       /**
@@ -693,52 +446,14 @@ class Document{
             extensionElement.classList.add("doc-compact-extension-title");
             return extensionElement;
       }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente la data di upload del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_uploadDate(){
-            let uploadElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Upload ";
-            uploadElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = italianDate(this.uploadDate);
-            uploadElement.appendChild(elementContent);
-
-            uploadElement.classList.add("doc-compact-dateinfo");
-            return uploadElement;
-      }
-
-      /**
-       * Ritorna un elemento HTML stilizzato contenente la data dell'ultima modifica del documento
-       * @return {HTMLElement}
-       */
-      documentVisualizerCompact_modifiedDate(){
-            let modifiedElement = document.createElement("div");
-
-            let elementDescription = document.createElement("span");
-            elementDescription.innerText = "Ultima modifica ";
-            modifiedElement.appendChild(elementDescription);
-
-            let elementContent = document.createElement("span");
-            elementContent.innerText = italianDate(this.lastModifiedDate);
-            modifiedElement.appendChild(elementContent);
-
-            modifiedElement.classList.add("doc-compact-dateinfo");
-            return modifiedElement;
-      }
 }
 
 /**
  * Funzione che ordina un array di documenti (documents) secondo un campo passato come parametro
- * @param {Array} documents Array di documenti
- * @param {string} field Campo secondo il quale ordinare l'array
+ * @param {Array<Document>} documents Array di documenti
+ * @param {Array<String>} field Campo secondo il quale ordinare l'array
  * @param {boolean} ascending Specifica se l'rdine dev'essere crescente (true) o decrescente (false)
- * @return {null} Riordina l'array documents passato per riferimento
+ * @returns {null} Riordina l'array documents passato per riferimento
  */
 function sortDocuments(documents, field, ascending){
 
@@ -756,6 +471,49 @@ function sortDocuments(documents, field, ascending){
                   return a[field] > b[field] ? -1 : 1;
 
       });
+}
+
+/**
+ * Filtra l'array di Documenti secondo le estensioni inclusi nell'array
+ * @param {Array<Document>} Documents Array di documenti
+ * @param {Array<String>} Filters Array di estensioni
+ * @returns {Array<Document>} Ritorna l'array di documenti filtrato
+ */
+function filterDocuments(Documents, Filters){
+      let docFiltered = [];
+
+      // Scorro tutti i documenti
+      for(let doc of Documents){
+
+            // Scorro tutte le estensioni
+            for(let filter of Filters){
+
+                  // Se il documento ha una estensione tra quelle selezionate
+                  if(doc.extension == filter){
+                        docFiltered.push(doc);
+                        break;
+                  }
+            }
+      }
+
+      return docFiltered;
+}
+
+/**
+ * Dato un array di documenti restituisce tutte le estensioni che compaiono
+ * @param {Array<Document>} Documents Array di documenti
+ * @returns {Array<String>} Ritorna un array di estensioni
+ */
+function getAllExtensions(Documents){
+      // Set di estensioni per non avere duplicati
+      let extensions = new Set();
+
+      // Scorro tutti i documenti e aggiungo le loro estensioni
+      for(let doc of Documents)
+            extensions.add(doc.extension ? doc.extension : "{vuoto}");
+
+      // Ritorno l'array di estensioni senza duplicati
+      return Array.from(extensions);
 }
 
 /**

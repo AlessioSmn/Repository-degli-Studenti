@@ -84,7 +84,7 @@ include "php/logControl/loginControl.php";
             <div class="left-side-options">
 
                   <!-- Metodo di ricerca -->
-                  <div class="switch-option">
+                  <div>
                         <label>Scegli un metodo di ricerca</label>
                         <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
                               <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
@@ -198,11 +198,11 @@ include "php/logControl/loginControl.php";
             <div class="left-side-options">
 
                   <!-- Tipo di visualizzazione -->
-                  <div id="visualizationMode" class="switch-option">
+                  <div id="visualizationMode">
                         <label>Metodo di visualizzazione</label>
                         <div id="visualization-types-options-container" class="switch-option-container n2 option-1-selected">
-                              <div onclick="changeVisualizationType(this, 1)" class="switch-option n2">BLOCCHI</div>
-                              <div onclick="changeVisualizationType(this, 2)" class="switch-option n2">LISTA</div>
+                              <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img src="media/.png/blocco.png"></div>
+                              <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img src="media/.png/lista.png"></div>
                         </div>
                   </div>
 
@@ -225,14 +225,14 @@ include "php/logControl/loginControl.php";
                   <!-- Estensione del documento -->
                   <fieldset>
                         <legend>Estensione</legend>
-                        <div class="form-grid-data-row">
-                              <label for="docExtention">Estensione</label>
-                              <select name="docExtention" id="docExtention" multiple>
-                                    <option value="pdf">pdf</option>
-                                    <option value="txt">txt</option>
-                              </select>
-                        </div>
+                        <select name="docExtention" id="docExtentionFilter" multiple>
+                              <option value=".png">png</option>
+                              <option value=".jpg">jpg</option>
+                              <option value=".pdf">pdf</option>
+                              <option value=".docx">docx</option>
+                        </select>
                   </fieldset>
+                  <button onclick="FILTRA_RR()"></button>
             </div>
             <div>
                   <!-- Visualizzazione dei documenti -->
@@ -304,6 +304,7 @@ include "php/logControl/loginControl.php";
       const searchBySubject = document.getElementById("searchBySubject");
       const searchByText = document.getElementById("searchByTextString");
       const searchOptionsContainer = document.getElementById("search-method-options-container");
+      const extensionFilter = document.getElementById("docExtentionFilter");
       /**
        * Funzione per alternare tra le due modalità di ricerca presenti
        * @param {HTMLElement} CallerElement Elenento chiamante
@@ -383,9 +384,40 @@ include "php/logControl/loginControl.php";
 
       /* Ricerca dei documenti */
 
-      // Array dei documenti attualmente visualizzati
+      // Array di documenti ricavati dal server
       let DOCUMENTS = [];
+
+      // Array di documenti filtrati secondo estensione
+      let DOC_FILTERED = [];
+
+      // Array dei documenti attualmente visualizzati
       let DOC_SLICE = [];
+
+      function filterAndDisplayDocuments(){
+            // Creo un array con tutte le estension selezionate
+            let options = extensionFilter.options;
+            let chosenExtensions = [];
+            for(let option of options)
+                  if(option.selected)
+                        chosenExtensions.push(option.value);
+                  
+            if(chosenExtensions.length == 0){
+                  window.alert("Seleziona almeno una estensione");
+                  return;
+            }
+
+            DOC_FILTERED = filterDocuments(DOCUMENTS, chosenExtensions);
+
+            // Mostro il nuovo primo blocco
+            mainFirstVisualization();
+
+            // Scorro la pagina fino ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
+      }
 
       let blockDimensionStandard = 12;
 
@@ -407,22 +439,37 @@ include "php/logControl/loginControl.php";
                   case 'text':
                         retrieveDocumentsByTextField().then(docs => {
                               if (docs === false || docs.length == 0){
-                                    // COmunico che non ci sono risultati
+                                    // Comunico che non ci sono risultati
                                     documentVisualizer.innerText = "Nessun risultato :(";
+
                                     // Aggiungo un'immagine per far vedere che non ci sono risultati
                                     noResultSection.style.display = "block";
 
                                     // Nascondo l'indice di pagina
                                     document.getElementById("page-index-section").style.display = "none";
                                     DOCUMENTS = [];
+                                    DOC_FILTERED = [];
                                     DOC_SLICE = [];
                                     return;
                               }
+                              
+                              DOC_FILTERED = DOCUMENTS = docs;
+                              
                               // Torno a mostrare l'indice di pagina in maniera normale
                               document.getElementById("page-index-section").removeAttribute("style");
                               noResultSection.style.display = "none";
-                              
-                              DOCUMENTS = docs;
+
+                              // Popolo il select con le estensioni disponibili
+                              let extentions = getAllExtensions(DOCUMENTS);
+                              extensionFilter.innerHTML = "";
+                              for(let extention of extentions){
+                                    let extentionOption = document.createElement("option");
+                                    extentionOption.value = extention;
+                                    extentionOption.innerText = extention[0] == '.' ? extention.substring(1, extention.length) : extention;
+                                    extentionOption.selected = true;
+                                    extensionFilter.appendChild(extentionOption);
+                              }
+
 
                               // 2) Ordino l'array dei documenti
                               mainOrdering();
@@ -432,25 +479,35 @@ include "php/logControl/loginControl.php";
 
                               // 4) Scorro la pagina fino ai documenti
                               const documentVisualization = document.getElementById('visualizationMode');
-                              documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+                              window.scrollTo({
+                                    top: documentVisualization.offsetTop - 60,
+                                    behavior: 'smooth'
+                              });
                         });
                         break;
 
                   case 'subject':
                         retrieveDocumentsBySubject().then(docs => {
                               if (docs === false || docs.length == 0){
-                                    // COmunico che non ci sono risultati
+                                    // Comunico che non ci sono risultati
                                     documentVisualizer.innerText = "Nessun risultato :(";
+                                    
+                                    // Aggiungo un'immagine per far vedere che non ci sono risultati
+                                    noResultSection.style.display = "block";
+
                                     // Nascondo l'indice di pagina
                                     document.getElementById("page-index-section").style.display = "none";
                                     DOCUMENTS = [];
+                                    DOC_FILTERED = [];
                                     DOC_SLICE = [];
                                     return;
                               }
-                              // Torno a mostrare l'indice di pagina in maniera normale
-                              document.getElementById("page-index-section").removeAttribute("style");
                               
                               DOCUMENTS = docs;
+                              
+                              // Torno a mostrare l'indice di pagina in maniera normale
+                              document.getElementById("page-index-section").removeAttribute("style");
+                              noResultSection.style.display = "none";
 
                               // 2) Ordino l'array dei documenti
                               mainOrdering();
@@ -460,7 +517,10 @@ include "php/logControl/loginControl.php";
 
                               // 4) Scorro la pagina fino ai documenti
                               const documentVisualization = document.getElementById('visualizationMode');
-                              documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+                              window.scrollTo({
+                                    top: documentVisualization.offsetTop - 60,
+                                    behavior: 'smooth'
+                              });
                         });
                         break;
 
@@ -483,7 +543,7 @@ include "php/logControl/loginControl.php";
        * Funzione per l'ordinamento dell'array di documenti DOCUMENTS
        */
       function mainOrdering(){
-            // Nel caso dell'ordinamento per downloads (e altri campi numerici, ma è l'unico) credo sia più intuitivo invertira il senso dell'ordinamento
+            // Nel caso dell'ordinamento per downloads (e altri campi numerici, ma è l'unico) credo sia più intuitivo invertire il senso dell'ordinamento
             let order = orderingField.value != 'downloads' ? ascendingOrder : !ascendingOrder;
             sortDocuments(
                   DOCUMENTS, 
@@ -502,7 +562,10 @@ include "php/logControl/loginControl.php";
 
             // 3) Scorro la pagina fino ai documenti
             const documentVisualization = document.getElementById('visualizationMode');
-            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
       }
       function flipOrder(){
             orderingAscending.innerHTML = ascendingOrder ? 'Crescente &#11205;' : ' Decrescente &#11206;';
@@ -510,15 +573,18 @@ include "php/logControl/loginControl.php";
 
            // 0) I documenti sono già presenti in DOCUMENTS
 
-            // 1) Riordino l'array dei documenti
-            mainOrdering();
+            // 1) Inverto l'array dei documenti
+            DOC_FILTERED.reverse();
 
             // 2) Mostro il nuovo primo blocco
             mainFirstVisualization();
 
             // 3) Scorro la pagina fino ai documenti
             const documentVisualization = document.getElementById('visualizationMode');
-            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
       }
 
       
@@ -528,7 +594,7 @@ include "php/logControl/loginControl.php";
        * Funzione per il popolamento di una parte dei documenti, visualizzando la prima pagina
        */
       function mainFirstVisualization(){
-            DOC_SLICE = pageHandler.firstVisualization(DOCUMENTS, blockDimensionStandard);
+            DOC_SLICE = pageHandler.firstVisualization(DOC_FILTERED, blockDimensionStandard);
             if(DOC_SLICE === false)
                   return;
 
@@ -553,7 +619,10 @@ include "php/logControl/loginControl.php";
 
             // Riporto la pagina in cima ai documenti
             const documentVisualization = document.getElementById('visualizationMode');
-            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
       }
       function previousPage(){
             DOC_SLICE = pageHandler.visualizePreviousBlock();
@@ -569,7 +638,10 @@ include "php/logControl/loginControl.php";
 
             // Riporto la pagina in cima ai documenti
             const documentVisualization = document.getElementById('visualizationMode');
-            documentVisualization.scrollIntoView({ behavior: 'smooth', block: 'start'  });
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
       }
 
       /* Possibilità di scorrere le pagine utilizzando le frecce */
