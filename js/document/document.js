@@ -510,9 +510,10 @@ function getAllExtensions(Documents){
 
       // Scorro tutti i documenti e aggiungo le loro estensioni
       for(let doc of Documents)
-            extensions.add(doc.extension ? doc.extension : "{vuoto}");
+            extensions.add(doc.extension);
 
       // Ritorno l'array di estensioni senza duplicati
+      console.log(Array.from(extensions));
       return Array.from(extensions);
 }
 

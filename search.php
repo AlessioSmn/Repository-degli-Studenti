@@ -219,20 +219,16 @@ include "php/logControl/loginControl.php";
                   </select>
 
                   <label>Ordine dei documenti</label>
-                  <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">Crescente</button>
+                  <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">Decrescente &#11206;</button>
                   
 
                   <!-- Estensione del documento -->
                   <fieldset>
                         <legend>Estensione</legend>
                         <select name="docExtention" id="docExtentionFilter" multiple>
-                              <option value=".png">png</option>
-                              <option value=".jpg">jpg</option>
-                              <option value=".pdf">pdf</option>
-                              <option value=".docx">docx</option>
                         </select>
                   </fieldset>
-                  <button onclick="FILTRA_RR()"></button>
+                  <button onclick="filterAndDisplayDocuments()"></button>
             </div>
             <div>
                   <!-- Visualizzazione dei documenti -->
@@ -437,97 +433,71 @@ include "php/logControl/loginControl.php";
             // 1) Effettuo la richiesta dei documenti
             switch(method){
                   case 'text':
-                        retrieveDocumentsByTextField().then(docs => {
-                              if (docs === false || docs.length == 0){
-                                    // Comunico che non ci sono risultati
-                                    documentVisualizer.innerText = "Nessun risultato :(";
-
-                                    // Aggiungo un'immagine per far vedere che non ci sono risultati
-                                    noResultSection.style.display = "block";
-
-                                    // Nascondo l'indice di pagina
-                                    document.getElementById("page-index-section").style.display = "none";
-                                    DOCUMENTS = [];
-                                    DOC_FILTERED = [];
-                                    DOC_SLICE = [];
-                                    return;
-                              }
-                              
-                              DOC_FILTERED = DOCUMENTS = docs;
-                              
-                              // Torno a mostrare l'indice di pagina in maniera normale
-                              document.getElementById("page-index-section").removeAttribute("style");
-                              noResultSection.style.display = "none";
-
-                              // Popolo il select con le estensioni disponibili
-                              let extentions = getAllExtensions(DOCUMENTS);
-                              extensionFilter.innerHTML = "";
-                              for(let extention of extentions){
-                                    let extentionOption = document.createElement("option");
-                                    extentionOption.value = extention;
-                                    extentionOption.innerText = extention[0] == '.' ? extention.substring(1, extention.length) : extention;
-                                    extentionOption.selected = true;
-                                    extensionFilter.appendChild(extentionOption);
-                              }
-
-
-                              // 2) Ordino l'array dei documenti
-                              mainOrdering();
-
-                              // 3) Mostro solo il primo blocco
-                              mainFirstVisualization();
-
-                              // 4) Scorro la pagina fino ai documenti
-                              const documentVisualization = document.getElementById('visualizationMode');
-                              window.scrollTo({
-                                    top: documentVisualization.offsetTop - 60,
-                                    behavior: 'smooth'
-                              });
-                        });
+                        retrieveDocumentsByTextField().then(docs => PROCESS_DOCUMENTS(docs));
                         break;
 
                   case 'subject':
-                        retrieveDocumentsBySubject().then(docs => {
-                              if (docs === false || docs.length == 0){
-                                    // Comunico che non ci sono risultati
-                                    documentVisualizer.innerText = "Nessun risultato :(";
-                                    
-                                    // Aggiungo un'immagine per far vedere che non ci sono risultati
-                                    noResultSection.style.display = "block";
-
-                                    // Nascondo l'indice di pagina
-                                    document.getElementById("page-index-section").style.display = "none";
-                                    DOCUMENTS = [];
-                                    DOC_FILTERED = [];
-                                    DOC_SLICE = [];
-                                    return;
-                              }
-                              
-                              DOCUMENTS = docs;
-                              
-                              // Torno a mostrare l'indice di pagina in maniera normale
-                              document.getElementById("page-index-section").removeAttribute("style");
-                              noResultSection.style.display = "none";
-
-                              // 2) Ordino l'array dei documenti
-                              mainOrdering();
-
-                              // 3) Mostro solo il primo blocco
-                              mainFirstVisualization();
-
-                              // 4) Scorro la pagina fino ai documenti
-                              const documentVisualization = document.getElementById('visualizationMode');
-                              window.scrollTo({
-                                    top: documentVisualization.offsetTop - 60,
-                                    behavior: 'smooth'
-                              });
-                        });
+                        retrieveDocumentsBySubject().then(docs => PROCESS_DOCUMENTS(docs));
                         break;
 
                   // se il metodo non è riconsciuto non faccio niente
                   default:
                         return;
             }
+      }
+
+      function PROCESS_DOCUMENTS(Documents){
+            
+            // Se non ci sono risultati
+            if (Documents === false || Documents.length == 0){
+
+                  // Comunico che non ci sono risultati
+                  documentVisualizer.innerText = "Nessun risultato :(";
+
+                  // Aggiungo un'immagine per far vedere che non ci sono risultati
+                  noResultSection.style.display = "block";
+
+                  // Nascondo l'indice di pagina
+                  document.getElementById("page-index-section").style.display = "none";
+
+                  // Azzero tutti gli array di documenti
+                  DOCUMENTS = [];
+                  DOC_FILTERED = [];
+                  DOC_SLICE = [];
+
+                  return;
+            }
+                     
+            // Inzializzo l'array di documenti filtrato come tutti i documenti
+            DOC_FILTERED = DOCUMENTS = Documents;
+            
+            // Torno a mostrare l'indice di pagina in maniera normale
+            document.getElementById("page-index-section").removeAttribute("style");
+            noResultSection.style.display = "none";
+
+            // Popolo il select con le estensioni disponibili, tutte selezionate
+            let extentions = getAllExtensions(DOCUMENTS);
+            extensionFilter.innerHTML = "";
+            for(let extention of extentions){
+                  let extentionOption = document.createElement("option");
+                  extentionOption.value = extention;
+                  extentionOption.innerText = extention == '' ? "-" : extention;
+                  extentionOption.selected = true;
+                  extensionFilter.appendChild(extentionOption);
+            }
+
+            // 2) Ordino l'array dei documenti
+            mainOrdering();
+
+            // 3) Mostro solo il primo blocco
+            mainFirstVisualization();
+
+            // 4) Scorro la pagina fino ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
       }
 
       function onTextEntered(event){
