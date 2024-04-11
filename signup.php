@@ -128,7 +128,7 @@
                         </div>
                   </fieldset>
                   <div class="form-grid-bottom-rows">
-                        <button type="submit">Registrati</button>
+                        <button type="submit" class="important">Registrati</button>
                   </div>
                   <div class="form-grid-bottom-rows">
                         <button type="reset">Azzera i campi</button>

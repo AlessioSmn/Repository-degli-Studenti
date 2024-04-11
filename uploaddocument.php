@@ -106,7 +106,7 @@ include "php/logControl/loginControl.php";
                   </div>
             </fieldset>
             <div class="form-grid-bottom-rows">
-                  <button type="submit">Carica</button>
+                  <button type="submit" class="important">Carica</button>
             </div>
             <div class="form-grid-bottom-rows">
                   <button type="reset">Azzera i campi</button>

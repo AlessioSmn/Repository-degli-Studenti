@@ -68,7 +68,7 @@
                         <input type="password" name="password" required>
                   </div>
                   <div class="form-grid-bottom-rows">
-                        <button type="submit" id="submitLoginForm">Login</button>
+                        <button type="submit" id="submitLoginForm" class="important">Login</button>
                   </div>
                   <div class="form-grid-bottom-rows">
                         <button type="reset">Azzera i campi</button>

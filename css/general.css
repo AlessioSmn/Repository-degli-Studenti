@@ -52,6 +52,14 @@ button:hover, a.button-like:hover{
 button:active, a.button-like:active{
       background-color: var(--secondary_light);
 }
+/* Bottoni più rilevanti*/
+button.important, a.button-like.important{
+      background-color: var(--secondary_dark);
+}
+button.important:hover, button.important:active,
+a.button-like.important:hover, a.button-like.important:active{
+      background-color: var(--secondary);
+}
 
 /* Select e options */
 select{
