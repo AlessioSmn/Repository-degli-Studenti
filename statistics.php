@@ -19,15 +19,6 @@ include "php/logControl/loginControl.php";
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
-      <style>
-            .form-grid-data-row{
-                  margin-top: 20px;
-                  height: 50px;
-            }
-            .form-grid-data-row > *:nth-child(2) {
-                  height: 100%;
-            }
-      </style>
 </head>
 <body onload="pageLoad()">
       <header>
@@ -69,8 +60,16 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
+      <section>
+            <p>Seleziona la statistica che vuoi osservare</p>
+      </section>
+
       <!-- Scelta del grafico da mostrare -->
       <section class="form-grid graph-options">
+
+            <div class="form-grid-bottom-rows">
+                  <p>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</p>
+            </div>
 
             <!-- Selezione del campo di ordinamento -->
             <div class="form-grid-data-row">
@@ -81,6 +80,10 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
 
+            <div class="form-grid-bottom-rows">
+                  <p>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</p>
+            </div>
+
             <!-- Selezione del target -->
             <div class="form-grid-data-row">
                   <label for="selection-target">Soggetto del grafico</label>
@@ -89,6 +92,10 @@ include "php/logControl/loginControl.php";
                         <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
                         <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
                   </div>
+            </div>
+
+            <div class="form-grid-bottom-rows">
+                  <p>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</p>
             </div>
 
             <!-- Selezione del gruppo -->
