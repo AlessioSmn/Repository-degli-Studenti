@@ -104,7 +104,7 @@ include "php/logControl/loginControl.php";
                         <select id="subject_selector" name="subject_selector" required disabled></select>
                   </div>
                   <div class="form-grid-bottom-rows">
-                        <button onclick="mainSearch('subject')">Cerca</button>
+                        <button onclick="mainSearch('subject')" class="important">Cerca</button>
                   </div>
             </div>
 
@@ -187,7 +187,7 @@ include "php/logControl/loginControl.php";
                   </div>
 
                   <div class="form-grid-bottom-rows">
-                        <button onclick="mainSearch('text')">Cerca</button>
+                        <button onclick="mainSearch('text')" class="important">Cerca</button>
                   </div>
 
             </div>
@@ -225,8 +225,8 @@ include "php/logControl/loginControl.php";
                   <!-- Estensione del documento -->
                   <fieldset>
                         <legend>Estensione</legend>
-                        <select name="docExtention" id="docExtentionFilter" multiple>
-                        </select>
+                        <div name="docExtention" id="docExtentionFilter">
+                        </div>
                   </fieldset>
                   <button onclick="filterAndDisplayDocuments()"></button>
             </div>
@@ -295,7 +295,9 @@ include "php/logControl/loginControl.php";
 
       const documentVisualizer = document.getElementById("documentVisualizer");
 
-      /* Metodo di ricerca */
+      // *******************************
+      // *** Metodo di ricerca
+      // *******************************
 
       const searchBySubject = document.getElementById("searchBySubject");
       const searchByText = document.getElementById("searchByTextString");
@@ -324,62 +326,6 @@ include "php/logControl/loginControl.php";
                         break;
             }
       }
-
-      /* Tipo di visualizzazione dei documenti */
-
-      const VISUALIZATION_BLOCK     = 'block';
-      const VISUALIZATION_COMPACT   = 'compact';
-      let VisualizationType = VISUALIZATION_BLOCK;
-      let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
-      /*
-       * Cambia il tipo di visualizzazione dei documenti
-       * @param {HTMLElement} CallerElement Elenento chiamante
-       * @param {Number} SelectedType 
-       */
-      function changeVisualizationType(CallerElement, SelectedType){
-            // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
-            let visualizationChanged = false;
-            
-            // Cambio lo sfondo
-            changeOptionInToggleOptions(CallerElement, SelectedType - 1);
-
-            switch(SelectedType){
-                  case 1:
-                        
-                        // Controllo se è stata cambiata visualizzaizone
-                        if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
-                        
-                        // Imposto la variabile che comanda la visualizzazione
-                        VisualizationType = VISUALIZATION_BLOCK;
-                        break;
-                  
-                  case 2:
-                        
-                        // Controllo se è stata cambiata visualizzaizone
-                        if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;
-                        
-                        // Imposto la variabile che comanda la visualizzazione
-                        VisualizationType = VISUALIZATION_COMPACT;
-                        break;
-                  
-                  default:
-                        break;
-            }
-      
-            // Se l'utente ha cambiato visualizzazione e stava visualizzando dei documenti li mostro secondo il nuovo tipo di visualizzazione
-            if(visualizationChanged && DOC_SLICE.length > 0)
-            
-                  visualizeDocuments(
-                        DOC_SLICE, 
-                        documentVisualizer,
-                        VisualizationType, 
-                        true
-                  );
-      }
-
-
-      /* Ricerca dei documenti */
-
       // Array di documenti ricavati dal server
       let DOCUMENTS = [];
 
@@ -389,31 +335,6 @@ include "php/logControl/loginControl.php";
       // Array dei documenti attualmente visualizzati
       let DOC_SLICE = [];
 
-      function filterAndDisplayDocuments(){
-            // Creo un array con tutte le estension selezionate
-            let options = extensionFilter.options;
-            let chosenExtensions = [];
-            for(let option of options)
-                  if(option.selected)
-                        chosenExtensions.push(option.value);
-                  
-            if(chosenExtensions.length == 0){
-                  window.alert("Seleziona almeno una estensione");
-                  return;
-            }
-
-            DOC_FILTERED = filterDocuments(DOCUMENTS, chosenExtensions);
-
-            // Mostro il nuovo primo blocco
-            mainFirstVisualization();
-
-            // Scorro la pagina fino ai documenti
-            const documentVisualization = document.getElementById('visualizationMode');
-            window.scrollTo({
-                  top: documentVisualization.offsetTop - 60,
-                  behavior: 'smooth'
-            });
-      }
 
       let blockDimensionStandard = 12;
 
@@ -424,6 +345,10 @@ include "php/logControl/loginControl.php";
       let ascendingOrder = true;
 
       const noResultSection = document.getElementById("no-result");
+
+      // *******************************
+      // *** Ricerca dei documenti
+      // *******************************
 
       /**
        * Effettua la ricerca dei documenti, li ordina secondo l'ordinamento scelto e mostra solo il primo blocco
@@ -476,15 +401,7 @@ include "php/logControl/loginControl.php";
             noResultSection.style.display = "none";
 
             // Popolo il select con le estensioni disponibili, tutte selezionate
-            let extentions = getAllExtensions(DOCUMENTS);
-            extensionFilter.innerHTML = "";
-            for(let extention of extentions){
-                  let extentionOption = document.createElement("option");
-                  extentionOption.value = extention;
-                  extentionOption.innerText = extention == '' ? "-" : extention;
-                  extentionOption.selected = true;
-                  extensionFilter.appendChild(extentionOption);
-            }
+            displayAllExtensions();
 
             // 2) Ordino l'array dei documenti
             mainOrdering();
@@ -500,14 +417,68 @@ include "php/logControl/loginControl.php";
             });
       }
 
+      function displayAllExtensions(){
+            // Ricavo le estensioni di tutti i documenti ricercati
+            let extentions = getAllExtensions(DOCUMENTS);
+
+            // Pulisco l'eventuale lista di estensioni già presente
+            extensionFilter.innerHTML = "";
+
+            // Per ogni estensione creo label e checkbox
+            for(let extention of extentions){
+                  // Label
+                  let extensionLabel = document.createElement("label");
+                  extensionLabel.innerText = extention == '' ? "-" : extention;
+                  extensionLabel.for = "_" + extention;
+                  extensionFilter.appendChild(extensionLabel);
+
+                  // Checkbox
+                  let extentionCheckbox = document.createElement("input");
+                  extentionCheckbox.type = "checkbox";
+                  extentionCheckbox.value = extention;
+                  extentionCheckbox.name = "_" + extention;
+                  extentionCheckbox.checked = true;
+                  extentionCheckbox.onchange = filterAndDisplayDocuments;
+                  extensionFilter.appendChild(extentionCheckbox);
+            }
+      }
+
       function onTextEntered(event){
             if (event.key === "Enter") {
                   mainSearch('text');
             }
       }
 
+      // *******************************
+      // *** Filtro dei documenti
+      // *******************************
+
+      function filterAndDisplayDocuments(){
+            // Creo un array con tutte le estensioni selezionate
+            let options = Array.from(extensionFilter.querySelectorAll("input"));
+            let chosenExtensions = [];
+            for(let option of options)
+                  if(option.checked)
+                        chosenExtensions.push(option.value);
+
+            // Filtro i documenti secondo le estensioni scelte
+            DOC_FILTERED = filterDocuments(DOCUMENTS, chosenExtensions);
+
+            // Mostro il nuovo primo blocco
+            mainFirstVisualization();
+
+            // Scorro la pagina fino ai documenti
+            const documentVisualization = document.getElementById('visualizationMode');
+            window.scrollTo({
+                  top: documentVisualization.offsetTop - 60,
+                  behavior: 'smooth'
+            });
+      }
       
-      /* Ordinamento dei documenti */
+      
+      // *******************************
+      // *** Ordinamento dei documenti
+      // *******************************
       
       /**
        * Funzione per l'ordinamento dell'array di documenti DOCUMENTS
@@ -557,8 +528,64 @@ include "php/logControl/loginControl.php";
             });
       }
 
+      // *******************************
+      // *** Tipo di visualizzazione dei documenti
+      // *******************************
+
+      const VISUALIZATION_BLOCK     = 'block';
+      const VISUALIZATION_COMPACT   = 'compact';
+      let VisualizationType = VISUALIZATION_BLOCK;
+      let visualizationTypeContainer = document.getElementById("visualization-types-options-container");
+      /*
+      * Cambia il tipo di visualizzazione dei documenti
+      * @param {HTMLElement} CallerElement Elenento chiamante
+      * @param {Number} SelectedType 
+      */
+      function changeVisualizationType(CallerElement, SelectedType){
+            // Per capire se l'utente ha effettivamente cambiato visualizzazione o ha nuovamente cliccato su quella corrente
+            let visualizationChanged = false;
+            
+            // Cambio lo sfondo
+            changeOptionInToggleOptions(CallerElement, SelectedType - 1);
+
+            switch(SelectedType){
+                  case 1:
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_BLOCK) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_BLOCK;
+                        break;
+                  
+                  case 2:
+                        
+                        // Controllo se è stata cambiata visualizzaizone
+                        if(VisualizationType != VISUALIZATION_COMPACT) visualizationChanged = true;
+                        
+                        // Imposto la variabile che comanda la visualizzazione
+                        VisualizationType = VISUALIZATION_COMPACT;
+                        break;
+                  
+                  default:
+                        break;
+            }
+
+            // Se l'utente ha cambiato visualizzazione e stava visualizzando dei documenti li mostro secondo il nuovo tipo di visualizzazione
+            if(visualizationChanged && DOC_SLICE.length > 0)
+            
+                  visualizeDocuments(
+                        DOC_SLICE, 
+                        documentVisualizer,
+                        VisualizationType, 
+                        true
+                  );
+      }
+
       
-      /* Scorrimento tra le pagine */
+      // *******************************
+      // *** Scorrimento tra le pagine
+      // *******************************
 
       /**
        * Funzione per il popolamento di una parte dei documenti, visualizzando la prima pagina
@@ -627,7 +654,9 @@ include "php/logControl/loginControl.php";
       });
 
       
-      /* Popup per la visualizzazione in pagina dei documenti */
+      // *******************************
+      // *** Popup per la visualizzazione in pagina dei documenti
+      // *******************************
       
       function closePopup() {
 
@@ -646,7 +675,9 @@ include "php/logControl/loginControl.php";
       }
       
       
-      /* Vincoli di ricerca per CFU */
+      // *******************************
+      // *** Vincoli di ricerca per CFU
+      // *******************************
 
       function changeCFUvalue(step, id){
             let value = parseInt(document.getElementById(id + "CFUvalue").innerHTML);
