@@ -197,9 +197,9 @@ class Document{
 
                   // Data di modifica del documento
                   additionalInfoContainer.appendChild(this.documentVisualizer_standardElement(italianDate(this.lastModifiedDate), "Data ultima modifica", "doc-compact-dateinfo"));
-                  
-                  // Bottone per l'eliminazione del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizer_deleteButton());
+
+                  // Bottone per la modifica del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizer_updateButton());
 
 
                   // Numero di download del documento
@@ -207,9 +207,9 @@ class Document{
 
                   // Bottone per l'apertura in nuova pagina
                   additionalInfoContainer.appendChild(this.documentVisualizer_openNewPageButton());
-
-                  // Bottone per la modifica del documento
-                  additionalInfoContainer.appendChild(this.documentVisualizer_updateButton());
+                  
+                  // Bottone per l'eliminazione del documento
+                  additionalInfoContainer.appendChild(this.documentVisualizer_deleteButton());
             }
 
             container.appendChild(additionalInfoContainer);
