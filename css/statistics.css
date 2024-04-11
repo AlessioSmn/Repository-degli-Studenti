@@ -74,10 +74,13 @@
 
 
 .graph-options{
-      border: 5px solid paleturquoise;
+      border-bottom: 2px solid var(--primary);
 }
-.graph-options > *{
-      margin-top: 10px;
+.graph-options > .form-grid-bottom-rows p{
+      line-height: 10px;
+}
+.graph-options > .form-grid-bottom-rows{
+      margin-top: 15px;
 }
 .graph-options select{
       width: 100%;
