@@ -127,7 +127,7 @@ include "php/logControl/loginControl.php";
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_white.ico">
+                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
 
