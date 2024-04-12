@@ -13,6 +13,11 @@
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
       <script src="js/logControl/login.js"></script>
+      <style>
+            body{
+                  background-color: var(--bgColor_dark);
+            }
+      </style>
 </head>
 <body>
       <header>
