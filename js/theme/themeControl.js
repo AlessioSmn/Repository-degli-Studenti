@@ -1,6 +1,6 @@
 
 const CUSTOM_THEME = "_CUSTOM_THEME";
-let brightBackground = false;
+let brightBackground = true;
 
 // Controllo se è stato impostato un tema nel localStorage
 let theme = window.localStorage.getItem('theme');
