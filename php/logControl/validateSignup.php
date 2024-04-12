@@ -120,6 +120,8 @@ function signUpNewUser($email, $password, $name, $surname){
                         VALUES (?, ?, ?, ?)";
       
       $parameterTypes = "ssss"; // Quattro stringhe
+      
+      $password = password_hash($password, PASSWORD_BCRYPT);
       $parameters = array($email, $password, $name, $surname);
 
       $result = executePreparedStatement(
@@ -137,46 +139,6 @@ function signUpNewUser($email, $password, $name, $surname){
       return true;
 }
 
-/*
-// Controllo che l'accesso sia consentito
-if(signupValidation($email, $password)){
-      
-      // Creo ed inizializzo le variabili di sessione
-      fillNewSession($email);
-      
-      // Echo la pagina precedente per la ridirezione
-      echo json_encode($previousPage);
-}
-
-function signupValidation($email, $password, $printInfo = false){
-
-      $sqlStatement = "SELECT password FROM user WHERE email = ?";
-      $parameterTypes = "s"; // Stringa
-      // TODO Sanitize input
-      $parameters = array($email);
-
-      $result = executePreparedStatement(
-            $sqlStatement,
-            $affectedRows,
-            $parameterTypes,
-            $parameters
-      );
-
-      // Se c'è un errore nel prepared statement
-      // oppure se non è stato trovato l'utente
-      if($result == false || $affectedRows != 1)
-            return false;
-
-      // Ricavo l'unico record presente
-      $row = mysqli_fetch_assoc($result);
-
-      // verifico il match con la password inserita
-      if(password_verify($password, $row['password']))
-            return true;
-
-      return false;
-}
-*/
 function fillNewSession($email){
       $sqlStatement = "SELECT id, name, surname FROM user WHERE email = ?";
       $parameterTypes = "s";
