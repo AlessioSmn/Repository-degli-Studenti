@@ -41,7 +41,7 @@ include "php/logControl/loginControl.php";
 <body onload="retrieveDegrees()">
 
       <header>
-            <h1>Titolo</h1>
+            <h1>Ricerca</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->

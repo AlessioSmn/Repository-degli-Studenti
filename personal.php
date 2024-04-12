@@ -48,7 +48,7 @@ include "php/logControl/loginControl.php";
 </head>
 <body onload="retrieveAndDisplayPersonalDocuments()">
       <header>
-            <h1>area personale</h1>
+            <h1>Area personale</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->

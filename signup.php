@@ -17,7 +17,7 @@
 </head>
 <body>
       <header>
-            <h1>Titolo</h1>
+            <h1>Registrazione</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->

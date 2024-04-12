@@ -39,7 +39,7 @@ include "php/logControl/loginControl.php";
 </head>
 <body onload="retrieveDegrees()">
       <header>
-            <h1>Carica un documento</h1>
+            <h1>Upload</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->

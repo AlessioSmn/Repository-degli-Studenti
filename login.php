@@ -16,10 +16,7 @@
 </head>
 <body>
       <header>
-            <p>Biblioteca UniPi</p>
-            <p>Raccolta di appunti degli studenti per gli studenti</p>
-            <p>proprio quella</p>
-            <img src="media/.svg/logo_white.svg" alt="logo UniPi">
+            <h1>Login</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->
