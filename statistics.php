@@ -128,6 +128,9 @@ include "php/logControl/loginControl.php";
       <section class="graph-container">
             <div class="graph-lines">
                   <div class="vertical-line"></div>
+                  <div class="vertical-line-value">120</div>
+                  <div class="vertical-line"></div>
+                  <div class="vertical-line-value">10</div>
                   <!-- barre verticali -->
             </div>
             <div id="graphContainer">
