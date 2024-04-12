@@ -180,3 +180,16 @@ legend{
       background-position: center center;
       display: none;
 }
+
+.input-error-description{
+      text-align: center;
+      background-color: rgba(255, 0, 0, 0.3);
+      color: red;
+      padding: 10px;
+      margin: 30px;
+      border: 1px solid red;
+      border-radius: 2px;
+}
+.form-grid .input-error-description{
+      display: none;
+}
