@@ -513,7 +513,6 @@ function getAllExtensions(Documents){
             extensions.add(doc.extension);
 
       // Ritorno l'array di estensioni senza duplicati
-      console.log(Array.from(extensions));
       return Array.from(extensions);
 }
 

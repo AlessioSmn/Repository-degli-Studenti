@@ -21,7 +21,6 @@ function modifyDocument(event){
       if(newTitle == oldTitle
       && newSubtitle == oldSubtitle
       && !fileUpdated){
-            console.log("NO CHANGE");
             window.alert("Non hai effettuato nessuna modifica");
             return;
       }
