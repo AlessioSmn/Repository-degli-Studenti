@@ -60,18 +60,25 @@
                         <label for="email">Mail istituzionale</label>
                         <input type="mail" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="emailError">
+                        Inserisci una mail
+                  </div>
                   <div class="form-grid-data-row">
                         <label for="password">Password</label>
                         <input type="password" name="password" required>
+                        <button id="showPwd" type="button" onmousedown="showPassword()" onmouseup="hidePassword()" onmouseleave="hidePassword()" class="show-password"></button>
+                  </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="passwordError">
+                        Inserisci una password
                   </div>
                   <div class="form-grid-bottom-rows input-error-description" id="loginError">
                         Email e/o password errati
                   </div>
                   <div class="form-grid-bottom-rows">
-                        <button type="submit" id="submitLoginForm" class="important">Login</button>
+                        <button type="submit" id="submitLoginForm" class="central important" onclick="displayErrors()">Login</button>
                   </div>
                   <div class="form-grid-bottom-rows">
-                        <button type="reset">Azzera i campi</button>
+                        <button type="reset" class="central">Azzera i campi</button>
                   </div>
                   <div class="form-grid-data-row">
                         <label>Non hai un account?</label>
@@ -109,7 +116,37 @@
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('d.bianchi19')">fill5</button>
             </div>
       <script>
+            
+      const pwdInputElement = document.querySelector('input[name="password"]');
+      const hideShowPassword = document.getElementById('showPwd');
+      function showPassword(){
+            // Mostro la password
+            pwdInputElement.type = 'text';
+
+            // E cambio l'immagine del bottone
+            hideShowPassword.style.backgroundImage = 'url(media/.png/show.png)';
+
+      }
+      function hidePassword(id){
+            // Nascondo la password
+            pwdInputElement.type = 'password';
+
+            // E cambio l'immagine del bottone
+            hideShowPassword.style.backgroundImage = 'url(media/.png/hide.png)';
+      }
              
+      function displayErrors(){
+            let emailInput = document.querySelector('input[name="email"]');
+            let emailError = document.getElementById("emailError");
+            if(!emailInput.checkValidity()) emailError.style.display = 'block';
+            else emailError.style.display = 'none';
+
+            let password1Input = document.querySelector('input[name="password"]');
+            let password1Error = document.getElementById("passwordError");
+            if(!password1Input.checkValidity()) password1Error.style.display = 'block';
+            else password1Error.style.display = 'none';
+      }
+
       function DEBUG_ONLY_fillLoginAdminData(mail){
             document.querySelector('input[name="email"]').value = mail+"@studenti.unipi.it";
             document.querySelector('input[name="password"]').value = "rootAdmin1.";
