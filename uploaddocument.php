@@ -1,6 +1,6 @@
 <?php 
 $prevDir = "";
-$pageName = "personal.php";
+$pageName = "uploaddocument.php";
 include "php/logControl/loginControl.php";
 ?>
 <!DOCTYPE html>
@@ -86,6 +86,9 @@ include "php/logControl/loginControl.php";
                         <label for="title">Titolo del documento</label>
                         <input name="title" type="text" required>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="titleError">
+                        Inserisci un titolo
+                  </div>
                   <div class="form-grid-data-row">
                         <label for="subtitle">Sottotitolo del documento</label>
                         <input name="subtitle" type="text">
@@ -95,21 +98,30 @@ include "php/logControl/loginControl.php";
                         <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
                         </select>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="degreeError">
+                        Seleziona un corso di studi
+                  </div>
                   <div class="form-grid-data-row">
                         <label for="subject_selector">Materia</label>
                         <select id="subject_selector" name="subject_selector" required disabled>
                         </select>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="subjectError">
+                        Seleziona una materia
+                  </div>
                   <div class="form-grid-data-row">
                         <label for="">Carica il tuo file</label>
                         <input type="file" name="fileContent" required>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description right-side" id="fileError">
+                        Carica un file
+                  </div>
             </fieldset>
             <div class="form-grid-bottom-rows">
-                  <button type="submit" class="important">Carica</button>
+                  <button type="submit" class="central important" onclick="displayErrors()">Carica</button>
             </div>
             <div class="form-grid-bottom-rows">
-                  <button type="reset">Azzera i campi</button>
+                  <button type="reset" class="central">Azzera i campi</button>
             </div>
             </form>
       </section>
@@ -135,5 +147,29 @@ include "php/logControl/loginControl.php";
       <!-- sortDocuments() -->
       <script src="js/document/document.js"></script>
 
+      <script>
+            
+      function displayErrors(){
+            let titleInput = document.querySelector('input[name="title"]');
+            let titleError = document.getElementById("titleError");
+            if(!titleInput.checkValidity()) titleError.style.display = 'block';
+            else titleError.style.display = 'none';
+
+            let degreeInput = document.querySelector('select[name="degree_selector"]');
+            let degreeError = document.getElementById("degreeError");
+            if(degreeInput.selectedIndex === 0) degreeError.style.display = 'block';
+            else degreeError.style.display = 'none';
+
+            let subjectInput = document.querySelector('select[name="subject_selector"]');
+            let subjectError = document.getElementById("subjectError");
+            if(subjectInput.selectedIndex === 0) subjectError.style.display = 'block';
+            else subjectError.style.display = 'none';
+
+            let fileInput = document.querySelector('input[name="fileContent"]');
+            let fileError = document.getElementById("fileError");
+            if(!fileInput.checkValidity()) fileError.style.display = 'block';
+            else fileError.style.display = 'none';
+      }
+      </script>
 </body>
 </html>
