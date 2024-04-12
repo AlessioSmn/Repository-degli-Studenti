@@ -117,6 +117,9 @@ include "php/logControl/loginControl.php";
                         Carica un file
                   </div>
             </fieldset>
+            <div class="form-grid-bottom-rows input-error-description" id="uploadError">
+                  Carica un file
+            </div>
             <div class="form-grid-bottom-rows">
                   <button type="submit" class="central important" onclick="displayErrors()">Carica</button>
             </div>

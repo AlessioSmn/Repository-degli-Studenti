@@ -28,18 +28,21 @@ function uploadDocument(event) {
       .then(data => {
             // Upload avvenuto con successo
             if(data[0]){
-                  window.alert("Documento caricato con successo");
                   window.location.href = "personal.php";
             }
 
             // errore nell'upload
             else{
-                  window.alert("Errore nell'upload del documento");
+                  let uploadError = document.getElementById("uploadError");
+                  uploadError.innerText = data[1] != null ? data[1] : "Errore nell'upload del documento";
+                  uploadError.style.display = "block";
             }
       })
       .catch(error => {
             console.error("Errore nell'upload del file: ", error);
-            window.alert("Errore nell'upload del documento");
+            let uploadError = document.getElementById("uploadError");
+            uploadError.innerText = "Errore nell'upload del documento";
+            uploadError.style.display = "block";
       });
       
 }
