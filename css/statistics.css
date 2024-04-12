@@ -1,8 +1,24 @@
 
 .graph-container{
-      padding: 20px;
-      min-width: 50%;
-      overflow: hidden;
+      padding: 20px 60px;
+      display: grid;   
+}
+.graph-container > *{
+      grid-area: 1 / 1;
+}
+#graphContainer{
+      z-index: 2;
+}
+.graph-lines{
+      position: relative;
+      z-index: 1;
+}
+.vertical-line{
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background-color: var(--foreColor);
 }
 
 /* Container di un elemento del grafico */

@@ -60,9 +60,7 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <section>
-            <p>Seleziona la statistica che vuoi osservare</p>
-      </section>
+      <p>Seleziona la statistica che vuoi osservare</p>
 
       <!-- Scelta del grafico da mostrare -->
       <section class="form-grid graph-options">
@@ -127,8 +125,14 @@ include "php/logControl/loginControl.php";
             </div>
       </section>
 
-      <section id="graphContainer" class="graph-container">
-            <!-- graph -->
+      <section class="graph-container">
+            <div class="graph-lines">
+                  <div class="vertical-line"></div>
+                  <!-- barre verticali -->
+            </div>
+            <div id="graphContainer">
+                  <!-- graph -->
+            </div>
       </section>
 
       <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
