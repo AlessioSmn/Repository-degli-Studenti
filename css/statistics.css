@@ -1,11 +1,15 @@
 
 .graph-container{
-      background-color: var(--bgColor_light);
+      display: grid;   
       padding: 20px 60px;
       margin: 20px 100px 40px 100px;
+      background-color: var(--bgColor_light);
       border-radius: 20px;
-      border: 2px solid var(--bgColor_dark);
-      display: grid;   
+      box-shadow: 0px 0px 10px -3px black;
+      transition: 0.2s;
+}
+.graph-container:hover{
+      box-shadow: 0px 0px 10px -1px black;
 }
 .graph-container > *{
       grid-area: 1 / 1;

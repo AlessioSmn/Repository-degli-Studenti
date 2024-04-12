@@ -12,6 +12,8 @@ nav{
       color: var(--foreColor);
       box-shadow: none;
       transition: 0.1s;
+      box-shadow: 0px 0px 10px -1px black;
+      transition: 0.2s;
 }
 nav a{
       color: var(--foreColor);
