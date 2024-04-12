@@ -44,6 +44,11 @@ exit();
  */
 function uploadNewDocumentToDB($title, $extension, $subjectId, $ownerId){
 
+      // Controllo che i campi siano del tipo corretto e non nulli
+      if(is_null($title) || $title == "") return false;
+      if(is_null($subjectId) || is_nan($subjectId)) return false;
+      if(is_null($ownerId) || is_nan($ownerId)) return false;
+
       $sqlStatement = " INSERT INTO document (title, subject, owner, extension) 
                         VALUES (?, ?, ?, ?);";
 
