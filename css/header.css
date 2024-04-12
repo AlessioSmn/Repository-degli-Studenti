@@ -1,20 +1,30 @@
 header{
-      padding: 10px 100px;
+      padding: 10px 50px;
       height: auto; 
       background-color: var(--bgColor_dark);
       /* background-image: url('../media/.webp/wallpaper.webp'); */
       background-image: 
-            linear-gradient(90deg, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 80%),
-            url('../media/.jpg/samantha-gades-gKjLLN1T8HQ-unsplash.jpg');
+            linear-gradient(120deg, rgba(0, 0, 0, 1) 20%, rgba(0, 0, 0, 0) 20%),
+            linear-gradient(120deg, rgba(0, 0, 0, 0.7) 25%, rgba(0, 0, 0, 0.5) 25%),
+            url('../media/.jpg/pexels-mike-bird-114820.jpg');
       background-size: 
             cover,
+            cover,
             auto 100%;
-      background-attachment: fixed, fixed;
+      background-attachment:
+            fixed, 
+            fixed, 
+            fixed;
       background-position: 
+            center center,
             center center,
             bottom center;
       text-align: center;
       font-family: SwiftRegularSC;
+      color: #c5c5c5;
+}
+header>h1{
+      text-align: left;
 }
 header>p{
       text-align: center;
