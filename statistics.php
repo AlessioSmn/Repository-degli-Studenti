@@ -65,26 +65,18 @@ include "php/logControl/loginControl.php";
       <!-- Scelta del grafico da mostrare -->
       <section class="form-grid graph-options">
 
-            <div class="form-grid-bottom-rows">
-                  <p>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</p>
-            </div>
-
             <!-- Selezione del campo di ordinamento -->
             <div class="form-grid-data-row">
-                  <label for="selection-order">Campo di ordinamento</label>
+                  <label for="selection-order">Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</label>
                   <div id="selection-order" name="selection-order" class="switch-option-container n2 option-1-selected">
                         <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
                         <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
                   </div>
             </div>
 
-            <div class="form-grid-bottom-rows">
-                  <p>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</p>
-            </div>
-
             <!-- Selezione del target -->
             <div class="form-grid-data-row">
-                  <label for="selection-target">Soggetto del grafico</label>
+                  <label for="selection-target">Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</label>
                   <div id="selection-target" name="selection-target" class="switch-option-container n3 option-3-selected">
                         <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
                         <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
@@ -92,13 +84,9 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
 
-            <div class="form-grid-bottom-rows">
-                  <p>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</p>
-            </div>
-
             <!-- Selezione del gruppo -->
             <div class="form-grid-data-row">
-                  <label for="selection-group">Raggruppamento</label>
+                  <label for="selection-group">Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</label>
                   <div id="selection-group" name="selection-group" class="switch-option-container n3 option-1-selected">
                         <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
                         <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>

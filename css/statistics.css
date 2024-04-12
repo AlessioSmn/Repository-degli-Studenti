@@ -23,7 +23,7 @@
       position: absolute;
       top: 60px;
       bottom: 0;
-      width: 2px;
+      width: 0.1em;
       background-color: var(--foreColor);
 }
 .vertical-line-value{
@@ -34,10 +34,10 @@
 }
 .vertical-line-value.top{
       top: 60px;
-      border-bottom: 2px solid var(--foreColor);
+      border-bottom: 0.1em solid var(--foreColor);
 }
 .vertical-line-value.bottom{
-      border-top: 2px solid var(--foreColor);
+      border-top: 0.1em solid var(--foreColor);
       bottom: 0px;
 }
 
