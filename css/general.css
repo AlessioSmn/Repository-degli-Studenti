@@ -10,7 +10,7 @@ body{
       padding: 0px;
       margin: 0px;
       overflow-x: hidden;
-      background-color: var(--bgColor_dark);
+      background-color: var(--bgColor);
       font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--foreColor);
 }

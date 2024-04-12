@@ -126,20 +126,16 @@ include "php/logControl/loginControl.php";
       </section>
 
       <section class="graph-container">
-            <div class="graph-lines">
-                  <div class="vertical-line"></div>
-                  <div class="vertical-line-value">120</div>
-                  <div class="vertical-line"></div>
-                  <div class="vertical-line-value">10</div>
+            <div id="axisContainer" class="graph-lines">
                   <!-- barre verticali -->
             </div>
             <div id="graphContainer">
                   <!-- graph -->
             </div>
-      </section>
 
-      <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
-      <section id="no-result" class="no-result">
+            <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
+            <div id="no-result" class="no-result">
+            </div>
       </section>
       
       <footer>
@@ -172,7 +168,10 @@ include "php/logControl/loginControl.php";
 
       <script>
 
-            const statsController = new Statistics(document.getElementById("graphContainer"), document.getElementById("no-result"));
+            const statsController = new Statistics(
+                  document.getElementById("graphContainer"), 
+                  document.getElementById("no-result"),
+                  document.getElementById("axisContainer"));
 
             let Target = 3;
             let Group = 1;

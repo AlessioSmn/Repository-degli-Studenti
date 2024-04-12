@@ -4,7 +4,7 @@ class Statistics{
        * Costruttore della classe statistics
        * @param {HTMLElement} GraphContainer Elemento HTML che andrà a contnere il grafico
        */
-      constructor(GraphContainer, NoResultSection){
+      constructor(GraphContainer, NoResultSection, AxisContainer){
             // Array di statistiche da mostrare
             this.statistics = [];
 
@@ -13,6 +13,9 @@ class Statistics{
 
             // Container del grafico
             this.graphContainer = GraphContainer;
+
+            // Container del grafico
+            this.axisContainer = AxisContainer;
 
             // Sezione con l'immagine da mostrare quando non ci sono risultati
             this.noResultSection = NoResultSection;
@@ -87,6 +90,8 @@ class Statistics{
             if(this.statistics.length == 0){
                   // Informo che non ci sono risultati
                   this.graphContainer.innerText = "Nessun grafico da mostrare :(";
+
+                  this.axisContainer.innerText = "";
                   
                   // E mostro l'immagine
                   this.noResultSection.style.display = "block";
@@ -104,11 +109,10 @@ class Statistics{
             let graphTitle = document.createElement("h3");
             let title = '';
             switch(this.currentTarget){
-                  case 'User': title += 'Utenti '; break;
-                  case 'Subject': title += 'Materie '; break;
-                  case 'Degree': title += 'Corsi di laurea '; break;
+                  case 'User': title += 'Utenti ordinati per numero di '; break;
+                  case 'Subject': title += 'Materie ordinate per numero di '; break;
+                  case 'Degree': title += 'Corsi di laurea ordinati per numero di '; break;
             }
-            title += " ordinati per numero di ";
             title += this.orderByDownloads ? "download" : "documenti caricati";
             graphTitle.innerText = title;
             this.graphContainer.appendChild(graphTitle);
@@ -134,6 +138,34 @@ class Statistics{
 
                   let statContainer = singleStat.constructGraphElement(this.orderByDownloads, finalWidth);
                   this.graphContainer.appendChild(statContainer);
+            }
+
+            // Mostro le righe verticali
+            this.axisContainer.innerText = "";
+            let previous;
+            for(let i = 0; i < 10; i++){
+                  let value = Math.round(i * maxValue * 100 / 7) / 100;
+                  if(value == previous)
+                        continue;
+
+                  let verticalBar = document.createElement("div");
+                  verticalBar.classList.add("vertical-line");
+                  verticalBar.style.left = i*10 + '%';
+                  this.axisContainer.appendChild(verticalBar);
+
+                  previous = value;
+
+                  let verticalBarValueTop = document.createElement("div");
+                  verticalBarValueTop.classList.add("vertical-line-value", "top");
+                  verticalBarValueTop.style.left = 'calc(' + i*10 + '% - 35px)';
+                  verticalBarValueTop.innerText = value;
+                  this.axisContainer.appendChild(verticalBarValueTop);
+
+                  let verticalBarValueBottom = document.createElement("div");
+                  verticalBarValueBottom.classList.add("vertical-line-value", "bottom");
+                  verticalBarValueBottom.style.left = 'calc(' + i*10 + '% - 35px)';
+                  verticalBarValueBottom.innerText = value;
+                  this.axisContainer.appendChild(verticalBarValueBottom);
             }
       }
 
@@ -194,7 +226,8 @@ class StatRecord{
             // Barra del grafico
             let graphPart = document.createElement("div");
             graphPart.classList.add("graph-element-bar");
-            graphPart.style.width = widthPercentage + '%';
+            // Tolgo i 10px di padding
+            graphPart.style.width = 'calc(' + widthPercentage + '% - 10px)';
 
             // Testo del elemento
             let graphBarText = document.createElement("span");
