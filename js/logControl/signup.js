@@ -43,7 +43,9 @@ function signup(event){
 
             // Altrimenti dal PHP mi arriva un messaggio di errore
             else{
-                  window.alert(data[1]);
+                  let signupError = document.getElementById("signupError");
+                  signupError.innerText = data[1];
+                  signupError.style.display = "block";
             }
       })
       .catch(error => console.error(error));

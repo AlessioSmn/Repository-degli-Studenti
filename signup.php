@@ -8,7 +8,6 @@
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
-      <link rel="stylesheet" type="text/CSS" href="css/formError.css">
       <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
@@ -62,22 +61,28 @@
                         <div class="form-grid-data-row">
                               <label for="name">Nome</label>
                               <input 
-                                    required 
+                                    required
                                     type="text" 
                                     name="name" 
                                     pattern="[A-Za-z ']*" 
                                     placeholder="Es: Mario" 
                                     title="Inserisci il tuo nome: solo caratteri [A-Z] e [a-z] ammessi">
                         </div>
+                        <div class="form-grid-bottom-rows input-error-description right-side" id="nameError">
+                              Inserisci un nome
+                        </div>
                         <div class="form-grid-data-row">
                               <label for="surname">Cognome</label>
                               <input 
-                                    required 
+                                    required
                                     type="text" 
                                     name="surname" 
                                     pattern="[A-Za-z ']*" 
                                     placeholder="Es: Rossi" 
                                     title="Inserisci il tuo cognome: solo caratteri [A-Z] e [a-z] ammessi">
+                        </div>
+                        <div class="form-grid-bottom-rows input-error-description right-side" id="surnameError">
+                              Inserisci un cognome
                         </div>
                   
                   <!-- Generic pattern:               "[A-Za-z0-9.]+@[a-z]+\.[a-z]{2,}$" -->
@@ -88,12 +93,15 @@
                         <div class="form-grid-data-row">
                               <label for="email">Mail istituzionale</label>
                               <input 
-                                    required 
+                                    required
                                     type="mail" 
                                     name="email" 
                                     pattern="[A-Za-z0-9.]+@studenti.unipi.it" 
                                     placeholder="Es: m.rossi1@studenti.unipi.it" 
                                     title="Inserisci la tua mail istituzionale, nella forma [name]@studenti.unipi.it">
+                        </div>
+                        <div class="form-grid-bottom-rows input-error-description right-side" id="emailError">
+                              Inserisci indirizzo mail valido
                         </div>
                   </fieldset>
                   <fieldset>
@@ -109,10 +117,21 @@
                                     required
                                     type="password" 
                                     name="password"
-                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
                               <button id="showpwd1" type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password"></button>
+                        </div>
+                        <div class="form-grid-bottom-rows input-error-description right-side" id="password1Error">
+                              <p>
+                              Inserisci una password valida costituita da:
+                              <ul>
+                                    <li>Minimo 8 caratteri</li>
+                                    <li>Almeno un numero</li>
+                                    <li>Almeno una lettera minuscola</li>
+                                    <li>Almeno una lettera maiuscola</li>
+                                    <li>Almeno un carattere speciale</li>
+                              </ul>
+                              </p>
                         </div>
                         <div class="form-grid-data-row">
                               <label for="passwordRepeat">Ripeti la password</label>
@@ -121,17 +140,22 @@
                                     required
                                     type="password" 
                                     name="passwordRepeat"
-                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*\W).{8,}"
                                     placeholder="La tua password"
                                     title="Ripeti la password">
                               <button id="showpwd2" type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password"></button>
                         </div>
+                        <div class="form-grid-bottom-rows input-error-description right-side" id="password2Error">
+                              Le due password non coincidono
+                        </div>
                   </fieldset>
-                  <div class="form-grid-bottom-rows">
-                        <button type="submit" class="important">Registrati</button>
+                  <div class="form-grid-bottom-rows input-error-description" id="signupError">
+                        
                   </div>
                   <div class="form-grid-bottom-rows">
-                        <button type="reset">Azzera i campi</button>
+                        <button type="submit" class="central important" onclick="displayErrors()">Registrati</button>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="reset" class="central">Azzera i campi</button>
                   </div>
                   <div class="form-grid-data-row">
                         <label>Hai gi&agrave; un account?</label>
@@ -179,6 +203,34 @@
             // E cambio l'immagine del bottone
             const hideShowPassword = document.getElementById('show' + id);
             hideShowPassword.style.backgroundImage = 'url(media/.png/hide.png)';
+      }
+      
+      function displayErrors(){
+            // Recupera le informazioni inserite
+            let nameInput = document.querySelector('input[name="name"]');
+            let nameError = document.getElementById("nameError");
+            if(!nameInput.checkValidity()) nameError.style.display = 'block';
+            else nameError.style.display = 'none';
+
+            let surnameInput = document.querySelector('input[name="surname"]');
+            let surnameError = document.getElementById("surnameError");
+            if(!surnameInput.checkValidity()) surnameError.style.display = 'block';
+            else surnameError.style.display = 'none';
+
+            let emailInput = document.querySelector('input[name="email"]');
+            let emailError = document.getElementById("emailError");
+            if(!emailInput.checkValidity()) emailError.style.display = 'block';
+            else emailError.style.display = 'none';
+
+            let password1Input = document.querySelector('input[name="password"]');
+            let password1Error = document.getElementById("password1Error");
+            if(!password1Input.checkValidity()) password1Error.style.display = 'block';
+            else password1Error.style.display = 'none';
+
+            let password2Input = document.querySelector('input[name="passwordRepeat"]');
+            let password2Error = document.getElementById("password2Error");
+            if(password2Input.value != password1Input.value) password2Error.style.display = 'block';
+            else password2Error.style.display = 'none';
       }
 
       let regexPwdDigitCheck = "(?=.*[0-9])";
