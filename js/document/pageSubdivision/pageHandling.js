@@ -109,6 +109,11 @@ class PageHandler{
 
             
       }
+      /**
+       * Calcola lo scostamento (quindi il numero) dell'indice di pagina corrente rispetto al primo mostrato
+       * @param {Number} index Indice di pagina da mostrare
+       * @return Ritorna lo scostamento
+       */
       calculateCurrentShift(index){
             // shift = index                                   index <= leftSlot
             // shift = leftSlot                                leftSlot <= index <= numBlocks - slotDisponibili
