@@ -30,6 +30,13 @@
 .form-grid-bottom-rows > *{
       flex: 1;
 }
+.form-grid-bottom-rows > *.central{
+      flex: none;
+      flex-basis: 30%;
+      margin-left: 35%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+}
 
 .show-password{
       border-radius: 25%;
@@ -38,4 +45,22 @@
       background-position: center;
       background-repeat: no-repeat;
       padding: 18px;
+}
+
+.input-error-description{
+      text-align: center;
+      background-color: rgba(255, 0, 0, 0.3);
+      color: red;
+      padding: 10px;
+      margin-bottom: 30px;
+      margin-left: 10px;
+      margin-right: 10px;
+      border: 1px solid red;
+      border-radius: 5px;
+}
+.input-error-description.right-side{
+      margin-left: calc(30% + 20px);
+}
+.form-grid .input-error-description{
+      display: none;
 }
