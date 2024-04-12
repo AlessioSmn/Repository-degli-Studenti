@@ -31,13 +31,13 @@ function login(event){
             // se il login è avvenuto con successo
             if(data[0]){
                   let pageName = data[1];
-
+                  
                   // Se è presente una pagina redirigo
                   if(pageName != null)
                         window.location.href = pageName;
             }
             else{
-                  window.alert(data[1]);
+                  document.getElementById("loginError").style.display = 'block';
             }
       })
       .catch(error => console.error(error));

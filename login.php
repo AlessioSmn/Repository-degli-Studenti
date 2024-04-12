@@ -64,6 +64,9 @@
                         <label for="password">Password</label>
                         <input type="password" name="password" required>
                   </div>
+                  <div class="form-grid-bottom-rows input-error-description" id="loginError">
+                        Email e/o password errati
+                  </div>
                   <div class="form-grid-bottom-rows">
                         <button type="submit" id="submitLoginForm" class="important">Login</button>
                   </div>
