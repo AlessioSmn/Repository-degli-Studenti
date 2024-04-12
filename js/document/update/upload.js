@@ -6,12 +6,16 @@ function uploadDocument(event) {
       event.preventDefault();
       
       let uploadForm = new FormData(event.target);
+
+      // Controllo che sia stata impostata una materia
+      let subject_selector = document.getElementById("subject_selector");
+      if(Number(subject_selector.selectedIndex) <= 0) return false;
+
       let fetchBodyOptions = new FormData();
 
       // Ricavo tutti i campi necessari per la richiesta
       fetchBodyOptions.append("title", uploadForm.get('title'));
       fetchBodyOptions.append("fileContent", uploadForm.get('fileContent'));
-      let subject_selector = document.getElementById("subject_selector");
       fetchBodyOptions.append("subjectId", subject_selector.value);
       let fetchOptions = {
             method: "POST",
