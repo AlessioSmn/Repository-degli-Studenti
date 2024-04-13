@@ -2,6 +2,11 @@
       font-family: SwiftRegularSC;
       src: url(font/swift-regular-sc.otf);
 }
+/*
+NOTA PER WARNING
+Il validatore CSS genera warning per ogni variabile che incontra nei singoli file,
+in quanto la dichiarazione delle variabili è in un file distinto. 
+*/
 
 body{
       display: flex;
@@ -102,40 +107,10 @@ input:active{
 input:invalid{
       color:red;
 }
-input[type="file"]::-moz-browse-button {
-      padding: 7px 21px;
-      margin: 5px 10px;
-      color: var(--foreColor_light);  
-      background-image: linear-gradient(90deg, var(--bgColor_dark) 40%, var(--primary) 60%);
-      background-size: 300% 70%;
-      border-width: 0px;
-      border-style: solid;
-      border-color: var(--primary);
-      box-shadow: none;
-      transition: 0.2s;
-}
 /*
-input[type="file"]::-moz-browse-button {
-      padding: 10px 21px;
-      margin-right: -10px;
-      color: var(--foreColor_light);  
-      background-color: var(--primary_dark);
-      box-shadow: none;
-      border-radius: 2px;
-      border-width: 0px;
-      border-style: solid;
-      transition: 0.1s;
-      text-decoration: none; 
-      text-align: center;
-      font-size: small;
-      box-sizing: border-box;
-}
-input[type="file"]::-moz-browse-button:hover{
-      background-color: var(--secondary);
-}
-input[type="file"]::-moz-browse-button:active{
-      background-color: var(--secondary_light);
-}
+NOTA PER WARNING
+Il validatore CSS genera un warning per '::-webkit-file-upload-button is a vendor extended pseudo-element',
+questa parte è necessaria per stilizzare il bottone di upload di un input di tipo file in firefox
 */
 input[type="file"]::-webkit-file-upload-button {
       padding: 10px 21px;
