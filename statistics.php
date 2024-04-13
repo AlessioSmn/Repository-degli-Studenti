@@ -4,7 +4,7 @@ $pageName = "statistics.php";
 include "php/logControl/loginControl.php";
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
 	<meta charset="utf-8">
       <title>Progetto PWEB</title>
@@ -64,12 +64,12 @@ include "php/logControl/loginControl.php";
       <p>Seleziona la statistica che vuoi osservare</p>
 
       <!-- Scelta del grafico da mostrare -->
-      <section class="form-grid graph-options">
+      <div class="form-grid graph-options">
 
             <!-- Selezione del campo di ordinamento -->
             <div class="form-grid-data-row">
-                  <label for="selection-order">Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</label>
-                  <div id="selection-order" name="selection-order" class="switch-option-container n2 option-1-selected">
+                  <label>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</label>
+                  <div id="selection-order" class="switch-option-container n2 option-1-selected">
                         <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
                         <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
                   </div>
@@ -77,8 +77,8 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione del target -->
             <div class="form-grid-data-row">
-                  <label for="selection-target">Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</label>
-                  <div id="selection-target" name="selection-target" class="switch-option-container n3 option-3-selected">
+                  <label>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</label>
+                  <div id="selection-target" class="switch-option-container n3 option-3-selected">
                         <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
                         <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
                         <div class="switch-option n3" onclick="changeTarget(this, 3)">Utenti</div>
@@ -87,8 +87,8 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione del gruppo -->
             <div class="form-grid-data-row">
-                  <label for="selection-group">Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</label>
-                  <div id="selection-group" name="selection-group" class="switch-option-container n3 option-1-selected">
+                  <label>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</label>
+                  <div id="selection-group" class="switch-option-container n3 option-1-selected">
                         <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
                         <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
                         <div class="switch-option n3" onclick="changeGroup(this, 3)">Per una data materia</div>
@@ -97,8 +97,8 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione corso di laurea di selezione -->
             <div id="selection-degree" class="form-grid-data-row" style="display:none">
-                  <label for="selection-degree">Corso di studio</label>
-                  <div name="selection-degree" class="switch-option-container">
+                  <label for="degree_selector">Corso di studio</label>
+                  <div class="switch-option-container">
                         <select id="degree_selector" onchange="degreeSelected()" class="fill">
                         </select>
                   </div>
@@ -106,15 +106,15 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione della materia di selezione -->
             <div id="selection-subject" class="form-grid-data-row" style="display:none">
-                  <label for="selection-subject">Materia</label>
-                  <div name="selection-subject" class="switch-option-container">
+                  <label for="subject_selector">Materia</label>
+                  <div class="switch-option-container">
                         <select id="subject_selector" onchange="subjectSelected()" class="fill">
                         </select>
                   </div>
             </div>
-      </section>
+      </div>
 
-      <section class="graph-container">
+      <div class="graph-container">
             <div id="axisContainer" class="graph-lines">
                   <!-- barre verticali -->
             </div>
@@ -125,7 +125,7 @@ include "php/logControl/loginControl.php";
             <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
             <div id="no-result" class="no-result">
             </div>
-      </section>
+      </div>
       
       <footer>
             <div class="left-section">
