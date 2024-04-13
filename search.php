@@ -80,7 +80,7 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <section class="search-options">
+      <div class="search-options">
 
             <div class="left-side-options">
 
@@ -98,6 +98,11 @@ include "php/logControl/loginControl.php";
             <div id="searchBySubject" style="display:none;" class="search-method form-grid">
                   <div class="form-grid-data-row">
                         <label for="degree_selector">Corso di studio:</label>
+                        <!-- 
+                              NOTA WARNING
+                              Generato errore: 'A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.'
+                              in quanto attualmente vuoto, ma sia questo che il <select> per le materie vengono popolati dinamicamente
+                        -->
                         <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required> </select>
                   </div>
                   <div class="form-grid-data-row">
@@ -192,9 +197,9 @@ include "php/logControl/loginControl.php";
                   </div>
 
             </div>
-      </section>
+      </div>
 
-      <section class="search-results">
+      <div class="search-results">
 
             <div class="left-side-options">
 
@@ -226,16 +231,15 @@ include "php/logControl/loginControl.php";
                   <!-- Estensione del documento -->
                   <fieldset>
                         <legend>Estensione</legend>
-                        <div name="docExtention" id="docExtentionFilter">
-                        </div>
+                        <div id="docExtentionFilter"></div>
                   </fieldset>
                   <button onclick="filterAndDisplayDocuments()"></button>
             </div>
             <div>
                   <!-- Visualizzazione dei documenti -->
-                  <section id="documentVisualizer">
+                  <div id="documentVisualizer">
                         <!-- -->
-                  </section>
+                  </div>
 
                   <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
                   <div id="no-result" class="no-result">
@@ -248,17 +252,22 @@ include "php/logControl/loginControl.php";
                         <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
                   </div>
             </div>
-      </section>
+      </div>
 
       <!-- Maschera e container per la visualizzazione in popup -->
-      <section class="popup-section">
+      <div class="popup-section">
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container search">
                   <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
-                  <h1 id="docFrameTitle"></h1>
-                  <iframe id="docFrame" frameborder="0"></iframe>
+                  <!-- 
+                        NOTA WARNING
+                        Il validatore HTML genera un warning per Empty heading., ma il titolo di
+                        questo header è generato dinamicamente all'apertura di un documento in frame
+                  -->
+                  <h2 id="docFrameTitle"> <!-- Titolo del documento visualizzato --> </h2>
+                  <iframe id="docFrame"></iframe>
             </div>
-      </section>
+      </div>
       
       <footer>
             <div class="left-section">
