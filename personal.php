@@ -91,8 +91,8 @@ include "php/logControl/loginControl.php";
       <section id="visualizationMode">
             <span>Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected">
-                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img src="media/.png/blocco.png"></div>
-                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img src="media/.png/lista.png"></div>
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img alt="Visualizzazione a blocchi dei documenti" src="media/.png/blocco.png"></div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img alt="Visualizzazione a lista dei documenti" src="media/.png/lista.png"></div>
             </div>
       </section>
 
@@ -144,7 +144,7 @@ include "php/logControl/loginControl.php";
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
 

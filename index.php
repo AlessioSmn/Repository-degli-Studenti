@@ -45,7 +45,7 @@
             <p>Biblioteca UniPi</p>
             <p>Raccolta di appunti degli studenti per gli studenti</p>
             <p>proprio quella</p>
-            <img src="media/.svg/logo_white.svg" alt="logo UniPi">
+            <img alt="Logo di Unipi" src="media/.svg/logo_white.svg" alt="logo UniPi">
       </header>
 
       <!-- Barra di navigazione del sito -->
@@ -134,7 +134,7 @@
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
       
