@@ -105,7 +105,6 @@
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('c.verdi10')">fill4</button>
                   <button onclick="DEBUG_ONLY_fillLoginAdminData('vasco')">vasco</button>
             </div>
-      <script>
       <footer>
             <div class="left-section">
                   <span>Autore</span> <span>Alessio Simoncini</span><br>
@@ -125,6 +124,7 @@
       
       <script src="js/navbar/navbarresizing.js"></script>
             
+      <script>
       const pwdInputElement = document.querySelector('input[name="password"]');
       const hideShowPassword = document.getElementById('showPwd');
       function showPassword(){
