@@ -79,23 +79,28 @@ include "php/logControl/loginControl.php";
       </nav>
       
       <!-- Caricamento di un nuovo documento -->
-      <section>
+      <div>
             <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
                   <fieldset>
                   <legend>Carica un documento</legend>
                   <div class="form-grid-data-row">
                         <label for="title">Titolo del documento</label>
-                        <input name="title" type="text" required>
+                        <input id="title" name="title" type="text" required>
                   </div>
                   <div class="form-grid-bottom-rows input-error-description right-side" id="titleError">
                         Inserisci un titolo
                   </div>
                   <div class="form-grid-data-row">
                         <label for="subtitle">Sottotitolo del documento</label>
-                        <input name="subtitle" type="text">
+                        <input id="subtitle" name="subtitle" type="text">
                   </div>
                   <div class="form-grid-data-row">
                         <label for="degree_selector">Corso di studio</label>
+                        <!-- 
+                              NOTA WARNING
+                              Generato errore: 'A select element with a required attribute, and without a multiple attribute, and without a size attribute whose value is greater than 1, must have a child option element.'
+                              in quanto attualmente vuoto, ma sia questo che il <select> per le materie vengono popolati dinamicamente
+                        -->
                         <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
                         </select>
                   </div>
@@ -111,8 +116,8 @@ include "php/logControl/loginControl.php";
                         Seleziona una materia
                   </div>
                   <div class="form-grid-data-row">
-                        <label for="">Carica il tuo file</label>
-                        <input type="file" name="fileContent" required>
+                        <label for="fileContent">Carica il tuo file</label>
+                        <input type="file" id="fileContent" name="fileContent" required>
                   </div>
                   <div class="form-grid-bottom-rows input-error-description right-side" id="fileError">
                         Carica un file
@@ -128,7 +133,7 @@ include "php/logControl/loginControl.php";
                   <button type="reset" class="central">Azzera i campi</button>
             </div>
             </form>
-      </section>
+      </div>
 
       <footer>
             <div class="left-section">
