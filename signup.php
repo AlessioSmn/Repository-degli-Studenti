@@ -60,7 +60,7 @@
             </div>
       </nav>
 
-      <section class="main-log-container">
+      <div class="main-log-container">
             <form name="signUpForm" onsubmit="signup(event)" class="form-grid">
                   <fieldset>
                         <legend>Informazioni personali</legend>
@@ -69,6 +69,7 @@
                               <input 
                                     required
                                     type="text" 
+                                    id="name" 
                                     name="name" 
                                     pattern="[A-Za-z ']*" 
                                     placeholder="Es: Mario" 
@@ -82,6 +83,7 @@
                               <input 
                                     required
                                     type="text" 
+                                    id="surname" 
                                     name="surname" 
                                     pattern="[A-Za-z ']*" 
                                     placeholder="Es: Rossi" 
@@ -100,7 +102,8 @@
                               <label for="email">Mail istituzionale</label>
                               <input 
                                     required
-                                    type="mail" 
+                                    type="email" 
+                                    id="email" 
                                     name="email" 
                                     pattern="[A-Za-z0-9.]+@studenti.unipi.it" 
                                     placeholder="Es: m.rossi1@studenti.unipi.it" 
@@ -117,7 +120,7 @@
                         pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[\(\)\[\]\{\}\.,:;\-_\+\*!£\$%&/=\?'\^\|\\]).{8,}"
                         -->
                         <div class="form-grid-data-row">
-                              <label for="password">Password</label>
+                              <label for="pwd1">Password</label>
                               <input 
                                     id="pwd1"
                                     required
@@ -128,8 +131,7 @@
                               <button id="showpwd1" type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password"></button>
                         </div>
                         <div class="form-grid-bottom-rows input-error-description right-side" id="password1Error">
-                              <p>
-                              Inserisci una password valida costituita da:
+                              <p>Inserisci una password valida costituita da:</p>
                               <ul>
                                     <li>Minimo 8 caratteri</li>
                                     <li>Almeno un numero</li>
@@ -137,10 +139,9 @@
                                     <li>Almeno una lettera maiuscola</li>
                                     <li>Almeno un carattere speciale</li>
                               </ul>
-                              </p>
                         </div>
                         <div class="form-grid-data-row">
-                              <label for="passwordRepeat">Ripeti la password</label>
+                              <label for="pwd2">Ripeti la password</label>
                               <input 
                                     id="pwd2"
                                     required
@@ -168,7 +169,7 @@
                         <a href="login.php" class="button-like">Accedi</a>
                   </div>
             </form>
-      </section>
+      </div>
 
       <footer>
             <div class="left-section">
