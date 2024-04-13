@@ -140,30 +140,53 @@ class Statistics{
                   this.graphContainer.appendChild(statContainer);
             }
 
-            // Mostro le righe verticali
+            // Cancello le righe verticali precedenti
             this.axisContainer.innerText = "";
-            let previous;
-            for(let i = 0; i < 10; i++){
-                  let value = Math.round(i * maxValue * 100 / 7) / 100;
-                  if(value == previous)
-                        continue;
 
+            // Valore massimo che potrebbe essere mostrato nel grafico
+            // nb: scalo tutti i valori al this.maxWidthPercentage% per non riempire la pagina
+            let maxValueInGraphDisplayed = 100 * maxValue / this.maxWidthPercentage;
+
+            // divido il range [0; maxValueInGraphDisplayed] in N parti (N = subdivisions)
+            let subdivisions = 10;
+
+            // Calcolo lo step
+            let step = maxValueInGraphDisplayed / subdivisions;
+
+            // 'Arrotondo' lo step per avere dei numeri più 'immediati' sulle ascisse
+            step = roundStep(step);
+
+            let previous;
+
+            for(let i = 0; true; i++){
+                  // Valore da mostrare
+                  let value = step * i;
+
+                  // left shift della barra
+                  let leftShift = value * 100 / maxValueInGraphDisplayed;
+
+                  // Esco dal ciclo quando ho quasi riempito la pagina con le barre verticali (quasi -> 94%)
+                  if(leftShift >= 94) break;
+
+                  leftShift += '%'; 
+
+                  // Barra verticale
                   let verticalBar = document.createElement("div");
                   verticalBar.classList.add("vertical-line");
-                  verticalBar.style.left = i*10 + '%';
+                  verticalBar.style.left = leftShift;
                   this.axisContainer.appendChild(verticalBar);
 
-                  previous = value;
-
+                  // Valore mostrato in alto
                   let verticalBarValueTop = document.createElement("div");
                   verticalBarValueTop.classList.add("vertical-line-value", "top");
-                  verticalBarValueTop.style.left = 'calc(' + i*10 + '% - 35px)';
+                  verticalBarValueTop.style.left = 'calc(' + leftShift + ' - 20px)';
                   verticalBarValueTop.innerText = value;
                   this.axisContainer.appendChild(verticalBarValueTop);
 
+                  // Valore mostrato in basso
                   let verticalBarValueBottom = document.createElement("div");
                   verticalBarValueBottom.classList.add("vertical-line-value", "bottom");
-                  verticalBarValueBottom.style.left = 'calc(' + i*10 + '% - 35px)';
+                  verticalBarValueBottom.style.left = 'calc(' + leftShift + ' - 20px)';
                   verticalBarValueBottom.innerText = value;
                   this.axisContainer.appendChild(verticalBarValueBottom);
             }
@@ -192,6 +215,26 @@ class Statistics{
 
             }
       }
+}
+const roundedSteps = [1, 2, 3, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 250];
+function roundStep(preciseStep){
+      preciseStep = Number(preciseStep);
+
+      // Se step <= 1 ritorno 1
+      // Si stanno tracciando numeri di upload e download di documenti, 
+      // non ha senso parlare di numeri non interi
+      if(preciseStep <= 1)
+            return 1;
+
+      // Se step >= 300 ritorno precise step troncato delle cifre delle decine e unità
+      if(preciseStep >= 300)
+            return (Math.floor(pippo / 100) * 100);
+
+      // altrimenti cerco lo step arrotondato più vicino a preciseStep, minore di preciseStep
+      for(let i = 0; i < roundedSteps.length; i++)
+            if(roundedSteps[i] >= preciseStep) return roundedSteps[i-1];
+
+      return 300;
 }
 
 class StatRecord{

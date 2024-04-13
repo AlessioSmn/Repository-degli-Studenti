@@ -31,10 +31,11 @@
       background-color: var(--foreColor);
 }
 .vertical-line-value{
+      font-size: smaller;
       position: absolute;
       background-color: var(--bgColor_light);
       text-align: center;
-      width: 70px;
+      width: 40px;
 }
 .vertical-line-value.top{
       top: 60px;
@@ -94,6 +95,9 @@
 /* Modifiche grafiche */
 .graph-element-container:nth-of-type(even) > .graph-element-bar{
       background-color: var(--primary_dark);
+}
+.graph-element-container:hover .graph-element-value{
+      text-decoration: underline;
 }
 .graph-element-container:hover .graph-element-bar{
       background-color: var(--secondary);
