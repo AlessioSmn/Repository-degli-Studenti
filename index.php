@@ -83,6 +83,18 @@
                   </div>
             </div>
       </nav>
+      
+      <section>
+            <h1>Benvenuto nella Repository degli Studenti</h1>
+            <p>
+                  Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br>
+                  Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br>
+                  Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br>
+                  Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br>
+                  Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br>
+                  Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br>
+            </p>
+      </section>
 
       <section class="page manual">
             <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
@@ -102,23 +114,6 @@
       
       <section class="page statistics">
             <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
-      </section>
-      
-      <section>
-            <h1>Benvenuto nella Repository degli Studenti</h1>
-            <p>
-                  Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br/>
-                  Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br/>
-                  Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br/>
-                  Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br/>
-                  Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br/>
-                  Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br/>
-            </p>
-            <p>Una descrizione del sito</p><a href="manual.html"><button>Manuale</button></a>
-            <p>Cerchi appunti per una materia ostica?</p><a href="search.php"><button>Cerca</button></a>
-            <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php"><button>Upload</button></a>
-            <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php"><button>Area personale</button></a>
-            <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php"><button>Statistiche</button></a>
       </section>
 
       <footer>

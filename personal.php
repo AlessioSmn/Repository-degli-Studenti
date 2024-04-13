@@ -116,9 +116,9 @@ include "php/logControl/loginControl.php";
                   <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
                   <h1 id="docFrameTitle"></h1>
                   <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)">
-                        <div><span>Titolo</span><input name="title" type="text" placeholder="" required/></div>
-                        <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""/></div>
-                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput"/></div>
+                        <div><span>Titolo</span><input name="title" type="text" placeholder="" required></div>
+                        <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""></div>
+                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput"></div>
                         <input type="hidden" name="docId">
                         <input type="hidden" name="docExtension">
                         <input type="hidden" name="docOldTitle">
