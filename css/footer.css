@@ -7,8 +7,9 @@ footer{
       background-color: var(--bgColor_dark);
       color: var(--foreColor);
       display: flex;
+      flex: 1; /* per riempire la pagina se non copre l'intera altezza della finestra*/
       flex-wrap: wrap;
-      align-items: flex-start; 
+      align-items: flex-end; 
       box-sizing: border-box;
 }
 
