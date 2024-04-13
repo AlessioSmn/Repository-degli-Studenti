@@ -231,11 +231,10 @@ include "php/logControl/loginControl.php";
                   <!-- Estensione del documento -->
                   <fieldset>
                         <legend>Estensione</legend>
-                        <div id="docExtentionFilter"></div>
+                        <div id="docExtentionFilter" class="extentionFilter"></div>
                   </fieldset>
-                  <button onclick="filterAndDisplayDocuments()"></button>
             </div>
-            <div>
+            <div class="result-container">
                   <!-- Visualizzazione dei documenti -->
                   <div id="documentVisualizer">
                         <!-- -->
@@ -258,7 +257,7 @@ include "php/logControl/loginControl.php";
       <div class="popup-section">
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container search">
-                  <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
+                  <button onclick="closePopup()" class="doc-popup-close">Chiudi</button>
                   <!-- 
                         NOTA WARNING
                         Il validatore HTML genera un warning per Empty heading., ma il titolo di

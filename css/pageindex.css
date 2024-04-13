@@ -8,14 +8,13 @@ body{
       align-items: center;
       padding: 5px 0px;
       border-radius: 0px 0px 5px 5px;
-      background-color: var(--bgColor);
 }
 .page-index-element{
       width: 40px;
       height: 40px;
       border-radius: 20px;
       box-sizing: border-box;
-      background-color: var(--bgColor_light);
+      background-color: var(--bgColor);
       margin: 0 5px;
       line-height: 40px;
       text-align: center;

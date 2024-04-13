@@ -1,9 +1,15 @@
+.result-container{
+      margin:20px;
+      padding: 0px 50px;
+      background-color: var(--bgColor_light);
+      box-shadow: 0px 0px 10px -3px black;
+      border-radius: 20px;
+}
 #documentVisualizer{
       overflow: hidden;
       display: flex;
       flex-wrap: wrap;
-      padding: 0px 10px;
-      border-radius: 5px;
+      padding: 0px 0px
 }
 
 /* Popup per la visualizzazione del documento */
@@ -23,6 +29,7 @@ section.popup-section{
 }
 .doc-popup-container iframe {
       background-color: black;
+      border: 0px;
       color: white;
 }
 .doc-popup-container.search iframe {
@@ -34,7 +41,7 @@ section.popup-section{
       width: 47%;
       margin: 1%;
 }
-.doc-popup-container h1 {
+.doc-popup-container h2 {
       float: left;
       margin: 12px 0px; 
       font-size: x-large;
@@ -50,15 +57,14 @@ section.popup-section{
       float: right;
       margin-top: 12px;
       vertical-align: middle;
-      padding: 5px;
-      width: auto;
-      height: auto;
       color: white;
-      border-radius: 15px;
-      background-color: red;
+      border: 2px solid darkred;
+      border-radius: 10px;
+      background-color: darkred;
       background-image: none;
 }
 .doc-popup-close:hover {
+      border-color: red;
       background-color: darkred;
 }
 /* Da creare sotto il popup, così da bloccare il l'accesso a tutto ciò che è sullo sfondo */
