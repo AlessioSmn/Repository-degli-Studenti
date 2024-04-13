@@ -15,7 +15,7 @@
       <script src="js/logControl/signup.js"></script>
       <style>
             body{
-                  background-color: var(--secondary);
+                  background-color: var(--bgColor_dark);
             }
       </style>
 </head>
