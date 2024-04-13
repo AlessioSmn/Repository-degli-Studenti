@@ -60,18 +60,18 @@
             </div>
       </nav>
 
-      <section class="main-log-container">
+      <div class="main-log-container">
             <form name="loginForm" onsubmit="login(event)" class="form-grid">
                   <div class="form-grid-data-row">
                         <label for="email">Mail istituzionale</label>
-                        <input type="mail" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required>
+                        <input type="email" id="email" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required>
                   </div>
                   <div class="form-grid-bottom-rows input-error-description right-side" id="emailError">
                         Inserisci una mail
                   </div>
                   <div class="form-grid-data-row">
                         <label for="password">Password</label>
-                        <input type="password" name="password" required>
+                        <input type="password" id="password" name="password" required>
                         <button id="showPwd" type="button" onmousedown="showPassword()" onmouseup="hidePassword()" onmouseleave="hidePassword()" class="show-password"></button>
                   </div>
                   <div class="form-grid-bottom-rows input-error-description right-side" id="passwordError">
@@ -93,7 +93,7 @@
             </form>
             <p id="loginInfo"></p>
       
-      </section>
+      </div>
       
       <footer>
             <div class="left-section">
