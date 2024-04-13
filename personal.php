@@ -2,6 +2,9 @@
 $prevDir = "";
 $pageName = "personal.php";
 include "php/logControl/loginControl.php";
+// NOTA WARNING
+// Il validatore HTML se utilizzato sul file genera un warning per la presenza di <?,
+// ma questo scompare quando è effettivamente processato
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -88,18 +91,18 @@ include "php/logControl/loginControl.php";
       </nav>
 
       <!-- Tipo di visualizzazione -->
-      <section id="visualizationMode">
+      <div id="visualizationMode">
             <span>Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected">
                   <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img alt="Visualizzazione a blocchi dei documenti" src="media/.png/blocco.png"></div>
                   <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img alt="Visualizzazione a lista dei documenti" src="media/.png/lista.png"></div>
             </div>
-      </section>
+      </div>
 
       <!-- Visualizzazione dei documenti -->
-      <section id="documentVisualizer">
+      <div id="documentVisualizer">
             <!-- documenti -->
-      </section>
+      </div>
 
       <!-- Indici di pagina -->
       <div class="page-index-container">
@@ -109,12 +112,17 @@ include "php/logControl/loginControl.php";
       </div>
       
       <!-- Maschera e container per la visualizzazione in popup -->
-      <section class="popup-section">
+      <div class="popup-section">
             <!-- Aggiungo la closePopup() anche alla maschera così che si possa chiudere il popup premendo sullo sfondo oscurato -->
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container personal">
                   <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
-                  <h1 id="docFrameTitle"></h1>
+                  <!-- 
+                        NOTA WARNING
+                        Il validatore HTML genera un warning per Empty heading., ma il titolo di
+                        questo header è generato dinamicamente all'apertura di un documento in frame
+                  -->
+                  <h2 id="docFrameTitle"> <!-- Titolo del documento visualizzato --> </h2>
                   <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)">
                         <div><span>Titolo</span><input name="title" type="text" placeholder="" required></div>
                         <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""></div>
@@ -126,10 +134,10 @@ include "php/logControl/loginControl.php";
                         <button type="reset">Reset</button>
                         <button type="submit">Submit</button>
                   </form>
-                  <iframe id="docFrameOld" frameborder="0"></iframe>
-                  <iframe id="docFrameNew" frameborder="0"></iframe>
+                  <iframe id="docFrameOld"></iframe>
+                  <iframe id="docFrameNew"></iframe>
             </div>
-      </section>
+      </div>
 
       <footer>
             <div class="left-section">
