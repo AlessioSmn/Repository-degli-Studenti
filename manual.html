@@ -12,74 +12,16 @@
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
-      <style>
-            table>tbody>tr{
-                  height:4em;
+      <script>
+            function toggleMenu() {
+                  var navLinks = document.getElementById("nav-links");
+                  if (navLinks.style.display === "flex") {
+                        navLinks.style.display = "none";
+                  } else {
+                        navLinks.style.display = "flex";
+                  }
             }
-            table>thead>tr>th{
-                  width:8em;
-            }
-            
-input[type="file"].pippo {
-                        display: none;
-                      }
-                      
-                      .pippo2{
-                        border: 2px dashed yellow;
-                      }
-                      .custom-file-upload {
-                        border: 1px solid #ccc;
-                        display: inline-block;
-                        padding: 6px 12px;
-                        cursor: pointer;
-                      }
-
-                      .container {
-    position: relative;
-}
-.container {
-      display: grid;
-}
-.bottom-div, .top-div {
-      grid-area: 1 / 1;
-}
-
-.bottom-div {
-    background-color: lightblue; /* Example background color */
-}
-
-.top-div {
-    background-color: transparent; /* Transparent background */
-    color: white; /* Text color */
-}
-.vertical-line{
-      content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: black;
-}
-.vertical-line:nth-child(1){
-      left: 10px;
-}
-.vertical-line:nth-child(2){
-      left: 20px;
-}
-.vertical-line:nth-child(3){
-      left: 30px;
-}
-  </style>
-  <script>
-      function toggleMenu() {
-    var navLinks = document.getElementById("nav-links");
-    if (navLinks.style.display === "flex") {
-        navLinks.style.display = "none";
-    } else {
-        navLinks.style.display = "flex";
-    }
-}
-  </script>
+      </script>
 </head>
 <body>
       <header>
@@ -87,7 +29,8 @@ input[type="file"].pippo {
       </header>
 
       <!-- Barra di navigazione del sito -->
-      <nav>
+      <nav id="navbar">
+            <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
                   <span>Accesso<span>
@@ -120,109 +63,6 @@ input[type="file"].pippo {
                   </div>
             </div>
       </nav>
-      <div class="container">
-            <div class="bottom-div">
-                  <div class="vertical-line"></div>
-                  <div class="vertical-line"></div>
-                  <div class="vertical-line"></div>
-            </div>
-            <div class="top-div">rgedfjbknr <br> eivudbshcxhjfedv h hjfa hcesdv hsdk wejhsdgfu j</div>
-        </div>
-        
-      <article>
-
-            CHANGED: <br>
-; Maximum allowed size for uploaded files.
-; http://php.net/upload-max-filesize
-upload_max_filesize = 200M
-<br>
-            formati supportati:
-            
-            case '.pdf':
-                  return 'application/pdf';
-            case '.ppt':
-                  return 'application/powerpoint';
-            case '.ps':
-            case '.eps':
-                  return 'application/postscript';
-            case '.rtf':
-                  return 'application/rtf';
-            case '.doc':
-                  return 'application/msword';
-
-            case '.txt':
-                  return 'text/plain';
-            case '.rtx':
-                  return 'text/richtext';
-
-            case '.jpg':
-            case '.jpeg':
-            case '.jpe':
-            case '.jfif':
-            case '.pjpeg':
-            case '.pjp':
-                  return 'image/jpeg';
-            case '.png':
-                  return 'image/x-png';
-            case '.gif':
-                  return 'image/gif';
-            case '.pic':
-                  return 'image/x-pict';
-            case '.pbm':
-                  return 'image/x-portable-bitmap';
-            case '.pcd':
-                  return 'image/x-photo-cd';
-
-            case '.tar':
-                  return 'x-tar';
-
-                  <table style="padding: 1px; background-color: white;">
-                        <thead>
-                              <tr>
-                                    <th>/</th>
-                                    <th>Background</th>
-                                    <th>Foreground</th>
-                                    <th>Primary</th>
-                                    <th>Secondary</th>
-                                    <th>Tertiary</th>
-                              </tr>
-                        </thead>
-                        <tbody>
-                              <tr>
-                                    <td>light</td>
-                                    <td style="background-color:var(--bgColor_light);"></td>
-                                    <td style="background-color:var(--foreColor_light);"></td>
-                                    <td style="background-color:var(--primary_light);"></td>
-                                    <td style="background-color:var(--secondary_light);"></td>
-                                    <td style="background-color:var(--tertiary_light);"></td>
-                              </tr>
-                              <tr>
-                                    <td>std</td>
-                                    <td style="background-color:var(--bgColor);"></td>
-                                    <td style="background-color:var(--foreColor);"></td>
-                                    <td style="background-color:var(--primary);"></td>
-                                    <td style="background-color:var(--secondary);"></td>
-                                    <td style="background-color:var(--tertiary);"></td>
-                              </tr>
-                              <tr>
-                                    <td>dark</td>
-                                    <td style="background-color:var(--bgColor_dark);"></td>
-                                    <td style="background-color:var(--foreColor_dark);"></td>
-                                    <td style="background-color:var(--primary_dark);"></td>
-                                    <td style="background-color:var(--secondary_dark);"></td>
-                                    <td style="background-color:var(--tertiary_dark);"></td>
-                              </tr>
-                        </tbody>
-                  </table>
-
-                      <label for="file-upload" class="custom-file-upload">
-                              Custom Upload
-                          </label>
-                      <input id="file-upload" type="file" class="pippo"/>
-
-                      <input type="file" class="pippo2"/>
-      </article>
-
       <footer>
             <div class="left-section">
                   <span>Autore</span> <span>Alessio Simoncini</span><br>
@@ -239,21 +79,7 @@ upload_max_filesize = 200M
                   <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
-
-      <script>
-            function selectOption(ciccio, index) {
-                  const switchContainer = document.querySelector('.switch-option-container.n' + ciccio);
-                  let classes = switchContainer.classList;
-
-                  // lo scorro
-                  for(let cssClass of classes)
-                        // Se inizia con background la rimuovo
-                        if (cssClass.startsWith('option-'))
-                              switchContainer.classList.remove(cssClass);
-                  switchContainer.classList.add('option-' + Number(index + 1) +'-selected');
-            }
-
-
-      </script>
+      
+      <script src="js/navbar/navbarresizing.js"></script>
 </body>
 </html>

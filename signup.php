@@ -15,7 +15,7 @@
       <script src="js/logControl/signup.js"></script>
       <style>
             body{
-                  background-color: var(--bgColor_dark);
+                  background-color: var(--secondary);
             }
       </style>
 </head>
@@ -25,7 +25,8 @@
       </header>
 
       <!-- Barra di navigazione del sito -->
-      <nav>
+      <nav id="navbar">
+            <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
                   <span>Accesso<span>
@@ -185,6 +186,9 @@
                   <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
+      
+      <!-- sideNavbarToggle() -->
+      <script src="js/navbar/navbarresizing.js"></script>
 
       <script>
       function showPassword(id){

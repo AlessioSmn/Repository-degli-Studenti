@@ -12,7 +12,7 @@ nav{
       color: var(--foreColor);
       box-shadow: none;
       transition: 0.1s;
-      box-shadow: 0px 0px 10px -1px black;
+      box-shadow: 0px 0px 10px -3px black;
       transition: 0.2s;
 }
 nav a{
@@ -91,3 +91,50 @@ nav a{
       background-color: var(--primary_light);
       color: var(--foreColor_light);
 }
+
+
+/* Elemento per la visualizzazione della navbar laterale con finestra troppo piccola*/
+nav > .side-navbar-visualizer{
+      display: none;
+      height: 2.5em;
+      padding: 0.75em 2em;
+      border-width: 0px;
+      background-color: var(--primary_dark);
+      line-height: 2.5em;
+}
+
+/* Modifiche alla navbar e i suoi elementi per una visualizzazione naturale*/
+@media (max-width: 950px) {
+      /* Mostro solo l'elemento per aprire e chiudere il menu */
+      nav > .side-navbar-visualizer{
+            display: block;
+      }
+      /* Di defualt tutti gli altri elementi non visualizzati */
+      nav > .navbar-main-element{
+            display: none;
+            width: 120px;
+            height: 1.5em;
+            line-height: 1.5em;
+            padding: 0.25em 1em;
+            color: var(--foreColor);
+            float: none !important;
+      }
+      nav > .navbar-main-element:hover{
+            padding: 0.25em 1em 0.10em 1em;
+            border-bottom: 0.15em solid var(--secondary_light);
+      }
+      nav.compact-visualizing > .navbar-main-element{
+            display: block;
+      }
+
+      /* Riposiziono anche i dropdown */
+      .navbar-dropdown-container{
+            margin-top: -1.75em !important;
+            margin-left: calc(120px + 1em) !important;
+      }
+      .navbar-dropdown-option{
+            height: 1.5em !important;
+            padding: 0.25em 0em !important;
+            line-height: 1.5em !important;
+      }   
+}  

@@ -26,7 +26,8 @@ include "php/logControl/loginControl.php";
       </header>
 
       <!-- Barra di navigazione del sito -->
-      <nav>
+      <nav id="navbar">
+            <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
                   <span>Accesso<span>
@@ -153,6 +154,9 @@ include "php/logControl/loginControl.php";
 
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
+      
+      <!-- sideNavbarToggle() -->
+      <script src="js/navbar/navbarresizing.js"></script>
 
       <script>
 

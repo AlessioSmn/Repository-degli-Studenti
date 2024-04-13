@@ -25,7 +25,8 @@
       </header>
 
       <!-- Barra di navigazione del sito -->
-      <nav>
+      <nav id="navbar">
+            <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
                   <span>Accesso<span>
@@ -110,6 +111,8 @@
                   <img class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
             </div>
       </footer>
+      
+      <script src="js/navbar/navbarresizing.js"></script>
 
       
       <div style="border: 5px; border-color: red; border-style:dotted; padding: 00px; width: 90%;">
