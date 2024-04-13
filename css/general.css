@@ -148,9 +148,9 @@ legend{
 
 /* Sezione nella quale precaricare un'immagine da mostrare quando non ci sono risultati */
 .no-result{
-      height: 400px;
+      height: 200px;
       background-image: url('../media/.png/no-results.png');
-      background-size: 20% auto;
+      background-size: auto 50%;
       background-repeat: no-repeat;
       background-position: center center;
       display: none;

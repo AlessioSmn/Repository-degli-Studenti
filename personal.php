@@ -100,15 +100,21 @@ include "php/logControl/loginControl.php";
       </div>
 
       <!-- Visualizzazione dei documenti -->
-      <div id="documentVisualizer">
-            <!-- documenti -->
-      </div>
+      <div class="result-container">
+            <div id="documentVisualizer">
+                  <!-- documenti -->
+            </div>
 
-      <!-- Indici di pagina -->
-      <div class="page-index-container">
-            <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
-            <div id="page-index-container" class="page-index-container"></div>
-            <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
+            <!-- Sezione precaricata con un'immagine da mostrare quando non ci sono risultati -->
+            <div id="no-result" class="no-result">
+            </div>
+
+            <!-- Indici di pagina -->
+            <div id="page-index-section" class="page-index-container">
+                  <div class="page-index-element shifter" onclick="previousPage()">&#11207;</div>
+                  <div id="page-index-container" class="page-index-container"></div>
+                  <div class="page-index-element shifter" onclick="nextPage()">&#11208;</div>
+            </div>
       </div>
       
       <!-- Maschera e container per la visualizzazione in popup -->
@@ -178,10 +184,37 @@ include "php/logControl/loginControl.php";
 
       let pageHandler = new PageHandler(document.getElementById("page-index-container"));
 
+      const documentVisualizer = document.getElementById("documentVisualizer");
+      const noResultSection = document.getElementById("no-result");
+
       function retrieveAndDisplayPersonalDocuments(){
             retrievePersonalDocuments().then(docs => {
-                  if (docs === false)
+                  
+                  // Se non ci sono risultati
+                  if (docs === false || docs.length == 0){
+
+                        // Comunico che non ci sono risultati
+                        let info = document.createElement("p");
+                        info.innerText = "Non hai ancora caricato nessun documento, inizia subito: ";
+                        let linkToUpload = document.createElement("a");
+                        linkToUpload.innerText = "Upload";
+                        linkToUpload.href = "uploaddocument.php";
+                        linkToUpload.classList.add("button-like");
+                        info.appendChild(linkToUpload);
+                        documentVisualizer.appendChild(info);
+
+                        // Aggiungo un'immagine per far vedere che non ci sono risultati
+                        noResultSection.style.display = "block";
+
+                        // Nascondo l'indice di pagina
+                        document.getElementById("page-index-section").style.display = "none";
+
+                        // Azzero tutti gli array di documenti
+                        DOCUMENTS = [];
+                        DOC_SLICE = [];
+
                         return;
+                  }
 
                   DOCUMENTS = docs;
 
@@ -193,7 +226,7 @@ include "php/logControl/loginControl.php";
 
                   visualizeDocuments(
                         DOC_SLICE, 
-                        document.getElementById("documentVisualizer"),
+                        documentVisualizer,
                         VisualizationType, 
                         false
                   );
@@ -208,7 +241,7 @@ include "php/logControl/loginControl.php";
 
             visualizeDocuments(
                   DOC_SLICE, 
-                  document.getElementById("documentVisualizer"),
+                  documentVisualizer,
                   VisualizationType, 
                   false
             );
@@ -224,7 +257,7 @@ include "php/logControl/loginControl.php";
             
             visualizeDocuments(
                   DOC_SLICE, 
-                  document.getElementById("documentVisualizer"),
+                  documentVisualizer,
                   VisualizationType, 
                   false
             );
@@ -280,7 +313,7 @@ include "php/logControl/loginControl.php";
             
                   visualizeDocuments(
                         DOC_SLICE, 
-                        document.getElementById("documentVisualizer"),
+                        documentVisualizer,
                         VisualizationType, 
                         false
                   );
