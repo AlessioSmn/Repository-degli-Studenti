@@ -29,7 +29,7 @@
             <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Accesso<span>
+                  <span>Accesso</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option current-page" href="#">Login</a>
                         <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
@@ -37,7 +37,7 @@
                   </div>
             </div>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Area personale<span>
+                  <span>Area personale</span>
                   <div class="navbar-dropdown-container">
                         <a href="personal.php" class="navbar-dropdown-option">Documenti</a>
                         <a href="uploaddocument.php" class="navbar-dropdown-option">Upload</a>
@@ -49,7 +49,7 @@
             <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
             <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
-                  <span>Tema<span>
+                  <span>Tema</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>

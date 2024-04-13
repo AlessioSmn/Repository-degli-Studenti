@@ -12,12 +12,33 @@
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 
-      <script>
-            window.addEventListener('scroll', function() {
-                  const scroll = window.scrollY;
-                  document.querySelector('header').style.backgroundPositionY = -0.5 * scroll + 'px';
-            }, { passive: true });
-      </script>
+
+      <style>
+            section.page{
+                  height: 200px;
+            }
+            section.page.manual{
+                  background-color: var(--bgColor);
+            }
+            section.page.search{
+                  background-color: var(--bgColor_light);
+            }
+            section.page.search > *{
+                  float:right;
+            }
+            section.page.upload{
+                  background-color: var(--bgColor);
+            }
+            section.page.personal{
+                  background-color: var(--bgColor_light);
+            }
+            section.page.personal > *{
+                  float:right;
+            }
+            section.page.statistics{
+                  background-color: var(--bgColor);
+            }
+      </style>
 </head>
 <body>
       <header>
@@ -32,7 +53,7 @@
             <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="#" class="navbar-main-element current-page"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Accesso<span>
+                  <span>Accesso</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" href="login.php">Login</a>
                         <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
@@ -40,7 +61,7 @@
                   </div>
             </div>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Area personale<span>
+                  <span>Area personale</span>
                   <div class="navbar-dropdown-container">
                         <a href="personal.php" class="navbar-dropdown-option">Documenti</a>
                         <a href="uploaddocument.php" class="navbar-dropdown-option">Upload</a>
@@ -52,7 +73,7 @@
             <a href="manual.html" class="navbar-main-element"><div><span>Manuale</span></div></a>
             <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
-                  <span>Tema<span>
+                  <span>Tema</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
@@ -62,6 +83,26 @@
                   </div>
             </div>
       </nav>
+
+      <section class="page manual">
+            <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
+      </section>
+      
+      <section class="page search">
+            <p>Cerchi appunti per una materia ostica?</p><a href="search.php" class="button-like">Cerca</a>
+      </section>
+      
+      <section class="page upload">
+            <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php" class="button-like">Upload</a>
+      </section>
+      
+      <section class="page personal">
+            <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php" class="button-like">Area personale</a>
+      </section>
+      
+      <section class="page statistics">
+            <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
+      </section>
       
       <section>
             <h1>Benvenuto nella Repository degli Studenti</h1>

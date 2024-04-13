@@ -22,6 +22,16 @@
                   }
             }
       </script>
+
+      <style>
+            h5, h6{
+                  margin: 0;
+                  padding: 0;
+            }
+            h5{
+                  margin-left: 10px;
+            }
+      </style>
 </head>
 <body>
       <header>
@@ -33,7 +43,7 @@
             <div class="side-navbar-visualizer" onclick="sideNavbarToggle()">Menu</div>
             <a href="index.php" class="navbar-main-element"><div><span>Home</span></div></a>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Accesso<span>
+                  <span>Accesso</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" href="login.php">Login</a>
                         <a class="navbar-dropdown-option" href="signup.php">Registrati</a>
@@ -41,7 +51,7 @@
                   </div>
             </div>
             <div class="navbar-main-element navbar-dropdown-main">
-                  <span>Area personale<span>
+                  <span>Area personale</span>
                   <div class="navbar-dropdown-container">
                         <a href="personal.php" class="navbar-dropdown-option">Documenti</a>
                         <a href="uploaddocument.php" class="navbar-dropdown-option">Upload</a>
@@ -53,7 +63,7 @@
             <a href="#" class="navbar-main-element current-page"><div><span>Manuale</span></div></a>
             <div class="navbar-main-element floating" onclick="logout()"><span>Logout</span></div>
             <div class="navbar-main-element navbar-dropdown-main floating">
-                  <span>Tema<span>
+                  <span>Tema</span>
                   <div class="navbar-dropdown-container">
                         <a class="navbar-dropdown-option" onclick="setTheme('dark')">Scuro</a>
                         <a class="navbar-dropdown-option" onclick="setTheme('grey')">Grigio</a>
@@ -63,6 +73,23 @@
                   </div>
             </div>
       </nav>
+
+      <section>
+            <h5>Home</h5>
+            <p>La pagina <b>home</b> permette di avere una visione di insieme di tutte le parti che compongono il sito</p>
+            <h5>Cerca</h5>
+            <p>Dalla pagina <b>cerca</b> &egrave; possibile cercare documenti, scegliendo un materia oppure cercando con un stringa, facendo match con vari campi</p>
+            <h5>Accesso</h5>
+            <p>La pagina di <b>Accesso</b> consente agli utenti di accedere al loro account utilizzando le proprie credenziali. Gli utenti possono effettuare il <b>Login</b> se hanno già un account o <b>Registrarsi</b> se sono nuovi al sito.</p>
+            <h5>Area personale</h5>
+            <p>Nell'<b>Area personale</b>, gli utenti possono gestire i propri documenti e le impostazioni personali. Possono visualizzare i loro <b>Documenti</b>, <b>Upload</b> nuovi documenti e personalizzare il <b>Tema</b> del sito.</p>
+            <h5>Statistiche</h5>
+            <p>La pagina delle <b>Statistiche</b> fornisce agli utenti una panoramica delle attività e delle metriche rilevanti del sito. Gli utenti possono visualizzare dati statistici riguardanti l'utilizzo del sito e altre informazioni pertinenti.</p>
+            <h5>Manuale</h5>
+            <p>La pagina del <b>Manuale</b> fornisce agli utenti una guida dettagliata sull'utilizzo del sito e delle sue funzionalità. Gli utenti possono trovare istruzioni, linee guida e risposte alle domande frequenti qui.</p>        
+      </section>
+
+
       <footer>
             <div class="left-section">
                   <span>Autore</span> <span>Alessio Simoncini</span><br>
