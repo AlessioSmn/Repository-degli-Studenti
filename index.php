@@ -14,28 +14,28 @@
 
 
       <style>
-            section.page{
+            div.page{
                   height: 200px;
             }
-            section.page.manual{
+            div.page.manual{
                   background-color: var(--bgColor);
             }
-            section.page.search{
+            div.page.search{
                   background-color: var(--bgColor_light);
             }
-            section.page.search > *{
+            div.page.search > *{
                   float:right;
             }
-            section.page.upload{
+            div.page.upload{
                   background-color: var(--bgColor);
             }
-            section.page.personal{
+            div.page.personal{
                   background-color: var(--bgColor_light);
             }
-            section.page.personal > *{
+            div.page.personal > *{
                   float:right;
             }
-            section.page.statistics{
+            div.page.statistics{
                   background-color: var(--bgColor);
             }
       </style>
@@ -45,7 +45,7 @@
             <p>Biblioteca UniPi</p>
             <p>Raccolta di appunti degli studenti per gli studenti</p>
             <p>proprio quella</p>
-            <img alt="Logo di Unipi" src="media/.svg/logo_white.svg" alt="logo UniPi">
+            <img alt="Logo di Unipi" src="media/.svg/logo_white.svg">
       </header>
 
       <!-- Barra di navigazione del sito -->
@@ -84,7 +84,7 @@
             </div>
       </nav>
       
-      <section>
+      <div>
             <h1>Benvenuto nella Repository degli Studenti</h1>
             <p>
                   Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br>
@@ -94,27 +94,27 @@
                   Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br>
                   Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br>
             </p>
-      </section>
+      </div>
 
-      <section class="page manual">
+      <div class="page manual">
             <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
-      </section>
+      </div>
       
-      <section class="page search">
+      <div class="page search">
             <p>Cerchi appunti per una materia ostica?</p><a href="search.php" class="button-like">Cerca</a>
-      </section>
+      </div>
       
-      <section class="page upload">
+      <div class="page upload">
             <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php" class="button-like">Upload</a>
-      </section>
+      </div>
       
-      <section class="page personal">
+      <div class="page personal">
             <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php" class="button-like">Area personale</a>
-      </section>
+      </div>
       
-      <section class="page statistics">
+      <div class="page statistics">
             <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
-      </section>
+      </div>
 
       <footer>
             <div class="left-section">
