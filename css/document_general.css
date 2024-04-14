@@ -26,11 +26,12 @@ section.popup-section{
       background-color: transparent;
       width: 65%;
       height: 80%;
+      color: white;
 }
 .doc-popup-container iframe {
-      background-color: black;
+      background-color: white;
       border: 0px;
-      color: white;
+      color: black;
 }
 .doc-popup-container.search iframe {
       width: 100%;
@@ -42,8 +43,6 @@ section.popup-section{
       margin: 1%;
 }
 .doc-popup-container h2 {
-      float: left;
-      margin: 12px 0px; 
       font-size: x-large;
       height: 30px;
       width: 80%;
