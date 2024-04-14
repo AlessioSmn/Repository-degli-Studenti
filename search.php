@@ -217,26 +217,29 @@ include "php/logControl/loginControl.php";
                   </div>
 
                   <!-- Ordinamento dei risultati -->
-                  <label>Campo di ordinamento</label>
-                  <select id="documentOrderingField" onchange="changeFieldOrder()">
-                        <option value="downloads">Numero di download</option>
-                        <option value="title">Titolo del documento</option>
-                        <option value="subject">Nome della materia</option>
-                        <option value="degree">Nome del corso di laurea</option>
-                        <option value="author">Mail dell'autore</option>
-                        <option value="uploadDate">Data di caricamento</option>
-                        <option value="lastModifiedDate">Ultima modifica</option>
-                  </select>
+                  <div>
+                        <label>Campo di ordinamento</label>
+                        <select id="documentOrderingField" onchange="changeFieldOrder()">
+                              <option value="downloads">Numero di download</option>
+                              <option value="title">Titolo del documento</option>
+                              <option value="subject">Nome della materia</option>
+                              <option value="degree">Nome del corso di laurea</option>
+                              <option value="author">Mail dell'autore</option>
+                              <option value="uploadDate">Data di caricamento</option>
+                              <option value="lastModifiedDate">Ultima modifica</option>
+                        </select>
+                  </div>
 
-                  <label>Ordine dei documenti</label>
-                  <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">Decrescente &#11206;</button>
-                  
+                  <div>
+                        <label>Ordine dei documenti</label>
+                        <button id="documentOrderAscending" onclick="flipOrder()" class="flip-order">Decrescente &#11206;</button>
+                  </div>
 
                   <!-- Estensione del documento -->
-                  <fieldset>
-                        <legend>Estensione</legend>
+                  <div>
+                        <label>Estensione</label>
                         <div id="docExtentionFilter" class="extentionFilter"></div>
-                  </fieldset>
+                  </div>
             </div>
             <div class="result-container">
                   <!-- Visualizzazione dei documenti -->
@@ -442,11 +445,8 @@ include "php/logControl/loginControl.php";
 
             // Per ogni estensione creo label e checkbox
             for(let extention of extentions){
-                  // Label
-                  let extensionLabel = document.createElement("label");
-                  extensionLabel.innerText = extention == '' ? "-" : extention;
-                  extensionLabel.for = "_" + extention;
-                  extensionFilter.appendChild(extensionLabel);
+                  let extensionContainer =document.createElement("div");
+                  extensionContainer.classList.add("form-grid-data-row");
 
                   // Checkbox
                   let extentionCheckbox = document.createElement("input");
@@ -455,7 +455,15 @@ include "php/logControl/loginControl.php";
                   extentionCheckbox.name = "_" + extention;
                   extentionCheckbox.checked = true;
                   extentionCheckbox.onchange = filterAndDisplayDocuments;
-                  extensionFilter.appendChild(extentionCheckbox);
+                  extensionContainer.appendChild(extentionCheckbox);
+
+                  // Label
+                  let extensionLabel = document.createElement("label");
+                  extensionLabel.innerText = extention == '' ? "-" : extention;
+                  extensionLabel.for = "_" + extention;
+                  extensionContainer.appendChild(extensionLabel);
+                  
+                  extensionFilter.appendChild(extensionContainer);
             }
       }
 
