@@ -122,23 +122,39 @@ include "php/logControl/loginControl.php";
             <!-- Aggiungo la closePopup() anche alla maschera così che si possa chiudere il popup premendo sullo sfondo oscurato -->
             <div id="docPopupContainerMask" class="doc-popup-container-mask" onclick="closePopup()" ></div>
             <div id="docPopupContainer" class="doc-popup-container personal">
-                  <button onclick="closePopup()" class="doc-popup-close">&#11199;</button>
+                  <button onclick="closePopup()" class="doc-popup-close">Chiudi</button>
                   <!-- 
                         NOTA WARNING
                         Il validatore HTML genera un warning per Empty heading., ma il titolo di
                         questo header è generato dinamicamente all'apertura di un documento in frame
                   -->
                   <h2 id="docFrameTitle"> <!-- Titolo del documento visualizzato --> </h2>
-                  <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)">
-                        <div><span>Titolo</span><input name="title" type="text" placeholder="" required></div>
-                        <div><span>Sottotitolo</span><input name="subtitle" type="text" placeholder=""></div>
-                        <div><span>Nuovo file</span><input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput"></div>
+                  <form id="updateForm" method="post" enctype="multipart/form-data" onsubmit="modifyDocument(event)" class="form-grid">
+                        <div class="form-grid-data-row">
+                              <span>Titolo</span>
+                              <input name="title" type="text" placeholder="" required>
+                        </div>
+                        <div class="form-grid-data-row">
+                              <span>Sottotitolo</span>
+                              <input name="subtitle" type="text" placeholder="">
+                        </div>
+                        <div class="form-grid-data-row">
+                              <span>Nuovo file</span>
+                              <input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput">
+                        </div>
+                        
+                        <div class="form-grid-bottom-rows">
+                              <button type="button" onclick="resetToPreviousValues()">Resetta i campi</button>
+                        </div>
+                        
+                        <div class="form-grid-bottom-rows">
+                              <button type="submit" class="important">Modifica</button>
+                        </div>
+                        
                         <input type="hidden" name="docId">
                         <input type="hidden" name="docExtension">
                         <input type="hidden" name="docOldTitle">
                         <input type="hidden" name="docOldSubtitle">
-                        <button type="reset">Reset</button>
-                        <button type="submit">Submit</button>
                   </form>
                   <iframe id="docFrameOld"></iframe>
                   <iframe id="docFrameNew"></iframe>
@@ -317,6 +333,17 @@ include "php/logControl/loginControl.php";
                         VisualizationType, 
                         false
                   );
+      }
+
+      const titleInput = updateForm.querySelector("input[name='title']");
+      const oldTitleInput = updateForm.querySelector("input[name='docOldTitle']");
+      const subtitleInput = updateForm.querySelector("input[name='subtitle']");
+      const oldSubtitleInput = updateForm.querySelector("input[name='docOldSubtitle']");
+      const docNewFile = updateForm.querySelector("input[name='newfile']");
+      function resetToPreviousValues(){
+            titleInput.value = oldTitleInput.value;
+            subtitleInput.value = oldSubtitleInput.value;
+            docNewFile.value = "";
       }
 
       
