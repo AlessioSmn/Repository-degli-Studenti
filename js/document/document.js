@@ -137,8 +137,7 @@ class Document{
             container.classList.add("doc-compact-container");
             
             // Estensione del documento
-            if(Public)
-                  container.appendChild(this.documentVisualizerCompact_extension_title());
+            container.appendChild(this.documentVisualizerCompact_extension_title());
 
             // Titolo del documento
             container.appendChild(this.documentVisualizerCompact_title());
