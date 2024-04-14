@@ -76,12 +76,12 @@ $sqlStatement = $sqlStatement . prepareMySQLwhereClause($subject, $document, $us
 // Array dei paramteri per la bind_param in executePreparedStatement
 // prima unisco tutti i vincoli di match in OR, poi di essi faccio un unico gruppo e li metto in and con i vincoli di filtro
 $parametersMatch = array_merge($subject->getMatchParameters(), $document->getMatchParameters(), $user->getMatchParameters());
-$parametersFiler = array_merge($subject->getFilterParameters(), $document->getFilterParameters());
+$parametersFiler = array_merge($subject->getFilterParameters());
 $parameters = array_merge($parametersMatch, $parametersFiler);
 
 // Tipi dei parametri per la bind_param in executePreparedStatement
 $parameterTypesMatch = $subject->getMatchParameterTypes() . $document->getMatchParameterTypes() . $user->getMatchParameterTypes();
-$parameterTypesFilter = $subject->getFilterParameterTypes() . $document->getFilterParameterTypes();
+$parameterTypesFilter = $subject->getFilterParameterTypes();
 $parameterTypes = $parameterTypesMatch . $parameterTypesFilter;
 
 // Eseguo la ricerca
@@ -121,11 +121,6 @@ function prepareMySQLwhereClause(SubjectElement $sub, DocumentElement $doc, User
       $strFilter = "";
       if($sub->getFilterNumParameters() > 0)
             $strFilter = $sub->getQueryFilters();
-
-      if($doc->getFilterNumParameters() > 0){
-            if($strFilter == "") $strFilter = $doc->getQueryFilters();
-            else $strFilter = $strFilter. " AND " . $doc->getQueryFilters();
-      }
 
       // Se il match è vuoto, ritorno solo il filter
       if($strMatch == "")

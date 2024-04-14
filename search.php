@@ -160,6 +160,10 @@ include "php/logControl/loginControl.php";
                                     <input id="docSubtitle" type="checkbox">
                                     <label for="docSubtitle">Cerca per sottotitolo del documento</label>
                               </div>
+                              <div class="form-grid-data-row">
+                                    <input id="docExtension" type="checkbox">
+                                    <label for="docExtension">Cerca per estensione del documento</label>
+                              </div>
                         </fieldset>
 
                         <!-- Vincoli sui CFU -->

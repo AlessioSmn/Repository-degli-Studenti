@@ -20,7 +20,7 @@ class DocumentElement{
        * @return string Stringa per la selezione in MySQL delle specifiche del documento, preparato per bind_param
        */
       public function getQueryMatches(){
-            if($this->documentTitle == null && $this->documentSubtitle == null)
+            if($this->documentTitle == null && $this->documentSubtitle == null && $this->documentExtension == null)
                   return "";
 
             $str = "";
@@ -31,18 +31,10 @@ class DocumentElement{
                   if ($str == "") $str = MySQLSelectionFilter::DocSUBTITLE;
                   else $str  = $str . " OR " . MySQLSelectionFilter::DocSUBTITLE;
             }
-            return " (" . $str . ") ";
-      }
-
-      /**
-       * Ritorna una stringa per la selezione dei documenti con una data estensione.
-       * @return string Stringa per la selezione in MySQL delle specifiche del documento, preparato per bind_param
-       */
-      public function getQueryFilters(){
-            $str = "";
-            if($this->documentExtension != null)
-                  $str = MySQLSelectionFilter::DocEXTENSION;
-
+            if($this->documentExtension != null){
+                  if ($str == "") $str = MySQLSelectionFilter::DocEXTENSION;
+                  else $str  = $str . " OR " . MySQLSelectionFilter::DocEXTENSION;
+            }
             return " (" . $str . ") ";
       }
       
@@ -54,15 +46,6 @@ class DocumentElement{
             $str = "";
             if($this->documentTitle != null) $str = $str . "s";
             if($this->documentSubtitle != null) $str = $str . "s";
-            return $str;
-      }
-      
-      /**
-       * Ritorna una stringa con i tipi dei paramteri, relativi alla parte di filter
-       * @return string Stringa con i tipi dei paramteri, es.: "sii" per stringa-intero-intero
-       */
-      public function getFilterParameterTypes(){
-            $str = "";
             if($this->documentExtension != null) $str = $str . "s";
             return $str;
       }
@@ -77,15 +60,6 @@ class DocumentElement{
                   $paramArray[] = "%".$this->documentTitle."%";
             if($this->documentSubtitle != null)
                   $paramArray[] = "%".$this->documentSubtitle."%";
-            return $paramArray;
-      }
-      
-      /**
-       * Ritorna una array di stringhe costituita dai parametri della query, relativi alla parte di filter
-       * @return array Stringa con i tipi paramteri
-       */
-      public function getFilterParameters(){
-            $paramArray = array();
             if($this->documentExtension != null)
                   $paramArray[] = "%".$this->documentExtension."%";
             return $paramArray;
@@ -98,14 +72,6 @@ class DocumentElement{
             $n = 0;
             if($this->documentTitle != null) $n++;
             if($this->documentSubtitle != null) $n++;
-            return $n;
-      }
-      
-      /**
-       * @return int Numero di parametri da passare alla bind_param
-       */
-      public function getFilterNumParameters(){
-            $n = 0;
             if($this->documentExtension != null) $n++;
             return $n;
       }

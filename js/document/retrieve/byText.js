@@ -59,6 +59,7 @@ const subjectMaxCFUcontrol = document.getElementById("maxCFUcheck");
 // NB: in PHP si ammette sia Titolo e Sottotitolo nulli
 const documentTitleControl = document.getElementById("docTitle");
 const documentSubtitleControl = document.getElementById("docSubtitle");
+const documentExtensionControl = document.getElementById("docExtension");
 
 // Controlli sul proprietario del documento
 const userNameControl = document.getElementById("userName");
@@ -98,6 +99,8 @@ function prepareFetchArgumentsText(){
             argsArray.push(["docTitle", 1]);
       if(documentSubtitleControl.checked)
             argsArray.push(["docSubtitle", 1]);
+      if(documentExtensionControl.checked)
+            argsArray.push(["docExtension", 1]);
 
       // Proprietario
       if(userNameControl.checked)
