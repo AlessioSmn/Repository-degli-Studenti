@@ -20,6 +20,10 @@ body{
       color: var(--foreColor);
 }
 
+body > *{
+      padding: 0px 2%;
+}
+
 a{
       text-decoration: none;
 }
