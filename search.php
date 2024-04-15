@@ -88,8 +88,8 @@ include "php/logControl/loginControl.php";
                   <div>
                         <label>Scegli un metodo di ricerca</label>
                         <div id="search-method-options-container" class="switch-option-container n2 option-2-selected">
-                              <div onclick="displaySearchMode(this, 1)" class="switch-option n2">MATERIA</div>
-                              <div onclick="displaySearchMode(this, 2)" class="switch-option n2">TESTO</div>
+                              <div onclick="displaySearchMode(this, 1)" class="switch-option n2"><img alt="Ricerca per materia" src="media/.png/materia.png"></div>
+                              <div onclick="displaySearchMode(this, 2)" class="switch-option n2"><img alt="Ricerca per testo" src="media/.png/testo.png"></div>
                         </div>
                   </div>
             </div>
