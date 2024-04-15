@@ -61,7 +61,7 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <h3 style="margin-left:20px;">Seleziona la statistica che vuoi osservare</h3>
+      <h3>Seleziona la statistica che vuoi osservare</h3>
       <ul>
             <li>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</li>
             <li>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</li>
