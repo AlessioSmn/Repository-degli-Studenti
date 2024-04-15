@@ -37,6 +37,15 @@ include "php/logControl/loginControl.php";
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
 
+      <style>
+            .page-description{
+                  background-color: var(--bgColor_dark);
+            }
+            li > span{
+                  font-weight: bold;
+                  font-variant: small-caps;
+            }
+      </style>
 </head>
 <body onload="retrieveDegrees()">
 
@@ -79,6 +88,22 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
       </nav>
+
+      <div class="page-description">
+            <h3>Ricerca</h3>
+            <p>In questa pagina potrai cercare tra tutti i documenti disponibili sul sito, caricati da studenti come te.</p>
+            <h5>Metodo di ricerca</h5>
+            <ul>
+                  <li><span>per materia</span>: cerca tutti i documenti relativi ad una data materia</li>
+                  <li><span>per testo</span>: cerca i documenti secondo vari campi come il titolo, l'autore, l'estensione o il corso di studi</li>
+            </ul>
+            <h5>Visualizzazione dei risultati</h5>
+            <ul>
+                  <li><span>stile</span>: scegli se visualizzare i documenti secondo la modalit&agrave; a blocchi o quella compatta</li>
+                  <li><span>ordinamento</span>: ordina i documenti secondo uno dei vari campi disponibili</li>
+                  <li><span>estensione</span>: filtra i documenti in base alla loro estensione</li>
+            </ul>
+      </div>
 
       <div class="search-options">
 
