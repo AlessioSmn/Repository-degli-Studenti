@@ -8,6 +8,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
@@ -15,7 +16,12 @@
 
       <style>
             div.page{
-                  height: 200px;
+                  height: 50px;
+                  padding-top: 20px;
+            }
+            div.page p,
+            div.page a.button-like{
+                  display: inline;
             }
             div.page.manual{
                   background-color: var(--bgColor);
@@ -23,28 +29,24 @@
             div.page.search{
                   background-color: var(--bgColor_light);
             }
-            div.page.search > *{
-                  float:right;
-            }
             div.page.upload{
                   background-color: var(--bgColor);
             }
             div.page.personal{
                   background-color: var(--bgColor_light);
             }
-            div.page.personal > *{
-                  float:right;
-            }
             div.page.statistics{
                   background-color: var(--bgColor);
+            }
+            .form-grid-data-row > *:first-child {
+                  flex-basis: 60%;
+                  text-align: justify;
             }
       </style>
 </head>
 <body>
       <header>
-            <p>Biblioteca UniPi</p>
-            <p>Raccolta di appunti degli studenti per gli studenti</p>
-            <p>proprio quella</p>
+            <h1>Repository degli Studenti</h1>
             <img alt="Logo di Unipi" src="media/.svg/logo_white.svg">
       </header>
 
@@ -84,17 +86,22 @@
             </div>
       </nav>
       
-      <div>
-            <h1>Benvenuto nella Repository degli Studenti</h1>
-            <p>
-                  Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br>
-                  Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br>
-                  Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br>
-                  Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br>
-                  Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br>
-                  Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br>
-            </p>
-      </div>
+      <h2>Benvenuto nella Repository degli Studenti</h2>
+
+      <div class="form-grid">
+            <div class="form-grid-data-row">
+                  <div>
+                        <p>
+                              Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br>
+                              Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br>
+                              Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br>
+                              Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br>
+                              Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br>
+                              Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br>
+                        </p>
+                  </div>
+                  <div>
+                        
 
       <div class="page manual">
             <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
@@ -114,6 +121,9 @@
       
       <div class="page statistics">
             <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
+      </div>
+                  </div>
+            </div>
       </div>
 
       <footer>
