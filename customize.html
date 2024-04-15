@@ -8,73 +8,15 @@
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
+      <link rel="stylesheet" type="text/CSS" href="css/form.css">
+      <link rel="stylesheet" type="text/CSS" href="css/custom.css">
       <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
-      <script>
-            function saveTheme(event){
-                  event.preventDefault();
-
-                  const form = document.getElementById('themeForm2');
-
-                  // Salvo in cache un array contenente le varibili CSS per i vari colori
-                  const customTheme = {
-                        '--bgColor_light': form.elements['bgColor_light'].value,
-                        '--bgColor': form.elements['bgColor'].value,
-                        '--bgColor_dark': form.elements['bgColor_dark'].value,
-
-                        '--foreColor_light': form.elements['foreColor_light'].value,
-                        '--foreColor': form.elements['foreColor'].value,
-                        '--foreColor_dark': form.elements['foreColor_dark'].value,
-
-                        '--primary_light': form.elements['primary_light'].value,
-                        '--primary': form.elements['primary'].value,
-                        '--primary_dark': form.elements['primary_dark'].value,
-
-                        '--secondary_light': form.elements['secondary_light'].value,
-                        '--secondary': form.elements['secondary'].value,
-                        '--secondary_dark': form.elements['secondary_dark'].value,
-                  };
-
-                  // Salvo l'array serializzato in cache 
-                  localStorage.setItem('customThemeInfo', JSON.stringify(customTheme));
-            }
-            function useTheme(event) {
-                  event.preventDefault();
-                  setTheme(CUSTOM_THEME);
-            }
-      </script>
-      <style>
-            table{
-                  border-collapse: collapse;
-            }
-            th:nth-child(2),
-            th:nth-child(6){
-                  width: 10px;
-            }
-            th:nth-child(3),
-            th:nth-child(4),
-            th:nth-child(5){
-                  width: 200px;
-            }
-            input[type="checkbox"]{
-                  height: 20px;
-                  width: 20px;
-            }
-            input[type="color"]{
-                  width: 100%;
-                  height: 100px;
-                  margin: 0px;
-                  padding: 0px;
-                  outline: none; 
-                  border: 0px;
-                  background-color: transparent;
-            }
-      </style>
 </head>
-<body>
+<body onload="setCurrentCustomTheme();">
       <header>
-            <h1>Tema custom</h1>
+            <h1>Tema personalizzato</h1>
       </header>
 
       <!-- Barra di navigazione del sito -->
@@ -113,62 +55,70 @@
             </div>
       </nav>
 
-      <div>
-            <form id="themeForm2">
-                  <table>
-                        <tr>
-                              <th>-</th>
-                              <th>Blocca il colore chiaro</th>
-                              <th>Versione chiara</th>
-                              <th>Colore</th>
-                              <th>Versione scura</th>
-                              <th>Blocca il colore scuro</th>
-                              <th>Slider</th>
-                        </tr>
-                        <tr>
-                              <td><label>Colore dello sfondo</label></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="color" value="#e0ffff" name="bgColor_light"></td>
-                              <td><input type="color" value="#b7efef" name="bgColor" onchange="updateColor(this)"></td>
-                              <td><input type="color" value="#90dfdf" name="bgColor_dark"></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
-                        </tr>
-                        <tr>
-                              <td><label>Colore del testo</label></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="color" value="#500050" name="foreColor_light"></td>
-                              <td><input type="color" value="#200020" name="foreColor" onchange="updateColor(this)"></td>
-                              <td><input type="color" value="#000000" name="foreColor_dark"></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
-                        </tr>
-                        <tr>
-                              <td><label>Colore primario</label></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="color" value="#fff080" name="primary_light"></td>
-                              <td><input type="color" value="#ffe030" name="primary" onchange="updateColor(this)"></td>
-                              <td><input type="color" value="#f0b020" name="primary_dark"></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
-                        </tr>
-                        <tr>
-                              <td><label>Colore secondario</label></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="color" value="#ff70fe" name="secondary_light"></td>
-                              <td><input type="color" value="#f040f0" name="secondary" onchange="updateColor(this)"></td>
-                              <td><input type="color" value="#e020d8" name="secondary_dark"></td>
-                              <td><input type="checkbox"></td>
-                              <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
-                        </tr>
-                  </table>
-                  <button onclick="saveTheme(event)">Salva tema</button>
-                  <button onclick="useTheme(event)">Utlizza tema</button>
-            </form>
-      </div>
+      <div class="form-grid" style="margin:50px 0px;">
+            <div class="form-grid-data-row">
 
-      <div>
-            ESEMPIO DI PAGINA
+                  <div style="padding: 20px; text-align: justify;">
+                        <h3>Crea il tuo tema personalizzato</h3>
+                        <p>
+                              In questa pagina puoi creare un tema a tuo piacimento da utilizzare per la navigazione nel sito.
+                              Puoi scegliere colore per colore oppure impostare solo i colori pincipale e regolare le versioni 
+                              chiara e scura utilizzando lo slider. Se vuoi impostare solo una delle due versioni del colore puoi
+                              bloccarla e andare a regolare con lo slider solo la versione non bloccata.
+                        </p>
+                  
+                        <button onclick="saveTheme(event)">Salva e utilizza tema</button>
+                  </div>
+                  <form id="themeForm">
+                        <table>
+                              <tr>
+                                    <th></th>
+                                    <th>Blocca</th>
+                                    <th>Versione chiara</th>
+                                    <th>Colore</th>
+                                    <th>Versione scura</th>
+                                    <th>Blocca</th>
+                                    <th>Slider</th>
+                              </tr>
+                              <tr>
+                                    <td><label>Colore dello sfondo</label></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="color" value="#e0ffff" name="bgColor_light"></td>
+                                    <td><input type="color" value="#b7efef" name="bgColor" onchange="updateColor(this)"></td>
+                                    <td><input type="color" value="#90dfdf" name="bgColor_dark"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
+                              </tr>
+                              <tr>
+                                    <td><label>Colore del testo</label></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="color" value="#500050" name="foreColor_light"></td>
+                                    <td><input type="color" value="#200020" name="foreColor" onchange="updateColor(this)"></td>
+                                    <td><input type="color" value="#000000" name="foreColor_dark"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
+                              </tr>
+                              <tr>
+                                    <td><label>Colore primario</label></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="color" value="#fff080" name="primary_light"></td>
+                                    <td><input type="color" value="#ffe030" name="primary" onchange="updateColor(this)"></td>
+                                    <td><input type="color" value="#f0b020" name="primary_dark"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
+                              </tr>
+                              <tr>
+                                    <td><label>Colore secondario</label></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="color" value="#ff70fe" name="secondary_light"></td>
+                                    <td><input type="color" value="#f040f0" name="secondary" onchange="updateColor(this)"></td>
+                                    <td><input type="color" value="#e020d8" name="secondary_dark"></td>
+                                    <td><input type="checkbox"></td>
+                                    <td><input type="range" value="50" min="-100" max="100" oninput="updateColor(this)"></td>
+                              </tr>
+                        </table>
+                  </form>
+            </div>
       </div>
 
       <footer>
@@ -191,7 +141,40 @@
       <script src="js/navbar/navbarresizing.js"></script>
       
       <script>
-            
+            /**
+             * Salva il tema impostato mediante i vari input in cache e lo imposta come tema corrente
+             */ 
+            function saveTheme(event){
+                  event.preventDefault();
+
+                  const inputTable = document.getElementById('themeForm');
+
+                  // Salvo in cache un array contenente le varibili CSS per i vari colori
+                  const customTheme = {
+                        '--bgColor_light': inputTable.elements['bgColor_light'].value,
+                        '--bgColor': inputTable.elements['bgColor'].value,
+                        '--bgColor_dark': inputTable.elements['bgColor_dark'].value,
+
+                        '--foreColor_light': inputTable.elements['foreColor_light'].value,
+                        '--foreColor': inputTable.elements['foreColor'].value,
+                        '--foreColor_dark': inputTable.elements['foreColor_dark'].value,
+
+                        '--primary_light': inputTable.elements['primary_light'].value,
+                        '--primary': inputTable.elements['primary'].value,
+                        '--primary_dark': inputTable.elements['primary_dark'].value,
+
+                        '--secondary_light': inputTable.elements['secondary_light'].value,
+                        '--secondary': inputTable.elements['secondary'].value,
+                        '--secondary_dark': inputTable.elements['secondary_dark'].value,
+                  };
+
+                  // Salvo l'array serializzato in cache 
+                  localStorage.setItem('customThemeInfo', JSON.stringify(customTheme));
+
+                  // Utilizzo il tema
+                  setTheme(CUSTOM_THEME)
+            }
+
             /**
              * Imposta i valori degli input dei colori al valore impostato, se presente
              */
@@ -201,18 +184,20 @@
 
                   // in tal caso scorro tutte le regole
                   if (storedCustomTheme) {
+
                         // Deserializzo il tema in un array di variabili css
                         const customTheme = JSON.parse(storedCustomTheme);
 
-                        // Per ogni variabile cerco il corrispondente input
-                        Object.keys(customTheme).forEach(variable => {
+                        // Scorro sui vari campi (le varie varibili --bgColor, --foreColor, etc)
+                        for(let themeElement in customTheme){
 
                               // cerco l'elemento input con il nome corrispondente (tolgo però il '--' quando cerco il nome)
-                              const input = document.querySelector(`[name="${variable.replace('--', '')}"]`);
+                              let inputName = themeElement.substring(2, themeElement.length);
+                              const input = document.querySelector('[name="' + inputName + '"]');
 
-                              // imposto il value corrente
-                              if (input) input.value = customTheme[variable];
-                        });
+                              // imposto il value corrente con il colore della variabile, il suo valore
+                              if (input) input.value = customTheme[themeElement];
+                        }
                   }
             }
 
@@ -266,7 +251,7 @@
                         // Scalo la componente
                         let shadedComponent = colorComponent * (100 + percent) / 100;
 
-                        // Controllo che sia minnore o uguale a 255
+                        // Controllo che sia minore o uguale a 255
                         shadedComponent = Math.min(shadedComponent, 255);
 
                         // Arrotondo ad intero
@@ -282,8 +267,6 @@
 
                   return finalColor;
             }
-
-            setCurrentCustomTheme();
       </script>
 </body>
 </html>
