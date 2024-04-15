@@ -77,12 +77,14 @@ include "php/logControl/loginControl.php";
                   </div>
             </div>
       </nav>
+
+      <div>
+            <h3>Carica un nuovo documento<h3>
+      </div>
       
       <!-- Caricamento di un nuovo documento -->
       <div>
             <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
-                  <fieldset>
-                  <legend>Carica un documento</legend>
                   <div class="form-grid-data-row">
                         <label for="title">Titolo del documento</label>
                         <input id="title" name="title" type="text" required>
@@ -122,16 +124,15 @@ include "php/logControl/loginControl.php";
                   <div class="form-grid-bottom-rows input-error-description right-side" id="fileError">
                         Carica un file
                   </div>
-            </fieldset>
-            <div class="form-grid-bottom-rows input-error-description" id="uploadError">
-                  Carica un file
-            </div>
-            <div class="form-grid-bottom-rows">
-                  <button type="submit" class="central important" onclick="displayErrors()">Carica</button>
-            </div>
-            <div class="form-grid-bottom-rows">
-                  <button type="reset" class="central">Azzera i campi</button>
-            </div>
+                  <div class="form-grid-bottom-rows input-error-description" id="uploadError">
+                        Carica un file
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="submit" class="central important" onclick="displayErrors()">Carica</button>
+                  </div>
+                  <div class="form-grid-bottom-rows">
+                        <button type="reset" class="central">Azzera i campi</button>
+                  </div>
             </form>
       </div>
 
