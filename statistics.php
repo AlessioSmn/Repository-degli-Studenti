@@ -61,12 +61,14 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <h3>Seleziona la statistica che vuoi osservare</h3>
-      <ul>
-            <li>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</li>
-            <li>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</li>
-            <li>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una materia</li>   
-      </ul>
+      <div>
+            <h3>Seleziona la statistica che vuoi osservare</h3>
+            <ul>
+                  <li>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</li>
+                  <li>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</li>
+                  <li>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una materia</li>   
+            </ul>
+      </div>
                                       
       <!-- Scelta del grafico da mostrare -->
       <div class="form-grid graph-options">
