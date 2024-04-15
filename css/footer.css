@@ -8,6 +8,7 @@ footer{
       color: var(--foreColor);
       display: flex;
       flex: 1; /* per riempire la pagina se non copre l'intera altezza della finestra*/
+      margin-top: 40px;
       flex-wrap: wrap;
       align-items: flex-end; 
       box-sizing: border-box;
