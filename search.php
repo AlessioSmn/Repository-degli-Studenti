@@ -238,7 +238,7 @@ include "php/logControl/loginControl.php";
                   <!-- Estensione del documento -->
                   <div>
                         <label>Estensione</label>
-                        <div id="docExtentionFilter" class="extentionFilter"></div>
+                        <div id="docExtentionFilter" class="extentionFilter"><i>Cerca un documento</i></div>
                   </div>
             </div>
             <div class="result-container">
@@ -404,6 +404,9 @@ include "php/logControl/loginControl.php";
                   // Nascondo l'indice di pagina
                   document.getElementById("page-index-section").style.display = "none";
 
+                  // Pulisco l'eventuale lista di estensioni già presente
+                  extensionFilter.innerHTML = "<i>Cerca un documento</i>";
+
                   // Azzero tutti gli array di documenti
                   DOCUMENTS = [];
                   DOC_FILTERED = [];
@@ -445,7 +448,7 @@ include "php/logControl/loginControl.php";
 
             // Per ogni estensione creo label e checkbox
             for(let extention of extentions){
-                  let extensionContainer =document.createElement("div");
+                  let extensionContainer = document.createElement("div");
                   extensionContainer.classList.add("form-grid-data-row");
 
                   // Checkbox
