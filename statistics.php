@@ -61,14 +61,19 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <p>Seleziona la statistica che vuoi osservare</p>
-
+      <h3 style="margin-left:20px;">Seleziona la statistica che vuoi osservare</h3>
+      <ul>
+            <li>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</li>
+            <li>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</li>
+            <li>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una materia</li>   
+      </ul>
+                                      
       <!-- Scelta del grafico da mostrare -->
       <div class="form-grid graph-options">
 
             <!-- Selezione del campo di ordinamento -->
             <div class="form-grid-data-row">
-                  <label>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</label>
+                  <label>Campo di ordinamento</label>
                   <div id="selection-order" class="switch-option-container n2 option-1-selected">
                         <div class="switch-option n2" onclick="changeOrder(this, 1)">Download</div>
                         <div class="switch-option n2" onclick="changeOrder(this, 2)">Upload</div>
@@ -77,7 +82,7 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione del target -->
             <div class="form-grid-data-row">
-                  <label>Scegli se osservare le statistiche di upload e download relativi agli utenti, ai corsi di studio o alle singole materie</label>
+                  <label>Soggetti del grafico</label>
                   <div id="selection-target" class="switch-option-container n3 option-3-selected">
                         <div class="switch-option n3" onclick="changeTarget(this, 1)">Corso di laurea</div>
                         <div class="switch-option n3" onclick="changeTarget(this, 2)">Materie</div>
@@ -87,7 +92,7 @@ include "php/logControl/loginControl.php";
 
             <!-- Selezione del gruppo -->
             <div class="form-grid-data-row">
-                  <label>Puoi ridurre l'insieme dei soggetti circoscrivendo ad un dato corso di studi o addirittura ad una singola materia</label>
+                  <label>Raggruppamento dei soggetti</label>
                   <div id="selection-group" class="switch-option-container n3 option-1-selected">
                         <div class="switch-option n3" onclick="changeGroup(this, 1)">Tutti</div>
                         <div class="switch-option n3" onclick="changeGroup(this, 2)">Per un dato corso di laurea</div>
