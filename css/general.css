@@ -1,7 +1,3 @@
-@font-face {
-      font-family: SwiftRegularSC;
-      src: url(font/swift-regular-sc.otf);
-}
 /*
 NOTA PER WARNING
 Il validatore CSS genera warning per ogni variabile che incontra nei singoli file,
