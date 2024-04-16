@@ -418,7 +418,7 @@ include "php/logControl/loginControl.php";
             if (Documents === false || Documents.length == 0){
 
                   // Comunico che non ci sono risultati
-                  documentVisualizer.innerText = "Nessun risultato :(";
+                  documentVisualizer.innerText = "Nessun risultato";
 
                   // Aggiungo un'immagine per far vedere che non ci sono risultati
                   noResultSection.style.display = "block";

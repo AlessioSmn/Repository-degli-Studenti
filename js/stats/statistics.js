@@ -89,7 +89,7 @@ class Statistics{
 
             if(this.statistics.length == 0){
                   // Informo che non ci sono risultati
-                  this.graphContainer.innerText = "Nessun grafico da mostrare :(";
+                  this.graphContainer.innerText = "Nessun grafico da mostrare";
 
                   this.axisContainer.innerText = "";
                   
@@ -156,8 +156,6 @@ class Statistics{
             // 'Arrotondo' lo step per avere dei numeri più 'immediati' sulle ascisse
             step = roundStep(step);
 
-            let previous;
-
             for(let i = 0; true; i++){
                   // Valore da mostrare
                   let value = step * i;
@@ -216,6 +214,7 @@ class Statistics{
             }
       }
 }
+
 const roundedSteps = [1, 2, 3, 5, 10, 15, 20, 30, 40, 50, 75, 100, 150, 200, 250];
 function roundStep(preciseStep){
       preciseStep = Number(preciseStep);

@@ -10,12 +10,8 @@ function signup(event){
       let password2 = document.querySelector('input[name="passwordRepeat"]').value;
 
       // Controllo che le due password coincidano
-      if(password1 != password2){
-            // TODO
-            // Informa che le due password non coincidono
-            window.alert("LE PASSWORD NON COINCIDONO");
+      if(password1 != password2)
             return false;
-      }
 
       // Imposto i vari campi per la richiesta POST
       let fetchBodyOptions = new FormData();

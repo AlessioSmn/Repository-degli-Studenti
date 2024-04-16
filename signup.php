@@ -127,6 +127,7 @@
                                     type="password" 
                                     name="password"
                                     placeholder="La tua password"
+                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[\(\)\[\]\{\}\.,:;\-_\+\*!£\$%&/=\?'\^\|\\]).{8,}"
                                     title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
                               <button id="showpwd1" type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password"></button>
                         </div>
@@ -148,6 +149,7 @@
                                     type="password" 
                                     name="passwordRepeat"
                                     placeholder="La tua password"
+                                    pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[\(\)\[\]\{\}\.,:;\-_\+\*!£\$%&/=\?'\^\|\\]).{8,}"
                                     title="Ripeti la password">
                               <button id="showpwd2" type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password"></button>
                         </div>
@@ -239,18 +241,6 @@
             if(password2Input.value != password1Input.value) password2Error.style.display = 'block';
             else password2Error.style.display = 'none';
       }
-
-      let regexPwdDigitCheck = "(?=.*[0-9])";
-      let regexPwdLowerCheck = "(?=.*[A-Z])";
-      let regexPwdUpperCheck = "(?=.*[a-z])";
-      let regexPwdBrackets = "\\(\\)\\[\\]\\{\\}";
-      let regexPwdPunctation = "\\.,:;\\-_\\+\\*";
-      let regexPwdOthers = "!£\\$%&/=\\?'\\^\\|\\" + "\\";
-      let regexPwdSpecials = "(?=.*[" + regexPwdBrackets + regexPwdPunctation + regexPwdOthers + "])";
-      let regexPwdPatternRequired = regexPwdDigitCheck + regexPwdLowerCheck + regexPwdUpperCheck + regexPwdSpecials;
-      let regexPwdMinumumLength = ".{8,}";
-      document.getElementById("pwd1").pattern = regexPwdPatternRequired + regexPwdMinumumLength;
-      document.getElementById("pwd2").pattern = regexPwdPatternRequired + regexPwdMinumumLength;
       </script>
 </body>
 </html>
