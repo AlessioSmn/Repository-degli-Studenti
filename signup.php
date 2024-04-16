@@ -75,7 +75,7 @@
                                     placeholder="Es: Mario" 
                                     title="Inserisci il tuo nome: solo caratteri [A-Z] e [a-z] ammessi">
                         </div>
-                        <div class="form-grid-bottom-rows input-error-description right-side" id="nameError">
+                        <div class="form-grid-bottom-rows input-description input-error right-side" id="nameError">
                               Inserisci un nome
                         </div>
                         <div class="form-grid-data-row">
@@ -89,7 +89,7 @@
                                     placeholder="Es: Rossi" 
                                     title="Inserisci il tuo cognome: solo caratteri [A-Z] e [a-z] ammessi">
                         </div>
-                        <div class="form-grid-bottom-rows input-error-description right-side" id="surnameError">
+                        <div class="form-grid-bottom-rows input-description input-error right-side" id="surnameError">
                               Inserisci un cognome
                         </div>
                   
@@ -109,7 +109,7 @@
                                     placeholder="Es: m.rossi1@studenti.unipi.it" 
                                     title="Inserisci la tua mail istituzionale, nella forma [name]@studenti.unipi.it">
                         </div>
-                        <div class="form-grid-bottom-rows input-error-description right-side" id="emailError">
+                        <div class="form-grid-bottom-rows input-description input-error right-side" id="emailError">
                               Inserisci indirizzo mail valido
                         </div>
                   </fieldset>
@@ -130,7 +130,7 @@
                                     title="inserisci una password sicura: deve essere costituita da minimo 8 caratteri ed includere almeno un numero, una lettera maiuscola, una lettera minuscola e un carattere speciale">
                               <button id="showpwd1" type="button" onmousedown="showPassword('pwd1')" onmouseup="hidePassword('pwd1')" onmouseleave="hidePassword('pwd1')" class="show-password"></button>
                         </div>
-                        <div class="form-grid-bottom-rows input-error-description right-side" id="password1Error">
+                        <div class="form-grid-bottom-rows input-description input-error right-side" id="password1Error">
                               <p>Inserisci una password valida costituita da:</p>
                               <ul>
                                     <li>Minimo 8 caratteri</li>
@@ -151,11 +151,11 @@
                                     title="Ripeti la password">
                               <button id="showpwd2" type="button" onmousedown="showPassword('pwd2')" onmouseup="hidePassword('pwd2')" onmouseleave="hidePassword('pwd2')" class="show-password"></button>
                         </div>
-                        <div class="form-grid-bottom-rows input-error-description right-side" id="password2Error">
+                        <div class="form-grid-bottom-rows input-description input-error right-side" id="password2Error">
                               Le due password non coincidono
                         </div>
                   </fieldset>
-                  <div class="form-grid-bottom-rows input-error-description" id="signupError">
+                  <div class="form-grid-bottom-rows input-description input-error" id="signupError">
                         
                   </div>
                   <div class="form-grid-bottom-rows">
@@ -193,9 +193,6 @@
 
       <script>
       function showPassword(id){
-            // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
-            // <a href="https://www.flaticon.com/free-icons/password" title="password icons">Password icons created by th studio - Flaticon</a>
-
             // Mostro la password
             const pwdInputElement = document.getElementById(id);
             pwdInputElement.type = 'text';

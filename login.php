@@ -66,7 +66,7 @@
                         <label for="email">Mail istituzionale</label>
                         <input type="email" id="email" name="email" placeholder="Es: m.rossi1@studenti.unipi.it" required>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="emailError">
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="emailError">
                         Inserisci una mail
                   </div>
                   <div class="form-grid-data-row">
@@ -74,10 +74,10 @@
                         <input type="password" id="password" name="password" required>
                         <button id="showPwd" type="button" onmousedown="showPassword()" onmouseup="hidePassword()" onmouseleave="hidePassword()" class="show-password"></button>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="passwordError">
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="passwordError">
                         Inserisci una password
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description" id="loginError">
+                  <div class="form-grid-bottom-rows input-description input-error" id="loginError">
                         Email e/o password errati
                   </div>
                   <div class="form-grid-bottom-rows">

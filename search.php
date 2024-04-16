@@ -480,15 +480,15 @@ include "php/logControl/loginControl.php";
                   let extentionCheckbox = document.createElement("input");
                   extentionCheckbox.type = "checkbox";
                   extentionCheckbox.value = extention;
-                  extentionCheckbox.name = "_" + extention;
+                  extentionCheckbox.id = extention;
                   extentionCheckbox.checked = true;
                   extentionCheckbox.onchange = filterAndDisplayDocuments;
                   extensionContainer.appendChild(extentionCheckbox);
 
                   // Label
                   let extensionLabel = document.createElement("label");
-                  extensionLabel.innerText = extention == '' ? "-" : extention;
-                  extensionLabel.for = "_" + extention;
+                  extensionLabel.innerText = extention == '' ? "-" : extention.substring(1, extention.length);
+                  extensionLabel.setAttribute("for", extention);
                   extensionContainer.appendChild(extensionLabel);
                   
                   extensionFilter.appendChild(extensionContainer);
