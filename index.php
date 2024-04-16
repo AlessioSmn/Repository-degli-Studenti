@@ -15,39 +15,42 @@
 
 
       <style>
+            h1{
+                  text-align: center;
+            }
             div.page{
+                  margin: 5px 0px;
                   height: 50px;
-                  padding-top: 20px;
+                  padding: 20px 10px 0px 10px;
+                  transition: 0.2s;
+                  border-radius: 10px;
+            }
+            div.page:hover{
+                  
+                  background-color: var(--bgColor);
             }
             div.page p,
             div.page a.button-like{
                   display: inline;
             }
-            div.page.manual{
-                  background-color: var(--bgColor);
-            }
-            div.page.search{
-                  background-color: var(--bgColor_light);
-            }
-            div.page.upload{
-                  background-color: var(--bgColor);
-            }
-            div.page.personal{
-                  background-color: var(--bgColor_light);
-            }
-            div.page.statistics{
-                  background-color: var(--bgColor);
+            .form-grid{
+                  margin-bottom: 30px;
             }
             .form-grid-data-row > *:first-child {
                   flex-basis: 60%;
                   text-align: justify;
+                  line-height: 40px;
+            }
+            .form-grid-data-row > *:nth-child(2) {
+                  background-color: var(--bgColor_light);
+                  border-radius: 10px;
+                  padding: 20px;
             }
       </style>
 </head>
 <body>
       <header>
             <h1>Repository degli Studenti</h1>
-            <img alt="Logo di Unipi" src="media/.svg/logo_white.svg">
       </header>
 
       <!-- Barra di navigazione del sito -->
