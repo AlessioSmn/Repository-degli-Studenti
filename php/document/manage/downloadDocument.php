@@ -63,41 +63,27 @@ function getContentType($extension){
       switch($extension){
             case '.pdf':
                   return 'application/pdf';
-            case '.ppt':
-                  return 'application/powerpoint';
-            case '.ps':
-            case '.eps':
-                  return 'application/postscript';
             case '.rtf':
                   return 'application/rtf';
+            case '.js':
+                  return 'application/javascript';
             case '.doc':
                   return 'application/msword';
+            case '.docx':
+                  return 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+            case '.ppt':
+                  return 'application/vnd.ms-powerpoint';
+            case '.pptx':
+                  return 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
 
             case '.txt':
                   return 'text/plain';
+            case '.css':
+                  return 'text/css';
+            case '.html':
+                  return 'text/html';
             case '.rtx':
                   return 'text/richtext';
-
-            case '.jpg':
-            case '.jpeg':
-            case '.jpe':
-            case '.jfif':
-            case '.pjpeg':
-            case '.pjp':
-                  return 'image/jpeg';
-            case '.png':
-                  return 'image/x-png';
-            case '.gif':
-                  return 'image/gif';
-            case '.pic':
-                  return 'image/x-pict';
-            case '.pbm':
-                  return 'image/x-portable-bitmap';
-            case '.pcd':
-                  return 'image/x-photo-cd';
-
-            case '.tar':
-                  return 'x-tar';
 
             default:
                   return '';
