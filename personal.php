@@ -145,7 +145,7 @@ include "php/logControl/loginControl.php";
                         </div>
                         <div class="form-grid-data-row">
                               <span>Nuovo file</span>
-                              <input name="newfile" type="file" onchange="visualizeNewDocumentUploaded(this)" id="newFileInput">
+                              <input name="newfile" type="file" id="newFileInput">
                         </div>
                         
                         <div class="form-grid-bottom-rows">
@@ -162,7 +162,6 @@ include "php/logControl/loginControl.php";
                         <input type="hidden" name="docOldSubtitle">
                   </form>
                   <iframe id="docFrameOld"></iframe>
-                  <iframe id="docFrameNew"></iframe>
             </div>
       </div>
 
@@ -365,25 +364,9 @@ include "php/logControl/loginControl.php";
             // Rimuovo il documento dal frame
             let iframeOld = document.getElementById("docFrameOld");
             iframeOld.src = "";
-            let iframeNew = document.getElementById("docFrameNew");
-            iframeNew.src = "";
 
             let frameTitle = document.getElementById("docFrameTitle");
             frameTitle.innerText = "";
-      }
-
-      function visualizeNewDocumentUploaded(input){
-            /*
-            let file = input.files[0];
-            let reader = new FileReader();
-            let iframe = document.getElementById('docFrameNew');
-
-            reader.onload = function(event) {
-                  iframe.src = event.target.result;
-            };
-
-            reader.readAsDataURL(file);
-            */
       }
 
       </script>
