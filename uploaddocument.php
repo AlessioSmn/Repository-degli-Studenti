@@ -84,12 +84,12 @@ include "php/logControl/loginControl.php";
       
       <!-- Caricamento di un nuovo documento -->
       <div>
-            <form method="post" enctype="multipart/form-data" onsubmit="uploadDocument(event)" class="form-grid">
+            <form method="post" onsubmit="uploadDocument(event)" class="form-grid">
                   <div class="form-grid-data-row">
                         <label for="title">Titolo del documento</label>
                         <input id="title" name="title" type="text" required>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="titleError">
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="titleError">
                         Inserisci un titolo
                   </div>
                   <div class="form-grid-data-row">
@@ -106,7 +106,7 @@ include "php/logControl/loginControl.php";
                         <select id="degree_selector" name="degree_selector" onchange="retrieveSubjectByDegree()" required>
                         </select>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="degreeError">
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="degreeError">
                         Seleziona un corso di studi
                   </div>
                   <div class="form-grid-data-row">
@@ -114,18 +114,49 @@ include "php/logControl/loginControl.php";
                         <select id="subject_selector" name="subject_selector" required disabled>
                         </select>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="subjectError">
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="subjectError">
                         Seleziona una materia
                   </div>
                   <div class="form-grid-data-row">
                         <label for="fileContent">Carica il tuo file</label>
-                        <input type="file" id="fileContent" name="fileContent" required>
+                        <input type="file" id="fileContent" name="fileContent" onchange="alertExtension()" required>
+                        <button id="showFileInfo" type="button" class="show-password" onclick="toggleFileInfoVisibility()"></button>
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description right-side" id="fileError">
+                  <div id="fileExtensionInfo" class="form-grid-bottom-rows input-description input-info right-side" style="display: none;">
+                        <p>
+                              <span>Estensioni meglio supportate:</span>
+                              <ul>
+                                    <li>pdf</li>
+                                    <li>txt</li>
+                                    <li>js</li>
+                                    <li>html</li>
+                                    <li>css</li>
+                              </ul>
+                        </p>
+                        <p>
+                              <span>Supporto limitato:</span>
+                              <ul>
+                                    <li>doc</li>
+                                    <li>docx</li>
+                                    <li>ppt</li>
+                                    <li>pttx</li>
+                              </ul>
+                        </p>
+                        <p>
+                              <span>Rischio di corruzione del documento:</span>
+                              <ul>
+                                    <li>png</li>
+                                    <li>jpg</li>
+                                    <li>jpeg</li>
+                                    <li>gif</li>
+                              </ul>
+                        </p>
+                  </div>
+                  <div class="form-grid-bottom-rows input-description input-error right-side" id="fileError">
                         Carica un file
                   </div>
-                  <div class="form-grid-bottom-rows input-error-description" id="uploadError">
-                        Carica un file
+                  <div class="form-grid-bottom-rows input-description input-error" id="uploadError">
+                        Errore del caricamento di un nuovo documento
                   </div>
                   <div class="form-grid-bottom-rows">
                         <button type="submit" class="central important" onclick="displayErrors()">Carica</button>
@@ -161,6 +192,39 @@ include "php/logControl/loginControl.php";
       <script src="js/navbar/navbarresizing.js"></script>
 
       <script>
+      
+      const showFileInfoButton = document.getElementById("showFileInfo");
+      const fileExtensionInfo = document.getElementById("fileExtensionInfo");
+      function toggleFileInfoVisibility(){
+            let currentVis = fileExtensionInfo.style.display;
+            if(currentVis == "block"){
+                  fileExtensionInfo.style.display = "none";
+                  showFileInfoButton.style.backgroundImage = 'url(media/.png/hide.png)';
+            }
+            else{
+                  fileExtensionInfo.style.display = "block";
+                  showFileInfoButton.style.backgroundImage = 'url(media/.png/show.png)';
+            }
+      }
+
+      const errorExtensions = ["jpg", "png", "jpeg", "gif"];
+      function alertExtension(){
+            // Ricavo l'estensione del file appena carictao
+            let uploadedFile = document.getElementById("fileContent").files[0];
+            let extension = uploadedFile.name.split('.').pop();
+            window.alert(extension);
+
+            // Controllo che non sia in quelle che danno errori
+            for(let ext of errorExtensions)
+
+                  // in tal caso mostro all'utente l'avviso
+                  if(ext == extension){
+                        fileExtensionInfo.style.display = "block";
+                        showFileInfoButton.style.backgroundImage = 'url(media/.png/show.png)';
+                        return;
+                  }
+
+      }
             
       function displayErrors(){
             let titleInput = document.querySelector('input[name="title"]');
