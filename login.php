@@ -2,7 +2,7 @@
 <html lang="it">
 <head>
 	<meta charset="utf-8">
-      <title>Repository studenti</title>
+      <title>Repository degli Studenti</title>
       <link rel="stylesheet" type="text/CSS" href="css/themes/light.css" id="theme">
       <link rel="stylesheet" type="text/CSS" href="css/general.css">
       <link rel="stylesheet" type="text/CSS" href="css/header.css">
