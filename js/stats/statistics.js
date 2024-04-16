@@ -228,7 +228,7 @@ function roundStep(preciseStep){
 
       // Se step >= 300 ritorno precise step troncato delle cifre delle decine e unità
       if(preciseStep >= 300)
-            return (Math.floor(pippo / 100) * 100);
+            return (Math.floor(preciseStep / 100) * 100);
 
       // altrimenti cerco lo step arrotondato più vicino a preciseStep, minore di preciseStep
       for(let i = 0; i < roundedSteps.length; i++)
