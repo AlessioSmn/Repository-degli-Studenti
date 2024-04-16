@@ -9,7 +9,7 @@
       <link rel="stylesheet" type="text/CSS" href="css/navbar.css">
       <link rel="stylesheet" type="text/CSS" href="css/footer.css">
       <link rel="stylesheet" type="text/CSS" href="css/form.css">
-      <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
+      <link rel="icon" type="image/ICO" href="media/ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
       <script src="js/logControl/signup.js"></script>
@@ -184,7 +184,7 @@
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/ico/cherubino_black.ico">
             </div>
       </footer>
       
@@ -199,7 +199,7 @@
 
             // E cambio l'immagine del bottone
             const hideShowPassword = document.getElementById('show' + id);
-            hideShowPassword.style.backgroundImage = 'url(media/.png/show.png)';
+            hideShowPassword.style.backgroundImage = 'url(media/png/show.png)';
 
       }
       function hidePassword(id){
@@ -209,7 +209,7 @@
 
             // E cambio l'immagine del bottone
             const hideShowPassword = document.getElementById('show' + id);
-            hideShowPassword.style.backgroundImage = 'url(media/.png/hide.png)';
+            hideShowPassword.style.backgroundImage = 'url(media/png/hide.png)';
       }
       
       function displayErrors(){

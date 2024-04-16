@@ -16,7 +16,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/form.css">
       <link rel="stylesheet" type="text/CSS" href="css/statistics.css">
       <link rel="stylesheet" type="text/CSS" href="css/toggle_element.css">
-      <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
+      <link rel="icon" type="image/ICO" href="media/ico/cherubino_pant541.ico">
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 </head>
@@ -147,7 +147,7 @@ include "php/logControl/loginControl.php";
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/ico/cherubino_black.ico">
             </div>
       </footer>
 

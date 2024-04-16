@@ -22,7 +22,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_compact.css">
-      <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
+      <link rel="icon" type="image/ICO" href="media/ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
       <script src="js/theme/themeControl.js"></script>
@@ -105,8 +105,8 @@ include "php/logControl/loginControl.php";
       <div id="visualizationMode">
             <span class="visualization-option-span">Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected" style="width: 20%; min-width: 150px;">
-                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img alt="Visualizzazione a blocchi dei documenti" src="media/.png/blocco.png"></div>
-                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img alt="Visualizzazione a lista dei documenti" src="media/.png/lista.png"></div>
+                  <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img alt="Visualizzazione a blocchi dei documenti" src="media/png/blocco.png"></div>
+                  <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img alt="Visualizzazione a lista dei documenti" src="media/png/lista.png"></div>
             </div>
       </div>
 
@@ -184,7 +184,7 @@ include "php/logControl/loginControl.php";
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/ico/cherubino_black.ico">
             </div>
       </footer>
 

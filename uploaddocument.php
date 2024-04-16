@@ -19,7 +19,7 @@ include "php/logControl/loginControl.php";
       <link rel="stylesheet" type="text/CSS" href="css/document_general.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_block.css">
       <link rel="stylesheet" type="text/CSS" href="css/document_compact.css">
-      <link rel="icon" type="image/ICO" href="media/.ico/cherubino_pant541.ico">
+      <link rel="icon" type="image/ICO" href="media/ico/cherubino_pant541.ico">
 
       <!-- setTheme() -->
       <script src="js/theme/themeControl.js"></script>
@@ -185,7 +185,7 @@ include "php/logControl/loginControl.php";
                   <span>Indirizzo</span> <address>Lungarno Pacinotti 43, 56126 Pisa</address>
             </div>
             <div class="right-section">
-                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/.ico/cherubino_black.ico">
+                  <img alt="logo della società" class="company-logo" id="footerUnipiLogo" src="media/ico/cherubino_black.ico">
             </div>
       </footer>
 
@@ -204,11 +204,11 @@ include "php/logControl/loginControl.php";
             let currentVis = fileExtensionInfo.style.display;
             if(currentVis == "block"){
                   fileExtensionInfo.style.display = "none";
-                  showFileInfoButton.style.backgroundImage = 'url(media/.png/hide.png)';
+                  showFileInfoButton.style.backgroundImage = 'url(media/png/hide.png)';
             }
             else{
                   fileExtensionInfo.style.display = "block";
-                  showFileInfoButton.style.backgroundImage = 'url(media/.png/show.png)';
+                  showFileInfoButton.style.backgroundImage = 'url(media/png/show.png)';
             }
       }
 
@@ -225,7 +225,7 @@ include "php/logControl/loginControl.php";
                   // in tal caso mostro all'utente l'avviso
                   if(ext == extension){
                         fileExtensionInfo.style.display = "block";
-                        showFileInfoButton.style.backgroundImage = 'url(media/.png/show.png)';
+                        showFileInfoButton.style.backgroundImage = 'url(media/png/show.png)';
                         return;
                   }
 

@@ -95,5 +95,5 @@ function isColorBright(color, threshold = 160){
 function adaptLogo(){
       const logoElement = document.getElementById("footerUnipiLogo");
       const version = brightBackground ? "black" : "white";
-      logoElement.src = "media/.ico/cherubino_" + version + ".ico";
+      logoElement.src = "media/ico/cherubino_" + version + ".ico";
 }
