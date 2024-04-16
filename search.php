@@ -35,7 +35,7 @@ include "php/logControl/loginControl.php";
       <script src="js/subject/retrieveByDegree.js"></script>
 
       <!-- changeOptionInToggleOptions() -->
-      <script src="js/toggleElement.js"></script>
+      <script src="js/toggleElement/toggleElement.js"></script>
 
       <style>
             li > span{
