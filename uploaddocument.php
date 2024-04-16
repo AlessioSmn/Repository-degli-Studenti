@@ -128,34 +128,28 @@ include "php/logControl/loginControl.php";
                         <button id="showFileInfo" type="button" class="show-password" onclick="toggleFileInfoVisibility()"></button>
                   </div>
                   <div id="fileExtensionInfo" class="form-grid-bottom-rows input-description input-info right-side" style="display: none;">
-                        <p>
-                              <span>Estensioni meglio supportate:</span>
-                              <ul>
-                                    <li>pdf</li>
-                                    <li>txt</li>
-                                    <li>js</li>
-                                    <li>html</li>
-                                    <li>css</li>
-                              </ul>
-                        </p>
-                        <p>
-                              <span>Supporto limitato:</span>
-                              <ul>
-                                    <li>doc</li>
-                                    <li>docx</li>
-                                    <li>ppt</li>
-                                    <li>pttx</li>
-                              </ul>
-                        </p>
-                        <p>
-                              <span>Rischio di corruzione del documento:</span>
-                              <ul>
-                                    <li>png</li>
-                                    <li>jpg</li>
-                                    <li>jpeg</li>
-                                    <li>gif</li>
-                              </ul>
-                        </p>
+                        <span>Estensioni meglio supportate:</span>
+                        <ul>
+                              <li>pdf</li>
+                              <li>txt</li>
+                              <li>js</li>
+                              <li>html</li>
+                              <li>css</li>
+                        </ul>
+                        <span>Supporto limitato:</span>
+                        <ul>
+                              <li>doc</li>
+                              <li>docx</li>
+                              <li>ppt</li>
+                              <li>pttx</li>
+                        </ul>
+                        <span>Rischio di corruzione del documento:</span>
+                        <ul>
+                              <li>png</li>
+                              <li>jpg</li>
+                              <li>jpeg</li>
+                              <li>gif</li>
+                        </ul>
                   </div>
                   <div class="form-grid-bottom-rows input-description input-error right-side" id="fileError">
                         Carica un file
