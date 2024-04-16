@@ -95,16 +95,6 @@
       
       </div>
       
-
-      
-      <div style="border: 5px; border-color: red; border-style:dotted; padding: 00px; width: 90%;">
-                  <h4 style="color: red; display: inline;">DEBUGGING ONLY</h4>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('a.dallebandenere')">fill1</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi1')">fill2</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('b.rossi2')">fill3</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('c.verdi10')">fill4</button>
-                  <button onclick="DEBUG_ONLY_fillLoginAdminData('vasco')">vasco</button>
-            </div>
       <footer>
             <div class="left-section">
                   <span>Autore</span> <span>Alessio Simoncini</span><br>
@@ -155,11 +145,6 @@
             else password1Error.style.display = 'none';
       }
 
-      function DEBUG_ONLY_fillLoginAdminData(mail){
-            document.querySelector('input[name="email"]').value = mail+"@studenti.unipi.it";
-            if(mail == 'vasco')document.querySelector('input[name="password"]').value = "qwertyQ1.";
-            else document.querySelector('input[name="password"]').value = "rootAdmin1.";
-      }
       </script>
 </body>
 </html>
