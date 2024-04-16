@@ -64,10 +64,6 @@
       }
 }
 
-
-.doc-compact-container.vizualizing{ 
-
-}
 .doc-compact-container.vizualizing > .additional-info-container{
       display: flex;
 }
@@ -85,33 +81,10 @@
       margin: 0px 0px 0px 20px;
       display: inline;
 }
-.doc-compact-subtitle{
-      
-}
-
-/* Autore del documento */
-.doc-compact-owner{
-      
-}
-
-/* Materia del documento */
-.doc-compact-subject{
-      
-}
-
-/* Corso di Studi del documento */
-.doc-compact-degree{
-      
-}
 
 /* Informazioni 'temporali' sul documento (upload e ultima modifica) */
 .doc-compact-dateinfo > :nth-child(2){
       font-style: italic;
-}
-
-/* Numero di donwload */
-.doc-compact-downloads{
-      
 }
 
 /* Numero di donwload */

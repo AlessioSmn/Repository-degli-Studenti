@@ -68,28 +68,9 @@
       font-weight: normal !important;
 }
 
-/* Materia del documento */
-.doc-block-subject{
-      
-}
-
-/* Corso di Studi del documento */
-.doc-block-degree{
-      
-}
-
-/* Informazioni 'temporali' sul documento (upload e ultima modifica) */
-.doc-block-dateinfo {
-      
-}
 .doc-block-dateinfo *:nth-child(2){
       font-style: italic;
       font-size: smaller;
-}
-
-/* Numero di donwload */
-.doc-block-downloads{
-      
 }
 .doc-block-extension *:nth-child(2){
       font-variant: small-caps;

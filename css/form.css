@@ -37,15 +37,6 @@
 .form-grid-bottom-rows > *{
       flex: 1;
 }
-.form-grid-bottom-rows > *.central{
-      /*
-      flex: none;
-      flex-basis: 30%;
-      margin-left: 35%;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      */
-}
 
 .show-password{
       border-radius: 25%;
