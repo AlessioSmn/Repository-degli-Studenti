@@ -61,7 +61,7 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <div>
+      <div class="page-description">
             <h3>Seleziona la statistica che vuoi osservare</h3>
             <ul>
                   <li>Scegli se ordinare gli elementi del grafico secondo il numero di download o upload effettuati</li>

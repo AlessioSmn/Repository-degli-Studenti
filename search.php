@@ -38,9 +38,6 @@ include "php/logControl/loginControl.php";
       <script src="js/toggleElement.js"></script>
 
       <style>
-            .page-description{
-                  background-color: var(--bgColor_dark);
-            }
             li > span{
                   font-weight: bold;
                   font-variant: small-caps;

@@ -78,7 +78,7 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <div>
+      <div class="page-description">
             <h3>Carica un nuovo documento</h3>
       </div>
       

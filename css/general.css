@@ -163,3 +163,9 @@ legend{
       background-position: center center;
       display: none;
 }
+
+.page-description{
+      background-color: var(--bgColor_dark);
+      padding-top: 10px;
+      padding-bottom: 10px;
+}

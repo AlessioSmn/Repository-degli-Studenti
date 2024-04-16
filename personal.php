@@ -48,6 +48,12 @@ include "php/logControl/loginControl.php";
       <!-- changeOptionInToggleOptions() -->
       <script src="js/toggleElement.js"></script>
       
+      <style>
+            .visualization-option-span{
+                  display: block;
+                  margin: 5px 0px;
+            }
+      </style>
 </head>
 <body onload="retrieveAndDisplayPersonalDocuments()">
       <header>
@@ -90,14 +96,14 @@ include "php/logControl/loginControl.php";
             </div>
       </nav>
 
-      <div>
+      <div class="page-description">
             <h3>Gestisci i tuoi documenti</h3>
             <p>In questa pagina puoi vedere tutti i documenti che hai caricato, con la possibilit&agrave; di modificarli o eliminarli del tutto.</p>
       </div>
 
       <!-- Tipo di visualizzazione -->
-      <div id="visualizationMode" style="margin-top: 20px;">
-            <span style="display:block;">Scegli un metodo di visualizzazione</span>
+      <div id="visualizationMode">
+            <span class="visualization-option-span">Scegli un metodo di visualizzazione</span>
             <div id="visualization-types-options-container" class="switch-option-container n2 option-2-selected" style="width: 20%; min-width: 150px;">
                   <div onclick="changeVisualizationType(this, 1)" class="switch-option n2"><img alt="Visualizzazione a blocchi dei documenti" src="media/.png/blocco.png"></div>
                   <div onclick="changeVisualizationType(this, 2)" class="switch-option n2"><img alt="Visualizzazione a lista dei documenti" src="media/.png/lista.png"></div>
