@@ -36,6 +36,11 @@ include "php/logControl/loginControl.php";
       <!-- uploadDocument() -->
       <script src="js/document/update/upload.js"></script>
       
+      <style>
+            .upload-section{
+                  margin: 30px 70px;
+            }
+      </style>
 </head>
 <body onload="retrieveDegrees()">
       <header>
@@ -83,7 +88,7 @@ include "php/logControl/loginControl.php";
       </div>
       
       <!-- Caricamento di un nuovo documento -->
-      <div>
+      <div class="upload-section">
             <form method="post" onsubmit="uploadDocument(event)" class="form-grid">
                   <div class="form-grid-data-row">
                         <label for="title">Titolo del documento</label>
