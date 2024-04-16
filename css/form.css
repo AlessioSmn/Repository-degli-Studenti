@@ -56,20 +56,29 @@
       padding: 18px;
 }
 
-.input-error-description{
-      text-align: center;
-      background-color: rgba(255, 0, 0, 0.3);
-      color: red;
+.input-description{
       padding: 10px;
       margin-bottom: 30px;
       margin-left: 10px;
       margin-right: 10px;
-      border: 1px solid red;
       border-radius: 5px;
 }
-.input-error-description.right-side{
+.input-description.input-error{
+      text-align: center;
+      background-color: rgba(255, 0, 0, 0.3);
+      color: red;
+      border: 1px solid red;
+}
+.input-description.input-info{
+      text-align: left;
+      display: block;
+      background-color: rgba(137, 137, 137, 0.17);
+      color: var(--foreColor);
+      border: 1px solid var(--secondary);
+}
+.input-description.right-side{
       margin-left: calc(30% + 20px);
 }
-.form-grid .input-error-description{
+.form-grid .input-description{
       display: none;
 }
