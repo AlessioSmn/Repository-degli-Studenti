@@ -13,33 +13,34 @@
       <script src="js/theme/themeControl.js"></script>
       <script src="js/logControl/logout.js"></script>
 
-
       <style>
-            h1{
-                  text-align: center;
+            h1, h2{
+                  text-align: center !important;
             }
-            div.page{
-                  margin: 5px 0px;
-                  height: 50px;
-                  padding: 20px 10px 0px 10px;
+            .site-description span{
+                  display: block;
+            }
+            div.pages div{
+                  padding: 10px;
                   transition: 0.2s;
                   border-radius: 10px;
             }
-            div.page:hover{
+            div.pages div:hover{
                   
                   background-color: var(--bgColor);
             }
-            div.page p,
-            div.page a.button-like{
-                  display: inline;
+            div.pages p,
+            div.pages a.button-like{
+                  display: inline-block;
             }
             .form-grid{
                   margin-bottom: 30px;
             }
             .form-grid-data-row > *:first-child {
-                  flex-basis: 60%;
+                  flex-basis: 40%;
                   text-align: justify;
-                  line-height: 40px;
+                  padding: 0px 50px;
+                  height: 100%;
             }
             .form-grid-data-row > *:nth-child(2) {
                   background-color: var(--bgColor_light);
@@ -93,38 +94,34 @@
 
       <div class="form-grid">
             <div class="form-grid-data-row">
-                  <div>
-                        <p>
-                              Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.<br>
-                              Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative. <br>
-                              Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.<br>
-                              Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.<br>
-                              Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. <br>
-                              Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!<br>
-                        </p>
-                  </div>
-                  <div>
+                  <p class="site-description">
+                        <span>Benvenuto nella Repository degli Studenti, un sito web dedicato alla condivisione materiale di studio.</span><br>
+                        <span>Esplora la vasta gamma di documenti e dispense caricati dagli studenti e cerca appunti per le materie pi&ugrave; impegnative.</span><br>
+                        <span>Per usufruire del servizio dovrai creare un account personale, dove potrai gestire i tuoi documenti e caricarne di nuovi.</span><br>
+                        <span>Scopri varie statistiche sull'utilizzo del sito, dai documenti pi&ugrave; scaricati ai corsi di laurea pi&ugrave; attivi.</span><br>
+                        <span>Potrai inoltre scegliere il tuo tema preferito per personalizzare l'esperienza di navigazione. </span><br>
+                        <span>Inizia subito a esplorare e a condividere conoscenze con la comunit&agrave;!</span><br>
+                  </p>
+                  <div class="pages">
+                        <div>
+                              <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
+                        </div>
                         
-
-      <div class="page manual">
-            <p>Una descrizione del sito</p><a href="manual.html" class="button-like">Manuale</a>
-      </div>
-      
-      <div class="page search">
-            <p>Cerchi appunti per una materia ostica?</p><a href="search.php" class="button-like">Cerca</a>
-      </div>
-      
-      <div class="page upload">
-            <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php" class="button-like">Upload</a>
-      </div>
-      
-      <div class="page personal">
-            <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php" class="button-like">Area personale</a>
-      </div>
-      
-      <div class="page statistics">
-            <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
-      </div>
+                        <div>
+                              <p>Cerchi appunti per una materia impegnativa?</p><a href="search.php" class="button-like">Cerca</a>
+                        </div>
+                        
+                        <div>
+                              <p>Vuoi condividere i tuoi appunti?</p><a href="uploaddocument.php" class="button-like">Upload</a>
+                        </div>
+                        
+                        <div>
+                              <p>Vuoi controllare i tuoi documenti?</p><a href="personal.php" class="button-like">Area personale</a>
+                        </div>
+                        
+                        <div>
+                              <p>Vuoi sapere quali sono le materie pi&ugrave; popolari?</p><a href="statistics.php" class="button-like">Statistiche</a>
+                        </div>
                   </div>
             </div>
       </div>
